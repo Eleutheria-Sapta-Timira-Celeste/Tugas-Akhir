@@ -9,7 +9,7 @@ include 'connection/database.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notice</title>
+    <title>Pengumuman</title>
     <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
     <link rel="icon" type="image/x-icon" href="assects/images/logo2.png">
 
