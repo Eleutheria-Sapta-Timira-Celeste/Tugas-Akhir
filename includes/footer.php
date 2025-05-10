@@ -13,10 +13,10 @@
                 <h2 class="title-font font-medium text-[#fff] tracking-widest text-sm mb-3">Tautan</h2>
                 <nav class="list-none mb-10">
                     <li>
-                        <a class="text-sm md:text-base text-[#888} hover:text-[#ff9f45] cursor-pointer" onclick="ministryofEducation()">Kemendikbud</a>
+                        <a class="text-sm md:text-base text-[#888} hover:text-[#ff9f45] cursor-pointer" onclick="kemendikbud()">Kemendikbud</a>
                     </li>
                     <li>
-                        <a class="text-sm md:text-base text-[#888} hover:text-[#ff9f45] cursor-pointer" onclick="curriculumDevelopmentCentre()">PGRI Pusat</a>
+                        <a class="text-sm md:text-base text-[#888} hover:text-[#ff9f45] cursor-pointer" onclick="pgripusat()">PGRI Pusat</a>
                     </li>
                     <li>
                         <a class="text-sm md:text-base text-[#888} hover:text-[#ff9f45] cursor-pointer" onclick="ePustakalaya()">Instagram</a>
