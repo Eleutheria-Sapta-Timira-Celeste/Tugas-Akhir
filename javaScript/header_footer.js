@@ -14,19 +14,20 @@ function locationmap(){
 }
 
 function callschool(){  
-    window.location.href = "tel:9844640316";
+    window.location.href = "021-2273-6571";
 }
 
-function ministryofEducation(){
-    window.location.href = "https://moest.gov.np/";
+function kemendikbud(){
+    window.location.href = "https://www.kemdikbud.go.id/";
 
 }
-function curriculumDevelopmentCentre(){
-    window.location.href = "https://moecdc.gov.np/en";
+function pgripusat(){
+    window.location.href = "https://pgri.or.id/";
 
 }
 function ePustakalaya(){
-    window.location.href = "https://pustakalaya.org/en/";
+    window.location.href = "https://www.instagram.com/smpgri371official";
 
 }
 
+// https://www.kemdikbud.go.id/
