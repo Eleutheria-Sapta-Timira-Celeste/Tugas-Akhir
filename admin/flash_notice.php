@@ -126,12 +126,10 @@ if (isset($_POST['update_flash_notice'])) {
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-10 mx-auto">
             <div class="flex flex-col text-center w-full mb-5">
-                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-blue-600">Update Flash Notice</h1>
+                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-blue-600">Perbarui Kartu Sambutan</h1>
                 <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base">
 
-                    Elevate user engagement on the homepage by tailoring flash notices to convey important information.
-                    Seamlessly update these messages to create a dynamic and interactive user experience, ensuring that
-                    your audience stays informed and engaged with the latest updates and announcements.
+                    Halaman ini berfungsi untuk mengubah atau mengatur kartu sambutan yang muncul ketika pengunjung membuka halaman website.
                 </p>
             </div>
         </div>
@@ -169,12 +167,11 @@ if (isset($_POST['update_flash_notice'])) {
                 <main>
                     <section
                         class="max-w-4xl p-6 mx-auto bg-white-600 rounded-md shadow-md dark:bg-white-800 mt-10 mb-10">
-                        <h1 class="text-xl font-bold text-white capitalize dark:text-black">Flash Notice</h1>
+                        <h1 class="text-xl font-bold text-white capitalize dark:text-black">Kartu Sambutan</h1>
                         <form action="" method="POST" enctype="multipart/form-data">
                             <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                                 <div>
-                                    <label class="text-black dark:text-black-200">Trun
-                                        Flash</label>
+                                    <label class="text-black dark:text-black-200">Nyalakan Animasi</label>
                                     <select name="trun_flash_notice"
                                         class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-white-300 rounded-md dark:bg-white-800 dark:text-white-300 dark:border-white-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
 
@@ -191,7 +188,7 @@ if (isset($_POST['update_flash_notice'])) {
                                 </div>
 
                                 <div>
-                                    <label class="text-black dark:text-black-200">Subject <span
+                                    <label class="text-black dark:text-black-200">Subjek <span
                                             style="color: red;">*</span></label>
                                     <input name="flash_title" value="<?php echo $flash_notice['title']; ?>"
                                         id="flash_subject" type="text"
@@ -202,7 +199,7 @@ if (isset($_POST['update_flash_notice'])) {
 
                                 <div>
                                     <label class="block text-sm font-medium text-black">
-                                        Banner Image
+                                        Poster/Gambar
                                     </label>
                                     <div
                                         class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
@@ -217,13 +214,13 @@ if (isset($_POST['update_flash_notice'])) {
                                             <div class="flex text-sm text-gray-600">
                                                 <label for="file-upload"
                                                     class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                                    <span class="">Upload a file</span>
+                                                    <span class="">Tambahkan File</span>
                                                     <input name="image_name" class="hidden" type="text" value="<?php echo $flash_notice['image_url']; ?>">
                                                     <input type="file" accept="image/*" name="file-upload"
                                                         id="file-upload" type="file" class="sr-only"
                                                         onchange="displayFileName()">
                                                 </label>
-                                                <p id="file-info" class="pl-1 text-black">or drag and drop</p>
+                                                <p id="file-info" class="pl-1 text-black">atau Tarik dan Jatuhkan di dalam kotak ini</p>
                                             </div>
                                             
                                         </div>
@@ -231,7 +228,7 @@ if (isset($_POST['update_flash_notice'])) {
                                 </div>
 
                                 <div>
-                                    <label class="text-black dark:text-black-200">Message
+                                    <label class="text-black dark:text-black-200">Isi Pesan
                                         <span style="color: red;">*</span></label>
                                     <textarea name="flash_message" id="flash_message" rows="4" id="textarea"
                                         type="textarea"
