@@ -1,4 +1,4 @@
-<footer class="text-[#888] bg-[#042c3e] body-font shadow-inner">
+<footer class="text-[#888] bg-[#fffdd0] body-font shadow-inner">
     <div class="container px-5 py-10 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
         <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
             <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
@@ -43,7 +43,7 @@
             </div>
         </div>
     </div>
-    <div class="bg-[#03212e]">
+    <div class="bg-[#fa9c61]">
         <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
             <p class="text-sm md:text-base text-gray-500 text-sm text-center sm:text-left">Copyright © 2025 - <?php echo date("Y"); ?> All rights reserved by -
                 <a href="https://technicalpashupati.edu.np" rel="noopener noreferrer" class="text-[#fff] ml-1" target="_blank">SMP PGRI 371 Pondok Aren</a>

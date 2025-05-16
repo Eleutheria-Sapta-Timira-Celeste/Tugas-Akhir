@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2024 at 11:08 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.1.25
+-- Waktu pembuatan: 16 Bulan Mei 2025 pada 16.10
+-- Versi server: 10.4.32-MariaDB
+-- Versi PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,21 +18,25 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `technicalpashupati`
+-- Database: `db_pgri371`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admission_form`
+-- Struktur dari tabel `admission_form`
 --
 
 CREATE TABLE `admission_form` (
   `id` int(11) NOT NULL,
   `full_name` varchar(50) NOT NULL,
+  `nisn` varchar(20) DEFAULT NULL,
+  `nik` varchar(20) DEFAULT NULL,
   `address` varchar(80) NOT NULL,
   `gender` varchar(50) NOT NULL,
+  `birth_place` varchar(50) NOT NULL,
   `dob` varchar(50) NOT NULL,
+  `religion` enum('Islam','Kristen','Katolik','Hindu','Buddha','Konghucu') NOT NULL,
   `father_name` varchar(50) NOT NULL,
   `mother_name` varchar(50) NOT NULL,
   `admit_to` varchar(100) NOT NULL,
@@ -40,64 +44,22 @@ CREATE TABLE `admission_form` (
   `email` varchar(30) DEFAULT NULL,
   `phone` varchar(30) NOT NULL,
   `intro` varchar(500) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
   `registered_on` varchar(30) NOT NULL,
   `image_url` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `admission_form`
+-- Dumping data untuk tabel `admission_form`
 --
 
-INSERT INTO `admission_form` (`id`, `full_name`, `address`, `gender`, `dob`, `father_name`, `mother_name`, `admit_to`, `previous_school`, `email`, `phone`, `intro`, `registered_on`, `image_url`) VALUES
-(5, 'Nishchal Acharya', 'bahra', 'Male', '2024-01-23', 'Unzali', 'Sabitra Niraula', '+2( Commerce )', 'Saraswati', 'anish@gmail.com', 'asf3242', 'sdfa', '20/01/2024 07:52 PM', NULL),
-(6, 'Nishchal Acharya', 'bahra', 'Male', '2024-01-23', 'Unzali', 'Sabitra Niraula', '+2( Commerce )', 'Saraswati', 'anish@gmail.com', 'asf3242', 'sdfa', '20/01/2024 07:55 PM', NULL),
-(7, 'Nishchal Acharya', 'Chakchaki 3', 'Female', '2024-01-30', 'Hari Niraulaad', 'Sabitra Niraulaad', '9 ( Nepali Medium )', 'Sundarpur', 'anish@gmail.com', '98170099789', 'safad asdf sdf ', '20/01/2024 08:03 PM', NULL),
-(8, 'Nixal Acxarya', 'Bahradashi 3', 'Male', '2004-08-27', 'Naxer Axcarya', 'Jaxer Axcarya', '9 to 12( Computer Engineering )', 'Saraswati', 'A@gmail.com', '9817099134', 'I am Nishchal Acharya From jhapa...', '21/01/2024 11:24 AM', NULL),
-(9, 'Nishchal Acharya', 'bahra', 'Male', '2024-01-04', 'Hari Niraula', 'Sabitra Niraula', 'Nursery', 'Saraswati', 'nischalacharya345@gmail.com', '98170099789', 'safd sdf  sda', '21/01/2024 05:07 PM', NULL),
-(10, 'Anish Niraula', 'Rajgadh', 'Male', '2024-01-05', 'fada', 'mdfsdf', '8 ( Nepali Medium )', 'Saraswati', 'asdf@gmail.com', '2342342', 'Nichal dsf ', '21/01/2024 05:20 PM', NULL),
-(11, 'Nishchal Acharya', 'sdf', 'Male', '2024-01-06', 'sdaf ', 'safsf', '10 ( Nepali Medium )', 'Sundarpur', 'ujwal@gmail.com', '98170099789', 'saf sfaf sadf', '21/01/2024 05:22 PM', NULL),
-(12, 'Nishchal Acharya', 'sdf', 'Male', '2024-01-06', 'sdaf ', 'safsf', '10 ( Nepali Medium )', 'Sundarpur', 'ujwal@gmail.com', '98170099789', 'saf sfaf sadf', '21/01/2024 05:24 PM', NULL),
-(13, 'Nishchal Acharya', 'sdf', 'Male', '2024-01-06', 'sdaf ', 'safsf', '10 ( Nepali Medium )', 'Sundarpur', 'ujwal@gmail.com', '98170099789', 'saf sfaf sadf', '21/01/2024 05:24 PM', NULL),
-(14, 'Nishchal Acharya', 'sdf', 'Male', '2024-01-06', 'sdaf ', 'safsf', '10 ( Nepali Medium )', 'Sundarpur', 'ujwal@gmail.com', '98170099789', 'saf sfaf sadf', '21/01/2024 05:24 PM', NULL),
-(15, 'Nishchal Acharya', 'sdf', 'Male', '2024-01-06', 'sdaf ', 'safsf', '10 ( Nepali Medium )', 'Sundarpur', 'ujwal@gmail.com', '98170099789', 'saf sfaf sadf', '21/01/2024 05:25 PM', NULL),
-(16, 'Nishchal Acharya', 'sdf', 'Male', '2024-01-06', 'sdaf ', 'safsf', '10 ( Nepali Medium )', 'Sundarpur', 'ujwal@gmail.com', '98170099789', 'saf sfaf sadf', '21/01/2024 05:25 PM', NULL),
-(17, 'Nishchal Acharya', 'sdf', 'Male', '2024-01-06', 'sdaf ', 'safsf', '10 ( Nepali Medium )', 'Sundarpur', 'ujwal@gmail.com', '98170099789', 'saf sfaf sadf', '21/01/2024 05:25 PM', NULL),
-(18, 'Nitin Sharma', 'Chakchaki', 'Male', '2003-11-12', 'Hari Sharma', 'Sabitra Sharma', '8 ( Nepali Medium )', 'Psdfa', 'nit@gmail.com', '42345345', 'Hello I am Nishchal Acharya', '21/01/2024 05:28 PM', NULL),
-(19, 'saf', 'asfd ', 'Male', '2024-01-17', 'sdfa', 'adf', 'Nursery', 'sadf', 'a@g.com', '24224', 'aeasd dsf saf ', '21/01/2024 05:35 PM', NULL),
-(20, 'saf', 'asfd ', 'Male', '2024-01-17', 'sdfa', 'adf', 'Nursery', 'sadf', 'a@g.com', '24224', 'aeasd dsf saf ', '23/01/2024 10:42 AM', NULL),
-(21, 'Sekhar Ghimire', 'Birtamode 4', 'Male', '2021-05-11', 'Pratik baba', 'Pratik mummy', '10 ( Nepali Medium )', 'Gyan jyoti', 'pratik@gmail.com', '980171717012', 'I am Sekhar Ghimire. Iam from bahradashi 3. My previous school is gyan jyoti.', '23/01/2024 11:06 AM', 'https://nishchalacharya.com.np/img/hero.png'),
-(22, 'Anish Niraula', 'bahra', 'Male', '2024-01-11', 'Hari Niraula', 'Sabitra Niraula', '6 ( Nepali Medium)', 'Sundarpur', 'ujwal@gmail.com', '98170099789', 'asdfsadf  sdf sa', '24/01/2024 01:52 PM', NULL),
-(23, 'Anish Niraula', 'bahra', 'Male', '2024-01-11', 'Hari Niraula', 'Sabitra Niraula', '6 ( Nepali Medium)', 'Sundarpur', 'ujwal@gmail.com', '98170099789', 'asdfsadf  sdf sa', '24/01/2024 01:53 PM', NULL),
-(24, 'Anish Niraula', 'bahra', 'Male', '2024-01-11', 'Hari Niraula', 'Sabitra Niraula', '6 ( Nepali Medium)', 'Sundarpur', 'ujwal@gmail.com', '98170099789', 'asdfsadf  sdf sa', '24/01/2024 01:56 PM', NULL),
-(25, 'Anish Niraula', 'bahra', 'Male', '2024-01-11', 'Hari Niraula', 'Sabitra Niraula', '6 ( Nepali Medium)', 'Sundarpur', 'ujwal@gmail.com', '98170099789', 'asdfsadf  sdf sa', '24/01/2024 01:56 PM', NULL),
-(26, 'asdf', 'bahra', 'Female', '2024-01-15', 'Unzali', 'Sabitra Niraula', 'Nursery', 'Saraswati', 'anish@gmail.com', '98170099789', 'saf sdf af sdf a', '24/01/2024 01:56 PM', NULL),
-(27, 'Anish Niraula', 'Chakchaki 3', 'Male', '2024-01-15', 'Hari Niraula', 'Sabitra Niraula', '7 ( Nepali Medium )', 'Sundarpur', 'ujwal@gmail.com', '98170099789', 'sdf s f df adf ', '24/01/2024 01:59 PM', NULL),
-(28, 'Anish Niraula', 'Chakchaki 3', 'Female', '2024-01-25', 'Hari Niraula', 'Sabitra Niraula', 'Nursery', 'Saraswati', 'nischalacharya345@gmail.com', '98170099789', ' dfg   faf  fsd sdf s gf sg ', '24/01/2024 02:04 PM', NULL),
-(29, 'Anish Niraula', 'Chakchaki 3', 'Female', '2024-01-25', 'Hari Niraula', 'Sabitra Niraula', 'Nursery', 'Saraswati', 'nischalacharya345@gmail.com', '98170099789', ' dfg   faf  fsd sdf s gf sg ', '24/01/2024 02:04 PM', NULL),
-(30, 'Anish Niraula', 'Chakchaki 3', 'Female', '2024-01-25', 'Hari Niraula', 'Sabitra Niraula', 'Nursery', 'Saraswati', 'nischalacharya345@gmail.com', '98170099789', ' dfg   faf  fsd sdf s gf sg ', '24/01/2024 02:04 PM', NULL),
-(31, 'Anish Niraula', 'Chakchaki 3', 'Male', '2024-01-26', 'Hari Niraula', 'Unzala', 'Nursery', 'pdsfg', 'anish@gmail.com', '98170099789', 'fadf sadf asdf asdf ', '24/01/2024 02:19 PM', NULL),
-(32, 'sfd', 'Chakchaki 3', 'Others', '2022-09-01', 'Hari Niraula', 'Sabitra Niraula', 'Nursery', 'Sundarpur', 'nischalacharya345@gmail.com', 'asf3242', 'sdfa sdfa sdf a', '01/02/2024 07:34 PM', NULL),
-(34, 'Nakul Nirsinga', 'Bahradashi', 'Male', '2024-03-26', 'Hari don', 'Harica don', '9 ( Nepali Medium )', 'Little', 'niskal@gmail.com', '9817000000', 'Hello, I am Nishchal Acharya, My previous school was Saraswati.', '29/03/2024 11:57 AM', ''),
-(35, 'Nakul Nirsinga', 'cow', 'Male', '2024-03-18', 'Hari don', 'Harica don', '10 ( Nepali Medium )', 'Little', 'niskal@gmail.com', '9817000000', 'asa asf adf adf af sadf a fadfaf fasdfaf a', '29/03/2024 12:01 PM', ''),
-(36, 'Nakul Nirsinga', 'btm', 'Male', '2024-03-01', 'Hari don', 'Harica don', 'Nursery', 'Little', 'niskal@gmail.com', '9817000000', ' ? Here, you have the ability to adjust the class routine according to our dynamic schedule. ? Feel free to make necessary changes to ensure that our students receive the best possible education. ? ', '29/03/2024 12:07 PM', ''),
-(37, 'Nakul Nirsinga', 'btm', 'Male', '2024-03-01', 'Hari don', 'Harica don', 'Nursery', 'Little', 'niskal@gmail.com', '9817000000', ' ? Here, you have the ability to adjust the class routine according to our dynamic schedule. ? Feel free to make necessary changes to ensure that our students receive the best possible education. ? ', '29/03/2024 12:15 PM', ''),
-(38, 'Nakul Nirsinga', 'btm', 'Male', '2024-03-01', 'Hari don', 'Harica don', 'Nursery', 'Little', 'niskal@gmail.com', '9817000000', ' ? Here, you have the ability to adjust the class routine according to our dynamic schedule. ? Feel free to make necessary changes to ensure that our students receive the best possible education. ? ', '29/03/2024 12:17 PM', ''),
-(39, 'Nakul Nirsinga', 'btm', 'Male', '2024-03-01', 'Hari don', 'Harica don', 'Nursery', 'Little', 'niskal@gmail.com', '9817000000', ' ? Here, you have the ability to adjust the class routine according to our dynamic schedule. ? Feel free to make necessary changes to ensure that our students receive the best possible education. ? ', '29/03/2024 12:20 PM', ''),
-(40, 'Nakul Nirsinga', 'btm', 'Male', '2024-03-01', 'Hari don', 'Harica don', 'Nursery', 'Little', 'niskal@gmail.com', '9817000000', ' ? Here, you have the ability to adjust the class routine according to our dynamic schedule. ? Feel free to make necessary changes to ensure that our students receive the best possible education. ? ', '29/03/2024 12:26 PM', ''),
-(41, 'Nakul Nirsinga', 'cow', 'Female', '2024-02-26', 'asf af', 'Harica don', '9 ( Nepali Medium )', 'Little', 'niskal@gmail.com', '9817000000', ' af f af afaf aith this PHP code, we\'re checking if the \"file-upload\" field exists in the $_FILES array before trying to access it. If it\'s not ', '29/03/2024 12:27 PM', ''),
-(42, 'Nakul Nirsinga', 'cow', 'Female', '2024-02-26', 'asf af', 'Harica don', '9 ( Nepali Medium )', 'Little', 'niskal@gmail.com', '9817000000', ' af f af afaf aith this PHP code, we\'re checking if the \"file-upload\" field exists in the $_FILES array before trying to access it. If it\'s not ', '29/03/2024 12:28 PM', ''),
-(43, 'Nakul Nirsinga', 'cow', 'Female', '2024-02-26', 'asf af', 'Harica don', '9 ( Nepali Medium )', 'Little', 'niskal@gmail.com', '9817000000', ' af f af afaf aith this PHP code, we\'re checking if the \"file-upload\" field exists in the $_FILES array before trying to access it. If it\'s not ', '29/03/2024 12:32 PM', ''),
-(44, 'Nakul Nirsinga', 'btm', 'Male', '2024-02-27', 'asf af', 'Harica don', 'Nursery', 'Little', 'niskal@gmail.com', '9817000000', '<form class=\"hide_after_submission\" action=\"\" method=\"POST\" enctype=\"multipart/form-data\">\r\n', '29/03/2024 12:33 PM', '../assects/images/Registered_Students/2023_11_29_18_36_IMG_5542.JPG'),
-(45, 'Nakul Nirsinga', 'cow', 'Male', '2024-03-04', 'asf af', 'Harica don', 'Nursery', '', 'niskal@gmail.com', '9817000000', '<form class=\"hide_after_submission\" action=\"\" method=\"POST\" enctype=\"multipart/form-data\">\r\n', '29/03/2024 12:35 PM', '../assects/images/Registered_Students/2023_11_29_18_37_IMG_5543.JPG'),
-(46, 'Nakul Nirsinga', 'cow', 'Male', '2024-03-04', 'asf af', 'Harica don', 'Nursery', '', 'niskal@gmail.com', '9817000000', '<form class=\"hide_after_submission\" action=\"\" method=\"POST\" enctype=\"multipart/form-data\">\r\n', '29/03/2024 12:36 PM', '../assects/images/Registered_Students/2023_11_29_18_37_IMG_5543.JPG'),
-(47, 'Nischal Acharya', 'Bahradashi 3', 'Male', '2024-03-27', 'Narayan Acharya', 'Januka Acharya', '6 ( English Medium )', 'Saraswati Secondary School', 'niskal@gmail.com', '9817000000', 'Hi, I\'m Nishchal Acharya. I am a computer engineering student with a strong interest in web and app development. I have a solid foundation in computer science principles and programming languages, and I am always looking for opportunities to expand my skillset and take on new challenges.', '29/03/2024 12:39 PM', ''),
-(48, 'Nischal Acharya', 'Bahradashi 3', 'Male', '2024-03-27', 'Narayan Acharya', 'Januka Acharya', 'Nursery', '', '', '98170000000', 'Hi, I\'m Nishchal Acharya. I am a computer engineering student with a strong interest in web and app development. I have a solid foundation in computer science principles and programming languages, and I am always looking for opportunities to expand my skillset and take on new challenges.', '29/03/2024 12:45 PM', '../assects/images/Registered_Students/calen roshika.JPG'),
-(49, 'Nischal Acharya', 'Jhapa', 'Male', '2024-04-05', 'Narayan Acharya', 'Januka Acharya', '9 to 12( Computer Engineering )', 'Saraswati Secondary School', 'niskal@gmail.com', '9817000000', 'I am Nischal Acharya I am from Bahradashi 3 Jhapa. ', '09/04/2024 06:02 PM', '../assects/images/Registered_Students/Charles-Babbage-Biography.webp');
+INSERT INTO `admission_form` (`id`, `full_name`, `nisn`, `nik`, `address`, `gender`, `birth_place`, `dob`, `religion`, `father_name`, `mother_name`, `admit_to`, `previous_school`, `email`, `phone`, `intro`, `image`, `registered_on`, `image_url`) VALUES
+(14, 'Nishchal Acharya', NULL, NULL, 'sdf', 'Male', '', '2024-01-06', 'Islam', 'sdaf ', 'safsf', '10 ( Nepali Medium )', 'Sundarpur', 'ujwal@gmail.com', '98170099789', 'saf sfaf sadf', NULL, '21/01/2024 05:24 PM', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contactfeedback`
+-- Struktur dari tabel `contactfeedback`
 --
 
 CREATE TABLE `contactfeedback` (
@@ -110,29 +72,16 @@ CREATE TABLE `contactfeedback` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `contactfeedback`
+-- Dumping data untuk tabel `contactfeedback`
 --
 
 INSERT INTO `contactfeedback` (`id`, `date`, `time`, `name`, `email`, `message`) VALUES
-(35, '13/12/2023', '20:05', '234', 'nischalacharyayt@gmail.com', '32'),
-(37, '13/12/2023', '20:05', 'Nischal Acharya', 'niroulaanish44@gmail.com', 'Y'),
-(38, '13/12/2023', '21:18', 'Nischal Acharya', 'niroulaanish44@gmail.com', 'https://www.instagram.com/reel/C0QVwNsrFsl/?igshid=MzRlODBiNWFlZA=='),
-(39, '13/12/2023', '21:28', 'userAdmin', 'nischalacharya345@gmail.com', 'Ha'),
-(42, '14/01/2024', '20:18', 'Ujwal Acharya', 'ujwal@gmail.com', 'Get Free Reply all Icon SVG code vector files and use them in websites, apps (Android/IOS), ppt, and other useful projects. Customize & Download the Reply all Icon SVG file (HMTL/CSS) in different colors and sizes. Reply all SVG icon white, black, red, green, blue, transparent, and other colors.\r\n\r\n'),
-(43, '18/01/2024', '11:36', 'Nischal', 'nischalacharya345@gmail.com', 'adfaffs'),
-(44, '20/01/2024', '19:57', 'Nischal', 'Acharya@gmail', 'apple'),
-(45, '24/01/2024', '14:10', 'Nischal', 'anish@gmail.com', ' sdf sad ff sdf as'),
-(46, '24/01/2024', '14:14', 'Ujwal Acharya', 'ujwal@gmail.com', ' dsasf sda d'),
-(47, '24/01/2024', '14:17', 'Ujwal Acharya', 'nischalacharya345@gmail.com', 'sdf a fa '),
-(48, '13/03/2024', '20:25', 'Nischal', 'nischalacharya345@gmail.com', 'asfaafas'),
-(49, '13/03/2024', '20:25', 'Ujwal Acharya', 'nischalacharya345@gmail.com', '23423weeafs'),
-(50, '13/03/2024', '20:26', 'we we we ', 'anish@gmail.com', 'we we we we w eeeeeeeeeewewrerwer'),
-(51, '14/04/2024', '07:23 AM', 'Nischal Acharya', 'nischalacharya@gmail.com', 'I am very happy to submit our final project');
+(52, '05/05/2025', '03:26 PM', 'Gracia', 'nlala8868@gmail.com', 'Sekolah yang bagus');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `flash_notice`
+-- Struktur dari tabel `flash_notice`
 --
 
 CREATE TABLE `flash_notice` (
@@ -144,16 +93,16 @@ CREATE TABLE `flash_notice` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `flash_notice`
+-- Dumping data untuk tabel `flash_notice`
 --
 
 INSERT INTO `flash_notice` (`id`, `title`, `image_url`, `message`, `trun_flash`) VALUES
-(1, 'Admission is open!!!', 'assects/images/flashNotice/2081.png', 'Admissions open for 2081 at Pashupati Technical College! Explore Computer Engineering and Management. Apply now for a bright future!', '1');
+(1, 'Pendaftaran dibuka!!!', 'assects/images/flashNotice/6095973527506241505.jpg', 'Penerimaan Peserta Didik Baru Tahun Ajaran 2025/2026 SMP PGRI 371 Pondok Aren\r\nBergabunglah bersama kami dan wujudkan masa depan cerah!\r\nTersedia program pendidikan berkualitas dengan fokus pada pembentukan karakter, ilmu pengetahuan, dan keterampilan.\r\nDaftar sekarang dan raih peluang terbaik untuk masa depan!', '1');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gallery_album`
+-- Struktur dari tabel `gallery_album`
 --
 
 CREATE TABLE `gallery_album` (
@@ -162,11 +111,10 @@ CREATE TABLE `gallery_album` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `gallery_album`
+-- Dumping data untuk tabel `gallery_album`
 --
 
 INSERT INTO `gallery_album` (`id`, `album_name`) VALUES
-(7, 'Staff'),
 (8, 'Garden'),
 (9, 'Group'),
 (15, 'Nischal acharya');
@@ -174,7 +122,7 @@ INSERT INTO `gallery_album` (`id`, `album_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gallery_images`
+-- Struktur dari tabel `gallery_images`
 --
 
 CREATE TABLE `gallery_images` (
@@ -184,7 +132,7 @@ CREATE TABLE `gallery_images` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `gallery_images`
+-- Dumping data untuk tabel `gallery_images`
 --
 
 INSERT INTO `gallery_images` (`id`, `album`, `image_url`) VALUES
@@ -204,7 +152,7 @@ INSERT INTO `gallery_images` (`id`, `album`, `image_url`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `management_committee`
+-- Struktur dari tabel `management_committee`
 --
 
 CREATE TABLE `management_committee` (
@@ -216,17 +164,16 @@ CREATE TABLE `management_committee` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `management_committee`
+-- Dumping data untuk tabel `management_committee`
 --
 
 INSERT INTO `management_committee` (`id`, `name`, `position`, `contact_no`, `image_src`) VALUES
-(1, 'Yubaraj Rajbanshi', 'Chairman', '980000000', ''),
-(2, 'Thir Kumar Dahal', 'Member Secretary', '9844640316', 'assects/images/pta/thirKumarDahal.jpg');
+(2, 'Sukardi, S.Pd.I., M.M', 'Kepala Sekolah', '9844640316', 'assects/images/pta/6091613530110412616.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `manipulators`
+-- Struktur dari tabel `manipulators`
 --
 
 CREATE TABLE `manipulators` (
@@ -239,21 +186,17 @@ CREATE TABLE `manipulators` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `manipulators`
+-- Dumping data untuk tabel `manipulators`
 --
 
 INSERT INTO `manipulators` (`id`, `name`, `identity_code`, `password`, `image`, `last_update`) VALUES
-(1, 'Pashupati \nAdministrator', '7267864', 'Nishchal_School@12', 'assects/images/admin_and_scribe/pgri-putih.png', NULL),
-(2, 'Nischal', '12345', '1234512345', 'assects/images/admin_and_scribe/Charles-Babbage-Biography.png', '09/04/2024 06:09 PM'),
-(3, 'Please Update this to use', '&^*^&*%$#', '$%%%$##@%$', '', NULL),
-(4, 'Please Update this to use', '%^&%&^**(*%', '&(*^&*^&*^%', '', NULL),
-(5, 'Please Update this to use', '%$^%$%^$^^', ')(*&^%$#@!', '', '09/04/2024 05:58 PM'),
-(6, 'Please Update this to use', '%&^%$&^%*(*', '!#^%$(&(*&&*%', '', NULL);
+(1, ' Administrator', '2120021', '12345678', 'assects/images/admin_and_scribe/pgri-putih.png', NULL),
+(2, 'Admin_1', '2120021', '12345678', 'assects/images/admin_and_scribe/avatar.png', '05/05/2025 06:11 PM');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `notification`
+-- Struktur dari tabel `notification`
 --
 
 CREATE TABLE `notification` (
@@ -264,17 +207,40 @@ CREATE TABLE `notification` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `notification`
+-- Dumping data untuk tabel `notification`
 --
 
 INSERT INTO `notification` (`id`, `page`, `site`, `total_notification`) VALUES
-(1, 'join_us', 'new_students', 5),
-(2, 'contact_us', 'new_feedback', 3);
+(1, 'join_us', 'new_students', 0),
+(2, 'contact_us', 'new_feedback', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `schoolroutine`
+-- Struktur dari tabel `pengguna`
+--
+
+CREATE TABLE `pengguna` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `level` enum('admin','guru','siswa') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `pengguna`
+--
+
+INSERT INTO `pengguna` (`id`, `nama`, `username`, `password`, `level`) VALUES
+(1, 'Admin Utama', 'admin', 'admin123', 'admin'),
+(2, 'Budi Guru', 'guru1', '9310f83135f238b04af729fec041cca8', 'guru'),
+(3, 'Siti Siswa', 'siswa1', '3afa0d81296a4f17d477ec823261b1ec', 'siswa');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `schoolroutine`
 --
 
 CREATE TABLE `schoolroutine` (
@@ -285,7 +251,7 @@ CREATE TABLE `schoolroutine` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `schoolroutine`
+-- Dumping data untuk tabel `schoolroutine`
 --
 
 INSERT INTO `schoolroutine` (`id`, `class`, `routine_url`, `last_modified`) VALUES
@@ -313,7 +279,7 @@ INSERT INTO `schoolroutine` (`id`, `class`, `routine_url`, `last_modified`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `school_notice`
+-- Struktur dari tabel `school_notice`
 --
 
 CREATE TABLE `school_notice` (
@@ -331,23 +297,16 @@ CREATE TABLE `school_notice` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `school_notice`
+-- Dumping data untuk tabel `school_notice`
 --
 
 INSERT INTO `school_notice` (`id`, `logo`, `posted_by`, `image_url`, `about`, `notice_description`, `date`, `time`, `total_views`, `total_downloads`, `last_modified`) VALUES
-(106, 'assects/images/admin_and_scribe/pashupati_admin.png', 'Pashupati \nAdministrator', 'assects/images/notices_files/Screenshot (2).png', 'Apple and ball are Friends', 'Welcome to Complete C Programming Course in Nepali, Here you will learn c  programming in Nepali from basic to advance. This Programming Course is designed for beginners and as well as developers who knows about c programming but want to explore more.  This video is only available in Nepali Language. sadf asf ', '26/12/2023', '08:41 PM', 11, 3, '10:13 AM 29/03/2024'),
-(107, 'assects/images/admin_and_scribe/pashupati_admin.png', 'Pashupati \nAdministrator', 'assects/images/notices_files/Screenshot (5).png', 'Windows hit the World', 'I am Nischal Acharya, from jahapa bahradashi 3 okay ', '29/03/2024', '10:11 AM', 0, 0, '10:12 AM 29/03/2024'),
-(108, 'assects/images/admin_and_scribe/pashupati_admin.png', 'Pashupati \nAdministrator', 'assects/images/notices_files/Screenshot (6).png', 'Windows hit the World', 'I am Nischal Acharya, from jahapa bahradashi 3 okay ', '29/03/2024', '10:12 AM', 0, 0, '10:12 AM 29/03/2024'),
-(109, 'assects/images/admin_and_scribe/pashupati_admin.png', 'Pashupati \nAdministrator', 'assects/images/notices_files/2023_12_23_14_02_IMG_6275.JPG', 'Windows hit the World', 'cursor-pointer cursor-pointer cursor-pointer cursor-pointer cursor-pointer cursor-pointer cursor-pointer cursor-pointer cursor-pointer ', '29/03/2024', '11:24 AM', 0, 0, 'Not Modified'),
-(110, 'assects/images/admin_and_scribe/pashupati_admin.png', 'Pashupati \nAdministrator', 'assects/images/notices_files/2023_12_23_14_02_IMG_6275.JPG', 'Windows hit the World', ' 🏫 Here, you have the ability to adjust the class routine according to our dynamic schedule. 💼 Feel free to make necessary changes to ensure that our students receive the best possible education. 📅 ', '29/03/2024', '11:41 AM', 0, 0, '11:42 AM 29/03/2024'),
-(111, 'assects/images/admin_and_scribe/pashupati_admin.png', 'Pashupati \nAdministrator', 'assects/images/notices_files/20240328_085033.jpg', 'This notice is published', 'Welcome to Gboard clipboard, any text that you copy will be saved here.Tap on a clip to paste it in the text box.', '29/03/2024', '02:11 PM', 0, 0, 'Not Modified'),
-(112, 'assects/images/admin_and_scribe/pashupati_admin.png', 'Pashupati \nAdministrator', 'assects/images/notices_files/20240328_085033.jpg', 'This notice is published', 'Welcome to Gboard clipboard, any text that you copy will be saved here.Tap on a clip to paste it in the text box.', '29/03/2024', '08:09 PM', 0, 0, 'Not Modified'),
-(113, 'assects/images/admin_and_scribe/Charles-Babbage-Biography.png', 'Nischal', 'assects/images/notices_files/sale.png', 'Windows hit the World', 'I am Nischal Acharya from Bahradashi 3 jhapa', '09/04/2024', '06:12 PM', 0, 0, 'Not Modified');
+(116, 'assects/images/defaults/pgri-putih.png', ' Administrator', 'assects/images/notices_files/6158986921146172281.jpg', 'Kegiatan Perkemahan Jumat Sabtu', 'SMP PGRI 371 Pondok Aren melaksanakan kegiatan pramuka yaitu perkemahan jumat sabtu (PERJUSA) yang dilaksanakan di daerah ciputat, Tangerang Selatan. Manfaat dari kegiatan ini adalah untuk melatih skill leadership dan kebersamaan', '05/05/2025', '06:26 PM', 0, 0, '05:42 PM 07/05/2025');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `staffs`
+-- Struktur dari tabel `staffs`
 --
 
 CREATE TABLE `staffs` (
@@ -360,50 +319,23 @@ CREATE TABLE `staffs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `staffs`
+-- Dumping data untuk tabel `staffs`
 --
 
 INSERT INTO `staffs` (`id`, `name`, `post`, `qualification`, `contact`, `image_src`) VALUES
-(1, 'Thir Kumar Dahal', 'Principal', 'M.Ed', '9844640316', 'assects/images/pta/thirKumarDahal.jpg'),
-(2, 'Supen Chandra Singh Rajbanshi', 'Teacher', 'MA / M.Ed', '9804903845', 'assects/images/staff/IMG-639aad4227d326.28248876.jpg'),
-(3, 'Laxmi Kafle', 'Teacher', 'M.Ed', '9842438801', 'assects/images/staff/IMG-639aad71bc1723.67601627.jpg'),
-(4, 'Sabita Rajbanshi\r\n', 'Teacher', 'M.Ed', '9860155878', 'assects/images/staff/IMG-639aad94333361.83266687.jpg'),
-(5, 'Dilli Ram Bhattarai', 'Teacher', 'M.Ed', '9842751110', 'assects/images/staff/Dilli Ram Bhattarai.jpg'),
-(6, 'Dambar Bahadur Basnet', 'Teacher', 'M.Ed', '9815948821', 'assects/images/staff/Dambar Bahadur Basnet.jpg'),
-(7, 'Rabindra Prasad Sapkota', 'Teacher', 'MA/B.Ed', '9814951994', 'assects/images/staff/Rabindra Prasad Sapkota.jpg'),
-(8, 'Mohan Bikram Oli', 'Teacher', 'M.Bs', '9808255803', 'assects/images/staff/Mohan Bikram Oli.jpg'),
-(9, 'Er. Biswas Niroula', 'Teacher', 'BE', '9844651107', 'assects/images/staff/Er.Biswas Niroula.jpg'),
-(10, 'Roshan Subedi', 'Teacher', 'M.Sc', '9824002944', 'assects/images/staff/Roshan Subedi.jpg'),
-(11, 'Er. Umesh Thapa', 'Teacher', 'BE', '9862170772', 'assects/images/staff/Er. Umesh Thapa.jpg'),
-(12, 'Kedar Sapkota', 'Teacher', 'M.Sc', '9816059993', 'assects/images/staff/Kedar Sapkota.jpg'),
-(13, 'Er. Om Prakash Sah', 'Teacher', 'BE', '9863902980', 'assects/images/staff/omprakash.jpeg'),
-(14, 'Er. Jitendra Mehta', 'Teacher', 'BE', '9804004968', 'assects/images/staff/mehatasir.png'),
-(15, 'Mohalal Rajbanshi', 'Teacher', 'M.Ed', '9804913822', 'assects/images/staff/Mohalal Rajbanshi.jpg'),
-(16, 'Megnath Bhurtel', 'Teacher', 'M.Ed', '9815924367', 'assects/images/staff/Megnath Bhurtel.jpg'),
-(17, 'Umesh Gautam', 'Teacher', 'B.Sc CSIT', '9806031060', 'assects/images/staff/Umesh Gautam.jpg'),
-(18, 'Rana Kumar Rajbanshi', 'Teacher', 'BA/BEd', '9804933688', 'assects/images/staff/Rana Kumar Rajbanshi.jpg'),
-(19, 'Mahendra Prasad Rajbanshi', 'Teacher', 'IA', '9815082111', 'assects/images/staff/Mahendra Prasad Rajbanshi.jpg'),
-(20, 'Sushila Dhungana', 'Teacher', 'MA/B.Ed', '9804945857', 'assects/images/staff/Sushila Dhungana.jpg'),
-(21, 'Tulasa Bhandari', 'Teacher', 'M.Ed', '9804363575', 'assects/images/staff/Tulasa Bhandari.jpg'),
-(22, 'Yasoda Rana Magar', 'Teacher', 'MA', '9817930982', 'assects/images/staff/Yasoda Rana Magar.jpg'),
-(23, 'Shusma Mishra', 'Teacher', 'B.Bs/B.Ed', '9816003696', 'assects/images/staff/Shusma Mishra.jpg'),
-(24, 'Anupa Niroula', 'Teacher', 'M.Ed', '9804950586', 'assects/images/staff/Anupa Niroula.jpg'),
-(25, 'Sita Rajbanshi', 'Teacher', 'IA', '9824044758', 'assects/images/staff/Sita Rajbanshi.jpg'),
-(26, 'Pabitra Kumari Rajbanshi', 'Teacher', 'M.Ed', '9814949445', 'assects/images/staff/Pabitra Kumari Rajbanshi.jpg'),
-(27, 'Krishna Ghimire', 'Teacher', 'PCL', '9804708863', 'assects/images/staff/Krishna Ghimire.jpg'),
-(28, 'Siddhant Prasad Dhakal', 'Teacher', 'M.Bs', '9817942068', 'assects/images/staff/Siddhant Prasad Dhakal.jpg'),
-(29, 'Naresh Kumar Rajbanshi', 'Teacher', '+2', '9806049751', 'assects/images/staff/Naresh Kumar Rajbanshi.jpg'),
-(30, 'Kamal Prasad Subedi', 'Teacher', 'I.Ad', '9815934800', 'assects/images/staff/Kamal Prasad Subedi.jpg'),
-(31, 'Sharmananda Bhattarai', 'Teacher', 'M.Ed', '9804931105', 'assects/images/staff/Sharmananda Bhattarai.jpg'),
-(34, 'Janaki Rajbanshi', 'Teacher', 'IA', '9816024744', 'assects/images/staff/Janaki Rajbanshi.jpg'),
-(35, 'Bharat Oli', 'Lab Assistant', '+2', '9825959273', 'assects/images/staff/Bharat Oli.jpg'),
-(36, 'Motilal Baral', 'Accountant', '+2', '9842074346', 'assects/images/staff/Motilal Baral.jpg'),
-(37, 'Sitaram Bhandari', 'Office Assistant', 'SEE', '9807940880', 'assects/images/staff/Sitaram Bhandari.jpg');
+(1, 'Sumiati', 'Bendahara & PKS Bidang Kesiswaan', 'S.Pd', '9844640316', 'assects/images/staff/6122720573781034406.jpg'),
+(2, 'M. Aden Muchtar', 'PKS Bidang Kurikulum & Wali Kelas IX', 'S.Pd', '9804903845', 'assects/images/staff/6122720573781034405.jpg'),
+(3, 'Adi Ersa', 'Kepala Tata Usaha', '', '9842438801', 'assects/images/staff/avatar.png'),
+(4, 'Rita Fahriani', 'Guru IPS', 'S.Pd', '9860155878', 'assects/images/staff/6122720573781034402.jpg'),
+(5, 'Bayu Heru Nugroho', 'Pembina Osis dan Wali Kelas VIII', '', '9842751110', 'assects/images/staff/6122720573781034403.jpg'),
+(6, 'Noor Shadad Afriansyah', 'Wali Kelas VIII & Guru Bahasa Inggris', 'S.Pd', '9815948821', 'assects/images/staff/avatar.png'),
+(7, 'Dedy Adnan', 'Guru BTQ', 'S.Pd', '9814951994', 'assects/images/staff/6122720573781034404.jpg'),
+(48, 'Suhemah', 'Guru ', 'S.Pd', '123456', 'assects/images/staff/6122720573781034407.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `web_content`
+-- Struktur dari tabel `web_content`
 --
 
 CREATE TABLE `web_content` (
@@ -433,15 +365,15 @@ CREATE TABLE `web_content` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `web_content`
+-- Dumping data untuk tabel `web_content`
 --
 
 INSERT INTO `web_content` (`id`, `content_about`, `one`, `two`, `three`, `four`, `five`, `six`, `seven`, `eight`, `nine`, `ten`, `eleven`, `twelve`, `thirteen`, `fourteen`, `fifteen`, `sixteen`, `seventeen`, `eighteen`, `ninteen`, `twenty`, `twentyone`) VALUES
-(1, 'index', 'We embrace students from diverse faiths, races, and backgrounds, offering enhanced facilities to cater to their educational requirements. As a dynamic and inspiring educational institution, our community school serves as a model for the broader learning community. We uphold the highest standards of education across various specializations, providing excellent teachers, quality support materials, and a welcoming atmosphere to foster skill development in students. Our educational reach extends from nursery to grade 12, including Computer Engineering courses for classes 9 to 12.', 'Numerous compelling reasons make us the ideal choice as your educators at Pashupati. Here, we provide: ', 'A highly qualified teacher is integral to our education system, making learning enjoyable and engaging. With innovative teaching techniques, our educators ensure swift and effective learning. Choose our team for an enlightening and tailored educational experience that enhances your learning journey.', 'Your study environment significantly influences learning effectiveness. A tidy, tranquil space aids information absorption. Our serene and clean setting promotes efficient studying, ensuring a positive impact on your academic focus and productivity', 'Digital learning leverages technologies such as multimedia and the internet, fostering comprehensive student development and enhancing societal digital literacy. Our offerings include audio-visual learning experiences and computer labs equipped with high-speed internet, enriching the educational journey.', 'Discover an educational haven where excellence meets innovation! Our school provides a vibrant environment that fuels curiosity and sparks creativity. With qualified teachers, state-of-the-art facilities, and a focus on holistic development, we pave the way for a bright future. Enroll today for an inspiring educational journey!', 'The school setting is highly invigorating, characterized by openness and brightness, and our staff members are truly exceptional. Our time spent in school is enjoyable, thanks to the presence of good-natured and approachable teachers. Within the school, we delve into a variety of topics that pique our interest and are relevant to our future endeavors. The presence of supportive teachers is instrumental in helping us comprehend and navigate challenges seamlessly. Additionally, the school frequently organizes extracurricular activities, contributing to the development of our interpersonal skills and more.', 'The inaugural batch of Computer Engineering, commencing from class 9, was initiated in the year 2078 B.S. Presently, we conduct regular engineering classes spanning from class 9 to class 11. Computer engineering, situated at the intersection of electrical engineering and computer science, amalgamates various facets of both disciplines essential for the development of computer hardware and software. This field not only employs techniques and principles from electrical engineering and computer science but also encompasses domains like artificial intelligence (AI), robotics, computer networks, computer architecture, and operating systems.', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(2, 'about', 'Shree Pashupati Technical Secondary School, established in 2019 B.S. in Bahradashi 3, Jhapa district, offers education from nursery to grade 12, including Computer Engineering from class 9 to 12. Led by Principal Mr. Thir Kumar Dahal and Vice Principal Mr. Gunanidhi Luitel, the school operates from 10 am to 4 pm (9:15 am to 4:45 pm for coaching classes). With nearly 50 staff and 1000 students, the campus provides a peaceful environment, including a large football ground and well-equipped classrooms. Basic facilities such as clean water, separate washrooms, and support for girls during periods are ensured. The school emphasizes practical learning, incorporating labs for computer, physics, chemistry, network, and electric experiments. Extracurricular activities like singing, dancing, quizzes, speeches, and essay writing are organized, contributing to the overall growth of obedient and polite students.', 'I\'m really excited to be the Principal at Shree Pashupati Technical Secondary School. Thanks to the Pashupati Management team for trusting me with this role. We\'re committed to giving top-notch education that inspires our students to love learning and become valuable members of society. Our goal is to help each student reach their full potential. Parents, feel free to drop by anytime to chat about your child\'s education. We\'re building a fantastic learning community here, where everyone is dedicated to excellence. I\'m here to lead the school with energy and passion to help us achieve our goals. Looking forward to a great journey together!', 'Our school rules focus on being polite, using common sense, and staying safe. We expect everyone to behave well and dress appropriately. If students don\'t follow these rules or struggle with their work, we address it seriously.', 'Be prepared for class each day', 'Be on time for school', 'Follow the teacher\'s directions the first time they are given', 'Be polite to the teacher and your classmates', 'Help keep the school environment clean and tidy', 'Have a good attitude', 'Complete homework and assignments on time', 'Respect other student\'s personal belongings', 'Treat others the way you want to be treated', 'Always use your inside voice. (No yelling)', 'Shree Pashupati Technical Secondary School offers courses from nursery to grade 12, including specialized Computer Engineering classes (grades 9-12). Our emphasis on practical learning is evident in well-equipped labs for computer, physics, chemistry, network, and electric studies. We prioritize innovation with digital learning, CCTV-equipped classrooms, and activities to enhance writing and public speaking skills.', 'The inaugural batch of Computer Engineering at Shree Pashupati Technical Secondary School began in 2076 B.S., starting from class 9. Currently, we offer regular classes in engineering spanning from class 9 to class 12. Computer engineering, a branch of electrical engineering and computer science, integrates various fields essential for the development of computer hardware and software. The curriculum encompasses principles of electrical engineering and computer science, along with areas like artificial intelligence, robotics, computer networks, architecture, and operating systems.', 'Management, in essence, involves overseeing and directing an organization\'s functions. A management course signals your commitment to growing as a manager, instilling confidence in your team. It goes beyond handling singular activities, encompassing the control of both things and people. The scope spans across various organizations, from private institutions to government bodies, schools to universities, and profit-driven businesses to non-profit organizations. Recognizing the significance of this field, our campus offers courses in management to equip individuals with the essential skills for effective organizational leadership.', ' Our school boasts state-of-the-art facilities, including a Physics Lab for hands-on experiments, a Computer Lab for programming and projects, and other specialized labs, all contributing to an enriched learning environment.', 'Our well-managed physics lab caters to the needs of students up to grade 12, starting their practical experiments from class 6. Equipped with modern apparatus such as lenses, magnets, and advanced tools like voltmeters, the lab accommodates 15 students working in pairs.', 'Specifically designed for programming and project works, the computer lab supports engineering students and provides information about computer technology to general students. The lab, equipped with the latest computers, is supervised by a lab assistant who aids students in their projects and tasks.', 'This laboratory is designed to facilitate the general electronics engineering experiments and project works by the students. The laboratory has workstations each equipped with laboratory power supply, and oscilloscope. Most of the general purpose electronic components are kept in the stock and are issued as per the need of students.', 'Our extensive library boasts a collection of textbooks, reference books, study materials, newspapers, and magazines. With around 1000 books available for reference, students can use the library reading room for uninterrupted reading or borrow books for self-study.'),
+(1, 'index', 'Kami berkomitmen untuk menciptakan generasi yang berakhlak mulia, berilmu, berpengetahuan, serta berwawasan lingkungan. SMP PGRI 371 Pondok Aren mendukung setiap peserta didik agar mampu melanjutkan ke jenjang pendidikan yang lebih tinggi, dengan fondasi moral dan akademik yang kuat. Sebagai lembaga pendidikan yang ramah lingkungan dan religius, kami menanamkan nilai-nilai luhur dan sikap disiplin kepada siswa sejak dini.', 'Banyak alasan mengapa SMP PGRI 371 menjadi pilihan tepat untuk masa depan anak Anda:\r\n✅ Guru Profesional & Berkualitas\r\nGuru-guru berdedikasi yang membimbing siswa tidak hanya dalam pelajaran akademik, tetapi juga dalam pembentukan karakter.\r\n✅ Lingkungan Belajar Nyaman & Religius\r\nSuasana sekolah yang kondusif, bersih, dan mendukung perkembangan spiritual serta kedisiplinan siswa.\r\n✅ Pembelajaran Berbasis Teknologi\r\nKami mengintegrasikan teknologi dalam proses pembelajaran agar siswa siap menghadapi tantangan zaman.\r\n✅ Pembentukan Karakter Jujur & Disiplin\r\nKami mendidik siswa agar menjadi pribadi yang jujur, bertanggung jawab, dan disiplin dalam kehidupan sehari-hari.', 'Guru-guru kami memiliki kualifikasi tinggi dan berdedikasi untuk memberikan pembelajaran terbaik bagi siswa.', 'Lingkungan belajar kami mendukung kenyamanan dan ketenangan dalam kegiatan belajar mengajar.', 'Kami memanfaatkan teknologi digital untuk memperluas akses siswa terhadap pembelajaran yang modern dan efektif.\r\n\r\n', 'SMP PGRI 371 dilengkapi dengan fasilitas pendidikan yang mendukung berbagai kegiatan akademik dan non-akademik siswa.', 'Lingkungan belajar di SMP PGRI 371 Pondok Aren sangat menyenangkan, terbuka, dan penuh semangat. Para guru dan staf di sekolah ini luar biasa — mereka ramah, sabar, dan selalu siap membantu. Kami merasa senang belajar di sekolah ini karena para guru membuat suasana kelas menjadi nyaman dan mudah untuk berinteraksi.\r\n\r\nDi sekolah, kami mempelajari berbagai materi yang menarik dan relevan dengan masa depan kami. Dukungan dari para guru sangat membantu kami dalam memahami pelajaran dan menghadapi tantangan dengan percaya diri. Selain itu, sekolah juga rutin mengadakan kegiatan ekstrakurikuler yang sangat bermanfaat untuk mengembangkan keterampilan sosial, kerja sama, dan kepercayaan diri kami.', 'SMP PGRI 371 Pondok Aren mulai menerapkan sistem Ujian Berbasis Online sejak tahun 2024 untuk siswa kelas 7 sebagai tahap awal. Saat ini, pelaksanaan ujian online telah mencakup siswa dari kelas 7 hingga kelas 9 secara rutin.\r\n\r\nUjian berbasis online merupakan salah satu bentuk pemanfaatan teknologi dalam dunia pendidikan yang bertujuan untuk meningkatkan efisiensi, kecepatan, dan akurasi dalam proses evaluasi belajar siswa. Melalui sistem ini, siswa dapat mengerjakan soal-soal ujian menggunakan perangkat seperti komputer atau tablet, baik di laboratorium sekolah maupun di ruang kelas yang telah disiapkan.\r\n\r\nSelain mendukung program digitalisasi sekolah, ujian online juga membantu siswa lebih terbiasa dengan penggunaan teknologi dalam proses belajar, serta mempersiapkan mereka menghadapi tantangan pendidikan di masa depan.', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(2, 'about', 'SMP PGRI 371 Pondok Aren terletak di kawasan Pondok Aren, Tangerang Selatan. Sekolah ini melayani jenjang pendidikan dari kelas 7 hingga kelas 9 dengan pendekatan pembelajaran yang aktif, menyenangkan, dan membentuk karakter positif pada siswa.\r\n\r\nDipimpin oleh Kepala Sekolah Bapak Sukardi, S.Pd.I., M.M, kegiatan belajar mengajar dilaksanakan setiap hari dari pukul 13.00 hingga 17.00 WIB.\r\nSekolah menyediakan lingkungan belajar yang aman dan nyaman, dengan fasilitas pendukung seperti ruang kelas yang tertata rapi, lapangan olahraga, air bersih, toilet terpisah untuk putra dan putri.\r\nSelain kegiatan akademik, SMP PGRI 371 Pondok Aren juga rutin mengadakan berbagai kegiatan ekstrakurikuler seperti pramuka. Kegiatan ini membantu siswa mengembangkan bakat, meningkatkan percaya diri, dan memperkuat kemampuan sosial mereka.\r\nMelalui suasana belajar yang kondusif dan dukungan dari seluruh warga sekolah, kami berkomitmen untuk mencetak siswa yang berprestasi, sopan, dan siap menghadapi masa d', 'Saya sangat senang dan bersyukur mendapat kepercayaan untuk menjabat sebagai Kepala Sekolah di SMP PGRI 371 Pondok Aren. Terima kasih kepada seluruh tim manajemen dan yayasan atas kepercayaan yang diberikan kepada saya untuk memimpin sekolah ini.\r\n\r\nKami berkomitmen untuk memberikan pendidikan berkualitas yang tidak hanya mendorong siswa untuk mencintai proses belajar, tetapi juga membentuk mereka menjadi pribadi yang bermanfaat bagi masyarakat. Tujuan kami adalah membantu setiap siswa mencapai potensi terbaiknya, baik dalam bidang akademik maupun karakter.\r\n\r\nKami juga sangat terbuka kepada orang tua. Silakan datang kapan saja untuk berdiskusi mengenai perkembangan dan pendidikan putra-putri Anda. Kami sedang membangun komunitas belajar yang positif, aktif, dan berorientasi pada keunggulan, dengan semangat kebersamaan antara guru, siswa, dan orang tua.\r\n\r\nSaya siap memimpin dengan semangat dan dedikasi tinggi agar kita semua dapat mencapai visi dan misi sekolah ini bersama-sama. Mari ', 'Untuk menciptakan lingkungan belajar yang tertib, aman, dan nyaman, seluruh warga sekolah wajib mematuhi tata tertib berikut:', 'Siswa wajib hadir tepat waktu', 'Siswa wajib menggunakan seragam lengkap sesuai jadwal', 'Siswa wajib bersikap sopan dan hormat kepada guru, staf, dan sesama siswa.', 'Menjaga nama baik sekolah di dalam dan luar lingkungan sekolah', 'Dilarang membawa dan menggunakan ponsel saat jam pelajaran, kecuali atas izin guru.', 'Bersikap baik', 'Mengerjakan tugas tepat waktu', 'Dilarang meninggalkan kelas tanpa izin guru', 'Dilarang membawa senjata tajam, rokok, minuman keras, narkoba, atau barang berbahaya lainnya.', 'Dilarang berisik saat jam pelajaran dimulai', 'SMP PGRI 371 Pondok Aren secara rutin mengadakan berbagai kegiatan menarik seperti perkemahan Pramuka, peringatan hari besar nasional, hingga acara kebersamaan dan kreativitas siswa.\r\nMelalui kegiatan ini, diharapkan siswa dapat memperkuat rasa kebersamaan, disiplin, serta semangat menghargai nilai-nilai kebangsaan dan karakter positif.', 'Kegiatan Perkemahan Pramuka SMP PGRI 371 Pondok Aren\r\nSebagai bagian dari pendidikan karakter dan kemandirian siswa, SMP PGRI 371 Pondok Aren melaksanakan kegiatan Perkemahan Pramuka yang diikuti oleh peserta didik dari berbagai tingkatan kelas.\r\nKegiatan ini bertujuan untuk menumbuhkan semangat gotong royong, kepemimpinan, disiplin, dan cinta alam dalam suasana penuh kebersamaan.\r\nTerima kasih kepada seluruh pembina, guru, dan siswa yang telah berpartisipasi aktif.\r\nPramuka Hebat, Siswa Bermartabat!', 'Peringatan Hari Guru Nasional di SMP PGRI 371 Pondok Aren\r\nDalam rangka memperingati Hari Guru Nasional, SMP PGRI 371 Pondok Aren menggelar serangkaian kegiatan yang penuh makna sebagai bentuk penghargaan terhadap dedikasi dan perjuangan para pendidik.\r\nSuasana haru dan hangat menyelimuti peringatan ini, dengan penampilan dari siswa, pemberian penghargaan simbolis, serta momen kebersamaan yang mempererat hubungan antara guru dan murid.\r\nTerima kasih, Guru! Atas ilmu, kesabaran, dan kasih sayang yang tak pernah lelah diberikan.\r\n\"Engkaulah pelita dalam gulita, pahlawan tanpa tanda jasa.\"', 'SMP PGRI 371 Pondok Aren menyediakan berbagai fasilitas untuk mendukung kenyamanan dan kualitas pembelajaran, seperti ruang kelas ber-AC, perpustakaan, lapangan olahraga, UKS, dan MCK.\r\nKami juga aktif mengembangkan minat dan bakat siswa melalui kegiatan ekstrakurikuler seperti Pramuka, Futsal, Marawis, Tari, Badminton, dan Vokal.\r\nBersama kami, mari tumbuh menjadi generasi yang berprestasi dan berkarakter! ', 'Ruang kelas yang nyaman dengan AC membantu menciptakan suasana belajar yang lebih fokus dan menyenangkan. Dengan lingkungan yang bersih dan rapi, siswa dapat belajar dengan lebih maksimal tanpa terganggu oleh suhu panas.', 'Lapangan olahraga adalah tempat ideal bagi siswa untuk berolahraga dan menyalurkan energi secara positif. Kegiatan fisik yang menyenangkan ini juga mengajarkan pentingnya kerjasama tim dan menjaga kesehatan tubuh.', 'Fasilitas MCK yang bersih dan terawat memastikan kenyamanan serta kebersihan di sekolah. Siswa dapat merawat kebersihan diri dengan mudah, yang mendukung gaya hidup sehat dan kebersihan lingkungan sekolah.', 'UKS menyediakan fasilitas kesehatan bagi siswa yang membutuhkan pertolongan pertama. Dengan tenaga medis yang siap sedia, siswa dapat merasa lebih aman saat mengalami masalah kesehatan ringan di sekolah.'),
 (3, 'notice', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(4, 'contactus', 'Welcome to Shree Pashupati Technical Secondary School, a hub of dynamic education where diversity converges, creating an enriching and inspiring learning environment. For inquiries, enrollment details, or any information about our courses, feel free to contact us.', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(5, 'join', 'Unlock a world of boundless opportunities at Shree Pashupati Technical Secondary School! Calling all students to embark on a transformative educational journey with us. Enroll now and experience dynamic learning in a vibrant and inspiring environment. Explore your potential, fuel your passion, and join our community where success begins. Contact us for enrollment details and step into a future of academic excellence!', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(4, 'contactus', 'Selamat Datang di SMP PGRI 371 Pondok Aren, Sekolah yang menghadirkan lingkungan belajar yang inspiratif dan beragam, dengan komitmen membentuk generasi berkarakter, berilmu, dan berprestasi.\r\nUntuk informasi lebih lanjut tentang pendaftaran, program ekstrakurikuler, atau fasilitas sekolah, silakan hubungi kami:\r\n📞 021-2273-6571\r\n📧 371smppgri@gmail.com\r\n\r\n', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(5, 'join', 'Penerimaan Peserta Didik Baru Tahun Ajaran 2025/2026 SMP PGRI 371 Pondok Aren\r\nBergabunglah bersama kami dan wujudkan masa depan cerah!\r\nTersedia program pendidikan berkualitas dengan fokus pada pembentukan karakter, ilmu pengetahuan, dan keterampilan.\r\nDaftar sekarang dan raih peluang terbaik untuk masa depan!', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
 (6, 'extras', 'This page at Pashupati Technical School/College captures vibrant moments events, picnics, and lasting memories. Aligned with the National Education Policy, our daily routine, holidays, and diverse subjects enrich our academic journey. A digital repository grants access to any book, and our staff, committee, and PTA ensure a supportive environment. Noteworthy, our students developed the website, a portal to our dynamic educational community.', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
 
 --
@@ -449,149 +381,164 @@ INSERT INTO `web_content` (`id`, `content_about`, `one`, `two`, `three`, `four`,
 --
 
 --
--- Indexes for table `admission_form`
+-- Indeks untuk tabel `admission_form`
 --
 ALTER TABLE `admission_form`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `nisn` (`nisn`),
+  ADD UNIQUE KEY `nik` (`nik`);
 
 --
--- Indexes for table `contactfeedback`
+-- Indeks untuk tabel `contactfeedback`
 --
 ALTER TABLE `contactfeedback`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `flash_notice`
+-- Indeks untuk tabel `flash_notice`
 --
 ALTER TABLE `flash_notice`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `gallery_album`
+-- Indeks untuk tabel `gallery_album`
 --
 ALTER TABLE `gallery_album`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `gallery_images`
+-- Indeks untuk tabel `gallery_images`
 --
 ALTER TABLE `gallery_images`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `management_committee`
+-- Indeks untuk tabel `management_committee`
 --
 ALTER TABLE `management_committee`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `manipulators`
+-- Indeks untuk tabel `manipulators`
 --
 ALTER TABLE `manipulators`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `notification`
+-- Indeks untuk tabel `notification`
 --
 ALTER TABLE `notification`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `schoolroutine`
+-- Indeks untuk tabel `pengguna`
+--
+ALTER TABLE `pengguna`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
+-- Indeks untuk tabel `schoolroutine`
 --
 ALTER TABLE `schoolroutine`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `school_notice`
+-- Indeks untuk tabel `school_notice`
 --
 ALTER TABLE `school_notice`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `staffs`
+-- Indeks untuk tabel `staffs`
 --
 ALTER TABLE `staffs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `web_content`
+-- Indeks untuk tabel `web_content`
 --
 ALTER TABLE `web_content`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `admission_form`
+-- AUTO_INCREMENT untuk tabel `admission_form`
 --
 ALTER TABLE `admission_form`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
--- AUTO_INCREMENT for table `contactfeedback`
+-- AUTO_INCREMENT untuk tabel `contactfeedback`
 --
 ALTER TABLE `contactfeedback`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
--- AUTO_INCREMENT for table `flash_notice`
+-- AUTO_INCREMENT untuk tabel `flash_notice`
 --
 ALTER TABLE `flash_notice`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `gallery_album`
+-- AUTO_INCREMENT untuk tabel `gallery_album`
 --
 ALTER TABLE `gallery_album`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT for table `gallery_images`
+-- AUTO_INCREMENT untuk tabel `gallery_images`
 --
 ALTER TABLE `gallery_images`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
--- AUTO_INCREMENT for table `management_committee`
+-- AUTO_INCREMENT untuk tabel `management_committee`
 --
 ALTER TABLE `management_committee`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `manipulators`
+-- AUTO_INCREMENT untuk tabel `manipulators`
 --
 ALTER TABLE `manipulators`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `notification`
+-- AUTO_INCREMENT untuk tabel `notification`
 --
 ALTER TABLE `notification`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `schoolroutine`
+-- AUTO_INCREMENT untuk tabel `pengguna`
+--
+ALTER TABLE `pengguna`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT untuk tabel `schoolroutine`
 --
 ALTER TABLE `schoolroutine`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT for table `school_notice`
+-- AUTO_INCREMENT untuk tabel `school_notice`
 --
 ALTER TABLE `school_notice`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 
 --
--- AUTO_INCREMENT for table `staffs`
+-- AUTO_INCREMENT untuk tabel `staffs`
 --
 ALTER TABLE `staffs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
--- AUTO_INCREMENT for table `web_content`
+-- AUTO_INCREMENT untuk tabel `web_content`
 --
 ALTER TABLE `web_content`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
