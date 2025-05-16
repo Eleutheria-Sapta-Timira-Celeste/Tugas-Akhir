@@ -156,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <main>
         <section class="max-w-4xl p-6 mx-auto bg-green-700 rounded-md shadow-md dark:bg-gray-800 mt-10">
-            <h1 class="text-xl font-bold text-white capitalize dark:text-white">Publish Notice</h1>
+            <h1 class="text-xl font-bold text-white capitalize dark:text-white">Terbitkan Berita</h1>
             <form action="" method="post" enctype="multipart/form-data">
 
                 <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-1">
@@ -176,11 +176,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <div class="flex text-sm text-gray-600">
                                     <label for="file-upload"
                                         class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                        <span class="">Upload a file</span>
+                                        <span class="">Tambahkan File</span>
                                         <input type="file" name="file-upload" id="file-upload" type="file"
                                             class="sr-only" onchange="displayFileName()">
                                     </label>
-                                    <p id="file-info" class="pl-1 text-white">or drag and drop</p>
+                                    <p id="file-info" class="pl-1 text-white">atau tarik dan jatuhkan file di dalam kotak ini</p>
                                 </div>
 
                             </div>
@@ -188,13 +188,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
 
                     <div>
-                        <label class="text-white dark:text-gray-200">Subject <span style="color: red;">*</span></label>
+                        <label class="text-white dark:text-gray-200">Subjek <span style="color: red;">*</span></label>
                         <input name="about_notice" required id="passwordConfirmation" type="text"
                             class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
                     </div>
 
                     <div>
-                        <label class="text-white dark:text-gray-200" for="passwordConfirmation">Write about notice...
+                        <label class="text-white dark:text-gray-200" for="passwordConfirmation">Tulis Berita...
                             <span style="color: red;">*</span></label>
                         <textarea name="description" required minlength="40" id="textarea" type="textarea"
                             class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"></textarea>
@@ -204,7 +204,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="flex justify-end mt-6">
                     <button type="submit" name="publish_notice"
-                        class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600">Publish</button>
+                        class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600">Terbitkan</button>
                 </div>
             </form>
         </section>

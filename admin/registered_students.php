@@ -34,7 +34,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg"
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registered Students | Pashupati</title>
+    <title>Halaman Data Pendaftaran Siswa</title>
     <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
     <link rel="icon" type="image/x-icon" href="../assects/images/admin_logo.png">
 
@@ -49,11 +49,9 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg"
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-10 mx-auto">
             <div class="flex flex-col text-center w-full mb-5">
-                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-blue-600">Registered Students</h1>
+                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-blue-600">Data Pendaftaran Siswa</h1>
                 <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base">
-                    Welcome to the New Registrations Section at Pashupati Technical School! Admins can now easily track
-                    and manage recently registered students, ensuring efficient administration. Stay informed about the
-                    latest additions to our community right from this panel.
+                   Selamat datang di halaman data pendaftaran siswa baru SMP PGRI 371 Pondok Aren. Di sini Anda dapat melihat semua siswa yang telah mendaftar dan mengelola data mereka dengan mudah. Jika Anda memiliki pertanyaan atau memerlukan bantuan lebih lanjut, jangan ragu untuk menghubungi kami.
                 </p>
             </div>
         </div>
@@ -71,10 +69,10 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg"
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
-                                <th scope="col" class="p-4">Student Name</th>
-                                <th scope="col" class="p-4">Admit</th>
-                                <th scope="col" class="p-4">Registered On</th>
-                                <th scope="col" class="p-4">Last Update</th>
+                                <th scope="col" class="p-4">Nama Siswa</th>
+                                <th scope="col" class="p-4">Ekstrakulikuler</th>
+                                <th scope="col" class="p-4">Tanggal</th>
+                                <th scope="col" class="p-4">Terakhir diperbarui</th>
                             </tr>
                         </thead>
                         <tbody>

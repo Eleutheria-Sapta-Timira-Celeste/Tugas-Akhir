@@ -25,7 +25,7 @@ function pgripusat(){
     window.location.href = "https://pgri.or.id/";
 
 }
-function ePustakalaya(){
+function instagram(){
     window.location.href = "https://www.instagram.com/smpgri371official";
 
 }

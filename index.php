@@ -247,16 +247,16 @@ if($flash_notice['trun_flash'] == "1"){
 echo '
 <div id="info-popup" tabindex="-1" class="fadeIn hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
     <div class="relative p-4 w-full max-w-lg h-full md:h-auto">
-        <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 md:p-8">
-            <div class="mb-4 text-sm font-light text-gray-500 dark:text-gray-400">
-                <h3 class="mb-3 text-2xl font-bold text-gray-900 dark:text-white">'. $flash_notice['title'] .'</h3>
+        <div class="relative p-4 bg-white rounded-lg shadow dark:bg-cream-800 md:p-8">
+            <div class="mb-4 text-sm font-light text-black-500 dark:text-black-400">
+                <h3 class="mb-3 text-2xl font-bold text-gray-900 dark:text-black">'. $flash_notice['title'] .'</h3>
                 <img class="object-cover w-full rounded-lg" src="'. $flash_notice['image_url'] .'" alt="">
                 <p class="mt-3 font-bold">
                     '. $flash_notice['message'] . '
                 </p>
             </div>
             <div class="justify-between items-center pt-0 space-y-4 sm:flex sm:space-y-0">
-                <a href="aboutus.php" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">See About School</a>
+                <a href="aboutus.php" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Lihat Tentang Sekolah</a>
                 <div class="items-center space-y-4 sm:space-x-4 sm:flex sm:space-y-0">                  
                     <button id="close-modal" type="button" class="py-2 px-4 w-full text-sm font-medium text-center text-white rounded-lg bg-blue-700 sm:w-auto hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Close</button>
                 </div>
