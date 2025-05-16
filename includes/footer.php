@@ -43,7 +43,7 @@
             </div>
         </div>
     </div>
-    <div class="bg-[#ffe5b4]">
+    <div class="bg-[#fa9c61]">
         <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
             <p class="text-sm md:text-base text-gray-500 text-sm text-center sm:text-left">Copyright © 2025 - <?php echo date("Y"); ?> All rights reserved by -
                 <a href="https://technicalpashupati.edu.np" rel="noopener noreferrer" class="text-[#888] ml-1" target="_blank">SMP PGRI 371 Pondok Aren</a>
