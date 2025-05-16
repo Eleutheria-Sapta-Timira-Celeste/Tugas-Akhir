@@ -10,10 +10,10 @@ function homepage() {
 
     <!-- jsdelivr -->
     <script src="https://cdn.jsdelivr.net/npm/@barba/core"></script>
-    <header class="shadow-inherit text-gray-600 body-font sticky top-0 z-50 opacity-95"
+    <header class="shadow-inherit text-black-600 body-font sticky top-0 z-50 opacity-95"
         style="box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); background-image: url(assects/images/defaults/header_bg4.png); background-size:cover; background-repeat:no-repeat;">
         <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-            <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+            <a class="flex title-font font-medium items-center text-black-900 mb-4 md:mb-0">
 
                 <img onclick="homepage()" style="cursor: pointer;" fill="none" stroke="currentColor"
                     stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

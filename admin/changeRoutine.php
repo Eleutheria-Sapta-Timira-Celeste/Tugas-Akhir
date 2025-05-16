@@ -90,8 +90,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-10 pb-0 mx-auto">
             <div class="flex flex-col text-center w-full mb-20">
-                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-blue-600">Change Class Routine</h1>
-                <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base"> 🏫 Here, you have the ability to adjust the class routine according to our dynamic schedule. 💼 Feel free to make necessary changes to ensure that our students receive the best possible education. 📅 
+                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-blue-600">Ubah Jadwal Kelas</h1>
+                <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base"> 🏫 Di halaman ini anda dapat mengubah jadwal kelas untuk para siswa/siswi📅 
                 </p>
             </div>
         </div>   
@@ -109,11 +109,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
-                                    <th scope="col" class="px-4 py-3">Class</th>
+                                    <th scope="col" class="px-4 py-3">Kelas</th>
                               
-                                    <th scope="col" class="px-4 py-3">Last Updated</th>
+                                    <th scope="col" class="px-4 py-3">Terakhir Diperbarui</th>
                                     <th scope="col" class="px-4 py-3">
-                                        <span class="sr-only">Actions</span>
+                                        <span class="sr-only">Aksi</span>
                                     </th>
                                 </tr>
                             </thead>
