@@ -244,7 +244,7 @@ try {
                 <div class="flex flex-wrap -m-4">
                     <div class="xl:w-1/4 md:w-1/2 p-4">
                         <div class="bg-gray-100 p-6 rounded-lg">
-                            <img class="h-40 rounded w-full object-cover object-center mb-6" src="assects/images/facilities/physics_lab.jpg" alt="content">
+                            <img class="h-40 rounded w-full object-cover object-center mb-6" src="assects/images/facilities/ruang_kelas.jpg" alt="content">
                             <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font"></h3>
                             <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Ruang Kelas AC</h2>
                             <p class="text-sm md:text-base leading-relaxed text-base"><?php echo $row['eighteen'];?></p>
@@ -252,7 +252,7 @@ try {
                     </div>
                     <div class="xl:w-1/4 md:w-1/2 p-4">
                         <div class="bg-gray-100 p-6 rounded-lg">
-                            <img class="h-40 rounded w-full object-cover object-center mb-6" src="assects/images/facilities/computer_lab.jpg" alt="content">
+                            <img class="h-40 rounded w-full object-cover object-center mb-6" src="assects/images/facilities/perpustakaan.jpg" alt="content">
                             <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font"></h3>
                             <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Perpustakaan</h2>
                             <p class="text-sm md:text-base leading-relaxed text-base"><?php echo $row['ninteen'];?></p>
@@ -260,7 +260,7 @@ try {
                     </div>
                     <div class="xl:w-1/4 md:w-1/2 p-4">
                         <div class="bg-gray-100 p-6 rounded-lg">
-                            <img class="h-40 rounded w-full object-cover object-center mb-6" src="assects/images/facilities/network_lab.jpg" alt="content">
+                            <img class="h-40 rounded w-full object-cover object-center mb-6" src="assects/images/facilities/lapangan.jpg" alt="content">
                             <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font"></h3>
                             <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Lapangan Olahraga</h2>
                             <p class="text-sm md:text-base leading-relaxed text-base"><?php echo $row['twenty'];?></p>
@@ -268,7 +268,7 @@ try {
                     </div>
                     <div class="xl:w-1/4 md:w-1/2 p-4">
                         <div class="bg-gray-100 p-6 rounded-lg">
-                            <img class="h-40 rounded w-full object-cover object-center mb-6" src="assects/images/facilities/library_lab.jpg" alt="content">
+                            <img class="h-40 rounded w-full object-cover object-center mb-6" src="assects/images/facilities/Uks.jpg" alt="content">
                             <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font"></h3>
                             <h2 class="text-lg text-gray-900 font-medium title-font mb-4">UKS</h2>
                             <p class="text-sm md:text-base leading-relaxed text-base"><?php echo $row['twentyone'];?></p>
