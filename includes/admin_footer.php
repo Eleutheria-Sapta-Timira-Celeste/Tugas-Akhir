@@ -1,6 +1,6 @@
 <footer class="text-gray-600 body-font shadow-inner">
     
-    <div class="bg-[#03212e]">
+    <div class="bg-[#c67d50]">
         <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
             <p class="text-sm md:text-base text-gray-500 text-sm text-center sm:text-left">Copyright © <?php echo date("Y"); ?> All rights reserved by -
                 <a href="https://technicalpashupati.edu.np" rel="noopener noreferrer" class="text-[#fff] ml-1" target="_blank">SMP PGRI 371 Pondok Aren</a>
