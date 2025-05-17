@@ -45,7 +45,7 @@ try {
                     <img class="object-cover object-center rounded" alt="hero" src="assects/images/schoolImages/beranda2.jpg">
                 </div>
                 <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-                    <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-blue-600">Hubungi Kami
+                    <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-[#ef6c00]">Hubungi Kami
                         <br class="hidden lg:inline-block">
                     </h1>
                     <p class="text-sm md:text-base text-justify mb-8 leading-relaxed"><?php echo $row['one']; ?></p>
