@@ -48,7 +48,8 @@ try {
         <section class="text-gray-600 body-font">
             <div class="container px-5 py-10 mx-auto">
                 <div class="flex flex-col text-center w-full mb-20">
-                    <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-blue-600">Informasi Sekolah</h1>
+                    <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4" style="color: #ef6c00;">
+Informasi Sekolah</h1>
                     <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base"><?php echo $row['one'];?>
                     </p>
                 </div>
@@ -59,7 +60,7 @@ try {
                                 class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                                 src="assects/images/extras_avatar/gallery.jpg">
                             <div class="flex-grow">
-                                <h2 class="text-blue-600 title-font font-medium">Galeri</h2>
+                               <h2 class="title-font font-medium" style="color: #ef6c00;">Galeri</h2>
                                 <p class="text-sm md:text-base text-gray-500">Kegiatan, Momen, dan Hari Besar</p>
                             </div>
                         </div>
@@ -70,7 +71,7 @@ try {
                                 class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                                 src="assects/images/extras_avatar/class_routine.jpg">
                             <div class="flex-grow">
-                                <h2 class="text-blue-600 title-font font-medium">Jadwal Kelas</h2>
+                                <h2 class="title-font font-medium" style="color: #ef6c00;">Jadwal Kelas</h2>
                                 <p class="text-sm md:text-base text-gray-500">Jadwal Kelas Sekolah</p>
                             </div>
                         </div>
@@ -81,7 +82,7 @@ try {
                                 class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                                 src="assects/images/extras_avatar/calender.png">
                             <div class="flex-grow">
-                                <h2 class="text-blue-600 title-font font-medium">Kalender Akademik</h2>
+                         <h2 class="title-font font-medium" style="color: #ef6c00;">Kalender Akademik</h2></h2>
                                 <p class="text-sm md:text-base text-gray-500">Liburan, Hari Besar, Pendidikan</p>
                             </div>
                         </div>
@@ -92,42 +93,22 @@ try {
                                 class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                                 src="assects/images/extras_avatar/cirriculam.jfif">
                             <div class="flex-grow">
-                                <h2 class="text-blue-600 title-font font-medium">Kurikulum</h2>
-                                <p class="text-sm md:text-base text-gray-500">Subjects Somprising a Course</p>
+                                    <h2 class="title-font font-medium" style="color: #ef6c00;">Kurikulum</h2></h2>
+                                <p class="text-sm md:text-base text-gray-500">Daftar Mata Pelajaran</p>
                             </div>
                         </div>
                     </div>
-                    <div class="p-2 lg:w-1/3 md:w-1/2 w-full" onclick="ministryofEducation()">
-                        <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg hover:bg-blue-100">
-                            <img alt="team"
-                                class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-                                src="assects/images/extras_avatar/ministryofEducation.png">
-                            <div class="flex-grow">
-                                <h2 class="text-blue-600 title-font font-medium">Ministry of Education</h2>
-                                <p class="text-sm md:text-base text-gray-500">National Education Policy</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-2 lg:w-1/3 md:w-1/2 w-full" onclick="ePustakalaya()">
-                        <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg hover:bg-blue-100">
-                            <img alt="team"
-                                class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-                                src="assects/images/extras_avatar/epustakalaya.png">
-                            <div class="flex-grow">
-                                <h2 class="text-blue-600 title-font font-medium">E-Pustakalaya</h2>
-                                <p class="text-sm md:text-base text-gray-500">Digital Copy of Any Book</p>
-                            </div>
-                        </div>
-                    </div>
+                    
+                   
                     <div class="p-2 lg:w-1/3 md:w-1/2 w-full" onclick="staffs()">
                         <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg hover:bg-blue-100">
                             <img alt="team"
                                 class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                                 src="assects/images/extras_avatar/staffs.png">
                             <div class="flex-grow">
-                                <h2 class="text-blue-600 title-font font-medium">Staff</h2>
-                                <p class="text-sm md:text-base text-gray-500">School Staff, व्यवस्थापन समिति, Parents
-                                    Teacher Association (PTA)</p>
+                                <h2 class="title-font font-medium" style="color: #ef6c00;">Tenaga Kependidikan</h2></h2>
+                                <p class="text-sm md:text-base text-gray-500">Pimpinan dan Staff Sekolah
+                                   </p>
                             </div>
                         </div>
                     </div>
@@ -138,22 +119,13 @@ try {
                                 class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                                 src="assects/images/extras_avatar/social_icon.webp">
                             <div class="flex-grow">
-                                <h2 class="text-blue-600 title-font font-medium">Our Social</h2>
-                                <p class="text-sm md:text-base text-gray-500">Connect with our school in other platform</p>
+                        <h2 class="title-font font-medium" style="color: #ef6c00;">Sosial Media</h2></h2>
+                                <p class="text-sm md:text-base text-gray-500">Terhubung di Platform Lain</p>
                             </div>
                         </div>
                     </div>
-                    <div class="p-2 lg:w-1/3 md:w-1/2 w-full" onclick="developers()">
-                        <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg hover:bg-blue-100">
-                            <img alt="team"
-                                class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-                                src="assects/images/extras_avatar/developers.avif">
-                            <div class="flex-grow">
-                                <h2 class="text-blue-600 title-font font-medium">Developers</h2>
-                                <p class="text-sm md:text-base text-gray-500">Developed by Our Students</p>
-                            </div>
-                        </div>
-                    </div>
+                    
+                        
                 </div>
             </div>
             <!-- Main modal -->
