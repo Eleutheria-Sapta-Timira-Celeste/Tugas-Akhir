@@ -61,7 +61,7 @@ try {
                     <span
                         class="absolute top-1/2 left-1/2 text-2xl font-semibold text-white -translate-x-1/2 -translate-y-1/2 sm:text-3xl dark:text-gray-800">First
                         Slide</span>
-                    <img src="assects/images/schoolImages/beranda1.jpg"
+                    <img src="assects/images/schoolImages/gedung_utama.jpg"
                         class="object-contain block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2"
                         alt="...">
                 </div>
@@ -118,14 +118,15 @@ try {
         <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
     </div>
 
-    <h1
-        class="mt-8 ml-5 mb-4 text-xl text-4xl font-bold leading-none tracking-tight text-blue-600 md:text-5xl lg:text-2xl dark:text-black">
-        SMP PGRI 371 Pondok Aren</h1>
+         <h1
+            class="mt-8 ml-5 mb-4 text-xl text-4xl font-bold leading-none tracking-tight md:text-5xl lg:text-2xl" style="color: #ef6c00;">
+            SMP PGRI 371 Pondok Aren
+        </h1>
     <p class="text-justify ml-5 mr-5 text-base font-normal text-gray-500 lg:text-xxx dark:text-gray-400">
         <?php echo $row['one']; ?></p>
 
     <h1
-        class="mt-8 ml-5 mb-4 text-xl text-4xl font-bold leading-none tracking-tight text-blue-600 md:text-5xl lg:text-2xl dark:text-black">
+        class="mt-8 ml-5 mb-4 text-xl text-4xl font-bold leading-none tracking-tight md:text-5xl lg:text-2xl" style="color: #ef6c00;">
         Kenapa Memilih SMP PGRI 371 Pondok Aren ?</h1>
     <p class="text-justify ml-5 mr-5 text-base font-normal text-gray-500 lg:text-xxx dark:text-gray-400">
         <?php echo $row['two']; ?></p>
@@ -226,13 +227,13 @@ try {
         </div>
     </div>
     <h1
-        class="ml-5 mb-4 text-xl text-4xl font-bold leading-none tracking-tight text-blue-600 md:text-5xl lg:text-2xl dark:text-black">
+        class="mt-8 ml-5 mb-4 text-xl text-4xl font-bold leading-none tracking-tight md:text-5xl lg:text-2xl" style="color: #ef6c00;">
         Apa yang Murid Katakan Tentang SMP PGRI 371 Pondok Aren ?</h1>
     <p class="text-justify ml-5 mr-5 text-base font-normal text-gray-500 lg:text-xxx dark:text-gray-400">
         <?php echo $row['seven']; ?></p>
 
     <h1
-        class="mt-8 ml-5 mb-4 text-xl text-4xl font-bold leading-none tracking-tight text-blue-600 md:text-5xl lg:text-2xl dark:text-black">
+        class="mt-8 ml-5 mb-4 text-xl text-4xl font-bold leading-none tracking-tight md:text-5xl lg:text-2xl" style="color: #ef6c00;">
         Ujian Berbasis Online</h1>
     <p class="text-justify ml-5 mr-5 text-base font-normal text-gray-500 lg:text-xxx dark:text-gray-400 mb-5">
         <?php echo $row['eight']; ?></p>

@@ -63,7 +63,7 @@ try {
             </div>
             <div
                 class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-                <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-blue-600">SPMB
+                <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium" style="color: #ef6c00;">SPMB
                     <br class="hidden lg:inline-block">
                 </h1>
                 <p class="mb-8 leading-relaxed">
@@ -72,7 +72,7 @@ try {
                 <div id="admissionform" class="flex justify-center">
                     <a href="#admissionform" onclick="scrollToAdmissionForm()">
                         <button
-                            class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Scroll untuk mendaftarkan murid</button>
+                            class="inline-flex text-white bg-[#ef6c00] border-0 py-2 px-6 focus:outline-none hover:bg-[#e65c00] rounded text-lg">Scroll untuk mendaftarkan murid</button>
                     </a>
                 </div>
             </div>
@@ -80,7 +80,7 @@ try {
     </section>
 
     <main>
-        <section class="max-w-4xl p-6 mx-auto bg-indigo-600 rounded-md shadow-md dark:bg-gray-800 mt-0 mb-10">
+        <section class="bg-[#ef6c00] rounded-lg shadow-md p-8 mx-auto max-w-4xl mt-10">
             <h1 class="text-xl font-bold text-white capitalize dark:text-white">Formulir Pendaftaran</h1><br>
             <h1 class="hide_after_submission text-x text-white capitalize dark:text-white">Pastikan untuk mengisi formulir pendaftaran Anda dengan hati-hati.
                  Periksa semua detail, seperti informasi pribadi dan data akademik Anda, 
@@ -126,10 +126,10 @@ try {
 
                 <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                     <div>
-                        <label class="text-white dark:text-gray-200">Nama Lengkap <span
+                        <label class="text-white dark:text-White-500">Nama Lengkap <span
                                 style="color: red;">*</span></label>
                         <input placeholder="Nama sesuai identitas" required name="full_name" type="text"
-                            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                            class="block w-full px-4 py-2 mt-2 text-black placeholder-[#ef6c00] bg-[#f5f5f5] border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring">
                     </div>
                     <div>
                         <label class="text-white dark:text-gray-200">NISN <span

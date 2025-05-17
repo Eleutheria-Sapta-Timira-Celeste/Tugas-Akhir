@@ -213,7 +213,7 @@ try {
                         <div class="rounded-lg h-64 overflow-hidden">
                             <img alt="content" class="object-cover object-center h-full w-full" src="assects/images/courses/pramuka.jpg">
                         </div>
-                        <h2 class="title-font text-2xl font-medium mt-6 mb-3" style="color: #f57c00;">Perkemahan Pramuka</h2>
+                        <h2 class="title-font text-2xl font-medium mt-6 mb-3" style="color: #111827;">Perkemahan Pramuka</h2>
                         <p class="text-justify text-sm md:text-base leading-relaxed text-base">
                         <?php echo $row['fifteen'];?></p>
                     </div>
@@ -221,7 +221,7 @@ try {
                         <div class="rounded-lg h-64 overflow-hidden">
                             <img alt="content" class="object-cover object-center h-full w-full" src="assects/images/schoolImages/beranda2.jpg">
                         </div>
-                        <h2 class="title-font text-2xl font-medium mt-6 mb-3" style="color: #f57c00;">Peringatan Hari Guru</h2>
+                        <h2 class="title-font text-2xl font-medium mt-6 mb-3" style="color: #111827;">Peringatan Hari Guru</h2>
                         <p class="text-justify text-sm md:text-base leading-relaxed text-base">
                         <?php echo $row['sixteen'];?></p>
                     </div>
