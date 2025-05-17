@@ -1,16 +1,16 @@
-<footer class="text-[#888] bg-[#fffdd0] body-font shadow-inner">
+<footer class="text-[#888] bg-[#fffdcf] body-font shadow-inner">
     <div class="container px-5 py-10 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
         <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
             <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
             <img fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-20 h-20 bg-black-500 rounded-full" viewBox="0 0 24 24" src="assects/images/defaults/pgri-hitam.png">
-                <span class="ml-3 text-xl text-[#888]">SMP PGRI 371 Pondok Aren</span>
+                <span class="ml-3 text-xl text-[#333333]">SMP PGRI 371 Pondok Aren</span>
             </a>
             <p class="mt-2 text-sm text-gray-500">
             Selamat datang di SMP PGRI 371 Pondok Aren, Lingkungan belajar yang inspiratif dan penuh semangat untuk membentuk generasi berprestasi.</p>
         </div>
         <div class="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
             <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-                <h2 class="title-font font-medium text-[#888] tracking-widest text-sm mb-3">Tautan</h2>
+                <h2 class="title-font font-medium text-[#333333] tracking-widest text-sm mb-3">Tautan</h2>
                 <nav class="list-none mb-10">
                     <li>
                         <a class="text-sm md:text-base text-[#888} hover:text-[#ff9f45] cursor-pointer" onclick="kemendikbud()">Kemendikbud</a>
@@ -25,7 +25,7 @@
                 </nav>
             </div>
             <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-                <h2 class="title-font font-medium text-[#888] tracking-widest text-sm mb-3">KONTAK</h2>
+                <h2 class="title-font font-medium text-[#333333] tracking-widest text-sm mb-3">KONTAK</h2>
                 <nav class="list-none mb-10">
                     <li>
                         <a class="text-sm md:text-base text-[#888} hover:text-[#ff9f45] cursor-pointer" onclick="locationmap()"> Jl. Puskesmas No.6, Pondok Aren, Tangerang Selatan</a>
@@ -43,10 +43,15 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
     <div class="bg-[#fa9c61]">
+=======
+
+    <div class="bg-[#fc914e]">
+>>>>>>> f84c9be878a883ce90047e0634a434b17f2fbb03
         <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
-            <p class="text-sm md:text-base text-gray-500 text-sm text-center sm:text-left">Copyright © 2025 - <?php echo date("Y"); ?> All rights reserved by -
-                <a href="https://technicalpashupati.edu.np" rel="noopener noreferrer" class="text-[#888] ml-1" target="_blank">SMP PGRI 371 Pondok Aren</a>
+            <p class="text-[#333333] ml-1">Copyright © <?php echo date("Y"); ?> All rights reserved by -
+                <a href="https://technicalpashupati.edu.np" rel="noopener noreferrer" class="text-[#333333] ml-1" target="_blank">SMP PGRI 371 Pondok Aren</a>
             </p>
             <span class="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
                 <a class="text-gray-500">
