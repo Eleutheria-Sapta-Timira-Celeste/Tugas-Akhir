@@ -119,7 +119,7 @@ try {
 
 
                        <button class="text-white border-0 py-2 px-6 focus:outline-none rounded text-lg"
-                         style="background-color: #ef6c00; hover:background-color: #d65f00;">
+                         style="background-color: #ef6c00; hover:background-color;">
                              Kirim
                         </button>
 
