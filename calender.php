@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calender | Pashupati</title>
+    <title>Kalender - SMP PGRI 371</title>
     <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
     <link rel="icon" type="image/x-icon" href="assects/images/logo2.png">
     <style>
@@ -21,8 +21,8 @@
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-10 mx-auto">
             <div class="flex flex-col text-center w-full mb-20">
-                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-blue-600">Nepali Calender</h1>
-                <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base">Dear students, 📅 Please find attached the Nepali calendar for your reference regarding traditional festivals. It is advisable to consult official notices for accurate information on holidays and time off. 📌
+                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-[#ef6c00]">Kalender Akademik</h1>
+                <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base">Para siswa SMP PGRI 371 Pondok Aren, 📅 Berikut terlampir kalender akademik sebagai referensi kalian mengenai jadwal kegiatan dan hari libur sekolah. Disarankan untuk selalu memeriksa pengumuman resmi agar mendapatkan informasi yang akurat tentang jadwal dan hari libur. 📌
                 </p>
             </div>
         </div>   
@@ -37,7 +37,9 @@
         var nc_api_id = "8201z2n475"; //
    
         </script>
-        <script type="text/javascript" src="https://www.ashesh.com.np/nepali-calendar/js/ncf.js?v=5"></script>
+        <iframe src="https://calendar.google.com/calendar/embed?src=YOUR_CALENDAR_ID&ctz=Asia/Jakarta" style="border: 0" width="100%" height="650" frameborder="0" scrolling="no"></iframe>
+
+        ///<script type="text/javascript" src="https://www.ashesh.com.np/nepali-calendar/js/ncf.js?v=5"></script>
 
 
     </div>
