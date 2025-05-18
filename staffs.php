@@ -24,7 +24,7 @@ $defaultavatar = "assects/images/defaults/defaultaltimage.jpg"
     <section class="bg-white dark:bg-gray-900">
         <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
             <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
-                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Pimpinan Sekolah</h2>
+               <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-[#ef6c00] dark:text-white">Pimpinan Sekolah</h2>
                 <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">SMP PGRI 371 Pondok Aren dipimpin oleh seorang Kepala Sekolah yang bertanggung jawab dalam mengarahkan visi, misi, serta kebijakan sekolah untuk menciptakan lingkungan belajar yang kondusif dan berprestasi.</p>
             </div>
 
@@ -43,7 +43,8 @@ $defaultavatar = "assects/images/defaults/defaultaltimage.jpg"
                         echo '
                     <div class="text-center text-gray-500 dark:text-gray-400">
                         <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="' . $row['image_src'] . '" onerror="this.src=`' . $defaultavatar . '`">
-                            <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                            <h3 class="mb-1 text-2xl font-bold tracking-tight text-[#ef6c00] dark:text-white">
+
                                 <a>' . $row['name'] . '</a>
                             </h3>
                             <p>' . $row['position'] . '</p>
@@ -62,7 +63,7 @@ $defaultavatar = "assects/images/defaults/defaultaltimage.jpg"
     <section class="bg-white dark:bg-gray-900">
         <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
             <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
-                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Staff Sekolah</h2>
+                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-[#ef6c00] dark:text-white">Staff Sekolah</h2>
                 <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">Kepala Sekolah dibantu oleh jajaran staf sekolah yang terdiri dari bendahara, wakil bidang kurikulum, wakil bidang kesiswaan, 
                     kepala tata usaha, kepala laboratorium IPA, wali kelas, pembina OSIS, dan pembina Rohis. Seluruh tim bekerja sama dalam mengelola kegiatan akademik, kesiswaan, dan administrasi sekolah demi kelancaran proses pendidikan.</p>
             </div>
@@ -82,7 +83,8 @@ $defaultavatar = "assects/images/defaults/defaultaltimage.jpg"
                         echo '
                                 <div class="text-center text-gray-500 dark:text-gray-400">
                                     <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="' . $row_staff['image_src'] . '" onerror="this.src=`' . $defaultavatar . '`">
-                                        <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                        <h3 class="mb-1 text-2xl font-bold tracking-tight text-[#ef6c00] dark:text-white">
+
                                             <a>' . $row_staff['name'] . '</a>
                                         </h3>
                                         <p>' . $row_staff['post'] . ' </p>

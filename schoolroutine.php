@@ -29,8 +29,17 @@ include 'connection/database.php';
 <section class="text-gray-600 body-font">
     <div class="container px-5 py-10 mx-auto">
         <div class="flex flex-col text-center w-full mb-20">
-            <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-blue-600">Class Routines</h1>
-            <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base">Here, you'll find everything you need to know about our class schedules and routines. We've made it super easy for students, parents, and staff to stay in the loop with all the happenings at our school. So kick back, relax, and explore what we've got going on! 😊📚🎒
+            <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-[#ef6c00]">Jadwal Kelas</h1>
+            <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base">Di sini, kamu akan menemukan semua informasi yang kamu butuhkan tentang jadwal dan rutinitas kelas kami. Kami telah membuatnya sangat mudah diakses oleh siswa, orang tua, dan staf agar tetap terhubung dengan semua kegiatan di sekolah. Jadi, santai saja dan jelajahi apa saja yang sedang berlangsung! 😊📚🎒
+
+
+
+
+
+
+
+
+
             </p>
         </div>
     </div>   
