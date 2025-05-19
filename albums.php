@@ -39,10 +39,10 @@ if (isset($_POST['sessionAlbum'])) {
     <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
         <div class="mb-4 flex items-center justify-between gap-8 sm:mb-8 md:mb-12">
             <div class="flex items-center gap-12">
-                <h2 class="text-2xl font-bold text-gray-800 lg:text-3xl dark:text-white">Albums</h2>
+                <h2 class="text-2xl font-bold text-[#ef6c00] lg:text-3xl dark:text-white">Albums</h2>
 
                 <p class="hidden max-w-screen-sm text-gray-500 dark:text-gray-300 md:block">
-                Kindly navigate to the album in order to have access to and peruse through all the images contained therein.
+                Silakan buka album tersebut untuk mengakses dan melihat semua gambar yang ada di dalamnya
                 </p>
             </div>           
         </div>        
@@ -80,7 +80,8 @@ if (isset($_POST['sessionAlbum'])) {
                             <form method="post" id="album' . $album_name. '">
                                 <h2 class="text-gray-900 title-font text-lg font-medium">'.$album_name.'</h2>
                                 <input type="hidden" name="albumname" value="' . $album_name . '" />
-                                <button type="submit" name="sessionAlbum" class="mt-1 focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Open</button>
+                                <button type="submit" name="sessionAlbum" class="mt-1 focus:outline-none text-white bg-[#ef6c00] hover:bg-[#e65c00] focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-[#ef6c00] dark:hover:bg-[#e65c00] dark:focus:ring-orange-500">Open</button>
+
                             </form>
                             </div>
                         </div>';
