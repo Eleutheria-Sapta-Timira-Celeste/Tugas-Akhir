@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kalender - SMP PGRI 371</title>
     <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
-    <link rel="icon" type="image/x-icon" href="assects/images/logo2.png">
+    <link rel="icon" type="image/x-icon" href="assets/images/logo2.png">
     <style>
-        input{
+        input {
             border-radius: 20px;
             border: 1px solid black;
         }
@@ -20,50 +20,26 @@
 
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-10 mx-auto">
-            <div class="flex flex-col text-center w-full mb-20">
+            <div class="flex flex-col text-center w-full mb-10">
                 <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-[#ef6c00]">Kalender Akademik</h1>
-                <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base">Para siswa SMP PGRI 371 Pondok Aren, 📅 Berikut terlampir kalender akademik sebagai referensi kalian mengenai jadwal kegiatan dan hari libur sekolah. Disarankan untuk selalu memeriksa pengumuman resmi agar mendapatkan informasi yang akurat tentang jadwal dan hari libur. 📌
+                <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base">
+                    Para siswa SMP PGRI 371 Pondok Aren, 📅 Berikut terlampir kalender akademik sebagai referensi kalian mengenai jadwal kegiatan dan hari libur sekolah. Disarankan untuk selalu memeriksa pengumuman resmi agar mendapatkan informasi yang akurat tentang jadwal dan hari libur. 📌
                 </p>
             </div>
-        </div>   
+
+            <!-- Gambar Kalender -->
+            <div class="flex justify-center">
+                <img src="assects/images/calender/kalender-akademik.jpg" alt="Kalender Akademik SMP PGRI 371"
+                     style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 10px;">
+            </div>
+        </div>
     </section>
-    <div class="mt-5 mb-0 mx-5">
-
-
-        <script type="text/javascript">
-     
-        var nc_width = 'responsive';
-        var nc_height = 650;
-        var nc_api_id = "8201z2n475"; //
-   
-        </script>
-        <iframe src="https://calendar.google.com/calendar/embed?src=YOUR_CALENDAR_ID&ctz=Asia/Jakarta" style="border: 0" width="100%" height="650" frameborder="0" scrolling="no"></iframe>
-
-        ///<script type="text/javascript" src="https://www.ashesh.com.np/nepali-calendar/js/ncf.js?v=5"></script>
-
-
-    </div>
-
-
-
-    <div class="content-center mx-5 mb-10" style="display: flex; justify-content: center;">
-        <script type="text/javascript">
-        <!--
-        var nc_ev_width = 'responsive';
-        var nc_ev_height = 303;
-        var nc_ev_def_lan = 'np';
-        var nc_ev_api_id = 39320240322897; //
-        -->
-        </script>
-        <script type="text/javascript" src="https://www.ashesh.com.np/calendar-event/ev.js"></script>
-        
-    </div>
-
 
     <?php include("includes/footer.php") ?>
 </body>
+
 <script>
-console.clear();
+    console.clear();
 </script>
 
 </html>
