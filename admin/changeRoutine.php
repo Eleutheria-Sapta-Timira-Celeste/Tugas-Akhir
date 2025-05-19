@@ -180,6 +180,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $class = mysqli_query($connection, $fetch_notice_data);
         $totalNotice = mysqli_num_rows($class);
 
+        
+
         if ($totalNotice > 0) {
             while ($row = mysqli_fetch_assoc($class)) {
                 $classId = $row['id'];
