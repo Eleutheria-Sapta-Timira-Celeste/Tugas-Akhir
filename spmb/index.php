@@ -209,9 +209,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         const isoFormat = tanggalSekarang.toISOString().split('T')[0];
                         document.getElementById('inputTanggalDaftar').value = isoFormat;
                     </script>
+<br>
+<?php include('../includes/spmb_footer.php') ?>
 </body>
 </html>
-
 </body>
 </html>
   
