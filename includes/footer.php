@@ -2,7 +2,7 @@
     <div class="container px-5 py-10 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
         <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
             <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-            <img fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-20 h-20 bg-black-500 rounded-full" viewBox="0 0 24 24" src="assects/images/defaults/pgri-hitam.png">
+            <img fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-20 h-20 bg-black-500" viewBox="0 0 24 24" src="assects/images/defaults/logo_warna_500.png">
                 <span class="ml-3 text-xl text-[#333333]">SMP PGRI 371 Pondok Aren</span>
             </a>
             <p class="mt-2 text-sm text-gray-500">
@@ -44,19 +44,12 @@
         </div>
     </div>
 
-
-    <div class="bg-[#fa9c61]">
-
-
-    <div class="bg-[#fc914e]">
-
-
     <div class="bg-[#fa9c61]">
     <div class="bg-[#fc914e]">
 
         <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
             <p class="text-[#333333] ml-1">Copyright © <?php echo date("Y"); ?> All rights reserved by -
-                <a href="https://technicalpashupati.edu.np" rel="noopener noreferrer" class="text-[#333333] ml-1" target="_blank">SMP PGRI 371 Pondok Aren</a>
+                <a href="https://www.instagram.com/smpgri371official" rel="noopener noreferrer" class="text-[#333333] ml-1" target="_blank">SMP PGRI 371 Pondok Aren</a>
             </p>
             <span class="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
                 <a class="text-gray-500">

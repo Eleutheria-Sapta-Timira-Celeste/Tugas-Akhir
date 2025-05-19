@@ -65,7 +65,7 @@ try {
 
             <div class="container px-5 py-10 mx-auto">
             <div class="flex flex-col text-center w-full mb-20">
-                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-blue-600">Selamat Datang di Panel Admin</h1>
+                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-[#ef6c00]"> Selamat Datang di Panel Admin</h1>
                 <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base">
                 Selamat Datang di Panel Admin SMP PGRI 371 Pondok Aren 🏫
                 Di sini, Anda akan menemukan semua alat dan sumber daya yang Anda butuhkan untuk mengelola operasional sekolah secara efisien. Mulai dari data siswa hingga penjadwalan, semuanya tersedia untuk mendukung kelancaran kegiatan sekolah. 📊
@@ -78,7 +78,7 @@ try {
                                 class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                                 src="../assects/images/adminavatars/flash_notice.png">
                             <div class="flex-grow">
-                                <h2 class="text-blue-600 title-font font-medium">Kartu Sambutan</h2>
+                                <h2 class="text-[#ef6c00] title-font font-medium"> Kartu Sambutan</h2>
                                 <p class="text-sm md:text-base text-gray-500">Buat baru kartu sambutan</p>
                             </div>
                         </div>
@@ -92,7 +92,7 @@ try {
                                 class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                                 src="../assects/images/adminavatars/notice.jpg">
                             <div class="flex-grow">
-                                <h2 class="text-blue-600 title-font font-medium">Tambah Pengumuman</h2>
+                                <h2 class="text-[#ef6c00] title-font font-medium"> Tambah Pengumuman</h2>
                                 <p class="text-sm md:text-base text-gray-500">Tambah atau Ubah Pengumuman
                             </div>
                         </div>
@@ -104,7 +104,7 @@ try {
                                     class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                                     src="../assects/images/adminavatars/registered.png">
                                 <div class="flex-grow">
-                                    <h2 class="text-blue-600 title-font font-medium">Lihat Siswa yang Mendaftar</h2>
+                                    <h2 class="text-[#ef6c00] title-font font-medium"> Lihat Siswa yang Mendaftar</h2>
                                     <p class="text-sm md:text-base text-gray-500">Siswa yang mendaftar secara online</p>
                                 </div>
                             </div>
@@ -125,7 +125,7 @@ try {
                                 class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                                 src="../assects/images/adminavatars/routine.png">
                             <div class="flex-grow">
-                                <h2 class="text-blue-600 title-font font-medium">Jadwal Kelas</h2>
+                                <h2 class="text-[#ef6c00] title-font font-medium"> Jadwal Kelas</h2>
                                 <p class="text-sm md:text-base text-gray-500">Ubah Jadwal Kelas</p>
                             </div>
                         </div>
@@ -136,7 +136,7 @@ try {
                                 class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                                 src="../assects/images/adminavatars/staffs.png">
                             <div class="flex-grow">
-                                <h2 class="text-blue-600 title-font font-medium">Ubah Detail Staff Sekolah</h2>
+                                <h2 class="text-[#ef6c00] title-font font-medium"> Ubah Detail Staff Sekolah</h2>
                                 <p class="text-sm md:text-base text-gray-500">Tambah dan Ubah Data Staff Sekolah</p>
                             </div>
                         </div>
@@ -148,7 +148,7 @@ try {
                                 class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                                 src="../assects/images/adminavatars/site content.jpg">
                             <div class="flex-grow">
-                                <h2 class="text-blue-600 title-font font-medium">Ubah Isi Konten Website</h2>
+                                <h2 class="text-[#ef6c00] title-font font-medium"> Ubah Isi Konten Website</h2>
                                 <p class="text-sm md:text-base text-gray-500">Ubah Seluruh Isi Konten Website</p>
                             </div>
                         </div>
@@ -162,7 +162,7 @@ try {
                                 class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                                 src="../assects/images/adminavatars/add gallery.png">
                             <div class="flex-grow">
-                                <h2 class="text-blue-600 title-font font-medium">Tambah Galeri</h2>
+                                <h2 class="text-[#ef6c00] title-font font-medium">Tambah Galeri</h2>
                                 <p class="text-sm md:text-base text-gray-500">Tambahkan momen seperti kegiatan sekolah dan lainnya</p>
                             </div>
                         </div>
@@ -175,7 +175,7 @@ try {
                                     class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                                     src="../assects/images/adminavatars/feedback.png">
                                 <div class="flex-grow">
-                                    <h2 class="text-blue-600 title-font font-medium">Lihat Umpan Balik</h2>
+                                    <h2 class="text-[#ef6c00] title-font font-medium">Lihat Umpan Balik</h2>
                                     <p class="text-sm md:text-base text-gray-500">Umpan balik yang diberikan di situs web</p>
                                 </div>
                             </div>
@@ -195,7 +195,7 @@ try {
                                 class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                                 src="../assects/images/adminavatars/adminadd.png">
                             <div class="flex-grow">
-                                <h2 class="text-blue-600 title-font font-medium">Tambah atau Hapus Data Admin</h2>
+                                <h2 class="text-[#ef6c00] title-font font-medium">Tambah atau Hapus Data Admin</h2>
                                 <p class="text-sm md:text-base text-gray-500">Admin dapat mengubah pengumuman sekolah</p>
                             </div>
                         </div>
