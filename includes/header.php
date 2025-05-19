@@ -22,14 +22,31 @@ function homepage() {
 
                 <!-- <span class="ml-3 text-xl">SMP PGRI 371 Pondok Aren</span> -->
             </a>
-            <nav class="md:ml-auto flex flex-wrap items-center text-base md:font-bold justify-center">
-                <a href="index.php" class="text-sm md:text-base mr-5 hover:text-gray-900">Beranda</a>
-                <a href="aboutus.php" class="text-sm md:text-base mr-5 hover:text-gray-900">Tentang</a>
-                <a href="notice.php" class="text-sm md:text-base mr-5 hover:text-gray-900">Pengumuman</a>
-                <a href="extras.php" class="text-sm md:text-base mr-5 hover:text-gray-900">Informasi Sekolah</a>
-                <a href="contactUs.php" class="text-sm md:text-base mr-5 hover:text-gray-900">Hubungi</a>
-                <a href="admin/login.php" class="text-sm md:text-base mr-5 hover:text-gray-900">Akses</a>
-            </nav>
+           <nav class="md:ml-auto flex flex-wrap items-center text-base md:font-bold justify-center">
+                <ul class="flex space-x-4 items-center">
+                    <li><a href="index.php" class="text-sm md:text-base hover:text-gray-900">Beranda</a></li>
+                    <li><a href="aboutus.php" class="text-sm md:text-base hover:text-gray-900">Tentang</a></li>
+                    <li><a href="notice.php" class="text-sm md:text-base hover:text-gray-900">Pengumuman</a></li>
+                    <li><a href="extras.php" class="text-sm md:text-base hover:text-gray-900">Informasi Sekolah</a></li>
+                    <li><a href="contactUs.php" class="text-sm md:text-base hover:text-gray-900">Hubungi</a></li>
+
+                    <!-- Dropdown Akses -->
+                   <div class="relative group">
+                <button class="text-sm md:text-base mr-5 hover:text-gray-900 inline-flex items-center">
+                    Akses
+                    <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M5.25 7.5l4.5 4.5 4.5-4.5" />
+                    </svg>
+                </button>
+                <ul class="absolute hidden group-hover:block bg-white shadow-lg mt-2 rounded z-10 min-w-max">
+                    <li><a href="admin/login.php" class="block px-6 py-2 text-sm text-gray-700 hover:bg-gray-100">Login Admin</a></li>
+                    <li><a href="guru/login.php" class="block px-6 py-2 text-sm text-gray-700 hover:bg-gray-100">Login Guru</a></li>
+                    <li><a href="siswa/login.php" class="block px-6 py-2 text-sm text-gray-700 hover:bg-gray-100">Login Siswa</a></li>
+                </ul>
+                </div>
+                </ul>
+        </nav>
+
             <button onclick="spmb()"
                 class="inline-flex items-center border-0 py-1 px-3 focus:outline-none rounded text-base mt-4 md:mt-0 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-[#ef6c00] dark:hover:bg-blue-700 dark:focus:ring-blue-800">SPMB
                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

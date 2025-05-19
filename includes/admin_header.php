@@ -19,11 +19,12 @@
           <!-- <span class="ml-3 text-xl">SMP PGRI 371 Pondok Aren</span> -->
         </a>
         <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center"></nav>
-        <button onclick="logoutsession()" class="inline-flex items-center border-0 py-1 px-3 focus:outline-none rounded text-base mt-4 md:mt-0 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Logout <?php echo $_SESSION["usr_nam"]; ?>
+       <button onclick="logoutsession()" class="inline-flex items-center border-0 py-1 px-3 focus:outline-none rounded text-base mt-4 md:mt-0 text-white bg-[#e65c00] hover:bg-[#cc5200] focus:ring-4 focus:ring-[#ff944d] font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2"> Logout <?php echo $_SESSION["usr_nam"]; ?>
           <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
-            <path d="M5 12h14M12 5l7 7-7 7"></path>
+          <path d="M5 12h14M12 5l7 7-7 7"></path>
           </svg>
         </button>
+
       </div>
     </header>
     
