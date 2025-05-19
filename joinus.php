@@ -63,16 +63,16 @@ try {
             </div>
             <div
                 class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-                <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium" text-[#ef6c00];">SPMB
+                <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium" style="color: #ef6c00;">SPMB
                     <br class="hidden lg:inline-block">
                 </h1>
                 <p class="mb-8 leading-relaxed">
                     <?php echo $row['one']; ?>
                 </p>
-                <div id="admissionform" class="flex justify-center">
-                    <a href="#admissionform" onclick="scrollToAdmissionForm()">
+                <div id="spmb_siswa" class="flex justify-center">
+                    <a href="spmb/index.php" class="btn">
                         <button
-                            class="inline-flex text-white bg-[#ef6c00] border-0 py-2 px-6 focus:outline-none hover:bg-[#e65c00] rounded text-lg">Scroll untuk mendaftarkan murid</button>
+                            class="inline-flex text-white bg-[#ef6c00] border-0 py-2 px-6 focus:outline-none hover:bg-[#e65c00] rounded text-lg">Klik untuk mendaftarkan siswa</button>
                     </a>
                 </div>
             </div>
