@@ -206,6 +206,7 @@ try {
     </main>
 
     <?php include('../includes/admin_footer.php') ?>
+    
 </body>
 <script>
 function add_notice() {
