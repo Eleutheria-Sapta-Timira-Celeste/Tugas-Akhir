@@ -175,7 +175,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <section class="text-gray-600 body-font">
             <div class="container px-5 py-10 mx-auto">
                 <div class="flex flex-col text-center w-full mb-5">
-                    <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-blue-600">Ubah Isi Konten Situs</h1>
+                    <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4" style="color: #e65100;">
+Ubah Isi Konten Situs</h1>
                      <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base">
                      Harap diperhatikan bahwa konten pada setiap halaman dapat mengalami perubahan atau modifikasi mulai saat ini. Sebelum menyimpan konten apa pun, sangat disarankan untuk melakukan konfirmasi dan validasi terhadap perubahan yang telah dilakukan. Terima kasih atas perhatian Anda dalam menjaga keakuratan dan integritas informasi yang disajikan.</p>
                 </div>
@@ -329,9 +330,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
             </a>
             <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                <button type="submit" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Save Content</button>
+                <button type="submit"
+  class="text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center"
+  style="background-color: #ef6c00; 
+         box-shadow: 0 0 0 4px rgba(239, 108, 0, 0.3);"
+  onmouseover="this.style.backgroundColor='#d55a00';"
+  onmouseout="this.style.backgroundColor='#ef6c00';"
+>
+  Simpan Konten
+</button>
+
                     
-                </button>
+                
             </div>
         
         </div>

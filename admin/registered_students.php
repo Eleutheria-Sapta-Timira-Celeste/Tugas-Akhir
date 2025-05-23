@@ -49,7 +49,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg"
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-10 mx-auto">
             <div class="flex flex-col text-center w-full mb-5">
-                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-blue-600">Data Pendaftaran Siswa</h1>
+               <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4" style="color: #ef6c00;">Data Pendaftaran Siswa</h1>
                 <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base">
                    Selamat datang di halaman data pendaftaran siswa baru SMP PGRI 371 Pondok Aren. Di sini Anda dapat melihat semua siswa yang telah mendaftar dan mengelola data mereka dengan mudah. Jika Anda memiliki pertanyaan atau memerlukan bantuan lebih lanjut, jangan ragu untuk menghubungi kami.
                 </p>
