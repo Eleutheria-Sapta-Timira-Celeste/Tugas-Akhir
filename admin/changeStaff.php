@@ -283,9 +283,9 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
             </div>
 
             <button data-modal-target="authentication-modal2" data-modal-toggle="authentication-modal2"
-                class="mt-10 block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                class="mt-10 mb-0 block text-white bg-[#e65c00] hover:bg-[#cc5200] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#e65c00] dark:hover:bg-[#cc5200] dark:focus:ring-"
                 type="button">
-                Add Committe Member
+                Tambah Data Kepala Sekolah
             </button>
         </div>
     </section>
@@ -401,7 +401,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                         </div>
                         <div>
                             <label for="committeName"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white]">Name</label>
                             <input type="text" name="committeName"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                 placeholder="Thir Kumar Dahal" required>
@@ -438,15 +438,15 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
         <section class="bg-gray-50 dark:bg-gray-900 p-3 mt-5 sm:p-5 antialiased">
             <div class="mx-auto max-w-screen-xl px-0 lg:px-12">
                 <!-- Start coding here -->
-                <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
+                <div class="bg-white dark:bg-white relative shadow-md sm:rounded-lg overflow-hidden">
                     <div
                         class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
                         <div class="w-full md:w-1/2">
                             <form class="flex items-center">
-                                <label for="simple-search" class="sr-only">Search</label>
+                                <label for="simple-search" class="sr-only">Cari Data</label>
                                 <div class="relative w-full">
-                                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                        <h2><b>Management Committee</b></h2>
+                                    <div class="absolute inset-y-0 left-0 flex items-center pl-0 pointer-events-none">
+                                        <h2><b>Pimpinan Sekolah</b></h2>
                                     </div>
 
                                 </div>
@@ -455,13 +455,13 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
 
                     </div>
                     <div class="overflow-x-auto">
-                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <table class="w-full text-sm text-left text-gray-500 text-black dark:text-black">
                             <thead
                                 class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th scope="col" class="px-4 py-3">committee</th>
-                                    <th scope="col" class="px-4 py-3">Position</th>
-                                    <th scope="col" class="px-4 py-4">Phone</th>
+                                    <th scope="col" class="px-4 py-3">Jabatan</th>
+                                    <th scope="col" class="px-4 py-4">NIP</th>
                                     <th scope="col" class="px-4 py-3">
                                         <span class="sr-only">Actions</span>
                                     </th>
@@ -480,7 +480,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                                         $managementcommitteId = $row['id'];
                                         echo '
                                             <tr class="border-b dark:border-gray-700">
-                                                <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-black">
                                                     <div class="flex items-center mr-3">
                                                         <img src="../' . $row['image_src'] . '" alt="" class="h-8 w-auto mr-3" onerror="this.src=`' . $defaultavatar . '`">
                                                         ' . $row['name'] . '
@@ -576,8 +576,8 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                                             </div>
 
                                             <div class="sm:col-span-2">
-                                                <label for="subject" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
-                                                <input type="text" name="comitteName" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="' . $row['name'] . '" placeholder="Bisswass Niroula">
+                                                <label for="subject" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Name</label>
+                                                <input type="text" name="comitteName" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500" value="' . $row['name'] . '" placeholder="Nama Lengkap">
                                                 <label for="post" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Post</label>
                                                 <input type="text" name="comittepost" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="' . $row['position'] . '" placeholder="Member">
                                                 <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone No.</label>
@@ -702,13 +702,13 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                                         $staffsId = $row['id'];
                                         echo '
                                             <tr class="border-b dark:border-gray-700">
-                                                <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-black">
                                                     <div class="flex items-center mr-3">
                                                         <img src="../' . $row['image_src'] . '" alt="" class="h-8 w-auto mr-3" onerror="this.src=`' . $defaultavatar . '`">
                                                         ' . $row['name'] . '
                                                     </div>
                                                 </th>
-                                                <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white  max-w-[10rem] truncate">' . $row['post'] . '</th>
+                                                <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-black  max-w-[10rem] truncate">' . $row['post'] . '</th>
                                                 <td class="px-4 py-3">' . $row['contact'] . '</td>
                                                 <td class="px-4 py-3">' . $row['qualification'] . '</td>
 
@@ -720,7 +720,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                                                             <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
                                                         </svg>
                                                     </button>
-                                                    <div id="apple-imac-27-dropdown' . $staffsId . '" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+                                                    <div id="apple-imac-27-dropdown' . $staffsId . '" class="hidden z-10 w-44 bg-black rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
                                                         <ul class="py-1 text-sm" aria-labelledby="apple-imac-27-dropdown-button">
                                                             <li>
                                                                 <button type="button" data-modal-target="updatestaffsModel' . $staffsId . '" data-modal-toggle="updatestaffsModel' . $staffsId . '" class="flex w-full items-center py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-gray-700 dark:text-gray-200">

@@ -155,7 +155,7 @@ if (isset($_POST['update_flash_notice'])) {
                             <?php echo $flash_notice['message']; ?>
                         </p>
                         <a href="#"
-                            class="mb-5 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            class="inline-flex items-center border-0 py-1 px-3 focus:outline-none rounded text-base mt-4 md:mt-0 text-white bg-[#e65c00] hover:bg-[#cc5200] focus:ring-4 focus:ring-[#ff944d] font-medium  text-sm px-5 py-2.5 text-center me-2 mb-2">
                             Close
                         </a>
                     </div>
@@ -240,7 +240,7 @@ if (isset($_POST['update_flash_notice'])) {
 
                             <div class="flex justify-end mt-6">
                                 <button name="update_flash_notice" type="submit"
-                                    class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-blue-500 rounded-md hover:bg-blue-700 focus:outline-none focus:bg-gray-600">Save</button>
+                                            class="inline-flex items-center border-7 py-1 px-3 focus:outline-none rounded text-base mt-4 md:mt-0 text-white bg-[#e65c00] hover:bg-[#cc5200] focus:ring-4 focus:ring-[#ff944d] font-medium  text-sm px-5 py-2.5 text-center me-2 mb-2 ">Save</button>
                             </div>
                         </form>
                     </section>
