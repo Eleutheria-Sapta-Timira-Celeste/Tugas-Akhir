@@ -14,7 +14,7 @@ function locationmap(){
 }
 
 function callschool(){  
-    window.location.href = "021-2273-6571";
+    window.location.href = "tel:02122736571";
 }
 
 function kemendikbud(){

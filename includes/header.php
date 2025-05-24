@@ -40,7 +40,7 @@ function homepage() {
                 </button>
                 <ul class="absolute hidden group-hover:block bg-white shadow-lg mt-2 rounded z-10 min-w-max">
                     <li><a href="admin/login.php" class="block px-6 py-2 text-sm text-gray-700 hover:bg-gray-100">Login Admin</a></li>
-                    <li><a href="guru/login.php" class="block px-6 py-2 text-sm text-gray-700 hover:bg-gray-100">Login Guru</a></li>
+                    <li><a href="guru/index_guru.php" class="block px-6 py-2 text-sm text-gray-700 hover:bg-gray-100">Login Guru</a></li>
                     <li><a href="siswa/login.php" class="block px-6 py-2 text-sm text-gray-700 hover:bg-gray-100">Login Siswa</a></li>
                 </ul>
                 </div>
