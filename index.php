@@ -257,9 +257,15 @@ echo '
                 </p>
             </div>
             <div class="justify-between items-center pt-0 space-y-4 sm:flex sm:space-y-0">
-                <a href="aboutus.php" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Lihat Tentang Sekolah</a>
-                <div class="items-center space-y-4 sm:space-x-4 sm:flex sm:space-y-0">                  
-                    <button id="close-modal" type="button" class="py-2 px-4 w-full text-sm font-medium text-center text-white rounded-lg bg-blue-700 sm:w-auto hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Close</button>
+               <a href="aboutus.php" style="color: #ef6c00;" class="font-medium hover:underline">Lihat Tentang Sekolah</a>
+
+                <div class="items-center space-y-4 sm:space-x-4 sm:flex sm:space-y-0">                 
+                    <button id="close-modal" type="button"
+                        style="background-color: #ef6c00;"
+                        class="py-2 px-4 w-full text-sm font-medium text-center text-white rounded-lg sm:w-auto hover:brightness-110 focus:ring-4 focus:outline-none focus:ring-orange-300">
+                        Close
+                    </button>
+
                 </div>
             </div>
         </div>
