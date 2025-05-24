@@ -272,7 +272,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-10 mx-auto">
             <div class="flex flex-col text-center w-full mb-5">
-                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-blue-600">Update Committe and Staffs
+                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4" style="color: #ef6c00;">Update Committe and Staffs
                 </h1>
                 <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base">
                     🎉 Welcome to this page dedicated to managing and updating staff and committee details! 📝 It

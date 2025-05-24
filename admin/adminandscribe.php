@@ -184,21 +184,18 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-10 mx-auto">
             <div class="flex flex-col text-center w-full mb-5">
-                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-blue-600">Update Admin and Authors
+                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4" style="color: #ef6c00;">Perbarui Admin dan Penulis
                 </h1>
                 <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base">
-                    It's like the dashboard for all your school admin needs. Here, you've got the tools to customize
-                    everything from passwords and names to logos and identity codes. It's like being the architect of
-                    your school's digital realm, sculpting it to perfection with just a few clicks. So, dive in, tweak
-                    those settings, and let's make this digital domain truly yours! 💻🔧
+                    Ini seperti dasbor untuk semua kebutuhan admin di SMP PGRI 371 Pondok Aren. Di sini, kamu punya alat untuk mengatur semuanya mulai dari kata sandi dan nama hingga logo dan kode identitas. Rasanya seperti menjadi arsitek dunia digital sekolah, membentuknya dengan sempurna hanya dalam beberapa klik. Jadi, ayo mulai, atur pengaturannya, dan jadikan dunia digital ini benar-benar milik SMP PGRI 371 Pondok Aren! 💻🔧
                 </p>
             </div>
 
-            <button data-modal-target="authentication-modal2" data-modal-toggle="authentication-modal2"
-                class="mt-10 block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                type="button">
-                🛡️ Change Admin Details
-            </button>
+           <button class="inline-flex items-center border-7 py-1 px-3 focus:outline-none rounded text-base mt-4 md:mt-0 text-white bg-[#e65c00] hover:bg-[#cc5200] focus:ring-4 focus:ring-[#ff944d] font-medium  text-sm px-5 py-2.5 text-center me-2 mb-2 "
+>
+    🛡️ Ubah Detail Admin
+</button>
+
         </div>
     </section>
 
@@ -287,10 +284,10 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                         </div>
 
 
-                        <button type="submit" name="update_admin"
-                            class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update
-                            Admin</button>
-
+                        <button class="inline-flex items-center border-7 py-1 px-3 focus:outline-none rounded text-base mt-4 md:mt-0 text-white bg-[#e65c00] hover:bg-[#cc5200] focus:ring-4 focus:ring-[#ff944d] font-medium  text-sm px-5 py-2.5 text-center me-2 mb-2 "
+>
+    Perbarui Admin
+</button>
                     </form>
                 </div>
             </div>
