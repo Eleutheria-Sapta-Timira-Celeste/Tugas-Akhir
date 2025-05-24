@@ -53,9 +53,9 @@ if (isset($_POST['feedbackDelete'])) {
         <section class="text-gray-600 body-font">
             <div class="container px-5 py-10 mx-auto">
                 <div class="flex flex-col text-center w-full mb-5">
-                    <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-blue-600">School's Feedback</h1>
+                   <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4" style="color: #ef6c00;">Umpan Balik Sekolah</h1>
                      <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base">
-                     Explore the Admin Panel for Pahupati Technical School's Feedback System. Efficiently manage and analyze user feedback from the website, facilitating informed decisions for continuous improvement. Take charge of enhancing the school's educational experience and shaping its future.</p>
+                    Jelajahi Panel Admin untuk Sistem Umpan Balik Sekolah SMP PGRI 371 Pondok Aren. Kelola dan analisis umpan balik pengguna dari situs web secara efisien, memudahkan pengambilan keputusan yang tepat untuk perbaikan berkelanjutan. Ambil peran aktif dalam meningkatkan pengalaman pendidikan sekolah dan membentuk masa depannya.</p>
                 </div>
             </div>
         </section>

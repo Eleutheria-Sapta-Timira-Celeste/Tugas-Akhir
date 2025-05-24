@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-10 pb-0 mx-auto">
             <div class="flex flex-col text-center w-full mb-20">
-                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-blue-600">Ubah Jadwal Kelas</h1>
+                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4" style="color: #ef6c00;">Ubah Jadwal Kelas</h1>
                 <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base"> 🏫 Di halaman ini anda dapat mengubah jadwal kelas untuk para siswa/siswi📅 
                 </p>
             </div>
