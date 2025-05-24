@@ -77,6 +77,8 @@ if (isset($_GET['success']) && $_GET['success'] === 'absensi_murid_recorded') {
     echo "<script>alert('absensi_murid Recorded!');</script>";
 }
 
+$riwayat_murid_result = mysqli_query($connection, "SELECT * FROM riwayat_absensi_murid ORDER BY date DESC");
+$riwayat_guru_result = mysqli_query($connection, "SELECT * FROM riwayat_absensi_guru ORDER BY date DESC");
 
 
 $result = mysqli_query($connection, "SELECT murid_name, date, status FROM absensi_murid ORDER BY date DESC");
@@ -120,10 +122,6 @@ function showForm(formType) {
 <div class="w-full max-w-5xl mx-auto bg-white p-8 rounded-lg shadow-2xl">
     <nav class="bg-blue-600 p-4 text-white flex justify-between shadow-lg">
         <h1 class="text-xl font-bold">📜 Dashboard Guru</h1>
-        <div class="space-x-6">
-            <button onclick="showForm('student')" class="hover:underline">Absensi Murid</button>
-            <button onclick="showForm('teacher')" class="hover:underline">Absensi Guru</button>
-        </div>
     </nav>
 
     <div class="flex flex-col md:flex-row space-y-6 md:space-x-6 mt-6">
@@ -153,7 +151,7 @@ function showForm(formType) {
                     </tbody>
                 </table>
                 <button type="submit" class="mt-6 w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 px-6 rounded-lg shadow-lg text-lg font-bold hover:scale-105 transition-transform duration-200">
-                    📌 Submit Student Attendance
+                    📌 Submit Absensi Murid
                 </button>
             </form>
 
@@ -179,11 +177,30 @@ function showForm(formType) {
                     <?php } ?>
                 </tbody>
             </table>
+            <h2 class="text-2xl font-semibold text-gray-800 mt-6">📜 Riwayat Absensi Murid</h2>
+<table class="w-full border border-gray-300 rounded-lg shadow-md text-center">
+    <thead>
+        <tr class="bg-gray-300">
+            <th class="p-2 border">Murid Name</th>
+            <th class="p-2 border">Date</th>
+            <th class="p-2 border">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php while ($row = mysqli_fetch_assoc($riwayat_murid_result)) { ?>
+        <tr class="border">
+            <td class="p-2 border"><?= htmlspecialchars($row['murid_name']) ?></td>
+            <td class="p-2 border"><?= htmlspecialchars($row['date']) ?></td>
+            <td class="p-2 border font-semibold text-center"><?= htmlspecialchars($row['status']) ?></td>
+        </tr>
+        <?php } ?>
+    </tbody>
+</table>
         </div>
 
         <!-- Teacher Attendance Section -->
         <div id="teacher-section" class="md:w-1/2">
-            <h2 class="text-2xl font-semibold text-gray-800 mb-4">📌 Mark Teacher Attendance</h2>
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">📌 Form Absensi Guru</h2>
             <form method="POST">
                 <table class="w-full border border-gray-300 rounded-md">
                     <thead>
@@ -207,12 +224,12 @@ function showForm(formType) {
                     </tbody>
                 </table>
                 <button type="submit" class="mt-6 w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 px-6 rounded-lg shadow-lg text-lg font-bold hover:scale-105 transition-transform duration-200">
-                    📌 Submit Teacher Attendance
+                    📌 Submit Absensi Guru
                 </button>
             </form>
 
             <!-- Teacher Attendance Records -->
-            <h2 class="text-2xl font-semibold text-gray-800 mt-6">📜 Teacher Attendance Records</h2>
+            <h2 class="text-2xl font-semibold text-gray-800 mt-6">📜 Riwayat Absensi Guru</h2>
             <table class="w-full border border-gray-300 rounded-lg shadow-md text-center">
                 <thead>
                     <tr class="bg-gray-300">
@@ -226,7 +243,7 @@ function showForm(formType) {
                     <tr class="border">
                         <td class="p-2 border"><?= htmlspecialchars($row['nama_guru']) ?></td>
                         <td class="p-2 border"><?= htmlspecialchars($row['date']) ?></td>
-                        <td class="p-2 border font-semibold text-center <?= ($row['status'] === 'Present') ? 'text-green-600' : ($row['status'] === 'Sick' ? 'text-yellow-600' : ($row['status'] === 'Out' ? 'text-blue-600' : 'text-red-600')) ?>">
+                        <td class="p-2 border font-semibold text-center <?= ($row['status'] === 'Hadir') ? 'text-green-600' : ($row['status'] === 'Sakit' ? 'text-yellow-600' : ($row['status'] === 'Izin' ? 'text-blue-600' : 'text-red-600')) ?>">
                             <?= !empty($row['status']) ? htmlspecialchars($row['status']) : "<span class='text-red-600'>No Status Recorded</span>" ?>
                         </td>
                     </tr>
