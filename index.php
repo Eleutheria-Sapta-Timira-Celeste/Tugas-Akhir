@@ -118,9 +118,9 @@ try {
         <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
     </div>
 
-        <h1 class="mt-8 ml-5 mb-4 text-5xl font-extrabold leading-tight tracking-wide text-center 
+        <h1 class="mt-8 ml-5 mb-4 mr-5 text-5xl font-extrabold leading-tight tracking-wide text-center 
     bg-gradient-to-r from-orange-500 via-red-500 to-yellow-400 text-white p-4 rounded-lg shadow-xl">
-    🌟 SMP PGRI 371 Pondok Aren 🌟
+    SMP PGRI 371 Pondok Aren
 </h1>
         <!-- <?php echo $row['one']; ?></p> -->
 
@@ -143,7 +143,7 @@ try {
             <div class="bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg shadow-xl p-6 transform transition duration-300 hover:scale-110 hover:shadow-2xl flex flex-col items-center justify-center">
                 <h3 class="text-2xl font-extrabold">🚀 Bergabung Bersama Kami!</h3>
                 <p class="text-lg text-gray-100 text-center mt-2">Jadilah bagian dari perjalanan pendidikan yang luar biasa.</p>
-                <a href="#" class="mt-4 bg-yellow-400 hover:bg-yellow-500 text-gray-900 px-4 py-2 rounded-lg shadow-md transition hover:scale-105">
+                <a href="spmb/index.php" class="mt-4 bg-yellow-400 hover:bg-yellow-500 text-gray-900 px-4 py-2 rounded-lg shadow-md transition hover:scale-105">
                     🔰 Daftar Sekarang
                 </a>
             </div>

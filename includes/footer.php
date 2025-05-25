@@ -3,7 +3,7 @@
         
         <!-- 🏫 School Information -->
         <div class="space-y-3">
-            <h2 class="text-xl font-bold border-b-2 border-[#e0b680] pb-2">🏫 SMP PGRI 371 Pondok Aren</h2>
+            <h2 class="text-xl font-bold border-b-2 border-[#ef6c00] pb-2">🏫 SMP PGRI 371 Pondok Aren</h2>
             <p class="text-sm leading-relaxed text-gray-800">
                 Selamat datang di lingkungan pendidikan yang penuh inspirasi untuk membentuk generasi berprestasi.
             </p>
@@ -11,7 +11,7 @@
 
         <!-- 🔗 Quick Links -->
         <div class="space-y-3">
-            <h2 class="text-xl font-bold border-b-2 border-[#e0b680] pb-2">🔗 Tautan Cepat</h2>
+            <h2 class="text-xl font-bold border-b-2 border-[#ef6c00] pb-2">🔗 Tautan Cepat</h2>
             <ul class="mt-2 space-y-2 text-sm">
                 <li><a href="https://www.kemdikbud.go.id/" class="hover:text-[#c47f38]">Kemendikbud</a></li>
                 <li><a href="#" class="hover:text-[#c47f38]">PGRI Pusat</a></li>
@@ -21,7 +21,7 @@
 
         <!-- 📞 Contact Info -->
         <div class="space-y-3">
-            <h2 class="text-xl font-bold border-b-2 border-[#e0b680] pb-2">📞 Kontak</h2>
+            <h2 class="text-xl font-bold border-b-2 border-[#ef6c00] pb-2">📞 Kontak</h2>
             <ul class="mt-2 space-y-2 text-sm text-gray-800">
                 <li>📍 Jl. Puskesmas No.6, Pondok Aren, Tangerang Selatan</li>
                 <li>☎️ 021-2273-6571</li>
@@ -32,7 +32,7 @@
     </div>
 
     <!-- Copyright & Social Media -->
-    <div class="mt-8 text-center border-t border-[#e0b680] pt-5">
+    <div class="mt-8 text-center border-t border-[#ef6c00] pt-5">
         <p class="text-sm text-gray-700">© 2025 All rights reserved by SMP PGRI 371 Pondok Aren</p>
         <div class="flex justify-center space-x-4 mt-2">
             <a href="#" class="hover:text-[#c47f38]"><i class="fab fa-facebook"></i></a>
