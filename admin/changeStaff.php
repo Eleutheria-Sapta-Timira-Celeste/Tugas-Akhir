@@ -303,7 +303,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                 <!-- Modal header -->
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        Add Staffs
+                        Tambah Petugas
                     </h3>
                     <button type="button"
                         class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -616,7 +616,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                                     </svg>
                                     <p class="mb-4 text-gray-500 dark:text-gray-300">Are you sure you want to delete this item?</p>
                                     <div class="flex justify-center items-center space-x-4">
-                                        <button data-modal-toggle="deleteModal' . $managementcommitteId . '" type="button" class="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No, cancel</button>
+                                        <button data-modal-toggle="deleteModal' . $managementcommitteId . '" type="button" class="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Tidak, Batal</button>
                                         <input type="hidden" name="comitteDelete_id" value="' . $managementcommitteId . '" />
                                         <button  name="committe_delete" type="submit" class="py-2 px-3 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900">Yes, I am sure</button>
                                     </div>
@@ -647,7 +647,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
             <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
                 class="mt-10 block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 type="button">
-                Add Staffs
+                Tambah Petugas
             </button>
 
 
@@ -667,7 +667,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                                 <label for="simple-search" class="sr-only">Search</label>
                                 <div class="relative w-full">
                                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                        <h2><b>School Staffs</b></h2>
+                                        <h2><b>Petugas Sekolah</b></h2>
                                     </div>
 
                                 </div>

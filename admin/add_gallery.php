@@ -133,7 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-10 mx-auto">
             <div class="flex flex-col text-center w-full mb-5">
-                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-blue-600">Tambah Galeri</h1>
+                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-[#ef6c00]">Tambah Galeri</h1>
                 <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base">
                 Yth. Tim Pengelola Website Sekolah, Semoga dalam keadaan sehat dan lancar dalam menjalankan aktivitas.
                 Mohon bantuannya untuk menambahkan dokumentasi kegiatan/proyek terbaru ke dalam website sekolah. Silakan masuk ke panel admin, pilih menu "Galeri", kemudian buat album baru yang sesuai dengan kegiatan tersebut. Setelah itu, unggah foto-foto terkait dan pastikan album tersebut diatur agar dapat ditampilkan kepada publik.
@@ -141,9 +141,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 </p>
             </div>
             <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
-                class="mt-10 block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                class="mt-10 block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#cc5200] dark:focus:ring-[#cc5200]"
                 type="button">
-                Create New Album
+                Tambah Album Baru
             </button>
         </div>
     </section>
@@ -161,7 +161,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <!-- Modal header -->
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        Create New Album
+                        Buat Album Baru
                     </h3>
                     <button type="button"
                         class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -179,15 +179,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <form class="space-y-4" action="" method="POST">
                         <div>
                             <label for="album_name"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Album Name</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Album</label>
                             <input type="text" name="album_name" id="album_name"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                placeholder="School Meetings" required>
+                                placeholder="Nama Album Baru" required>
                         </div>
 
 
                         <button type="submit" name="submit_new_album"
-                            class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Create</button>
+                            class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#cc5200] dark:focus:ring-[#cc5200]">Buat</button>
 
                     </form>
                 </div>
@@ -238,13 +238,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     $albumId .
                     '" data-modal-toggle="addImagestoAlbum' .
                     $albumId .
-                    '" class="mx-5 block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-           Add images
+                    '" class="mx-5 block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#cc5200] dark:focus:ring-[#cc5200]" type="button">
+                        Tambah Gambar
             </button>
 
 
             <button data-modal-target="deleteModal' .$albumId .'" data-modal-toggle="deleteModal' . $albumId .'" class="mx-5 block text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" type="button">
-            Delete album?
+            Hapus Album?
             </button>
         </div>
         
@@ -260,7 +260,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <!-- Modal header -->
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        Add images to ' . $album_name . '
+                        Pilih Gambar Untuk ' . $album_name . '
                     </h3>
                     <button type="button"
                         class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -280,7 +280,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <form class="space-y-4" enctype="multipart/form-data" action="" method="POST">
                         <div>
                             <label for="imagesSchoolMemories"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an images</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pilih Gambar</label>
                                 <input name="file-upload-modified[]" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file" accept="image/*" required multiple>
 
 
@@ -290,7 +290,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
                         <button type="submit" name="newImagesToAlbum"
-                            class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Upload Images</button>
+                            class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Tambah Gambar</button>
 
                     </form>
                 </div>
@@ -316,19 +316,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <span class="sr-only">Close modal</span>
                     </button>
                     <svg class="text-gray-400 dark:text-gray-500 w-11 h-11 mb-3.5 mx-auto" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
-                    <p class="mb-4 text-gray-500 dark:text-gray-300">Are you sure you want to delete ' . $album_name . '?<br><br>NOTE: The album will be deleted from admin pannel and from website, if you change your mind you can recover it at any time. It will be on server.</p>
+                    <p class="mb-4 text-gray-500 dark:text-gray-300">Apakah kamu yakin ingin menghapus ' . $album_name . '?<br><br>CATATAN: Album akan dihapus dari panel admin dan dari website. Jika kamu berubah pikiran, kamu dapat memulihkannya kapan saja karena masih tersimpan di server.</p>
                     <div class="flex justify-center items-center space-x-4">
 
                     <form class="space-y-4" action="" method="POST">
                         <button data-modal-toggle="deleteModal' .
                     $albumId .
                     '" type="button" class="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
-                            No, cancel
+                            Tidak, Batal
                         </button>
                         
                         <input type="text" value="'.$albumId.'" class="hidden" name="album_Id">
                         <button type="submit" name="deleteAlbum" class="py-2 px-3 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900">
-                            Yes, I am sure
+                          Ya, Saya yakin
                         </button>
                         </form>
                     </div>
