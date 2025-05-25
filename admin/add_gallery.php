@@ -133,18 +133,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-10 mx-auto">
             <div class="flex flex-col text-center w-full mb-5">
-                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4" style="color: #ef6c00;">Tambah Galeri</h1>
+                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-blue-600">Tambah Galeri</h1>
                 <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base">
                 Yth. Tim Pengelola Website Sekolah, Semoga dalam keadaan sehat dan lancar dalam menjalankan aktivitas.
                 Mohon bantuannya untuk menambahkan dokumentasi kegiatan/proyek terbaru ke dalam website sekolah. Silakan masuk ke panel admin, pilih menu "Galeri", kemudian buat album baru yang sesuai dengan kegiatan tersebut. Setelah itu, unggah foto-foto terkait dan pastikan album tersebut diatur agar dapat ditampilkan kepada publik.
                 Apabila membutuhkan bantuan lebih lanjut, jangan ragu untuk menghubungi saya. Terima kasih atas kerja samanya.
                 </p>
             </div>
-            <button class="inline-flex items-center border-7 py-1 px-3 focus:outline-none rounded text-base mt-4 md:mt-0 text-white bg-[#e65c00] hover:bg-[#cc5200] focus:ring-4 focus:ring-[#ff944d] font-medium  text-sm px-5 py-2.5 text-center me-2 mb-2 "
->
-    Buat Album Baru 
-</button>
-
+            <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
+                class="mt-10 block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                type="button">
+                Create New Album
+            </button>
         </div>
     </section>
 
