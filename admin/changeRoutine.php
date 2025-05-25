@@ -97,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>   
     </section>
         <!-- Start block -->
-        <section class="bg-gray-50 dark:bg-gray-900 p-3 mt-0 sm:p-5 antialiased">
+        <section class="bg-gray-50 dark:bg-[#ef6c00] p-3 mt-0 sm:p-5 antialiased">
             <div class="mx-auto max-w-screen-xl px-0 lg:px-12">
                 <!-- Start coding here -->
                 <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
@@ -148,7 +148,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                                                         <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
                                                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
                                                                     </svg>
-                                                                    Edit
+                                                                Ubah
                                                                 </button>
                                                             </li>
 
@@ -167,13 +167,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </tbody>
                         </table>
                     </div>
-                    <nav class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4" aria-label="Table navigation">
+                    <nav class="flex flex-col md:flex-row justify-between items-start md:items-center space-y- md:space-y-0 p-4" aria-label="Table navigation">
 
                     </nav>
                 </div>
             </div>
         </section>
-
+        
         <!-- Update modal -->
         <?php
         $fetch_notice_data = "SELECT * FROM `schoolRoutine` ORDER BY id DESC;";
@@ -194,7 +194,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
                                     <!-- Modal header -->
                                     <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
-                                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Update Routine</h3>
+                                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Tambah Jadwal Kelas</h3>
                                         <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateProductModal' . $classId . '">
                                             <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -205,7 +205,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <!-- Modal body -->
                                     <form method="post" id="UpdateNotice' . $classId . '" enctype="multipart/form-data">
                                         <div class="grid gap-4 mb-4 sm:grid-cols-1">
-                                        <div><label for="new_file" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">If you didnot choose any pic routine will be removed from website or simply select none to remove routine.</label></div><br>
+                                        <div><label for="new_file" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kalau kamu tidak memilih gambar apa pun, jadwal akan dihapus dari situs web, atau cukup pilih "kosong" untuk menghapus jadwal.</label></div><br>
                                             <div class="flex items-center justify-center w-full">
        
                                                 <input name="file-upload-modified'.$classId.'" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file">
@@ -217,7 +217,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         </div>
                                         
                                         <div class="flex items-center space-x-4">
-                                            <button name="update_notice" type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update Routine</button>
+                                            <button name="update_notice" type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#cc5200] dark:focus:ring-[#cc5200] ">Tambah Jadwal Kelas</button>
                                             
                                         </div>
                                     </form>
