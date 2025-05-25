@@ -39,9 +39,7 @@ if (!isset($_SESSION["selectedAlbum"])) {
                     <?php echo $_SESSION["selectedAlbum"]; ?></h2>
 
                 <p class="hidden max-w-screen-sm text-gray-500 dark:text-gray-300 md:block">
-                    On this page, all the images from the <b><?php echo $_SESSION["selectedAlbum"]; ?> Album</b> are
-                    displayed, <b>with the most recent
-                        ones appearing first.</b>
+                   Di halaman ini, semua gambar dari <b><?php echo $_SESSION["selectedAlbum"]; ?> Album</b> ditampilkan, <b>dengan gambar terbaru yang muncul terlebih dahulu.</b>
                 </p>
             </div>
 
