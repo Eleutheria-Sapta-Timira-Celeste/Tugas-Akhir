@@ -21,11 +21,11 @@ $defaultavatar = "assects/images/defaults/defaultaltimage.jpg"
 <body>
     <?php include("includes/header.php") ?>
 
-    <section class="bg-white dark:bg-gray-900">
+    <section class="bg-white dark:bg-white">
         <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
             <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
-               <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-[#ef6c00] dark:text-white">Pimpinan Sekolah</h2>
-                <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">SMP PGRI 371 Pondok Aren dipimpin oleh seorang Kepala Sekolah yang bertanggung jawab dalam mengarahkan visi, misi, serta kebijakan sekolah untuk menciptakan lingkungan belajar yang kondusif dan berprestasi.</p>
+               <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-[#ef6c00] dark:text-[#ef6c00]">Pimpinan Sekolah</h2>
+                <p class="font-light text-gray-600 sm:text-xl dark:text-gray-600">SMP PGRI 371 Pondok Aren dipimpin oleh seorang Kepala Sekolah yang bertanggung jawab dalam mengarahkan visi, misi, serta kebijakan sekolah untuk menciptakan lingkungan belajar yang kondusif dan berprestasi.</p>
             </div>
 
             <div class="grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -41,9 +41,9 @@ $defaultavatar = "assects/images/defaults/defaultaltimage.jpg"
                 if ($total_management_committee_members > 0) {
                     while ($row = mysqli_fetch_assoc($management_committee_members)) {
                         echo '
-                    <div class="text-center text-gray-500 dark:text-gray-400">
+                    <div class="text-center text-gray-600 dark:text-gray-600">
                         <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="' . $row['image_src'] . '" onerror="this.src=`' . $defaultavatar . '`">
-                            <h3 class="mb-1 text-2xl font-bold tracking-tight text-[#ef6c00] dark:text-white">
+                            <h3 class="mb-1 text-2xl font-bold tracking-tight text-[#ef6c00] dark:text-[#ef6c00]">
 
                                 <a>' . $row['name'] . '</a>
                             </h3>
@@ -60,11 +60,11 @@ $defaultavatar = "assects/images/defaults/defaultaltimage.jpg"
             </div>
         </div>
     </section>
-    <section class="bg-white dark:bg-gray-900">
+    <section class="bg-white dark:bg-white">
         <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
             <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
-                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-[#ef6c00] dark:text-white">Staff Sekolah</h2>
-                <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">Kepala Sekolah dibantu oleh jajaran staf sekolah yang terdiri dari bendahara, wakil bidang kurikulum, wakil bidang kesiswaan, 
+                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-[#ef6c00] dark:[#ef6c00]">Staff Sekolah</h2>
+                <p class="font-light text-gray-500 sm:text-xl dark:text-gray-600">Kepala Sekolah dibantu oleh jajaran staf sekolah yang terdiri dari bendahara, wakil bidang kurikulum, wakil bidang kesiswaan, 
                     kepala tata usaha, kepala laboratorium IPA, wali kelas, pembina OSIS, dan pembina Rohis. Seluruh tim bekerja sama dalam mengelola kegiatan akademik, kesiswaan, dan administrasi sekolah demi kelancaran proses pendidikan.</p>
             </div>
 
@@ -81,9 +81,9 @@ $defaultavatar = "assects/images/defaults/defaultaltimage.jpg"
                 if ($total_staffs > 0) {
                     while ($row_staff = mysqli_fetch_assoc($staffs_members)) {
                         echo '
-                                <div class="text-center text-gray-500 dark:text-gray-400">
+                                <div class="text-center text-gray-500 dark:text-gray-600">
                                     <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="' . $row_staff['image_src'] . '" onerror="this.src=`' . $defaultavatar . '`">
-                                        <h3 class="mb-1 text-2xl font-bold tracking-tight text-[#ef6c00] dark:text-white">
+                                       <h3 class="mb-1 text-2xl font-bold tracking-tight text-[#ef6c00] dark:text-[#ef6c00]">
 
                                             <a>' . $row_staff['name'] . '</a>
                                         </h3>

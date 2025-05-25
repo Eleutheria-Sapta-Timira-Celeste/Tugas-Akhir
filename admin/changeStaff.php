@@ -435,7 +435,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
 
     <main>
         <!-- Start block -->
-        <section class="bg-gray-50 dark:bg-gray-900 p-3 mt-5 sm:p-5 antialiased">
+      <section class="bg-[#ff8a33] dark:bg-[#ff8a33] p-3 mt-5 sm:p-5 antialiased">
             <div class="mx-auto max-w-screen-xl px-0 lg:px-12">
                 <!-- Start coding here -->
                 <div class="bg-white dark:bg-white relative shadow-md sm:rounded-lg overflow-hidden">

@@ -155,8 +155,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php include ('../includes/admin_header.php') ?>
 
     <main>
-        <section class="max-w-4xl p-6 mx-auto bg-green-700 rounded-md shadow-md dark:bg-gray-800 mt-10">
-            <h1 class="text-xl font-bold text-white capitalize dark:text-white">Terbitkan Berita</h1>
+        <section class="max-w-4xl p-6 mx-auto bg-green-700 rounded-md shadow-md dark:bg-[#fc941e] mt-10">
+            <h1 class="text-xl font-bold text-white capitalize dark:text-white">Tambahkan Pengumuman</h1>
             <form action="" method="post" enctype="multipart/form-data">
 
                 <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-1">
@@ -164,7 +164,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
                     <div id="file-upload-container"
-                        class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                        class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-[#fff8e1] border-dashed rounded-md">
                         <div class="space-y-1 text-center">
                             <div id="upload-container">
                                 <svg class="mx-auto h-12 w-12 text-white" stroke="currentColor" fill="none"
@@ -175,7 +175,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </svg>
                                 <div class="flex text-sm text-gray-600">
                                     <label for="file-upload"
-                                        class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                                        class="relative cursor-pointer bg-[#fc941e] rounded-md font-medium text-[#222222] hover:text-black focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                                         <span class="">Tambahkan File</span>
                                         <input type="file" name="file-upload" id="file-upload" type="file"
                                             class="sr-only" onchange="displayFileName()">
@@ -188,23 +188,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
 
                     <div>
-                        <label class="text-white dark:text-gray-200">Subjek <span style="color: red;">*</span></label>
+                        <label class="text-white dark:text-white">Subjek <span style="color: red;">*</span></label>
                         <input name="about_notice" required id="passwordConfirmation" type="text"
-                            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-[#fff8e1] rounded-md dark:bg-[#fff8e1] dark:text-black dark:border-gray-600 focus:border-[#fff8e1] dark:focus:border-[#fff8e1] focus:outline-none focus:ring-[#fff8e1]">
                     </div>
 
                     <div>
-                        <label class="text-white dark:text-gray-200" for="passwordConfirmation">Tulis Berita...
+                        <label class="text-white dark:text-white " for="passwordConfirmation">Tulis Pengumuman...
                             <span style="color: red;">*</span></label>
                         <textarea name="description" required minlength="40" id="textarea" type="textarea"
-                            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"></textarea>
+                            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-[#fff8e1] rounded-md dark:bg-[#fff8e1] dark:text-black dark:border-gray-600 focus:border-[#fff8e1] dark:focus:border-[#fff8e1] focus:outline-none focus:ring-[#fff8e1]"></textarea>
                     </div>
 
                 </div>
 
                 <div class="flex justify-end mt-6">
                     <button type="submit" name="publish_notice"
-                        class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600">Terbitkan</button>
+                        class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-black rounded-md hover:bg-white focus:outline-none focus:bg-gray-600">Tambahkan</button>
                 </div>
             </form>
         </section>

@@ -1,80 +1,52 @@
-<footer class="text-[#888] bg-[#fffdcf] body-font shadow-inner">
-    <div class="container px-5 py-10 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
-        <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
-            <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-            <img fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-20 h-20 bg-black-500" viewBox="0 0 24 24" src="assects/images/defaults/logo_warna_500.png">
-                <span class="ml-3 text-xl text-[#333333]">SMP PGRI 371 Pondok Aren</span>
-            </a>
-            <p class="mt-2 text-sm text-gray-500">
-            Selamat datang di SMP PGRI 371 Pondok Aren, Lingkungan belajar yang inspiratif dan penuh semangat untuk membentuk generasi berprestasi.</p>
-        </div>
-        <div class="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
-            <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-                <h2 class="title-font font-medium text-[#333333] tracking-widest text-sm mb-3">Tautan</h2>
-                <nav class="list-none mb-10">
-                    <li>
-                        <a class="text-sm md:text-base text-[#888} hover:text-[#ff9f45] cursor-pointer" onclick="kemendikbud()">Kemendikbud</a>
-                    </li>
-                    <li>
-                        <a class="text-sm md:text-base text-[#888} hover:text-[#ff9f45] cursor-pointer" onclick="pgripusat()">PGRI Pusat</a>
-                    </li>
-                    <li>
-                        <a class="text-sm md:text-base text-[#888} hover:text-[#ff9f45] cursor-pointer" onclick="instagram()">Instagram</a>
-                    </li>
-                    
-                </nav>
-            </div>
-            <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-                <h2 class="title-font font-medium text-[#333333] tracking-widest text-sm mb-3">KONTAK</h2>
-                <nav class="list-none mb-10">
-                    <li>
-                        <a class="text-sm md:text-base text-[#888} hover:text-[#ff9f45] cursor-pointer" onclick="locationmap()"> Jl. Puskesmas No.6, Pondok Aren, Tangerang Selatan</a>
-                    </li>
-                    <li>
-                        <a class="text-sm md:text-base text-[#888} hover:text-[#ff9f45] cursor-pointer" onclick="callschool()"> 021-2273-6571</a>
-                    </li>
-                    <li>
-                        <a class="text-sm md:text-base text-[#888} hover:text-[#ff9f45] cursor-pointer" onclick="mailschool()">371smppgri@gmail.com</a>
-                    </li>
-                    <li>
-                        <a class="text-sm md:text-base text-[#888} hover:text-[#ff9f45] cursor-pointer" onclick="locationmap()"> SMP PGRI 371 Pondok Aren</a>
-                    </li>
-                </nav>
-            </div>
-        </div>
-    </div>
-
-    <div class="bg-[#fc914e]">
-
-        <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
-            <p class="text-[#333333] ml-1">Copyright © <?php echo date("Y"); ?> All rights reserved by -
-                <a href="https://www.instagram.com/smpgri371official" rel="noopener noreferrer" class="text-[#333333] ml-1" target="_blank">SMP PGRI 371 Pondok Aren</a>
+<footer class="bg-[#f5e1c0] text-[#333] py-10 shadow-inner">
+    <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-6">
+        
+        <!-- 🏫 School Information -->
+        <div class="space-y-3">
+            <h2 class="text-xl font-bold border-b-2 border-[#e0b680] pb-2">🏫 SMP PGRI 371 Pondok Aren</h2>
+            <p class="text-sm leading-relaxed text-gray-800">
+                Selamat datang di lingkungan pendidikan yang penuh inspirasi untuk membentuk generasi berprestasi.
             </p>
-            <span class="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
-                <a class="text-gray-500">
-                    <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                        <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
-                    </svg>
-                </a>
-                <a class="ml-3 text-gray-500">
-                    <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                        <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
-                    </svg>
-                </a>
-                <a class="ml-3 text-gray-500">
-                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                        <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-                        <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
-                    </svg>
-                </a>
-                <a class="ml-3 text-gray-500">
-                    <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
-                        <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
-                        <circle cx="4" cy="4" r="2" stroke="none"></circle>
-                    </svg>
-                </a>
-            </span>
+        </div>
+
+        <!-- 🔗 Quick Links -->
+        <div class="space-y-3">
+            <h2 class="text-xl font-bold border-b-2 border-[#e0b680] pb-2">🔗 Tautan Cepat</h2>
+            <ul class="mt-2 space-y-2 text-sm">
+                <li><a href="https://www.kemdikbud.go.id/" class="hover:text-[#c47f38]">Kemendikbud</a></li>
+                <li><a href="#" class="hover:text-[#c47f38]">PGRI Pusat</a></li>
+                <li><a href="#" class="hover:text-[#c47f38]">Instagram</a></li>
+            </ul>
+        </div>
+
+        <!-- 📞 Contact Info -->
+        <div class="space-y-3">
+            <h2 class="text-xl font-bold border-b-2 border-[#e0b680] pb-2">📞 Kontak</h2>
+            <ul class="mt-2 space-y-2 text-sm text-gray-800">
+                <li>📍 Jl. Puskesmas No.6, Pondok Aren, Tangerang Selatan</li>
+                <li>☎️ 021-2273-6571</li>
+                <li>✉️ 371smppgri@gmail.com</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Copyright & Social Media -->
+    <div class="mt-8 text-center border-t border-[#e0b680] pt-5">
+        <p class="text-sm text-gray-700">© 2025 All rights reserved by SMP PGRI 371 Pondok Aren</p>
+        <div class="flex justify-center space-x-4 mt-2">
+            <a href="#" class="hover:text-[#c47f38]"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="hover:text-[#c47f38]"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="hover:text-[#c47f38]"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="hover:text-[#c47f38]"><i class="fab fa-linkedin"></i></a>
         </div>
     </div>
+    <style>
+    footer a {
+        transition: color 0.3s ease-in-out;
+    }
+    footer a:hover {
+        color: #c47f38; /* Rich caramel hover effect */
+    }
+</style>
 </footer>
-<script src="javascript/header_footer.js"></script>

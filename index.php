@@ -118,125 +118,82 @@ try {
         <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
     </div>
 
-         <h1
-            class="mt-8 ml-5 mb-4 text-xl text-4xl font-bold leading-none tracking-tight md:text-5xl lg:text-2xl" style="color: #ef6c00;">
-            SMP PGRI 371 Pondok Aren
-        </h1>
-    <p class="text-justify ml-5 mr-5 text-base font-normal text-gray-500 lg:text-xxx dark:text-gray-400">
-        <?php echo $row['one']; ?></p>
+        <h1 class="mt-8 ml-5 mb-4 text-5xl font-extrabold leading-tight tracking-wide text-center 
+    bg-gradient-to-r from-orange-500 via-red-500 to-yellow-400 text-white p-4 rounded-lg shadow-xl">
+    🌟 SMP PGRI 371 Pondok Aren 🌟
+</h1>
+        <!-- <?php echo $row['one']; ?></p> -->
 
-    <h1
-        class="mt-8 ml-5 mb-4 text-xl text-4xl font-bold leading-none tracking-tight md:text-5xl lg:text-2xl" style="color: #ef6c00;">
-        Kenapa Memilih SMP PGRI 371 Pondok Aren ?</h1>
-    <p class="text-justify ml-5 mr-5 text-base font-normal text-gray-500 lg:text-xxx dark:text-gray-400">
-        <?php echo $row['two']; ?></p>
-
-
-    <div class="container mx-auto px-20">
-
-        <div style='background-color:rgb(255, 255, 255)'>
-            <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4 pt-20 pb-10 lg:pt-40 lg:pb-20"
-                style="cursor: auto; padding-top: 10px;">
-
-                <div class="p-6 bg-gray-100 rounded-lg">
-
-                    <div class="mb-5">
-
-                        <svg class="hi-outline hi-cube inline-block w-12 h-12" stroke="#ef6c00"
-                            fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
-                                d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z">
-                            </path>
-                        </svg>
-
-                    </div>
-
-                    <h3 class="text-lg font-bold mb-2">
-                        Guru Berkualitas Tinggi
-                    </h3>
-
-                    <p class="text-sm leading-6 text-gray-600"><?php echo $row['three']; ?></p>
-
-                </div>
-
-                <div class="p-6 bg-gray-100 rounded-lg">
-
-                    <div class="mb-5">
-
-                        <svg class="hi-outline hi-cube inline-block w-12 h-12" stroke="#ef6c00"
-                        fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
-                        d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
-                        </svg>
-
-                    </div>
-
-                    <h3 class="text-lg font-bold mb-2">
-                        Lingkungan yang Nyaman
-                    </h3>
-
-                    <p class="text-sm leading-6 text-gray-600"><?php echo $row['four']; ?></p>
-
-                </div>
-
-                <div class="p-6 bg-gray-100 rounded-lg" style="cursor: auto;">
-
-                    <div class="mb-5" style="cursor: auto;">
-
-                        <svg class="hi-outline hi-cube inline-block w-12 h-12" stroke="#ef6c00"
-                            fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
-                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
-                            </path>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
-                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                        </svg>
-
-                    </div>
-
-                    <h3 class="text-lg font-bold mb-2">
-                        Pembelajaran Digital
-                    </h3>
-
-                    <p class="text-sm leading-6 text-gray-600"><?php echo $row['five']; ?></p>
-
-                </div>
-
-                <div class="p-6 bg-gray-100 rounded-lg">
-
-                    <div class="mb-5">
-
-                        <svg class="hi-outline hi-cube inline-block w-12 h-12" stroke="#ef6c00"
-                            fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
-                                d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z">
-                            </path>
-                        </svg>
-
-                    </div>
-
-                    <h3 class="text-lg font-bold mb-2">
-                        Fasilitas yang Lengkap
-                    </h3>
-
-                    <p class="text-sm leading-6 text-gray-600"><?php echo $row['six']; ?></p>
-
-                </div>
-
+        
+        
+        <section class="container mx-auto p-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-white rounded-lg shadow-xl p-6 transform transition duration-300 hover:scale-105">
+                <h3 class="text-2xl font-bold text-gray-800">📚 Pendidikan Berkualitas</h3>
+                <p class="text-gray-600">Menyediakan kurikulum terbaik dengan tenaga pendidik berpengalaman.</p>
             </div>
-        </div>
+            <div class="bg-white rounded-lg shadow-xl p-6 transform transition duration-300 hover:scale-105">
+                <h3 class="text-2xl font-bold text-gray-800">🏆 Prestasi Luar Biasa</h3>
+                <p class="text-gray-600">Murid-murid kami telah meraih keberhasilan akademik dan non-akademik.</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-xl p-6 transform transition duration-300 hover:scale-105">
+                <h3 class="text-2xl font-bold text-gray-800">🌎 Fasilitas Modern</h3>
+                <p class="text-gray-600">Laboratorium, perpustakaan, dan ruang kelas yang nyaman untuk pembelajaran maksimal.</p>
+            </div>
+            <!-- 🔥 New Interactive Card -->
+            <div class="bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg shadow-xl p-6 transform transition duration-300 hover:scale-110 hover:shadow-2xl flex flex-col items-center justify-center">
+                <h3 class="text-2xl font-extrabold">🚀 Bergabung Bersama Kami!</h3>
+                <p class="text-lg text-gray-100 text-center mt-2">Jadilah bagian dari perjalanan pendidikan yang luar biasa.</p>
+                <a href="#" class="mt-4 bg-yellow-400 hover:bg-yellow-500 text-gray-900 px-4 py-2 rounded-lg shadow-md transition hover:scale-105">
+                    🔰 Daftar Sekarang
+                </a>
+            </div>
+        </section>
     </div>
-    <h1
-        class="mt-8 ml-5 mb-4 text-xl text-4xl font-bold leading-none tracking-tight md:text-5xl lg:text-2xl" style="color: #ef6c00;">
-        Apa yang Murid Katakan Tentang SMP PGRI 371 Pondok Aren ?</h1>
-    <p class="text-justify ml-5 mr-5 text-base font-normal text-gray-500 lg:text-xxx dark:text-gray-400">
-        <?php echo $row['seven']; ?></p>
+</div>
+</div>
+<section class="container mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+    <!-- Left Column -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+        <h1 class="text-3xl font-bold text-gray-800 border-b-2 border-orange-600 pb-2">
+            🏫 Kenapa Memilih SMP PGRI 371 Pondok Aren?
+        </h1>
+        <p class="text-lg text-gray-700 leading-relaxed">
+            <?php echo $row['two']; ?>
+        </p>
+    </div>
 
-    <h1
-        class="mt-8 ml-5 mb-4 text-xl text-4xl font-bold leading-none tracking-tight md:text-5xl lg:text-2xl" style="color: #ef6c00;">
-        Ujian Berbasis Online</h1>
-    <p class="text-justify ml-5 mr-5 text-base font-normal text-gray-500 lg:text-xxx dark:text-gray-400 mb-5">
-        <?php echo $row['eight']; ?></p>
+    <!-- Right Column -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+        <h1 class="text-3xl font-bold text-gray-800 border-b-2 border-blue-600 pb-2">
+            💬 Apa yang Murid Katakan Tentang Sekolah?
+        </h1>
+        <p class="text-lg text-gray-700 leading-relaxed">
+            <?php echo $row['seven']; ?>
+        </p>
+    </div>
+</section>
+
+    <section class="container mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+    <!-- Left Column -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+        <h1 class="text-3xl font-bold text-gray-800 border-b-2 border-orange-600 pb-2">
+            📚 Ujian Berbasis Online
+        </h1>
+        <p class="text-lg text-gray-700 leading-relaxed">
+            <?php echo $row['eight']; ?>
+        </p>
+    </div>
+
+    <!-- Right Column (Replacing Image with New Content) -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+        <h1 class="text-3xl font-bold text-gray-800 border-b-2 border-green-600 pb-2">
+            🔍 Fasilitas & Teknologi di SMP PGRI 371
+        </h1>
+        <p class="text-lg text-gray-700 leading-relaxed">
+            Sekolah kami menyediakan fasilitas modern yang mendukung pembelajaran berbasis teknologi. Mulai dari laboratorium komputer terkini hingga sistem ujian online, kami memastikan setiap murid memperoleh pengalaman pendidikan terbaik.
+        </p>
+    </div>
+</section>
 
     <?php include('includes/footer.php') ?>
 
@@ -257,9 +214,15 @@ echo '
                 </p>
             </div>
             <div class="justify-between items-center pt-0 space-y-4 sm:flex sm:space-y-0">
-                <a href="aboutus.php" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Lihat Tentang Sekolah</a>
-                <div class="items-center space-y-4 sm:space-x-4 sm:flex sm:space-y-0">                  
-                    <button id="close-modal" type="button" class="py-2 px-4 w-full text-sm font-medium text-center text-white rounded-lg bg-blue-700 sm:w-auto hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Close</button>
+               <a href="aboutus.php" style="color: #ef6c00;" class="font-medium hover:underline">Lihat Tentang Sekolah</a>
+
+                <div class="items-center space-y-4 sm:space-x-4 sm:flex sm:space-y-0">                 
+                    <button id="close-modal" type="button"
+                        style="background-color: #ef6c00;"
+                        class="py-2 px-4 w-full text-sm font-medium text-center text-white rounded-lg sm:w-auto hover:brightness-110 focus:ring-4 focus:outline-none focus:ring-orange-300">
+                        Close
+                    </button>
+
                 </div>
             </div>
         </div>
