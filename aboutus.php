@@ -242,7 +242,7 @@ try {
                     <?php echo $row['seventeen'];?></p>
                 </div>
                 <div class="flex flex-wrap -m-4">
-                    <div class="xl:w-1/4 md:w-1/2 p-4">
+                    <div class="xl:w-1/4 md:w-1/2 p-4 ">
                         <div class="bg-gray-100 p-6 rounded-lg">
                             <img class="h-40 rounded w-full object-cover object-center mb-6" src="assects/images/facilities/ruang_kelas.jpg" alt="content">
                             <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font"></h3>
