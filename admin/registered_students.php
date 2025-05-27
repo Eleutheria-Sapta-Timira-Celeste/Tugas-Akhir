@@ -132,7 +132,6 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg"
                                             </button>
                                         </div>
                                     </td>
->>>>>>> 0e1e92c6822a60377d02a332b71fa15b4a26467e
                                 </tr>
                             </thead>
                             <tbody>
