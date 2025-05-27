@@ -70,9 +70,9 @@ if (isset($_POST['feedbackDelete'])) {
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
-                                    <th scope="col" class="px-4 py-4">Date</th>
-                                    <th scope="col" class="px-4 py-3">By</th>
-                                    <th scope="col" class="px-4 py-3">Message</th>
+                                    <th scope="col" class="px-4 py-4">Tanggal</th>
+                                    <th scope="col" class="px-4 py-3">Dikirim Oleh</th>
+                                    <th scope="col" class="px-4 py-3">Pesan</th>
                                     <th scope="col" class="px-4 py-3">
                                         <span class="sr-only">Actions</span>
                                     </th>
@@ -107,7 +107,7 @@ if (isset($_POST['feedbackDelete'])) {
                                                             <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
                                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" />
                                                         </svg>
-                                                        Preview
+                                                        Pratinjau
                                                     </button>
                                                 </li>
                                                 <li>
@@ -153,7 +153,7 @@ if (isset($_POST['feedbackDelete'])) {
                     <!-- Modal header -->
                     <div class="flex justify-between mb-4 rounded-t sm:mb-5">
                         <div class="text-lg text-gray-900 md:text-xl dark:text-white">
-                            <h3 class="font-semibold ">By '.$row['name'].'</h3>
+                            <h3 class="font-semibold ">Dikirim Oleh '.$row['name'].'</h3>
                             <p>'.$row['date'].' '. $row['time'].'</p>
                         </div>
                         <div>
@@ -165,17 +165,17 @@ if (isset($_POST['feedbackDelete'])) {
                             </button>
                         </div>
                     </div>
-                    <dl><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Email</dt><dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400">'.$row['email'].'</dd><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Message</dt><dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400">'.$row['message'].'</dd></dl>
+                    <dl><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Email</dt><dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400">'.$row['email'].'</dd><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Pesan</dt><dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400">'.$row['message'].'</dd></dl>
                     <div class="flex justify-between items-center">
                         <div class="flex items-center space-x-3 sm:space-x-4">
                             
                            
                         </div>
-                        <button onclick="mailtoUser'.$feedbackId.'()" type="button" class="inline-flex items-center text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-900">
+                        <button onclick="mailtoUser'.$feedbackId.'()" type="button" class="inline-flex items-center text-white bg-[#ef6c00] hover:bg-[#cc5200] focus:ring-4 focus:outline-none focus:ring-[#cc5200]  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#cc5200]  dark:focus:ring-[#cc5200] ">
                             <svg aria-hidden="true" class="w-5 h-5 mr-1.5 -ml-1" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path d="M8.098 5.013a.144.144 0 0 1 .202.134V6.3a.5.5 0 0 0 .5.5c.667 0 2.013.005 3.3.822.984.624 1.99 1.76 2.595 3.876-1.02-.983-2.185-1.516-3.205-1.799a8.74 8.74 0 0 0-1.921-.306 7.404 7.404 0 0 0-.798.008h-.013l-.005.001h-.001L8.8 9.9l-.05-.498a.5.5 0 0 0-.45.498v1.153c0 .108-.11.176-.202.134L4.114 8.254a.502.502 0 0 0-.042-.028.147.147 0 0 1 0-.252.497.497 0 0 0 .042-.028l3.984-2.933zM9.3 10.386c.068 0 .143.003.223.006.434.02 1.034.086 1.7.271 1.326.368 2.896 1.202 3.94 3.08a.5.5 0 0 0 .933-.305c-.464-3.71-1.886-5.662-3.46-6.66-1.245-.79-2.527-.942-3.336-.971v-.66a1.144 1.144 0 0 0-1.767-.96l-3.994 2.94a1.147 1.147 0 0 0 0 1.946l3.994 2.94a1.144 1.144 0 0 0 1.767-.96v-.667z" fill="white"></path> <path d="M5.232 4.293a.5.5 0 0 0-.7-.106L.54 7.127a1.147 1.147 0 0 0 0 1.946l3.994 2.94a.5.5 0 1 0 .593-.805L1.114 8.254a.503.503 0 0 0-.042-.028.147.147 0 0 1 0-.252.5.5 0 0 0 .042-.028l4.012-2.954a.5.5 0 0 0 .106-.699z" fill="white"></path>
                             </svg>
-                            Reply
+                            Balas Pesan
                         </button>
                     </div>
                 </div>

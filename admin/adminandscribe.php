@@ -191,10 +191,11 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                 </p>
             </div>
 
-           <button class="inline-flex items-center border-7 py-1 px-3 focus:outline-none rounded text-base mt-4 md:mt-0 text-white bg-[#e65c00] hover:bg-[#cc5200] focus:ring-4 focus:ring-[#ff944d] font-medium  text-sm px-5 py-2.5 text-center me-2 mb-2 "
->
-    🛡️ Ubah Detail Admin
-</button>
+           <button data-modal-target="authentication-modal2" data-modal-toggle="authentication-modal2"
+                class="mt-10 block text-white bg-[#ef6c00] hover:bg-[#cc5200] focus:ring-4 focus:outline-none focus:ring-[#cc5200] font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#cc5200] dark:focus:ring-[#cc5200]"
+                type="button">
+                🛡️ Ubah Detail Admin
+            </button>
 
         </div>
     </section>
@@ -214,7 +215,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                 <!-- Modal header -->
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        Change Administrator Details
+                        Perbarui Informasi Administrator
                     </h3>
                     <button type="button"
                         class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -232,9 +233,8 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                     <form class="space-y-4" action="" method="POST" onsubmit="return validatePassword()"
                         enctype="multipart/form-data">
                         <div><label for="new_file"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">🖼️ Select an logo
-                                or
-                                passport size photo</label></div>
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">🖼️Pilih logo atau foto ukuran pas foto
+                                </label></div>
                         <div class="flex items-center justify-center w-full">
 
 
@@ -245,23 +245,23 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                         </div>
                         <div>
                             <label for="adminName"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">🧑🏻 Name</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">🧑🏻 Nama</label>
                             <input type="text" name="adminName" value="<?php echo $_SESSION['usr_nam']; ?>"
                                 class="font-black bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                 placeholder="Admininstator" disabled>
 
                             <label for="previousPassword"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">🔓 Previous
-                                Password</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">🔓 Kata Sandi Sebelumnya
+                                </label>
 
 
                             <input type="text" name="previousPassword"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                placeholder="Current Password" required>
+                                placeholder="Kata Sandi Saat Ini" required>
 
                             <label for="newIdentity"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">🎫 New
-                                Identity</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">🎫 Identitas Baru
+                                </label>
 
 
                             <input type="text" name="newIdentity" value="<?php echo $_SESSION["identity_code"]; ?>"
@@ -269,17 +269,17 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                                 placeholder="716763872" required>
 
                             <label for="Password"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">🔐 Password</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">🔐 Kata Sandi</label>
                             <input title="Password must be at least 8 character" minlength="8" type="password"
                                 name="password" id="password"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                placeholder="New Password" required>
+                                placeholder="Kata Sandi Baru" required>
                             <label for="Confrim Password"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">🔑 Confrim
-                                Password</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">🔑 Konfirmasi Kata Sandi
+                                </label>
                             <input minlength="8" type="password" name="confrimPassword" id="confirm_password"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                placeholder="Confrim Password" required>
+                                placeholder="Konfirmasi Kata Sandi" required>
 
                         </div>
 
