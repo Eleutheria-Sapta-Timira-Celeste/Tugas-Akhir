@@ -311,7 +311,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                                 <label for="simple-search" class="sr-only">Search</label>
                                 <div class="relative w-full">
                                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                        <h2 class="my-2"><b>✍ Scribe or Authors</b></h2>
+                                        <h2 class="my-2"><b>✍ Perbarui Data Lainnya</b></h2>
                                     </div>
 
                                 </div>
@@ -324,9 +324,9 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                             <thead
                                 class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
-                                    <th scope="col" class="px-4 py-3">🧑🏻 AUTHOR</th>
-                                    <th scope="col" class="px-4 py-3">🎫 Identity Code</th>
-                                    <th scope="col" class="px-4 py-4">🗓️ Last Changed</th>
+                                    <th scope="col" class="px-4 py-3">🧑🏻 Penulis</th>
+                                    <th scope="col" class="px-4 py-3">🎫 Kode Indentitas </th>
+                                    <th scope="col" class="px-4 py-4">🗓️ Terakhir Diubah</th>
                                     <th scope="col" class="px-4 py-3">
                                         <span class="sr-only">Actions</span>
                                     </th>
@@ -369,7 +369,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                                                                         <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
                                                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
                                                                     </svg>
-                                                                    Edit
+                                                                    Ubah
                                                                 </button>
                                                             </li>
 
@@ -414,7 +414,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                                 <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
                                     <!-- Modal header -->
                                     <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
-                                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Update Scribe</h3>
+                                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Perbarui Data Penulis</h3>
                                         <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateProductModal' . $ScribesId . '">
                                             <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -425,7 +425,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                                     <!-- Modal body -->
                                     <form method="post" onsubmit="return validatePassword'.$row['id'].'()" id="UpdateUsers' . $ScribesId . '" enctype="multipart/form-data">
                                         <div class="grid gap-4 mb-4 sm:grid-cols-1">
-                                        <div><label for="new_file" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">📁 File (None will be previous)</label></div><br>
+                                        <div><label for="new_file" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">📁 Dokumen (Tidak ada yang dipilih sebelumnya)</label></div><br>
                                             <div class="flex items-center justify-center w-full">
                                                
                                             
@@ -434,22 +434,22 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                                             </div>
 
                                             <div class="sm:col-span-2">
-                                                <label for="scribeName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">🧑🏻 Name</label>
+                                                <label for="scribeName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">🧑🏻 Nama</label>
                                                 <input type="text" name="scribeName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="' . $row['name'] . '" placeholder="Bisswass Niroula">
-                                                <label for="identity code" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">🎫 Identity Code</label>
+                                                <label for="identity code" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">🎫 Kode Identitas</label>
                                                 <input type="text" name="scribeIdentity" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="' . $row['identity_code'] . '" placeholder="Code whatever you want">
                                                 
                                                 <label for="Password"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">🔐 Password</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">🔐 Kata Sandi</label>
                             <input title="Password must be at least 8 character" minlength="8" type="password" name="password" id="password'.$row['id'].'"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                 placeholder="New Password" required>
                             <label for="Confrim Password"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">🔑 Confrim
-                                Password</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">🔑 Konfirmasi Kata Sandi
+                </label>
                             <input minlength="8" type="password" name="confrimPassword" id="confirm_password'.$row['id'].'"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                placeholder="Confrim Password" required>
+                                placeholder="Konfirmasi Kata Sandi" required>
                                                 </div>
                                                 <input type="text" name="imageLocationscribe" id="name" class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="' . $row['image'] . '" placeholder="9812000000">
                                             <input type="hidden" name="scribeId" value="' . $ScribesId . '" />
@@ -457,7 +457,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                                         </div>
                                         
                                         <div class="flex items-center space-x-4">
-                                            <button name="update_scribe" type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update Scribe</button>
+                                            <button name="update_scribe" type="submit" class="text-white bg-[#ef6c00] hover:bg-[#cc5200] focus:ring-4 focus:outline-none focus:ring-[#cc5200] font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#cc5200] dark:focus:ring-[#cc5200]">Perbarui Data Penulis</button>
                                             
                                         </div>
                                     </form>
