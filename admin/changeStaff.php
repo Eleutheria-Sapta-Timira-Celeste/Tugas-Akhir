@@ -341,7 +341,7 @@ Silakan gunakan fitur yang tersedia untuk memastikan semua informasi tetap terup
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                 placeholder="Guru" required>
                             <label for="staffContact"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No. Hp</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIP</label>
                             <input type="text" name="staffContact"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                 placeholder="9804545454" required>
@@ -411,7 +411,7 @@ Silakan gunakan fitur yang tersedia untuk memastikan semua informasi tetap terup
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                 placeholder="Guru" required>
                             <label for="committeContact"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No. Hp</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIP</label>
                             <input type="text" name="staffContact"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                 placeholder="9804545454" required>
@@ -459,7 +459,7 @@ Silakan gunakan fitur yang tersedia untuk memastikan semua informasi tetap terup
                             <thead
                                 class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
-                                    <th scope="col" class="px-4 py-3">committee</th>
+                                    <th scope="col" class="px-4 py-3">Nama</th>
                                     <th scope="col" class="px-4 py-3">Jabatan</th>
                                     <th scope="col" class="px-4 py-4">NIP</th>
                                     <th scope="col" class="px-4 py-3">
@@ -580,7 +580,7 @@ Silakan gunakan fitur yang tersedia untuk memastikan semua informasi tetap terup
                                                 <input type="text" name="comitteName" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500" value="' . $row['name'] . '" placeholder="Nama Lengkap">
                                                 <label for="post" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Posisi</label>
                                                 <input type="text" name="comittepost" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="' . $row['position'] . '" placeholder="Member">
-                                                <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No. Hp</label>
+                                                <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIP</label>
                                                 <input type="text" name="comittePhone" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="' . $row['contact_no'] . '" placeholder="9812000000">
                                                 
                                                 </div>
@@ -645,7 +645,7 @@ Silakan gunakan fitur yang tersedia untuk memastikan semua informasi tetap terup
         <div class="container px-5 py-10 mx-auto">
 
             <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
-                class="mt-10 block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                class="mt-10 block text-white bg-[#ef6c00] hover:bg-[#cc5200] focus:ring-4 focus:outline-none focus:ring-[#cc5200] font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#cc5200] dark:focus:ring-[#cc5200]"
                 type="button">
                 Tambah Petugas
             </button>
@@ -680,10 +680,10 @@ Silakan gunakan fitur yang tersedia untuk memastikan semua informasi tetap terup
                             <thead
                                 class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
-                                    <th scope="col" class="px-4 py-3">Staffs</th>
-                                    <th scope="col" class="px-4 py-3">Post</th>
-                                    <th scope="col" class="px-4 py-4">Phone</th>
-                                    <th scope="col" class="px-4 py-4">Qualification</th>
+                                    <th scope="col" class="px-4 py-3">Nama</th>
+                                    <th scope="col" class="px-4 py-3">Posisi</th>
+                                    <th scope="col" class="px-4 py-4">NIP</th>
+                                    <th scope="col" class="px-4 py-4">Kualifikasi</th>
                                     <th scope="col" class="px-4 py-3">
                                         <span class="sr-only">Actions</span>
                                     </th>
@@ -780,7 +780,7 @@ Silakan gunakan fitur yang tersedia untuk memastikan semua informasi tetap terup
                                 <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
                                     <!-- Modal header -->
                                     <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
-                                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Perbarui Staff</h3>
+                                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Perbarui Petugas</h3>
                                         <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updatestaffsModel' . $staffsId . '">
                                             <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -806,7 +806,7 @@ Silakan gunakan fitur yang tersedia untuk memastikan semua informasi tetap terup
                                                 <input type="text" name="staffPost" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="' . $row['post'] . '" placeholder="Teacher">
                                                 <label for="post" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kualifikasi</label>
                                                 <input type="text" name="staffqualification" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="' . $row['qualification'] . '" placeholder="PHD  ">
-                                                <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No. Hp</label>
+                                                <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIP</label>
                                                 <input type="text" name="staffPhone" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="' . $row['contact'] . '" placeholder="9812000000">
 
                                                 <input type="text" name="imageLocation" id="name" class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="' . $row['image_src'] . '" placeholder="9812000000">
@@ -817,7 +817,7 @@ Silakan gunakan fitur yang tersedia untuk memastikan semua informasi tetap terup
                                         </div>
                                         
                                         <div class="flex items-center space-x-4">
-                                            <button name="update_staffs" type="submit" class="text-white bg-[#ef6c00] hover:bg-[#cc5200] focus:ring-4 focus:outline-none focus:ring-[#cc5200] font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#cc5200] dark:focus:ring-[#cc5200]">Perbarui Staff</button>
+                                            <button name="update_staffs" type="submit" class="text-white bg-[#ef6c00] hover:bg-[#cc5200] focus:ring-4 focus:outline-none focus:ring-[#cc5200] font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#cc5200] dark:focus:ring-[#cc5200]">Perbarui Petugas</button>
                                             
                                         </div>
                                     </form>
