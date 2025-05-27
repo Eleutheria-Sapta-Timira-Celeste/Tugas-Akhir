@@ -25,8 +25,8 @@ if (isset($_POST['submit'])) {
         header("Location: admin_dashboard.php");
     } elseif ($_SESSION["role"] === "guru") {
         header("Location: guru_dashboard.php");
-    } elseif ($_SESSION["role"] === "student") {
-        header("Location: student_dashboard.php");
+    } elseif ($_SESSION["role"] === "murid") {
+        header("Location: murid_dashboard.php");
     } else {
         $showAlert = true; // Handle unrecognized roles
     }
