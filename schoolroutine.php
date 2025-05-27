@@ -72,7 +72,7 @@ if ($totalAlbums > 0) {
                     <h2 class="text-gray-900 title-font text-lg font-medium">' . $class . '</h2>
                     <input type="hidden" name="albumname" value="' . $class . '" />';
                     if ($row["routine_url"] != "") {
-                        echo '<button onclick="window.open(\'' . $routine . '\', \'_blank\', \'fullscreen=yes\');" class="mt-1 focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">See Routine</button>';
+                        echo '<button onclick="window.open(\'' . $routine . '\', \'_blank\', \'fullscreen=yes\');" class="mt-1 focus:outline-none text-white bg-[#ef6c00] hover:bg-[#cc5200] focus:ring-4 focus:ring-[#cc5200] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-[#ef6c00] dark:hover:bg-[#cc5200] dark:focus:ring-[#cc5200]">Lihat Jadwal</button>';
                     }
                     echo '
                 </form>
