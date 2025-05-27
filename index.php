@@ -118,42 +118,56 @@ try {
         <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
     </div>
 
-        <h1 class="mt-8 ml-5 mb-4 mr-5 text-5xl font-extrabold leading-tight tracking-wide text-center 
-    bg-gradient-to-r from-orange-500 via-red-500 to-yellow-400 text-white p-4 rounded-lg shadow-xl">
-    SMP PGRI 371 Pondok Aren
+
+<h1 class="mt-10 mx-6 text-6xl font-black uppercase tracking-wider text-center 
+    bg-gradient-to-r from-amber-300 to-rose-400 via-yellow-200 text-gray-900 
+    py-8 px-6 rounded-2xl shadow-3xl border-4 border-yellow-500 
+    transition-all duration-500 ease-in-out 
+    hover:animate-[gradient-shift_1s_linear_infinite]">
+     SMP PGRI 371 Pondok Aren 
 </h1>
-        <!-- <?php echo $row['one']; ?></p> -->
+
+
+
+
+
+        <!-- <p><?php echo $row['one']; ?></p> -->
 
         
         
         <section class="container mx-auto p-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="bg-white rounded-lg shadow-xl p-6 transform transition duration-300 hover:scale-105">
-                <h3 class="text-2xl font-bold text-gray-800">📚 Pendidikan Berkualitas</h3>
-                <p class="text-gray-600">Menyediakan kurikulum terbaik dengan tenaga pendidik berpengalaman.</p>
-            </div>
-            <div class="bg-white rounded-lg shadow-xl p-6 transform transition duration-300 hover:scale-105">
-                <h3 class="text-2xl font-bold text-gray-800">🏆 Prestasi Luar Biasa</h3>
-                <p class="text-gray-600">Murid-murid kami telah meraih keberhasilan akademik dan non-akademik.</p>
-            </div>
-            <div class="bg-white rounded-lg shadow-xl p-6 transform transition duration-300 hover:scale-105">
-                <h3 class="text-2xl font-bold text-gray-800">🌎 Fasilitas Modern</h3>
-                <p class="text-gray-600">Laboratorium, perpustakaan, dan ruang kelas yang nyaman untuk pembelajaran maksimal.</p>
-            </div>
-            <!-- 🔥 New Interactive Card -->
-            <div class="bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg shadow-xl p-6 transform transition duration-300 hover:scale-110 hover:shadow-2xl flex flex-col items-center justify-center">
-                <h3 class="text-2xl font-extrabold">🚀 Bergabung Bersama Kami!</h3>
-                <p class="text-lg text-gray-100 text-center mt-2">Jadilah bagian dari perjalanan pendidikan yang luar biasa.</p>
-                <a href="spmb/index.php" class="mt-4 bg-yellow-400 hover:bg-yellow-500 text-gray-900 px-4 py-2 rounded-lg shadow-md transition hover:scale-105">
-                    🔰 Daftar Sekarang
-                </a>
-            </div>
-        </section>
+    <!-- Card with Scaling, Rotation, and Glow -->
+    <div class="bg-white rounded-lg shadow-xl p-6 transform transition duration-300 hover:scale-105 hover:rotate-2 hover:shadow-2xl hover:bg-gray-100">
+        <h3 class="text-2xl font-bold text-gray-800">📚 Pendidikan Berkualitas</h3>
+        <p class="text-gray-600">Menyediakan kurikulum terbaik dengan tenaga pendidik berpengalaman.</p>
+    </div>
+
+    <div class="bg-white rounded-lg shadow-xl p-6 transform transition duration-300 hover:scale-105 hover:rotate-2 hover:shadow-2xl hover:bg-gray-100">
+        <h3 class="text-2xl font-bold text-gray-800">🏆 Prestasi Luar Biasa</h3>
+        <p class="text-gray-600">Murid-murid kami telah meraih keberhasilan akademik dan non-akademik.</p>
+    </div>
+
+    <div class="bg-white rounded-lg shadow-xl p-6 transform transition duration-300 hover:scale-105 hover:rotate-2 hover:shadow-2xl hover:bg-gray-100">
+        <h3 class="text-2xl font-bold text-gray-800">🌎 Fasilitas Modern</h3>
+        <p class="text-gray-600">Laboratorium, perpustakaan, dan ruang kelas yang nyaman untuk pembelajaran maksimal.</p>
+    </div>
+
+    <!-- Interactive Gradient Card with Animated Color Flow -->
+    <div class="bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg shadow-xl p-6 transform transition duration-300 hover:scale-110 hover:shadow-2xl flex flex-col items-center justify-center hover:bg-gradient-to-l">
+        <h3 class="text-2xl font-extrabold">🚀 Bergabung Bersama Kami!</h3>
+        <p class="text-lg text-gray-100 text-center mt-2">Jadilah bagian dari perjalanan pendidikan yang luar biasa.</p>
+        <a href="spmb/index.php" class="mt-4 bg-yellow-400 hover:bg-yellow-500 text-gray-900 px-4 py-2 rounded-lg shadow-md transition hover:scale-105 hover:rotate-2">
+            🔰 Daftar Sekarang
+        </a>
+    </div>
+</section>
+
     </div>
 </div>
 </div>
 <section class="container mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
     <!-- Left Column -->
-    <div class="bg-white p-6 rounded-lg shadow-md">
+    <div class="bg-white p-6 rounded-lg shadow-md transition duration-300 hover:scale-105 hover:shadow-lg hover:bg-gray-100">
         <h1 class="text-3xl font-bold text-gray-800 border-b-2 border-orange-600 pb-2">
             🏫 Kenapa Memilih SMP PGRI 371 Pondok Aren?
         </h1>
@@ -163,7 +177,7 @@ try {
     </div>
 
     <!-- Right Column -->
-    <div class="bg-white p-6 rounded-lg shadow-md">
+    <div class="bg-white p-6 rounded-lg shadow-md transition duration-300 hover:scale-105 hover:shadow-lg hover:bg-gray-100">
         <h1 class="text-3xl font-bold text-gray-800 border-b-2 border-blue-600 pb-2">
             💬 Apa yang Murid Katakan Tentang Sekolah?
         </h1>
@@ -173,9 +187,9 @@ try {
     </div>
 </section>
 
-    <section class="container mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+<section class="container mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
     <!-- Left Column -->
-    <div class="bg-white p-6 rounded-lg shadow-md">
+    <div class="bg-white p-6 rounded-lg shadow-md transition duration-300 hover:scale-105 hover:shadow-lg hover:bg-gray-100">
         <h1 class="text-3xl font-bold text-gray-800 border-b-2 border-orange-600 pb-2">
             📚 Ujian Berbasis Online
         </h1>
@@ -184,8 +198,8 @@ try {
         </p>
     </div>
 
-    <!-- Right Column (Replacing Image with New Content) -->
-    <div class="bg-white p-6 rounded-lg shadow-md">
+    <!-- Right Column -->
+    <div class="bg-white p-6 rounded-lg shadow-md transition duration-300 hover:scale-105 hover:shadow-lg hover:bg-gray-100">
         <h1 class="text-3xl font-bold text-gray-800 border-b-2 border-green-600 pb-2">
             🔍 Fasilitas & Teknologi di SMP PGRI 371
         </h1>

@@ -31,21 +31,35 @@ function homepage() {
                     <li><a href="contactUs.php" class="text-sm md:text-base hover:text-gray-900">Hubungi</a></li>
 
                     <!-- Dropdown Akses -->
-                   <div class="relative group">
-                <button class="text-sm md:text-base mr-5 hover:text-gray-900 inline-flex items-center">
-                    Akses
-                    <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M5.25 7.5l4.5 4.5 4.5-4.5" />
-                    </svg>
-                </button>
+                  <div class="relative">
+    <button id="dropdownButton" class="text-sm md:text-base mr-5 hover:text-gray-900 inline-flex items-center">
+        Akses
+        <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M5.25 7.5l4.5 4.5 4.5-4.5" />
+        </svg>
+    </button>
 
-                <ul class="absolute hidden group-hover:block bg-white shadow-lg mt-2 rounded z-10 min-w-max ">
-                    <li><a href="admin/login.php" class="block px-6 py-2 text-sm text-gray-700 hover:bg-gray-100">Login Admin</a></li>
-                    <li><a href="guru/index_guru.php" class="block px-6 py-2 text-sm text-gray-700 hover:bg-gray-100">Login Guru</a></li>
-                    <li><a href="siswa/login.php" class="block px-6 py-2 text-sm text-gray-700 hover:bg-gray-100">Login Siswa</a></li>
-                </ul>
-                </div>
-                </ul>
+    <ul id="dropdownMenu" class="absolute hidden bg-white shadow-lg mt-2 rounded z-10 min-w-max">
+        <li><a href="admin/login.php" class="block px-6 py-2 text-sm text-gray-700 hover:bg-gray-100">Login Admin</a></li>
+        <li><a href="guru/index_guru.php" class="block px-6 py-2 text-sm text-gray-700 hover:bg-gray-100">Login Guru</a></li>
+        <li><a href="siswa/login.php" class="block px-6 py-2 text-sm text-gray-700 hover:bg-gray-100">Login Siswa</a></li>
+    </ul>
+</div>
+
+<script>
+    const dropdownButton = document.getElementById("dropdownButton");
+    const dropdownMenu = document.getElementById("dropdownMenu");
+
+    dropdownButton.addEventListener("click", () => {
+        dropdownMenu.classList.toggle("hidden");
+    });
+
+    document.addEventListener("click", (event) => {
+        if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+            dropdownMenu.classList.add("hidden");
+        }
+    });
+</script>
                 
         </nav>
 
