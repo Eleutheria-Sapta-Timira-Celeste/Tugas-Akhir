@@ -21,7 +21,7 @@ if (isset($_POST['sessionAlbum'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Albums | Pashupati</title>
+    <title>Albums Sekolah</title>
     <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="css/utilities.css">
     <link rel="icon" type="image/x-icon" href="assects/images/logo2.png">
@@ -35,13 +35,13 @@ if (isset($_POST['sessionAlbum'])) {
 </head>
 <?php include('includes/header.php') ?>
 
-<div class="bg-white dark:bg-gray-800 h-full py-6 sm:py-8 lg:py-12">
-    <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+<div class="bg-white dark:bg-[#fdf6f6] h-full py-2 sm:py-2 lg:py-5 mb-7">
+    <div class="mx-auto max-w-screen-2xl px-4 md:px-8 mt-5">
         <div class="mb-4 flex items-center justify-between gap-8 sm:mb-8 md:mb-12">
             <div class="flex items-center gap-12">
-                <h2 class="text-2xl font-bold text-[#ef6c00] lg:text-3xl dark:text-white">Albums</h2>
+                <h2 class="text-2xl font-bold text-[#ef6c00] lg:text-3xl dark:text-[#e65c00]">Albums</h2>
 
-                <p class="hidden max-w-screen-sm text-gray-500 dark:text-gray-300 md:block">
+                <p class="hidden max-w-screen-sm text-gray-500 dark:text-gray-800 md:block">
                 Silakan buka album tersebut untuk mengakses dan melihat semua gambar yang ada di dalamnya
                 </p>
             </div>           
