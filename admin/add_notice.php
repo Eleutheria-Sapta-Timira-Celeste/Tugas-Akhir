@@ -155,7 +155,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php include ('../includes/admin_header.php') ?>
 
     <main>
-        <section class="max-w-4xl p-6 mx-auto bg-green-700 rounded-md shadow-md dark:bg-[#fc941e] mt-10">
+        <section class="max-w-4xl p-6 mx-auto bg-[#fc941e] rounded-md shadow-md dark:bg-[#fc941e] mt-10">
             <h1 class="text-xl font-bold text-white capitalize dark:text-white">Tambahkan Pengumuman</h1>
             <form action="" method="post" enctype="multipart/form-data">
 

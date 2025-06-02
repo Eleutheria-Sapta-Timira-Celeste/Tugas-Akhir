@@ -64,7 +64,7 @@ function homepage() {
         </nav>
 
             <button onclick="spmb()"
-                class="inline-flex items-center border-0 py-1 px-3 focus:outline-none rounded text-base mt-4 md:mt-0 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-[#ef6c00] dark:hover:bg-blue-700 dark:focus:ring-blue-800">SPMB
+                class="inline-flex items-center border-0 py-1 px-3 focus:outline-none rounded text-base mt-4 md:mt-0 text-white bg-[#ef6c00] hover:bg-[#e65c00] focus:outline-none focus:ring-4 focus:ring-[#ef6c00] font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-[#ef6c00] dark:hover:bg-[#ef6coo] dark:focus:ring-[#ef6c00]">SPMB
                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     class="w-4 h-4 ml-1" viewBox="0 0 24 24">
                     <path d="M5 12h14M12 5l7 7-7 7"></path>

@@ -193,7 +193,7 @@ CREATE TABLE `manipulators` (
 --
 
 INSERT INTO `manipulators` (`id`, `name`, `identity_code`, `password`, `image`, `last_update`) VALUES
-(1, ' Administrator', '2120021', '12345678', 'assects/images/admin_and_scribe/pgri-putih.png', NULL),
+(1, ' Administrator', '2120021', '12345678', 'assects/images/admin_and_scribe/pgri-hitam.png', NULL),
 (2, 'Admin_1', '2120021', '12345678', 'assects/images/admin_and_scribe/avatar.png', '05/05/2025 06:11 PM');
 
 -- --------------------------------------------------------

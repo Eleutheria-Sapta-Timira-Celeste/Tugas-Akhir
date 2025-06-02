@@ -17,7 +17,7 @@ if (!isset($_SESSION["selectedAlbum"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $_SESSION["selectedAlbum"]; ?> | Pashupati</title>
+    <title><?php echo $_SESSION["selectedAlbum"]; ?> Sekolah</title>
     <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="css/utilities.css">
     <link rel="icon" type="image/x-icon" href="assects/images/logo2.png">
@@ -31,22 +31,24 @@ if (!isset($_SESSION["selectedAlbum"])) {
 </head>
 <?php include('includes/header.php') ?>
 
-<div class="bg-white dark:bg-gray-800 h-full py-6 sm:py-8 lg:py-12">
-    <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+<div class="bg-white dark:bg-[#fdf6f6] h-full py-2 sm:py-2 lg:py-5 mb-7">
+    <div class="mx-auto max-w-screen-2xl px-4 md:px-8 mt-5">
         <div class="mb-4 flex items-center justify-between gap-8 sm:mb-8 md:mb-12">
             <div class="flex items-center gap-12">
-                <h2 class="text-2xl font-bold text-gray-800 lg:text-3xl dark:text-white">
+                <h2 class="text-2xl font-bold text-[#ef6c00] lg:text-3xl dark:text-[#e65c00]">
                     <?php echo $_SESSION["selectedAlbum"]; ?></h2>
 
-                <p class="hidden max-w-screen-sm text-gray-500 dark:text-gray-300 md:block">
+                <p class="hidden max-w-screen-sm text-gray-500 dark:text-gray-800 md:block">
                    Di halaman ini, semua gambar dari <b><?php echo $_SESSION["selectedAlbum"]; ?> Album</b> ditampilkan, <b>dengan gambar terbaru yang muncul terlebih dahulu.</b>
                 </p>
             </div>
 
-            <a href="albums.php"
-                class="inline-block rounded-lg border bg-white dark:bg-blue-700 dark:border-none px-4 py-2 text-center text-sm font-semibold text-blue-500 dark:text-blue-200 outline-none ring-indigo-300 transition duration-100 hover:bg-blue-100 focus-visible:ring active:bg-blue-200 md:px-8 md:py-3 md:text-base">
-                Back
-            </a>
+           <a href="albums.php"
+   class="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 transition duration-150 hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-indigo-300 md:px-6 md:py-3 md:text-base">
+   ← <span>Back</span>
+</a>
+
+
         </div>
     </div>
 
@@ -71,7 +73,7 @@ if (!isset($_SESSION["selectedAlbum"])) {
                 <div
                     class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                     <button onclick="window.open(\'' . $getphoto . '\', \'_blank\', \'fullscreen=yes\');"
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded-full px-4 py-2 ">
+                    class="bg-[ef6c00] hover:bg-[#e65c00] text-white font-bold rounded-full px-4 py-2 ">
                     View
                 </button>
 

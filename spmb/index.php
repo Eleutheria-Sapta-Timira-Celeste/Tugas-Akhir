@@ -44,50 +44,84 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pekerjaan_ibu = $_POST['pekerjaan_ibu'];
     $penghasilan_ibu = (float)$_POST['penghasilan_ibu'];
 
-    // Buat prepared statement dengan query SQL murni
-    $stmt = $conn->prepare("INSERT INTO spmb_siswa (
-        nama_lengkap, jenis_kelamin, nis, nik, tempat_lahir, tanggal_lahir, agama, alamat_tinggal,
-        tempat_tinggal, moda_transportasi, anak_keberapa, jumlah_saudara_kandung, no_telp,
-        penerima_kip, no_kip, tinggi_cm, berat_kg, jarak_tempat_tinggal,
-        nama_ayah, nik_ayah, tempat_lahir_ayah, tanggal_lahir_ayah, pendidikan_ayah, pekerjaan_ayah, penghasilan_ayah,
-        nama_ibu, nik_ibu, tempat_lahir_ibu, tanggal_lahir_ibu, pendidikan_ibu, pekerjaan_ibu, penghasilan_ibu
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    // **Upload file pas_foto**
+ $foto_pas = null;
+    if (isset($_FILES['foto_pas']) && $_FILES['foto_pas']['error'] == UPLOAD_ERR_OK) {
+        $allowed_ext = ['jpg', 'jpeg', 'png', 'gif'];
+        $file_tmp = $_FILES['foto_pas']['tmp_name'];
+        $file_name = basename($_FILES['foto_pas']['name']);
+        $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+        $file_size = $_FILES['foto_pas']['size'];
 
-    $stmt->bind_param(
-        'ssssssssssiiissiissssssssdssssdd',
-        $nama_lengkap,
-        $jenis_kelamin,
-        $nis,
-        $nik,
-        $tempat_lahir,
-        $tanggal_lahir,
-        $agama,
-        $alamat_tinggal,
-        $tempat_tinggal,
-        $moda_transportasi,
-        $anak_keberapa,
-        $jumlah_saudara_kandung,
-        $no_telp,
-        $penerima_kip,
-        $no_kip,
-        $tinggi_cm,
-        $berat_kg,
-        $jarak_tempat_tinggal,
-        $nama_ayah,
-        $nik_ayah,
-        $tempat_lahir_ayah,
-        $tanggal_lahir_ayah,
-        $pendidikan_ayah,
-        $pekerjaan_ayah,
-        $penghasilan_ayah,
-        $nama_ibu,
-        $nik_ibu,
-        $tempat_lahir_ibu,
-        $tanggal_lahir_ibu,
-        $pendidikan_ibu,
-        $pekerjaan_ibu,
-        $penghasilan_ibu
-    );
+        if (in_array($file_ext, $allowed_ext) && $file_size <= 2 * 1024 * 1024) {
+            $upload_dir = "uploads_/";
+            if (!is_dir($upload_dir)) mkdir($upload_dir, 0755, true);
+
+            $foto_pas = time() . "_" . preg_replace("/[^a-zA-Z0-9\._-]/", "_", $file_name);
+            $target_file = $upload_dir . $foto_pas;
+
+            $mime_type = mime_content_type($file_tmp);
+            if (strpos($mime_type, "image/") === 0) {
+                if (!move_uploaded_file($file_tmp, $target_file)) {
+                    $foto_pas = null;
+                }
+            } else {
+                $foto_pas = null;
+            }
+        }
+    }
+
+    if (!$foto_pas) $foto_pas = 'default.jpg'; // pastikan tidak null
+
+    // Buat prepared statement dengan query SQL murni
+  $stmt = $conn->prepare("INSERT INTO spmb_siswa (
+  nama_lengkap, jenis_kelamin, nis, nik, tempat_lahir, tanggal_lahir, agama, alamat_tinggal,
+  tempat_tinggal, moda_transportasi, anak_keberapa, jumlah_saudara_kandung, no_telp,
+  penerima_kip, no_kip, tinggi_cm, berat_kg, jarak_tempat_tinggal,
+  nama_ayah, nik_ayah, tempat_lahir_ayah, tanggal_lahir_ayah, pendidikan_ayah, pekerjaan_ayah, penghasilan_ayah,
+  nama_ibu, nik_ibu, tempat_lahir_ibu, tanggal_lahir_ibu, pendidikan_ibu, pekerjaan_ibu, penghasilan_ibu,
+  foto_pas
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+$stmt->bind_param(
+  "ssssssssssiisssiissssssssdsssssds",
+  $nama_lengkap,
+  $jenis_kelamin,
+  $nis,
+  $nik,
+  $tempat_lahir,
+  $tanggal_lahir,
+  $agama,
+  $alamat_tinggal,
+  $tempat_tinggal,
+  $moda_transportasi,
+  $anak_keberapa,
+  $jumlah_saudara_kandung,
+  $no_telp,
+  $penerima_kip,
+  $no_kip,
+  $tinggi_cm,
+  $berat_kg,
+  $jarak_tempat_tinggal,
+  $nama_ayah,
+  $nik_ayah,
+  $tempat_lahir_ayah,
+  $tanggal_lahir_ayah,
+  $pendidikan_ayah,
+  $pekerjaan_ayah,
+  $penghasilan_ayah,
+  $nama_ibu,
+  $nik_ibu,
+  $tempat_lahir_ibu,
+  $tanggal_lahir_ibu,
+  $pendidikan_ibu,
+  $pekerjaan_ibu,
+  $penghasilan_ibu,
+  $foto_pas
+);
+
+
+
 
     if ($stmt->execute()) {
         echo "<p class='text-green-600 font-semibold'>Pendaftaran berhasil disimpan.</p>";
@@ -137,7 +171,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
          <p class="text-right text-sm text-gray-600 mb-4">
          Tanggal Mendaftar : <span id="tanggalDaftar"></span>
         </p>
-        <form method="post" class="grid grid-cols-2 gap-4 text-sm">
+        <form method="post" enctype="multipart/form-data" class="grid grid-cols-2 gap-4 text-sm">
             <!-- Data Siswa -->
             <h2 class="col-span-2 font-bold text-lg text-[#ef6c00]">Data Siswa</h2>
             <input name="nama_lengkap" placeholder="Nama Lengkap" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
@@ -189,7 +223,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input name="pendidikan_ibu" placeholder="Pendidikan Ibu" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
             <input name="pekerjaan_ibu" placeholder="Pekerjaan Ibu" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
             <input type="number" step="0.01" name="penghasilan_ibu" placeholder="Penghasilan Ibu" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
-
+            <h3 class="col-span-2 font-bold text-lg mt-6 text-[#ef6c00]">Upload Pas Foto</h3>
+             <label class="block">
+            <input type="file" name="foto_pas" accept="image/*" required class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]">
+            </label>
             <button type="submit" class="col-span-2 mt-4 bg-[#ef6c00] hover:bg-[#cc5a00] text-white py-2 rounded font-semibold transition duration-300">Kirim Pendaftaran</button>
         </form>
     </div>

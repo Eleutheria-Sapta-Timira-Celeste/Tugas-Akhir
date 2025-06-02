@@ -141,7 +141,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 </p>
             </div>
             <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
-                class="mt-10 block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#cc5200] dark:focus:ring-[#cc5200]"
+                class="mt-10 block text-white bg-[#ef6c00] hover:bg-[#e65c00] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#cc5200] dark:focus:ring-[#cc5200]"
                 type="button">
                 Tambah Album Baru
             </button>
@@ -197,7 +197,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
     <div class="mx-10 mb-10" id="accordion-color" data-accordion="collapse"
-        data-active-classes="bg-blue-100 dark:bg-gray-800 text-blue-600 dark:text-white">
+        data-active-classes="bg-blue-100 dark:bg-gray-800 text-[#ef6c00[ dark:text-white">
         <?php
         $fetch_all_album = "SELECT * FROM `gallery_album`;";
         $albums = mysqli_query($connection, $fetch_all_album);
@@ -238,12 +238,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     $albumId .
                     '" data-modal-toggle="addImagestoAlbum' .
                     $albumId .
-                    '" class="mx-5 block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#cc5200] dark:focus:ring-[#cc5200]" type="button">
+                    '" class="mx-5 block text-white bg-[#ef6c00] hover:bg-[#cc5200] focus:ring-4 focus:outline-none focus:ring-[#cc5200] font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#cc5200] dark:focus:ring-[#cc5200]" type="button">
                         Tambah Gambar
             </button>
 
 
-            <button data-modal-target="deleteModal' .$albumId .'" data-modal-toggle="deleteModal' . $albumId .'" class="mx-5 block text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" type="button">
+            <button data-modal-target="deleteModal' .$albumId .'" data-modal-toggle="deleteModal' . $albumId .'" class="mx-5 block text-white bg-[#dc1209] hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" type="button">
             Hapus Album?
             </button>
         </div>
