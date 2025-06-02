@@ -163,72 +163,225 @@ $stmt->bind_param(
             <img src="assects/images/defaults/logo_warna_500.png" class="w-24 h-24 object-contain">
         </div> -->
 
-        <h1 class="text-2xl font-bold text-center mb-6 text-[#ef6c00]">Formulir Pendaftaran Siswa Baru</h1>
-        <h1 class="hide_after_submission text-x text-justify text-white capitalize dark:text-[#333333]">Pastikan untuk mengisi formulir pendaftaran Anda dengan hati-hati.
-                 Periksa semua detail, seperti informasi pribadi dan data akademik Anda, 
-                 agar tidak terjadi kesalahan. Ketelitian Anda akan membantu memperlancar proses pendaftaran. 
-                 Jika Anda memiliki pertanyaan, jangan ragu untuk menghubungi bagian pendaftaran untuk mendapatkan bantuan.</h1> <br>
-         <p class="text-right text-sm text-gray-600 mb-4">
-         Tanggal Mendaftar : <span id="tanggalDaftar"></span>
-        </p>
-        <form method="post" enctype="multipart/form-data" class="grid grid-cols-2 gap-4 text-sm">
-            <!-- Data Siswa -->
-            <h2 class="col-span-2 font-bold text-lg text-[#ef6c00]">Data Siswa</h2>
-            <input name="nama_lengkap" placeholder="Nama Lengkap" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
-            <select name="jenis_kelamin" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
-                <option value="Laki-laki">Laki-laki</option>
-                <option value="Perempuan">Perempuan</option>
-            </select>
-            <input name="nis" placeholder="NIS" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
-            <input name="nik" placeholder="NIK" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
-            <input name="tempat_lahir" placeholder="Tempat Lahir" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
-            <input type="date" name="tanggal_lahir" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
-            <input name="agama" placeholder="Agama" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
-            <textarea name="alamat_tinggal" placeholder="Alamat Tinggal" class="border border-[#ef6c00] rounded px-3 py-2 w-full col-span-2 focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required></textarea>
-            <select name="tempat_tinggal" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
-                <option value="Bersama Orang Tua">Bersama Orang Tua</option>
-                <option value="Wali">Wali</option>
-                <option value="Kos">Kos</option>
-                <option value="Lainnya">Lainnya</option>
-            </select>
-            <input name="moda_transportasi" placeholder="Moda Transportasi" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
-            <input type="number" name="anak_keberapa" placeholder="Anak ke-" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
-            <input type="number" name="jumlah_saudara_kandung" placeholder="Jumlah Saudara Kandung" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
-            <input name="no_telp" placeholder="No Telp" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
-            <select name="penerima_kip" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
-                <option value="Ya">Ya</option>
-                <option value="Tidak">Tidak</option>
-            </select>
-            <input name="no_kip" placeholder="No KIP" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]">
-            <input type="number" name="tinggi_cm" placeholder="Tinggi (cm)" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
-            <input type="number" name="berat_kg" placeholder="Berat (kg)" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
-            <input name="jarak_tempat_tinggal" placeholder="Jarak Tempat Tinggal" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
+       <h1 class="text-2xl font-bold text-center mb-6 text-[#ef6c00]">Formulir Pendaftaran Siswa Baru</h1>
+<p class="text-right text-sm text-gray-600 mb-4">
+    Tanggal Mendaftar : <span id="tanggalDaftar"></span>
+</p>
+<form method="post" enctype="multipart/form-data" class="space-y-6 text-sm max-w-4xl mx-auto p-4">
+  <!-- DATA SISWA -->
+  <h2 class="text-lg font-bold text-[#ef6c00]">Data Siswa</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <!-- Nama Lengkap -->
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <label class="sm:w-40 font-medium" for="nama_lengkap">Nama Lengkap</label>
+      <input id="nama_lengkap" name="nama_lengkap" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+    </div>
 
-            <!-- Data Ayah -->
-            <h2 class="col-span-2 font-bold text-lg mt-6 text-[#ef6c00]">Data Ayah</h2>
-            <input name="nama_ayah" placeholder="Nama Ayah" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
-            <input name="nik_ayah" placeholder="NIK Ayah" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
-            <input name="tempat_lahir_ayah" placeholder="Tempat Lahir Ayah" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
-            <input type="date" name="tanggal_lahir_ayah" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
-            <input name="pendidikan_ayah" placeholder="Pendidikan Ayah" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
-            <input name="pekerjaan_ayah" placeholder="Pekerjaan Ayah" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
-            <input type="number" step="0.01" name="penghasilan_ayah" placeholder="Penghasilan Ayah" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
+    <!-- Jenis Kelamin -->
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <label for="jenis_kelamin" class="sm:w-40 font-medium">Jenis Kelamin</label>
+      <select id="jenis_kelamin" name="jenis_kelamin" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]">
+        <option>Laki-laki</option>
+        <option>Perempuan</option>
+      </select>
+    </div>
 
-            <!-- Data Ibu -->
-            <h2 class="col-span-2 font-bold text-lg mt-6 text-[#ef6c00]">Data Ibu</h2>
-            <input name="nama_ibu" placeholder="Nama Ibu" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
-            <input name="nik_ibu" placeholder="NIK Ibu" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
-            <input name="tempat_lahir_ibu" placeholder="Tempat Lahir Ibu" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
-            <input type="date" name="tanggal_lahir_ibu" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
-            <input name="pendidikan_ibu" placeholder="Pendidikan Ibu" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
-            <input name="pekerjaan_ibu" placeholder="Pekerjaan Ibu" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
-            <input type="number" step="0.01" name="penghasilan_ibu" placeholder="Penghasilan Ibu" class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]" required>
-            <h3 class="col-span-2 font-bold text-lg mt-6 text-[#ef6c00]">Upload Pas Foto</h3>
-             <label class="block">
-            <input type="file" name="foto_pas" accept="image/*" required class="border border-[#ef6c00] rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-[#ef6c00]">
-            </label>
-            <button type="submit" class="col-span-2 mt-4 bg-[#ef6c00] hover:bg-[#cc5a00] text-white py-2 rounded font-semibold transition duration-300">Kirim Pendaftaran</button>
-        </form>
+    <!-- NIS -->
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <label for="nis" class="sm:w-40 font-medium">NIS</label>
+      <input id="nis" name="nis" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+    </div>
+
+    <!-- NIK -->
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <label for="nik" class="sm:w-40 font-medium">NIK</label>
+      <input id="nik" name="nik" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+    </div>
+
+    <!-- Tempat Lahir -->
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <label for="tempat_lahir" class="sm:w-40 font-medium">Tempat Lahir</label>
+      <input id="tempat_lahir" name="tempat_lahir" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+    </div>
+
+    <!-- Tanggal Lahir -->
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <label for="tanggal_lahir" class="sm:w-40 font-medium">Tanggal Lahir</label>
+      <input type="date" id="tanggal_lahir" name="tanggal_lahir" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+    </div>
+
+    <!-- Agama -->
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <label for="agama" class="sm:w-40 font-medium">Agama</label>
+      <input id="agama" name="agama" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+    </div>
+
+    <!-- Alamat Tinggal -->
+    <div class="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4 md:col-span-2">
+      <label for="alamat_tinggal" class="sm:w-40 font-medium pt-2">Alamat Tinggal</label>
+      <textarea id="alamat_tinggal" name="alamat_tinggal" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" rows="3"></textarea>
+    </div>
+
+    <!-- Tempat Tinggal -->
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <label for="tempat_tinggal" class="sm:w-40 font-medium">Tempat Tinggal</label>
+      <select id="tempat_tinggal" name="tempat_tinggal" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]">
+        <option>Bersama Orang Tua</option>
+        <option>Wali</option>
+        <option>Kos</option>
+        <option>Lainnya</option>
+      </select>
+    </div>
+
+    <!-- Moda Transportasi -->
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <label for="moda_transportasi" class="sm:w-40 font-medium">Moda Transportasi</label>
+      <input id="moda_transportasi" name="moda_transportasi" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+    </div>
+
+    <!-- Anak ke- -->
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <label for="anak_keberapa" class="sm:w-40 font-medium">Anak ke-</label>
+      <input id="anak_keberapa" type="number" name="anak_keberapa" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+    </div>
+
+    <!-- Jumlah Saudara Kandung -->
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <label for="jumlah_saudara_kandung" class="sm:w-40 font-medium">Jumlah Saudara Kandung</label>
+      <input id="jumlah_saudara_kandung" type="number" name="jumlah_saudara_kandung" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+    </div>
+
+    <!-- No Telp -->
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <label for="no_telp" class="sm:w-40 font-medium">No Telp</label>
+      <input id="no_telp" name="no_telp" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+    </div>
+
+    <!-- Penerima KIP -->
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <label for="penerima_kip" class="sm:w-40 font-medium">Penerima KIP</label>
+      <select id="penerima_kip" name="penerima_kip" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]">
+        <option>Ya</option>
+        <option>Tidak</option>
+      </select>
+    </div>
+
+    <!-- No KIP -->
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <label for="no_kip" class="sm:w-40 font-medium">No KIP</label>
+      <input id="no_kip" name="no_kip" class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+    </div>
+
+    <!-- Tinggi (cm) -->
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <label for="tinggi_cm" class="sm:w-40 font-medium">Tinggi (cm)</label>
+      <input id="tinggi_cm" type="number" name="tinggi_cm" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+    </div>
+
+    <!-- Berat (kg) -->
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <label for="berat_kg" class="sm:w-40 font-medium">Berat (kg)</label>
+      <input id="berat_kg" type="number" name="berat_kg" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+    </div>
+
+    <!-- Jarak Tempat Tinggal -->
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <label for="jarak_tempat_tinggal" class="sm:w-40 font-medium">Jarak Tempat Tinggal</label>
+      <input id="jarak_tempat_tinggal" name="jarak_tempat_tinggal" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+    </div>
+
+    <!-- DATA AYAH -->
+    <h2 class="text-lg font-bold text-[#ef6c00] col-span-2 mt-6">Data Ayah</h2>
+
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <label for="nama_ayah" class="sm:w-40 font-medium">Nama Ayah</label>
+      <input id="nama_ayah" name="nama_ayah" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+    </div>
+
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <label for="nik_ayah" class="sm:w-40 font-medium">NIK Ayah</label>
+      <input id="nik_ayah" name="nik_ayah" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+    </div>
+
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <label for="tempat_lahir_ayah" class="sm:w-40 font-medium">Tempat Lahir Ayah</label>
+      <input id="tempat_lahir_ayah" name="tempat_lahir_ayah" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+    </div>
+
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <label for="tanggal_lahir_ayah" class="sm:w-40 font-medium">Tanggal Lahir Ayah</label>
+      <input type="date" id="tanggal_lahir_ayah" name="tanggal_lahir_ayah" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+    </div>
+
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <label for="pendidikan_ayah" class="sm:w-40 font-medium">Pendidikan Ayah</label>
+      <input id="pendidikan_ayah" name="pendidikan_ayah" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+    </div>
+
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <label for="pekerjaan_ayah" class="sm:w-40 font-medium">Pekerjaan Ayah</label>
+      <input id="pekerjaan_ayah" name="pekerjaan_ayah" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+    </div>
+
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <label for="penghasilan_ayah" class="sm:w-40 font-medium">Penghasilan Ayah</label>
+      <input id="penghasilan_ayah" name="penghasilan_ayah" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+    </div>
+
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <label for="no_telp_ayah" class="sm:w-40 font-medium">No Telp Ayah</label>
+      <input id="no_telp_ayah" name="no_telp_ayah" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+    </div>
+
+    <!-- DATA IBU -->
+    <h2 class="text-lg font-bold text-[#ef6c00] col-span-2 mt-6">Data Ibu</h2>
+
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <label for="nama_ibu" class="sm:w-40 font-medium">Nama Ibu</label>
+      <input id="nama_ibu" name="nama_ibu" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+    </div>
+
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <label for="nik_ibu" class="sm:w-40 font-medium">NIK Ibu</label>
+      <input id="nik_ibu" name="nik_ibu" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+    </div>
+
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <label for="tempat_lahir_ibu" class="sm:w-40 font-medium">Tempat Lahir Ibu</label>
+      <input id="tempat_lahir_ibu" name="tempat_lahir_ibu" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+    </div>
+
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <label for="tanggal_lahir_ibu" class="sm:w-40 font-medium">Tanggal Lahir Ibu</label>
+      <input type="date" id="tanggal_lahir_ibu" name="tanggal_lahir_ibu" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+    </div>
+
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <label for="pendidikan_ibu" class="sm:w-40 font-medium">Pendidikan Ibu</label>
+      <input id="pendidikan_ibu" name="pendidikan_ibu" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+    </div>
+
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <label for="pekerjaan_ibu" class="sm:w-40 font-medium">Pekerjaan Ibu</label>
+      <input id="pekerjaan_ibu" name="pekerjaan_ibu" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+    </div>
+
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <label for="penghasilan_ibu" class="sm:w-40 font-medium">Penghasilan Ibu</label>
+      <input id="penghasilan_ibu" name="penghasilan_ibu" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+    </div>
+
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <label for="no_telp_ibu" class="sm:w-40 font-medium">No Telp Ibu</label>
+      <input id="no_telp_ibu" name="no_telp_ibu" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+    </div>
+
+    <!-- Submit button full width -->
+    <div class="md:col-span-2">
+      <button type="submit" class="bg-[#ef6c00] hover:bg-[#cc5a00] text-white font-bold py-2 px-6 rounded w-full">Daftar</button>
+    </div>
+  </div>
+</form>
     </div>
                     <script>
                         function getNamaHariIndonesia(dayIndex) {

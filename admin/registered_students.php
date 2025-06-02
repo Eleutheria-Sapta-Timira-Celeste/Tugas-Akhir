@@ -49,7 +49,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg"
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-10 mx-auto">
             <div class="flex flex-col text-center w-full mb-5">
-                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-blue-600">Halaman Data Pendaftaran Siswa</h1>
+                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-[#ef6c00]">Halaman Data Pendaftaran Siswa</h1>
                 <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base">
                                 Selamat datang di halaman data pendaftaran siswa baru SMP PGRI 371 Pondok Aren khusus untuk admin.
                                 Halaman ini digunakan untuk memantau, mengelola, dan memverifikasi seluruh data pendaftaran dengan akurat dan efisien.
@@ -221,7 +221,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg"
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                         <input type="hidden" name="student_id" value="' . $student_Id . '" />
-                        <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah kamu yakin untuk menghapus data siswa? '.$row['nama_lengkap'].'?</h3>
+                        <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah kamu yakin untuk menghapus data siswa '.$row['nama_lengkap'].'?</h3>
                         <button name="student_delete" data-modal-toggle="delete-modal'.$student_Id.'" type="submit" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">Yes, I am sure</button>
                         <button data-modal-toggle="delete-modal'.$student_Id.'" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No, cancel</button>
                     </div>
@@ -241,13 +241,8 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg"
             }
         }
         ?>
-
-
-    <?php include('../includes/admin_footer.php') ?>
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
-
+  <?php include('../includes/admin_footer.php') ?>
 </body>
 
 <script>
