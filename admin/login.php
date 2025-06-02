@@ -8,37 +8,22 @@ if (isset($_POST['submit'])) {
     $identity_code = $_POST['identity_code'];
     $password = $_POST['password'];
 
-   $validate_query = mysqli_query($connection, "SELECT id, identity_code, name, image, role FROM manipulators WHERE identity_code = '$identity_code' AND password = '$password';");
+    $validate_query = mysqli_query($connection, "SELECT * FROM manipulators WHERE identity_code = '$identity_code' AND password = '$password';");
     $row = mysqli_fetch_array($validate_query);
 
-     if (is_array($row)) {
-        $_SESSION["user_id"] = $row["id"];
+    if (is_array($row)) {
+        $_SESSION["isadmin"] = $row["id"];
         $_SESSION["identity_code"] = $row["identity_code"];
         $_SESSION["usr_nam"] = $row["name"];
         $_SESSION["profile_pic"] = $row["image"];
-        $_SESSION["role"] = $row["role"]; // Capture user role
+        $_SESSION["adminPass"] = $row["password"];
+        $_SESSION["adminPassAttempt"] = 3;
 
-        $validate_query = mysqli_query($connection, "SELECT id, identity_code, name, image, role FROM manipulators WHERE identity_code = '$identity_code' AND password = '$password';");
-
-       if (isset($_SESSION["role"])) {
-    if ($_SESSION["role"] === "admin") {
-        header("Location: admin_dashboard.php");
-    } elseif ($_SESSION["role"] === "guru") {
-        header("Location: guru_dashboard.php");
-    } elseif ($_SESSION["role"] === "murid") {
-        header("Location: murid_dashboard.php");
-    } else {
-        $showAlert = true; // Handle unrecognized roles
-    }
-    exit();
-}
-
-        exit();
-
+        $validate_query = mysqli_query($connection, "SELECT * FROM manipulators WHERE identity_code = '$identity_code' AND password = '$password';");
+       
     } else {
         $showAlert = true; // Set the flag to true if the user enters wrong details
     }
-    
 
     if (isset($_SESSION["identity_code"])) {
         header("Location:index.php");
@@ -75,7 +60,7 @@ if (isset($_POST['submit'])) {
                 <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-white-800 dark:border-gray-700">
                     <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-black">
-                            Masuk sebagai Admin, Penulis, Guru, atau Murid
+                            Login with Admin or Scribe
                         </h1>
                         <form class="space-y-4 md:space-y-6" action="" method="POST">
                             <div>
