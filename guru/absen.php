@@ -78,8 +78,8 @@ try {
                                 class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                                 src="../assects/images/adminavatars/flash_notice.png">
                             <div class="flex-grow">
-                                <h2 class="text-[#ef6c00] title-font font-medium"> Data Guru</h2>
-                                <p class="text-sm md:text-base text-gray-500">Biodata Guru</p>
+                                <h2 class="text-[#ef6c00] title-font font-medium"> Kelas VII</h2>
+                                <p class="text-sm md:text-base text-gray-500"></p>
                             </div>
                         </div>
                     </div>
@@ -92,8 +92,8 @@ try {
                                 class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                                 src="../assects/images/adminavatars/notice.jpg">
                             <div class="flex-grow">
-                                <h2 class="text-[#ef6c00] title-font font-medium"> Jadwal Mengajar</h2>
-                                <p class="text-sm md:text-base text-gray-500">Melihat Jadwal Mengajar
+                                <h2 class="text-[#ef6c00] title-font font-medium">Kelas VIII</h2>
+                                <p class="text-sm md:text-base text-gray-500">
                             </div>
                         </div>
                     </div>
@@ -104,8 +104,8 @@ try {
                                     class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                                     src="../assects/images/adminavatars/registered.png">
                                 <div class="flex-grow">
-                                    <h2 class="text-[#ef6c00] title-font font-medium"> Absensi Siswa</h2>
-                                    <p class="text-sm md:text-base text-gray-500">Input Absensi Siswa</p>
+                                    <h2 class="text-[#ef6c00] title-font font-medium">Kelas IX</h2>
+                                    <p class="text-sm md:text-base text-gray-500"></p>
                                 </div>
                             </div>
                             <?php if($row['total_notification']!=0){
