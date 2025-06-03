@@ -16,7 +16,7 @@ $guru = $_SESSION['guru'];
 </head>
 <body class="bg-gray-50 p-6">
     <div class="bg-white max-w-2xl mx-auto p-6 rounded-lg shadow">
-        <h1 class="text-2xl font-bold mb-4">Selamat datang, <?= htmlspecialchars($guru['nama']) ?>!</h1>
+        <h1 class="text-2xl font-bold mb-4">Selamat datang, <?= htmlspecialchars($guru['name']) ?>!</h1>
         <p><strong>NIP:</strong> <?= $guru['nip'] ?></p>
         <p><strong>Mapel:</strong> <?= $guru['mapel'] ?></p>
 
