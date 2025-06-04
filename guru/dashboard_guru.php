@@ -22,7 +22,7 @@ $guru_absen = $conn->query("SELECT COUNT(*) AS total FROM absenguru")->fetch_ass
     <meta charset="UTF-8">
     <title>Dashboard Guru</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js for graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js untuk grafik -->
     <script src="https://unpkg.com/html5-qrcode"></script>
 </head>
 <body class="bg-gray-100">
@@ -32,7 +32,7 @@ $guru_absen = $conn->query("SELECT COUNT(*) AS total FROM absenguru")->fetch_ass
 <div class="flex flex-col">
     <!-- Top Navbar -->
     <nav id="navbar" class="w-full h-auto bg-gray-100 text-black p-4 fixed top-0 left-0 flex flex-row items-center z-10 shadow">
-        <h2 class="text-2xl font-bold mr-8">Admin Guru</h2>
+        <h2 class="text-2xl font-bold mr-8">Dashboard Guru</h2>
         <ul class="flex space-x-4">
             <li>
                 <a href="absensisiswa.php"
@@ -137,7 +137,7 @@ $guru_absen = $conn->query("SELECT COUNT(*) AS total FROM absenguru")->fetch_ass
     <script>
     
 
-        // Chart.js Graph for Attendance
+        // Chart.js grafik untuk absensi
         const ctx = document.getElementById('attendanceChart').getContext('2d');
         new Chart(ctx, {
             type: 'bar',
