@@ -36,9 +36,9 @@ $guru_absen = $conn->query("SELECT COUNT(*) AS total FROM absenguru")->fetch_ass
                 <li><a href="dataguru.php" class="hover:bg-blue-700 p-2 block rounded">Data Guru (<?= $guru_count['total'] ?>)</a></li>
                 <li><a href="jadwalmengajar.php" class="hover:bg-blue-700 p-2 block rounded">Jadwal Mengajar (<?= $jadwal_count['total'] ?>)</a></li>
                 <li><a href="absenguru.php" class="hover:bg-blue-700 p-2 block rounded">Absen Guru (<?= $guru_absen['total'] ?>)</a></li>
-                <li><a href="logout.php" class="bg-red-600 hover:bg-red-700 p-2 block rounded">Logout</a></li>
                 <li><a href="generate_qr.php" class="hover:bg-blue-700 p-2 block rounded">Generate QR Code</a></li>
                 <li><a href="scan_qr.php" class="hover:bg-green-700 p-2 block rounded">Scan QR Code</a></li>
+                <li><a href="logout.php" class="bg-red-600 hover:bg-red-700 p-2 block rounded">Logout</a></li>
             </ul>
         </nav>
 
