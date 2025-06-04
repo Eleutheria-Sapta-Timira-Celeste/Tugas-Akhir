@@ -37,18 +37,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Generate QR Code</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 p-6">
-    <div class="max-w-lg mx-auto bg-white p-6 rounded shadow">
-        <h2 class="text-2xl font-bold mb-4">Buat QR Code</h2>
-        <form method="post">
-            <input type="number" name="id" placeholder="ID" class="w-full mb-3 p-2 border rounded">
-            <input type="text" name="name" placeholder="Nama" class="w-full mb-3 p-2 border rounded">
-            <select name="role" class="w-full p-2 border rounded">
-                <option value="guru">Guru</option>
-                <option value="siswa">Siswa</option>
-            </select>
-            <button type="submit" class="bg-blue-500 text-white p-2 w-full rounded mt-4">Generate QR Code</button>
+<body class="bg-gradient-to-br from-blue-100 via-white to-green-100 min-h-screen p-6">
+    <div class="max-w-lg mx-auto bg-white/90 p-8 rounded-2xl shadow-2xl mt-10">
+        <h2 class="text-3xl font-extrabold mb-6 flex items-center gap-2">
+            <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2" /><path d="M7 7h.01M17 7h.01M7 17h.01M17 17h.01" /></svg>
+            Buat QR Code
+        </h2>
+        <form method="post" class="space-y-4">
+            <div>
+                <label class="block mb-1 font-semibold text-gray-700">ID</label>
+                <input type="number" name="id" placeholder="ID" required class="w-full p-3 border border-blue-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition">
+            </div>
+            <div>
+                <label class="block mb-1 font-semibold text-gray-700">Nama</label>
+                <input type="text" name="name" placeholder="Nama" required class="w-full p-3 border border-green-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 transition">
+            </div>
+            <div>
+                <label class="block mb-1 font-semibold text-gray-700">Role</label>
+                <select name="role" class="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300 transition">
+                    <option value="guru">Guru</option>
+                    <option value="siswa">Siswa</option>
+                </select>
+            </div>
+            <button type="submit"
+                class="w-full py-3 rounded-lg bg-gradient-to-r from-blue-500 to-green-400 text-white font-bold text-lg shadow-lg hover:scale-105 hover:from-blue-600 hover:to-green-500 transition-all duration-300 flex items-center justify-center gap-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg>
+                Generate QR Code
+            </button>
         </form>
+        <?php if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($qr_file)): ?>
+            <div class="mt-8 text-center">
+                <p class="text-green-600 font-semibold mb-2">QR Code berhasil dibuat!</p>
+                <img src="<?= htmlspecialchars($qr_file) ?>" alt="QR Code" class="mx-auto w-48 h-48 rounded-lg shadow-lg border-4 border-blue-100 bg-white">
+                <p class="mt-2 text-gray-500 text-sm">Scan QR ini untuk absen.</p>
+            </div>
+        <?php endif; ?>
     </div>
 </body>
 </html>
