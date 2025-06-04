@@ -100,21 +100,18 @@ $guru_absen = $conn->query("SELECT COUNT(*) AS total FROM absenguru")->fetch_ass
     </nav>
 
     <!-- Main Content -->
-    <div class="pt-24 px-6 flex-1">
-        <!-- ...existing code... -->
 
-       <!-- Main Content -->
-    <div class="pt-28 px-6 flex-1">
-        <!-- Welcome Card -->
-        <div class="mb-8">
-            <div class="rounded-xl bg-gradient-to-r from-blue-400 via-green-300 to-green-200 p-6 shadow-lg flex items-center gap-4 animate-pulse">
-                <img src="https://api.dicebear.com/7.x/initials/svg?seed=<?= urlencode($guru['name']) ?>" alt="Avatar" class="w-16 h-16 rounded-full border-4 border-white shadow">
-                <div>
-                    <h1 class="text-2xl font-bold text-white drop-shadow">Selamat datang, <?= htmlspecialchars($guru['name']) ?>!</h1>
-                    <p class="text-white/90">Semoga harimu menyenangkan dan penuh semangat mengajar.</p>
-                </div>
+    <div class="pt-20 px-6 flex-1">
+    <!-- Welcome Card -->
+    <div class="mb-8">
+        <div class="rounded-xl bg-gradient-to-r from-blue-400 via-green-300 to-green-200 p-6 shadow-lg flex items-center gap-4 animate-pulse">
+            <img src="https://api.dicebear.com/7.x/initials/svg?seed=<?= urlencode($guru['name']) ?>" alt="Avatar" class="w-16 h-16 rounded-full border-4 border-white shadow">
+            <div>
+                <h1 class="text-2xl font-bold text-white drop-shadow">Selamat datang, <?= htmlspecialchars($guru['name']) ?>!</h1>
+                <p class="text-white/90">Semoga harimu menyenangkan dan penuh semangat mengajar.</p>
             </div>
         </div>
+    </div>
         <!-- Dashboard Stats -->
         <div class="grid grid-cols-2 gap-6">
             <div class="bg-white p-6 rounded shadow transition-transform duration-300 hover:scale-105 hover:bg-gradient-to-r hover:from-blue-100 hover:to-blue-300">
