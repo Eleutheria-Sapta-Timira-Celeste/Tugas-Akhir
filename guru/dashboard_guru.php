@@ -28,24 +28,83 @@ $guru_absen = $conn->query("SELECT COUNT(*) AS total FROM absenguru")->fetch_ass
 <body class="bg-gray-100">
 
     <!-- Sidebar Navigation -->
-    <div class="flex">
-        <nav id="sidebar" class="w-64 h-screen bg-blue-900 text-white p-6 fixed transition-transform transform">
-            <h2 class="text-2xl font-bold mb-6">Admin Guru</h2>
-            <ul class="space-y-4">
-                <li><a href="absensisiswa.php" class="hover:bg-blue-700 p-2 block rounded">Absen Siswa (<?= $siswa_absen['total'] ?>)</a></li>
-                <li><a href="dataguru.php" class="hover:bg-blue-700 p-2 block rounded">Data Guru (<?= $guru_count['total'] ?>)</a></li>
-                <li><a href="jadwalmengajar.php" class="hover:bg-blue-700 p-2 block rounded">Jadwal Mengajar (<?= $jadwal_count['total'] ?>)</a></li>
-                <li><a href="absenguru.php" class="hover:bg-blue-700 p-2 block rounded">Absen Guru (<?= $guru_absen['total'] ?>)</a></li>
-                <li><a href="generate_qr.php" class="hover:bg-blue-700 p-2 block rounded">Generate QR Code</a></li>
-                <li><a href="scan_qr.php" class="hover:bg-green-700 p-2 block rounded">Scan QR Code</a></li>
-                <li><a href="logout.php" class="bg-red-600 hover:bg-red-700 p-2 block rounded">Logout</a></li>
-            </ul>
-        </nav>
+    
+<div class="flex flex-col">
+    <!-- Top Navbar -->
+    <nav id="navbar" class="w-full h-auto bg-gray-100 text-black p-4 fixed top-0 left-0 flex flex-row items-center z-10 shadow">
+        <h2 class="text-2xl font-bold mr-8">Admin Guru</h2>
+        <ul class="flex space-x-4">
+            <li>
+                <a href="absensisiswa.php"
+                   class="transition-all duration-500 ease-in-out px-4 py-2 rounded
+                          hover:scale-110
+                          hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-700
+                          hover:text-white hover:shadow-lg">
+                    Absen Siswa (<?= $siswa_absen['total'] ?>)
+                </a>
+            </li>
+            <li>
+                <a href="dataguru.php"
+                   class="transition-all duration-500 ease-in-out px-4 py-2 rounded
+                          hover:scale-110
+                          hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-700
+                          hover:text-white hover:shadow-lg">
+                    Data Guru (<?= $guru_count['total'] ?>)
+                </a>
+            </li>
+            <li>
+                <a href="jadwalmengajar.php"
+                   class="transition-all duration-500 ease-in-out px-4 py-2 rounded
+                          hover:scale-110
+                          hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-700
+                          hover:text-white hover:shadow-lg">
+                    Jadwal Mengajar (<?= $jadwal_count['total'] ?>)
+                </a>
+            </li>
+            <li>
+                <a href="absenguru.php"
+                   class="transition-all duration-500 ease-in-out px-4 py-2 rounded
+                          hover:scale-110
+                          hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-700
+                          hover:text-white hover:shadow-lg">
+                    Absen Guru (<?= $guru_absen['total'] ?>)
+                </a>
+            </li>
+            <li>
+                <a href="generate_qr.php"
+                   class="transition-all duration-500 ease-in-out px-4 py-2 rounded
+                          hover:scale-110
+                          hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-700
+                          hover:text-white hover:shadow-lg">
+                    Generate QR Code
+                </a>
+            </li>
+            <li>
+                <a href="scan_qr.php"
+                   class="transition-all duration-500 ease-in-out px-4 py-2 rounded
+                          hover:scale-110
+                          hover:bg-gradient-to-r hover:from-green-500 hover:to-green-700
+                          hover:text-white hover:shadow-lg">
+                    Scan QR Code
+                </a>
+            </li>
+            <li>
+                <a href="logout.php"
+                   class="transition-all duration-500 ease-in-out px-4 py-2 rounded
+                          bg-red-600 hover:bg-gradient-to-r hover:from-red-600 hover:to-red-800
+                          hover:scale-110 hover:text-white hover:shadow-lg">
+                    Logout
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="pt-24 px-6 flex-1">
+        <!-- ...existing code... -->
 
         <!-- Main Content -->
-        <div class="ml-64 p-6 flex-1">
-            <button onclick="toggleSidebar()" class="bg-blue-500 text-white p-2 rounded mb-4">Toggle Sidebar</button>
-            <h1 class="text-3xl font-bold mb-4">Selamat datang, <?= htmlspecialchars($guru['name']) ?>!</h1>
+        
             
             <!-- Dashboard Stats -->
             <div class="grid grid-cols-2 gap-6">
@@ -68,10 +127,7 @@ $guru_absen = $conn->query("SELECT COUNT(*) AS total FROM absenguru")->fetch_ass
     </div>
 
     <script>
-        // Sidebar Toggle
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('-translate-x-64');
-        }
+    
 
         // Chart.js Graph for Attendance
         const ctx = document.getElementById('attendanceChart').getContext('2d');
