@@ -10,7 +10,7 @@ if (!isset($_SESSION["identity_code"])) {
 
 // Check if the user is not an admin
 if ($_SESSION["isadmin"] != 1) {
-    header("Location: scribe.php");
+    header("Location: guru_dashboard.php");
     exit();
 }
 
