@@ -8,13 +8,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nis = $_POST['nis'];
     $password = $_POST['password'];
 
-    $query = "SELECT * FROM siswa WHERE nis = '$nis'";
-    $result = mysqli_query($conn, $query);
-    $user = mysqli_fetch_assoc($result);
+    // Use prepared statement for security
+    $stmt = $conn->prepare("SELECT * FROM siswa WHERE nis = ?");
+    $stmt->bind_param("s", $nis);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
 
     if ($user) {
-        if ($password === $user['password']) {
+        if (password_verify($password, $user['password'])) {
             $_SESSION['user'] = $user;
+            $_SESSION['nis'] = $user['nis'];
+            $_SESSION['nama'] = $user['nama'];
             header("Location: dashboard.php");
             exit;
         } else {
