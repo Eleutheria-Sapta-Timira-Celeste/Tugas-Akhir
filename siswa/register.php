@@ -3,23 +3,22 @@ include 'koneksi.php';
 $success = '';
 $error = '';
 
-// Proses form register
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nis = $_POST['nis'];
     $nama = $_POST['nama'];
-    $password = $_POST['password'];
     $kelas = $_POST['kelas'];
     $tempat_lahir = $_POST['tempat_lahir'];
     $tanggal_lahir = $_POST['tanggal_lahir'];
     $nama_ayah = $_POST['nama_ayah'];
     $nama_ibu = $_POST['nama_ibu'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
     // Upload foto jika ada
     $foto_name = '';
     if (isset($_FILES['foto']) && $_FILES['foto']['error'] == 0) {
         $target_dir = "uploads/";
         if (!is_dir($target_dir)) {
-            mkdir($target_dir, 0777, true); // buat folder jika belum ada
+            mkdir($target_dir, 0777, true);
         }
         $foto_name = uniqid() . '_' . basename($_FILES["foto"]["name"]);
         $target_file = $target_dir . $foto_name;
@@ -27,19 +26,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Cek apakah NIS sudah ada
-    $cek = mysqli_query($conn, "SELECT * FROM siswa WHERE nis = '$nis'");
-    if (mysqli_num_rows($cek) > 0) {
+    $cek = $conn->prepare("SELECT * FROM siswa WHERE nis = ?");
+    $cek->bind_param("s", $nis);
+    $cek->execute();
+    $cek_result = $cek->get_result();
+    if ($cek_result->num_rows > 0) {
         $error = "NIS sudah terdaftar.";
     } else {
-        $query = "INSERT INTO siswa 
+        $stmt = $conn->prepare("INSERT INTO siswa 
             (nis, nama, password, kelas, tempat_lahir, tanggal_lahir, nama_ayah, nama_ibu, foto) 
-            VALUES 
-            ('$nis', '$nama', '$password', '$kelas', '$tempat_lahir', '$tanggal_lahir', '$nama_ayah', '$nama_ibu', '$foto_name')";
-        
-        if (mysqli_query($conn, $query)) {
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssssss", $nis, $nama, $password, $kelas, $tempat_lahir, $tanggal_lahir, $nama_ayah, $nama_ibu, $foto_name);
+
+        if ($stmt->execute()) {
             $success = "Registrasi berhasil. Silakan login.";
         } else {
-            $error = "Registrasi gagal: " . mysqli_error($conn);
+            $error = "Registrasi gagal: " . $conn->error;
         }
     }
 }
