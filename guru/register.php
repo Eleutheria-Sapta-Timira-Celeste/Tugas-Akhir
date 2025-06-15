@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $mapel = $_POST['mapel'];
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-    $query = $conn->prepare("INSERT INTO guru (username, name, nip, mapel, password) VALUES (?, ?, ?, ?, ?)");
+    $query = $conn->prepare("INSERT INTO guru (username, nama, nip, mapel, password) VALUES (?, ?, ?, ?, ?)");
     $query->bind_param("sssss", $username, $name, $nip, $mapel, $password);
     
     if ($query->execute()) {
