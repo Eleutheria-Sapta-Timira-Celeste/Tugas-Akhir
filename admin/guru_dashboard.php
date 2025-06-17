@@ -2,12 +2,16 @@
 session_start();
 include '../connection/database.php';
 
+if (!isset($_SESSION["identity_code"])) {
+    header("Location: login.php");
+    exit();
+}
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // ✅ Student Attendance Submission
     if (isset($_POST["absensi_murid"])) {
-        foreach ($_POST["absensi_murid"] as $murid_id => $status) {
-            $query = "INSERT INTO absensi_murid (murid_id, tanggal, status) VALUES ('$murid_id', CURDATE(), '$status')";
+        foreach ($_POST["absensi_murid"] as $id => $keterangan) {
+            $query = "INSERT INTO absensiswa (id, tanggal, keterangan) VALUES ('$id', CURDATE(), '$keterangan')";
             $result = mysqli_query($connection, $query);
 
             if (!$result) {
@@ -18,8 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    if (!empty($murid_id) && !empty($status)) {
-    $query = "INSERT INTO absensi_murid (murid_id, tanggal, status) VALUES ('$murid_id', CURDATE(), '$status')";
+    if (!empty($id) && !empty($keterangan)) {
+    $query = "INSERT INTO absensi_siswa (murid_id, tanggal, status) VALUES ('$id', CURDATE(), '$keterangan')";
     mysqli_query($connection, $query);
 }
 
@@ -72,8 +76,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 // ✅ Fetch Attendance Records
-$absensi_murid_result = mysqli_query($connection, "SELECT * FROM absensi_murid ORDER BY tanggal DESC");
-$absensi_guru_result = mysqli_query($connection, "SELECT * FROM absensi_guru ORDER BY tanggal DESC");
+$absensi_murid_result = mysqli_query($connection, "SELECT * FROM absensiswa ORDER BY tanggal DESC");
+$absensi_guru_result = mysqli_query($connection, "SELECT * FROM absenguru ORDER BY tanggal DESC");
 
 
 // ✅ Fetch Attendance History
