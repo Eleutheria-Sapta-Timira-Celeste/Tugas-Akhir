@@ -242,14 +242,14 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg"
         }
         ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
-<<<<<<< HEAD
+
   <?php include('../includes/admin_footer.php') ?>
-=======
+
     <script>
     console.clear();
 </script>
 
->>>>>>> ca2e42490366b12bc235813692edc3fb2779cf97
+
 </body>
 
 <script>
