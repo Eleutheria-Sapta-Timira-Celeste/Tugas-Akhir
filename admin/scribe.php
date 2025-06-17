@@ -1,11 +1,11 @@
 <?php
 include '../connection/database.php';
-session_start();
+// session_start();
 
-if (!isset($_SESSION["identity_code"])) {
-    header("Location: login.php");
-    exit();
-}
+// if (!isset($_SESSION["identity_code"])) {
+//     header("Location: login.php");
+//     exit();
+// }
 
 
 // Method POST It works now
@@ -138,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scribe | Pashupati</title>
+    <title>Scribe</title>
     <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
     <link rel="icon" type="image/x-icon" href="../assects/images/admin_logo.png">
 
