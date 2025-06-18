@@ -1,31 +1,32 @@
 <?php
-session_start();
-if (!isset($_SESSION['user'])) {
-    header("Location: login.php");
-    exit;
-}
+include 'cek_login.php';
+include 'koneksi.php';
 
-include '../connection/database.php'; // pastikan koneksi benar
+$username = $_SESSION['username'];
+$nip      = $_SESSION['nip'];
+$nama     = $_SESSION['nama'];
+$mapel    = $_SESSION['mapel'];
+$foto     = $_SESSION['foto'] ?? 'default.png';
 
-$userSession = $_SESSION['user'];
-$username = $userSession['username']; // pakai USERNAME
+$query = "SELECT * FROM guru WHERE username = ?";
+$stmt  = $conn->prepare($query);
+$stmt->bind_param("s", $username);
+$stmt->execute();
+$result = $stmt->get_result();
 
-$query = "SELECT * FROM guru WHERE username = '$username'";
-$result = mysqli_query($connection, $query);
-
-if ($result && mysqli_num_rows($result) > 0) {
-    $user = mysqli_fetch_assoc($result);
+if ($result && $result->num_rows > 0) {
+    $user = $result->fetch_assoc();
 } else {
-    // fallback kalau data tidak ketemu
     $user = [
-        'foto'  => 'default.png',
-        'nip'   => '',
-        'nama'  => $userSession['nama'],
+        'foto'  => $foto,
+        'nip'   => $nip,
+        'nama'  => $nama,
         'gelar' => '',
-        'mapel' => ''
+        'mapel' => $mapel
     ];
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="id">
@@ -44,7 +45,7 @@ if ($result && mysqli_num_rows($result) > 0) {
     <!-- Sidebar -->
     <aside class="w-64 bg-[#F5E8C7] text-gray-800 min-h-full p-6 shadow-md">
         <nav class="space-y-4">
-            <a href="dashboard.php" class="block px-4 py-2 bg-[#E4C988] rounded hover:bg-[#D9C38C]">🏠 Dashboard</a>
+            <a href="dashboardguru.php" class="block px-4 py-2 bg-[#E4C988] rounded hover:bg-[#D9C38C]">🏠 Dashboard</a>
             <a href="melihat_absensi.php" class="block px-4 py-2 rounded hover:bg-[#D9C38C]">📝 Absensi </a>
             <a href="jadwalmengajar.php" class="block px-4 py-2 rounded hover:bg-[#D9C38C]">📝 Jadwal Mengajar </a>
             <a href="Pengaturan.php" class="block px-4 py-2 rounded hover:bg-[#D9C38C]">📝 Pengaturan </a>
@@ -62,7 +63,7 @@ if ($result && mysqli_num_rows($result) > 0) {
         <div class="bg-white rounded-lg p-6 shadow border border-[#E4C988]">
             <h3 class="text-xl font-semibold mb-4 text-[#C08261]">Profil Guru</h3>
             <div class="flex flex-col md:flex-row items-center gap-6">
-                <div class="w-40 h-40 overflow-hidden rounded-full border-4 border-[#F5E8C7] shadow">
+                 <div class="w-40 h-40 overflow-hidden rounded-full border-4 border-[#F5E8C7] shadow">
                     <img src="uploads/<?= htmlspecialchars($user['foto']) ?>" alt="Foto Profil" class="w-full h-full object-cover">
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full mt-4 md:mt-0">

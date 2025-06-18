@@ -1,6 +1,6 @@
 <?php
-session_start();
 include 'koneksi.php';
+session_start();
 
 $error = '';
 
@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Cek data dengan prepared statement
+    // Cek data
     $stmt = $conn->prepare("SELECT * FROM guru WHERE username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
@@ -16,15 +16,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user = $result->fetch_assoc();
 
     if ($user) {
-        // Cek password hash
         if (password_verify($password, $user['password'])) {
             // Set session
-            $_SESSION['nip']   = $user['nip'];
-            $_SESSION['nama']  = $user['nama'];
-            $_SESSION['mapel'] = $user['mapel'];
-            $_SESSION['foto']  = $user['foto'] ?? '';
+            $_SESSION['username'] = $user['username']; // ← ini kunci
+            $_SESSION['nip']      = $user['nip'];
+            $_SESSION['nama']     = $user['nama'];
+            $_SESSION['mapel']    = $user['mapel'];
+            $_SESSION['foto']     = $user['foto'] ?? '';
 
-            header("Location: dashboard.php");
+            header("Location: dashboardguru.php");
             exit;
         } else {
             $error = "Password salah!";
