@@ -7,10 +7,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $nip      = $_POST['nip'];
     $nama     = $_POST['nama'];
+    $gelar    = $_POST['gelar'];
     $mapel    = $_POST['mapel'];
-    $password = password_hash($_POST['password'], PASSWORD_BCRYPT); // pakai BCRYPT supaya aman
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-     // Upload foto jika ada
+    // Proses upload foto
     $foto_name = '';
     if (isset($_FILES['foto']) && $_FILES['foto']['error'] == 0) {
         $target_dir = "uploads/";
@@ -22,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file);
     }
 
-    // Cek apakah username sudah ada
+    // Cek username
     $cek = $conn->prepare("SELECT * FROM guru WHERE username = ?");
     $cek->bind_param("s", $username);
     $cek->execute();
@@ -31,8 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($result->num_rows > 0) {
         $error = "Username sudah terdaftar.";
     } else {
-        $stmt = $conn->prepare("INSERT INTO guru (username, nip, nama, mapel, password) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssss", $username, $nip, $nama, $mapel, $password);
+        $stmt = $conn->prepare("INSERT INTO guru (username, nip, nama, gelar, mapel, password, foto) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssss", $username, $nip, $nama, $gelar, $mapel, $password, $foto_name);
 
         if ($stmt->execute()) {
             $success = "Register berhasil. Silakan login.";
@@ -42,7 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="bg-red-100 text-red-700 px-4 py-2 mb-4 rounded"><?= $error ?></div>
     <?php endif; ?>
 
-    <form method="POST" class="space-y-4">
+    <form method="POST" enctype="multipart/form-data" class="space-y-4">
         <div>
             <label class="block">Username</label>
             <input type="text" name="username" required class="w-full px-3 py-2 border rounded">
@@ -73,12 +73,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <label class="block">Nama</label>
             <input type="text" name="nama" required class="w-full px-3 py-2 border rounded">
         </div>
-
-         <div>
+        <div>
             <label class="block">Gelar</label>
             <input type="text" name="gelar" required class="w-full px-3 py-2 border rounded">
         </div>
-
         <div>
             <label class="block">Mata Pelajaran</label>
             <input type="text" name="mapel" required class="w-full px-3 py-2 border rounded">
@@ -87,9 +85,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <label class="block">Password</label>
             <input type="password" name="password" required class="w-full px-3 py-2 border rounded">
         </div>
-
-        <div><label class="block">Foto</label><input type="file" name="foto" accept="image/*" class="w-full px-3 py-2 border rounded"></div>
-
+        <div>
+            <label class="block">Foto</label>
+            <input type="file" name="foto" accept="image/*" class="w-full px-3 py-2 border rounded">
+        </div>
         <button type="submit" class="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">
             Register
         </button>
@@ -97,4 +96,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <p class="text-center mt-4 text-sm">Sudah punya akun? <a href="login.php" class="text-blue-500 underline">Login</a></p>
 </div>
 </body>
-</html>    
+</html>
