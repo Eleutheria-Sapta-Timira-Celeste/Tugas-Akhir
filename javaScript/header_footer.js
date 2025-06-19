@@ -2,9 +2,7 @@ function spmb() {
     window.location.href = 'joinus.php';
 }
 
-function developers() {
-    window.location.href = "developers.php";
-}
+
 function mailschool(){
     window.location.href = "mailto:371smppgri@gmail.com";
 }
