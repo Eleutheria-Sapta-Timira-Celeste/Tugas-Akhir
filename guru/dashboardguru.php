@@ -46,7 +46,7 @@ if ($result && $result->num_rows > 0) {
     <aside class="w-64 bg-[#F5E8C7] text-gray-800 min-h-full p-6 shadow-md">
         <nav class="space-y-4">
             <a href="dashboardguru.php" class="block px-4 py-2 bg-[#E4C988] rounded hover:bg-[#D9C38C]">🏠 Dashboard</a>
-            <a href="melihat_absensi.php" class="block px-4 py-2 rounded hover:bg-[#D9C38C]">📝 Absensi </a>
+            <a href="inputabsensi.php" class="block px-4 py-2 rounded hover:bg-[#D9C38C]">📝 Absensi </a>
             <a href="jadwalmengajar.php" class="block px-4 py-2 rounded hover:bg-[#D9C38C]">📝 Jadwal Mengajar </a>
             <a href="Pengaturan.php" class="block px-4 py-2 rounded hover:bg-[#D9C38C]">📝 Pengaturan </a>
         </nav>
