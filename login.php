@@ -38,8 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 // Tambahkan untuk siswa
                 if ($role === 'siswa') {
-                    $_SESSION['nis'] = $user['nis'];
                     $_SESSION['nama'] = $user['nama'];
+                    $_SESSION['nis'] = $user['nis'];
                     $_SESSION['foto'] = $user['foto'] ?? 'default.png';
                 }
 

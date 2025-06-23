@@ -11,6 +11,19 @@ $query->bind_param("s", $username);
 $query->execute();
 $data = $query->get_result()->fetch_assoc();
 
+// Jika data tidak ditemukan, buat array kosong biar tidak error
+if (!$data) {
+    $data = [
+        'username' => '',
+        'nip' => '',
+        'nama' => '',
+        'gelar' => '',
+        'mapel' => '',
+        'foto' => '',
+    ];
+    $msg = "<div class='text-red-600 font-bold mb-2'>Data guru tidak ditemukan. Silakan hubungi admin.</div>";
+}
+
 // Update profil
 if (isset($_POST['update_profile'])) {
     $nip   = $_POST['nip'];
@@ -58,6 +71,7 @@ if (isset($_POST['update_password'])) {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -95,7 +109,8 @@ if (isset($_POST['update_password'])) {
             <div>
                 <label class="block mb-1 font-semibold text-gray-700">NIP</label>
                 <input type="text" name="nip" value="<?= htmlspecialchars($data['nip']) ?>" required class="w-full p-3 border border-orange-200 rounded focus:outline-none focus:ring-2 focus:ring-orange-400 transition">
-            </div>
+
+</div>
             <div>
                 <label class="block mb-1 font-semibold text-gray-700">Nama</label>
                 <input type="text" name="nama" value="<?= htmlspecialchars($data['nama']) ?>" required class="w-full p-3 border border-orange-200 rounded focus:outline-none focus:ring-2 focus:ring-orange-400 transition">

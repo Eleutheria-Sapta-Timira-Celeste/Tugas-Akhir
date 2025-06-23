@@ -70,39 +70,42 @@ $data_absensi = $connection->query("SELECT * FROM absensi WHERE username = '$use
                 Riwayat Absensi Saya
             </h2>
 
-            <div class="overflow-x-auto mt-6">
-                <table class="w-full border-collapse rounded-xl overflow-hidden shadow">
-                    <thead>
-                        <tr class="bg-gradient-to-r from-orange-500 to-yellow-400 text-white">
-                            <th class="p-3 text-left">Tanggal</th>
-                            <th class="p-3 text-left">Kelas</th>
-                            <th class="p-3 text-left">Keterangan</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php while ($row = $data_absensi->fetch_assoc()) { 
-                            $badgeColor = [
-                                'Hadir' => 'bg-green-100 text-green-700',
-                                'Alpha' => 'bg-red-100 text-red-700',
-                                'Izin'  => 'bg-yellow-100 text-yellow-700',
-                                'Sakit' => 'bg-blue-100 text-blue-700'
-                            ];
-                            $ket = htmlspecialchars($row['keterangan']);
-                            $color = $badgeColor[$ket] ?? 'bg-gray-100 text-gray-700';
-                        ?>
-                        <tr class="hover:bg-orange-50 transition-colors duration-200 even:bg-gray-50">
-                            <td class="p-3"><?= htmlspecialchars($row['tanggal']) ?></td>
-                            <td class="p-3"><?= htmlspecialchars($row['kelas']) ?></td>
-                            <td class="p-3">
-                                <span class="px-3 py-1 rounded-full text-xs font-semibold <?= $color ?>">
-                                    <?= $ket ?>
-                                </span>
-                            </td>
-                        </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-            </div>
+           <div class="overflow-x-auto mt-6">
+    <table class="w-full border-collapse rounded-xl overflow-hidden shadow">
+        <thead>
+            <tr class="bg-gradient-to-r from-orange-500 to-yellow-400 text-white">
+                <th class="p-3 text-left">Tanggal</th>
+                <th class="p-3 text-left">Jam</th> <!-- Kolom Jam -->
+                <th class="p-3 text-left">Kelas</th>
+                <th class="p-3 text-left">Keterangan</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php while ($row = $data_absensi->fetch_assoc()) { 
+                $badgeColor = [
+                    'Hadir' => 'bg-green-100 text-green-700',
+                    'Alpha' => 'bg-red-100 text-red-700',
+                    'Izin'  => 'bg-yellow-100 text-yellow-700',
+                    'Sakit' => 'bg-blue-100 text-blue-700'
+                ];
+                $ket = htmlspecialchars($row['status']);
+                $color = $badgeColor[$ket] ?? 'bg-gray-100 text-gray-700';
+            ?>
+            <tr class="hover:bg-orange-50 transition-colors duration-200 even:bg-gray-50">
+                <td class="p-3"><?= htmlspecialchars($row['tanggal']) ?></td>
+                <td class="p-3"><?= htmlspecialchars(date('H:i', strtotime($row['jam']))) ?></td> <!-- Tampilkan jam -->
+                <td class="p-3"><?= htmlspecialchars($row['kelas']) ?></td>
+                <td class="p-3">
+                    <span class="px-3 py-1 rounded-full text-xs font-semibold <?= $color ?>">
+                        <?= $ket ?>
+                    </span>
+                </td>
+            </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+</div>
+
         </div>
     </main>
 

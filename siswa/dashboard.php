@@ -1,14 +1,15 @@
 <?php
 session_start();
-include '../connection/database.php';
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'siswa') {
     header("Location: /Tugas-Akhir/login.php");
     exit();
 }
 
+include '../connection/database.php';
 $username = $_SESSION['username'];
 $foto     = $_SESSION['foto'] ?? 'default.png';
+
 
 // Ambil data siswa
 $query = "SELECT * FROM siswa WHERE username = ?";
