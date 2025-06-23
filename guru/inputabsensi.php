@@ -84,7 +84,7 @@ $info = $_SESSION['absensi_header'] ?? null;
     <!-- Sidebar -->
     <aside class="w-64 bg-[#F5E8C7] p-6 shadow-md">
         <nav class="space-y-4">
-            <a href="dashboardguru.php" class="block px-4 py-2 hover:bg-[#D9C38C]">🏠 Dashboard</a>
+            <a href="dashboard.php" class="block px-4 py-2 hover:bg-[#D9C38C]">🏠 Dashboard</a>
             <a href="inputabsensi.php" class="block px-4 py-2 bg-[#E4C988] rounded">📝 Input Absensi</a>
             <a href="Pengaturan.php" class="block px-4 py-2 hover:bg-[#D9C38C]">⚙️ Pengaturan</a>
         </nav>
@@ -161,11 +161,51 @@ $info = $_SESSION['absensi_header'] ?? null;
                     <option value="Alpha">Alpha</option>
                 </select>
             </div>
-            <button type="submit" name="simpan_siswa" class="bg-[#C08261] text-white px-4 py-2 rounded">Simpan Kehadiran</button>
+            <button type="submit" style="background-color: #ef6c00;" class="hover:opacity-90 text-white px-4 py-2 rounded">Simpan Kehadiran</button>
         </form>
         <?php endif; ?>
 
         <!-- Tabel Absensi -->
+<<<<<<< HEAD
+        <div class="bg-white p-6 rounded shadow border border-[#E4C988] overflow-auto">
+            <h3 class="text-xl font-semibold text-[#C08261] mb-4">Data Absensi Terbaru</h3>
+            <table class="min-w-full table-auto border text-sm text-left">
+                <thead class="bg-[#F5E8C7] text-gray-800">
+                    <tr>
+                        <th class="border px-4 py-2">Tanggal</th>
+                        <th class="border px-4 py-2">Nama</th>
+                        <th class="border px-4 py-2">Kelas</th>
+                        <th class="border px-4 py-2">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($row = $data_absensi->fetch_assoc()): ?>
+                    <tr class="hover:bg-gray-100">
+                        <td class="border px-4 py-2"><?= htmlspecialchars($row['tanggal']) ?></td>
+                        <td class="border px-4 py-2"><?= htmlspecialchars($row['nama_siswa']) ?></td>
+                        <td class="border px-4 py-2"><?= htmlspecialchars($row['kelas']) ?></td>
+                        <td class="border px-4 py-2"><?= htmlspecialchars($row['status']) ?></td>
+                    </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+
+            <?php if ($info): ?>
+    <!-- Tombol Cetak -->
+
+    <div class="bg-white p-6 rounded shadow border border-[#] overflow-auto mt-6">
+        <form action="cetak_absensi.php" method="get" target="_blank">
+            <input type="hidden" name="kelas" value="<?= htmlspecialchars($info['kelas']) ?>">
+            <input type="hidden" name="tanggal" value="<?= htmlspecialchars($info['tanggal']) ?>">
+            <input type="hidden" name="jam" value="<?= htmlspecialchars($info['jam']) ?>">
+            <button type="submit" style="background-color: #ef6c00;" class="hover:opacity-90 text-white px-4 py-2 rounded">
+    🖨️ Cetak Absensi
+</button>
+        </form>
+    </div>
+<?php endif; ?>
+        </div>
+=======
        <!-- Tabel Absensi -->
 <div class="bg-white p-6 rounded shadow border border-[#E4C988] overflow-auto">
     <h3 class="text-xl font-semibold text-[#C08261] mb-4">Data Absensi Terbaru</h3>
@@ -193,6 +233,7 @@ $info = $_SESSION['absensi_header'] ?? null;
     </table>
 </div>
 
+>>>>>>> 463c37e5efe5526b91dfece515aab9714be0101f
     </main>
 </div>
 
