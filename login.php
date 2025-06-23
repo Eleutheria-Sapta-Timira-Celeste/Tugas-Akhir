@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Multi-Role</title>
+    <title>Login Pengguna</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" type="image/x-icon" href="assets/logo.png">
 </head>
@@ -111,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <a href="lupa_password.php" class="text-sm text-blue-500 hover:text-blue-700">Lupa Password?</a>
                     </div>
             
-                    <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
+                    <button type="submit" class="w-full bg-[#ef6c00] text-white py-2 rounded hover:bg-[#ef6c00]">
                         Login
                     </button>
                 </form>
