@@ -84,7 +84,7 @@ if (isset($_POST['update_password'])) {
     <aside class="w-64 bg-[#F5E8C7] text-gray-800 min-h-full p-6 shadow-md">
         <nav class="space-y-4">
             <a href="dashboard.php" class="block px-4 py-2 rounded hover:bg-[#D9C38C]">🏠 Dashboard</a>
-            <a href="lihat_absensi.php" class="block px-4 py-2 rounded hover:bg-[#D9C38C]">📝 Absensi</a>
+            <a href="melihat_absensi.php" class="block px-4 py-2 rounded hover:bg-[#D9C38C]">📝 Absensi</a>
             <a href="pengaturan.php" class="block px-4 py-2 bg-[#E4C988] rounded hover:bg-[#D9C38C]">⚙️ Pengaturan</a>
         </nav>
     </aside>
