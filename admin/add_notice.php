@@ -2,138 +2,118 @@
 include '../connection/database.php';
 session_start();
 
-if (!isset($_SESSION["identity_code"])) {
-    header("Location: login.php");
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    header("Location: ../login.php");
     exit();
 }
 
-if ($_SESSION["isadmin"] != 1) {
-    header("Location: scribe.php");
-    exit();
-}
-// Method POST It works now
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+    // Publish new notice
     if (isset($_POST['publish_notice'])) {
 
         $fileUploadName = $_FILES['file-upload']['name'];
         $fileUploadTmp = $_FILES['file-upload']['tmp_name'];
-        $fullServerPath = "";
-
-        $targetDirectory = '../assects/images/notices_files/';
-        $targetFilePath = "../assects/images/notices_files/" . basename($fileUploadName);
         $sqlfileurl = "";
 
-        if (move_uploaded_file($fileUploadTmp, $targetFilePath)) {
+        $targetDirectory = '../assects/images/notices_files/';
+        $targetFilePath = $targetDirectory . basename($fileUploadName);
 
+        if (move_uploaded_file($fileUploadTmp, $targetFilePath)) {
             $sqlfileurl = "assects/images/notices_files/" . basename($fileUploadName);
         }
 
-        date_default_timezone_set('Asia/Kathmandu');
+        date_default_timezone_set('Asia/Jakarta');
         $currentDate = date("d/m/Y");
         $currentTime = date("h:i A");
 
-        if ($connectionobj->connect_error) {
-            die("Connection failed: " . $connectionobj->connect_error);
-        }
-
-        // Retrieve the description from the textarea
+        // Data
         $description = $_POST['description'];
         $about_notice = $_POST['about_notice'];
-        $posted_by = $_SESSION["usr_nam"];
-        $logo = $_SESSION["profile_pic"];
+        $posted_by = $_SESSION["username"];
+        $logo = isset($_SESSION["foto"]) ? $_SESSION["foto"] : "default.jpg";
         $last_modified_default = "Not Modified";
 
-        // Insert data into the school_notice table
-        $sql = "INSERT INTO school_notice (logo, notice_description, posted_by, date, time, image_url, about, last_modified) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-
-        $stmt = $connectionobj->prepare($sql);
+// lanjut insert ke database...
 
 
+        // Insert ke database
+        $sql = "INSERT INTO school_notice (logo, notice_description, posted_by, date, time, image_url, about, last_modified) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+        $stmt = $connection->prepare($sql);
         $stmt->bind_param("ssssssss", $logo, $description, $posted_by, $currentDate, $currentTime, $sqlfileurl, $about_notice, $last_modified_default);
 
         if ($stmt->execute()) {
-            echo '
-            <script>
-            alert("Notice has been published sucessfully")
-            //window.location.replace("add_notice.php");
-            
+            echo '<script>
+                alert("Notice berhasil dipublish!");
+                window.location.replace("add_notice.php");
             </script>';
         } else {
             echo "Error: " . $stmt->error;
         }
 
         $stmt->close();
-        $connectionobj->close();
     }
 
+    // Delete notice
     if (isset($_POST['notice_delete'])) {
         $noticeId = $_POST["notice_id"];
-        mysqli_query($connection, "DELETE FROM `school_notice` WHERE id = $noticeId;");
-        echo '
-            <script>
+        mysqli_query($connection, "DELETE FROM `school_notice` WHERE id = $noticeId");
+        echo '<script>
             window.location.replace("add_notice.php");
-            
-            </script>';
+        </script>';
         exit;
     }
 
+    // Update notice
     if (isset($_POST['update_notice'])) {
         $noticeId = $_POST["notice_id"];
         $IDImage = 'file-upload-modified' . $noticeId;
         $fileUploadName = $_FILES[$IDImage]['name'];
         $fileUploadTmp = $_FILES[$IDImage]['tmp_name'];
-
-
-        $targetDirectory = '../assects/images/notices_files/';
-        $targetFilePath = "../assects/images/notices_files/" . basename($fileUploadName);
         $sqlfileurl = $_POST["image_name"];
 
-        if (move_uploaded_file($fileUploadTmp, $targetFilePath)) {
+        $targetDirectory = '../assects/images/notices_files/';
+        $targetFilePath = $targetDirectory . basename($fileUploadName);
 
+        if (move_uploaded_file($fileUploadTmp, $targetFilePath)) {
             $sqlfileurl = "assects/images/notices_files/" . basename($fileUploadName);
         }
 
-        date_default_timezone_set('Asia/Kathmandu');
+        date_default_timezone_set('Asia/Jakarta');
         $currentDate = date("d/m/Y");
         $currentTime = date("h:i A");
 
-        if ($connectionobj->connect_error) {
-            die("Connection failed: " . $connectionobj->connect_error);
-        }
-
-        // Retrieve the description from the textarea
         $description = $_POST['notice_description'];
         $about_notice = $_POST['about_notice'];
-
         $last_modified_default = $currentTime . " " . $currentDate;
 
-        // Insert data into the school_notice table
-        $sql = "UPDATE school_notice SET notice_description=?, about=?, image_url=?, last_modified=? WHERE id=?";
+        $sql = "UPDATE school_notice 
+                SET notice_description = ?, about = ?, image_url = ?, last_modified = ? 
+                WHERE id = ?";
 
-        $stmt = $connectionobj->prepare($sql);
-
-
-        $stmt->bind_param("sssss", $description, $about_notice, $sqlfileurl, $last_modified_default, $noticeId);
+        $stmt = $connection->prepare($sql);
+        $stmt->bind_param("ssssi", $description, $about_notice, $sqlfileurl, $last_modified_default, $noticeId);
 
         if ($stmt->execute()) {
-            echo '
-            <script>
-            alert("Notice has been updated sucessfully")
-            window.location.replace("add_notice.php");
-            
+            echo '<script>
+                alert("Notice berhasil diupdate!");
+                window.location.replace("add_notice.php");
             </script>';
         } else {
             echo "Error: " . $stmt->error;
         }
 
         $stmt->close();
-        $connectionobj->close();
     }
-}
 
+    // Tutup koneksi
+    mysqli_close($connection);
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -175,7 +155,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </svg>
                                 <div class="flex text-sm text-gray-600">
                                     <label for="file-upload"
-                                        class="relative cursor-pointer bg-[#fc941e] rounded-md font-medium text-[#222222] hover:text-black focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                                       class="relative cursor-pointer bg-[#fc941e] rounded-md font-medium text-[#222222] hover:text-black focus:outline-none">
+
                                         <span class="">Tambahkan File</span>
                                         <input type="file" name="file-upload" id="file-upload" type="file"
                                             class="sr-only" onchange="displayFileName()">

@@ -1,52 +1,71 @@
 <?php
 session_start();
-include 'cek_login.php';
-include 'koneksi.php';
+include '../connection/database.php';
+
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'guru') {
+    header("Location: /Tugas-Akhir/login.php");
+    exit();
+}
 
 $username = $_SESSION['username'];
-$nip      = $_SESSION['nip'];
-$nama     = $_SESSION['nama'];
-$mapel    = $_SESSION['mapel'];
-$foto     = $_SESSION['foto'] ?? 'default.png';
+$nama     = $_SESSION['nama']  ?? 'Guru';
+$mapel    = $_SESSION['mapel'] ?? 'Mapel';
 
 $pesan = "";
 
-// Reset semua absensi
-if (isset($_POST['reset'])) {
-    if ($conn->query("DELETE FROM absensi")) {
-        unset($_SESSION['absensi_header']);
-        $pesan = "Data absensi berhasil direset.";
-    } else {
-        $pesan = "Gagal mereset data absensi.";
-    }
-}
-
-// Simpan header hanya sekali
+// Simpan header absensi
 if (isset($_POST['simpan_header'])) {
     $_SESSION['absensi_header'] = [
-        'mapel'   => $_POST['mapel'],
+        'kelas'   => $_POST['kelas'],
         'tanggal' => $_POST['tanggal'],
         'jam'     => $_POST['jam'],
-        'kelas'   => $_POST['kelas']
+        'mapel'   => $mapel
     ];
+    $pesan = "Header absensi berhasil disimpan!";
 }
 
 // Simpan absensi siswa
 if (isset($_POST['simpan_siswa']) && isset($_SESSION['absensi_header'])) {
     $h = $_SESSION['absensi_header'];
-    $nama_siswa = $_POST['nama_siswa'];
-    $status     = $_POST['status'];
+    $username_siswa = $_POST['username_siswa'];
+    $status         = $_POST['status'];
 
-    $stmt = $conn->prepare("INSERT INTO absensi (mapel, tanggal, jam, kelas, nama_siswa, status) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssss", $h['mapel'], $h['tanggal'], $h['jam'], $h['kelas'], $nama_siswa, $status);
-    if ($stmt->execute()) {
-        $pesan = "Absensi berhasil disimpan!";
+    // Ambil data siswa
+    $stmt_siswa = $connection->prepare("SELECT nama, kelas FROM siswa WHERE username = ?");
+    $stmt_siswa->bind_param("s", $username_siswa);
+    $stmt_siswa->execute();
+    $result_siswa = $stmt_siswa->get_result();
+
+    if ($result_siswa->num_rows > 0) {
+        $siswa = $result_siswa->fetch_assoc();
+        $nama_siswa = $siswa['nama'];
+        $kelas      = $siswa['kelas'];
+
+        // Cek apakah sudah pernah input absensi di tanggal dan jam yg sama (hindari double)
+        $stmt_check = $connection->prepare("SELECT * FROM absensi WHERE username = ? AND tanggal = ? AND jam = ?");
+        $stmt_check->bind_param("sss", $username_siswa, $h['tanggal'], $h['jam']);
+        $stmt_check->execute();
+        $check_result = $stmt_check->get_result();
+
+        if ($check_result->num_rows == 0) {
+            // Insert absensi
+            $stmt_insert = $connection->prepare("INSERT INTO absensi (username, nama_siswa, kelas, mapel, jam, status, tanggal) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            $stmt_insert->bind_param("sssssss", $username_siswa, $nama_siswa, $kelas, $h['mapel'], $h['jam'], $status, $h['tanggal']);
+            
+            if ($stmt_insert->execute()) {
+                $pesan = "Absensi untuk $nama_siswa berhasil disimpan!";
+            } else {
+                $pesan = "Gagal menyimpan absensi!";
+            }
+        } else {
+            $pesan = "Absensi untuk $nama_siswa sudah ada!";
+        }
     } else {
-        $pesan = "Gagal menyimpan absensi.";
+        $pesan = "Data siswa tidak ditemukan!";
     }
 }
 
-$data_absensi = $conn->query("SELECT * FROM absensi ORDER BY nama_siswa ASC LIMIT 50");
+$data_absensi = $connection->query("SELECT * FROM absensi ORDER BY tanggal DESC LIMIT 50");
 $info = $_SESSION['absensi_header'] ?? null;
 ?>
 
@@ -59,18 +78,20 @@ $info = $_SESSION['absensi_header'] ?? null;
 </head>
 <body class="bg-[#FFF9F0] flex flex-col min-h-screen">
 
-<?php include('../includes/header_siswa.php'); ?>
+<?php include('../includes/header_guru.php'); ?>
 
 <div class="flex flex-1">
+    <!-- Sidebar -->
     <aside class="w-64 bg-[#F5E8C7] p-6 shadow-md">
         <nav class="space-y-4">
             <a href="dashboardguru.php" class="block px-4 py-2 hover:bg-[#D9C38C]">🏠 Dashboard</a>
-            <a href="input_absensi.php" class="block px-4 py-2 bg-[#E4C988] rounded">📝 Input Absensi</a>
+            <a href="inputabsensi.php" class="block px-4 py-2 bg-[#E4C988] rounded">📝 Input Absensi</a>
             <a href="jadwalmengajar.php" class="block px-4 py-2 hover:bg-[#D9C38C]">📅 Jadwal Mengajar</a>
             <a href="Pengaturan.php" class="block px-4 py-2 hover:bg-[#D9C38C]">⚙️ Pengaturan</a>
         </nav>
     </aside>
 
+    <!-- Main Content -->
     <main class="flex-1 p-6">
         <h2 class="text-2xl font-bold mb-4">Form Input Absensi</h2>
 
@@ -83,7 +104,6 @@ $info = $_SESSION['absensi_header'] ?? null;
         <!-- Form Header -->
         <?php if (!$info): ?>
         <form method="post" class="bg-white p-6 rounded shadow border border-[#E4C988] max-w-xl mb-8">
-            <input type="hidden" name="mapel" value="<?= htmlspecialchars($mapel) ?>">
             <div class="mb-4">
                 <label class="block">Hari & Tanggal</label>
                 <input type="date" name="tanggal" required class="w-full px-3 py-2 rounded border bg-gray-100">
@@ -105,30 +125,15 @@ $info = $_SESSION['absensi_header'] ?? null;
         </form>
         <?php endif; ?>
 
-        <!-- Informasi Absensi -->
+        <!-- Info Header -->
         <?php if ($info): ?>
         <div class="bg-white p-4 rounded border border-[#E4C988] text-sm text-gray-800 mb-4">
             <div class="space-y-1 text-sm">
-                <div class="flex">
-                    <div class="w-36 font-semibold">Guru</div>
-                    <div>: <?= htmlspecialchars($nama) ?></div>
-                </div>
-                <div class="flex">
-                    <div class="w-36 font-semibold">Mata Pelajaran</div>
-                    <div>: <?= htmlspecialchars($info['mapel']) ?></div>
-                </div>
-                <div class="flex">
-                    <div class="w-36 font-semibold">Kelas</div>
-                    <div>: <?= htmlspecialchars($info['kelas']) ?></div>
-                </div>
-                <div class="flex">
-                    <div class="w-36 font-semibold">Tanggal</div>
-                    <div>: <?= date('d/m/Y', strtotime($info['tanggal'])) ?></div>
-                </div>
-                <div class="flex">
-                    <div class="w-36 font-semibold">Jam</div>
-                    <div>: <?= date('H.i', strtotime($info['jam'])) ?></div>
-                </div>
+                <div class="flex"><div class="w-36 font-semibold">Guru</div><div>: <?= htmlspecialchars($nama) ?></div></div>
+                <div class="flex"><div class="w-36 font-semibold">Mata Pelajaran</div><div>: <?= htmlspecialchars($info['mapel']) ?></div></div>
+                <div class="flex"><div class="w-36 font-semibold">Kelas</div><div>: <?= htmlspecialchars($info['kelas']) ?></div></div>
+                <div class="flex"><div class="w-36 font-semibold">Tanggal</div><div>: <?= date('d/m/Y', strtotime($info['tanggal'])) ?></div></div>
+                <div class="flex"><div class="w-36 font-semibold">Jam</div><div>: <?= date('H.i', strtotime($info['jam'])) ?></div></div>
             </div>
         </div>
 
@@ -136,7 +141,16 @@ $info = $_SESSION['absensi_header'] ?? null;
         <form method="post" class="bg-white p-6 rounded shadow border border-[#E4C988] max-w-xl mb-10">
             <div class="mb-4">
                 <label class="block">Nama Siswa</label>
-                <input type="text" name="nama_siswa" required class="w-full px-3 py-2 rounded border bg-gray-100">
+                <select name="username_siswa" required class="w-full px-3 py-2 rounded border bg-gray-100">
+                    <option value="">-- Pilih Siswa --</option>
+                    <?php
+                    $kelas_q = $connection->real_escape_string($info['kelas']);
+                    $siswa_q = $connection->query("SELECT username, nama FROM siswa WHERE kelas = '$kelas_q' ORDER BY nama ASC");
+                    while ($s = $siswa_q->fetch_assoc()) {
+                        echo '<option value="' . htmlspecialchars($s['username']) . '">' . htmlspecialchars($s['nama']) . '</option>';
+                    }
+                    ?>
+                </select>
             </div>
             <div class="mb-4">
                 <label class="block">Status Kehadiran</label>
@@ -158,37 +172,28 @@ $info = $_SESSION['absensi_header'] ?? null;
             <table class="min-w-full table-auto border text-sm text-left">
                 <thead class="bg-[#F5E8C7] text-gray-800">
                     <tr>
-                        <th class="border px-4 py-2">No</th>
+                        <th class="border px-4 py-2">Tanggal</th>
                         <th class="border px-4 py-2">Nama</th>
+                        <th class="border px-4 py-2">Kelas</th>
                         <th class="border px-4 py-2">Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $no = 1; while ($row = $data_absensi->fetch_assoc()): ?>
-                        <tr class="hover:bg-gray-100">
-                            <td class="border px-4 py-2"><?= $no++ ?></td>
-                            <td class="border px-4 py-2"><?= htmlspecialchars($row['nama_siswa']) ?></td>
-                            <td class="border px-4 py-2"><?= htmlspecialchars($row['status']) ?></td>
-                        </tr>
+                    <?php while ($row = $data_absensi->fetch_assoc()): ?>
+                    <tr class="hover:bg-gray-100">
+                        <td class="border px-4 py-2"><?= htmlspecialchars($row['tanggal']) ?></td>
+                        <td class="border px-4 py-2"><?= htmlspecialchars($row['nama_siswa']) ?></td>
+                        <td class="border px-4 py-2"><?= htmlspecialchars($row['kelas']) ?></td>
+                        <td class="border px-4 py-2"><?= htmlspecialchars($row['status']) ?></td>
+                    </tr>
                     <?php endwhile; ?>
                 </tbody>
             </table>
-
-            <!-- Tombol Reset -->
-            <form method="post" onsubmit="return confirm('Yakin ingin reset semua data absensi?')" class="mt-6">
-                <button type="submit" name="reset" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
-                    🔄 Reset Semua Absensi
-                </button>
-            </form>
-
-            <!-- Tombol Cetak -->
-<a href="cetak_absensi.php" target="_blank" class="inline-block mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-    🖨️ Cetak Absensi
-</a>
         </div>
     </main>
 </div>
 
 <?php include('../includes/admin_footer.php'); ?>
+
 </body>
 </html>
