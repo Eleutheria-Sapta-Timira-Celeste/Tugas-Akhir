@@ -46,7 +46,7 @@ if ($result && $result->num_rows > 0) {
 <body class="bg-[#FFF9F0] flex flex-col min-h-screen">
 
 <!-- HEADER SISWA -->
-<?php include('../includes/header_siswa.php'); ?>
+ <?php include('../includes/header_siswa.php'); ?> 
 
 <div class="flex flex-1">
 

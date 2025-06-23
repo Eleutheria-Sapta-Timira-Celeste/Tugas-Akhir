@@ -185,7 +185,7 @@ try {
         function registered_students() { window.location.href = "registered_students.php"; }
         function changeRoutine() { window.location.href = "changeRoutine.php"; }
         function changeStaff() { window.location.href = "changeStaff.php"; }
-        function admin() { window.location.href = "admin.php"; }
+        function admin() { window.location.href = "admin_management.php"; }
     </script>
 
 </body>
