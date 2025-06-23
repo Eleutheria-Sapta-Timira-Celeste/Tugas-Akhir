@@ -86,7 +86,6 @@ $info = $_SESSION['absensi_header'] ?? null;
         <nav class="space-y-4">
             <a href="dashboardguru.php" class="block px-4 py-2 hover:bg-[#D9C38C]">🏠 Dashboard</a>
             <a href="inputabsensi.php" class="block px-4 py-2 bg-[#E4C988] rounded">📝 Input Absensi</a>
-            <a href="jadwalmengajar.php" class="block px-4 py-2 hover:bg-[#D9C38C]">📅 Jadwal Mengajar</a>
             <a href="Pengaturan.php" class="block px-4 py-2 hover:bg-[#D9C38C]">⚙️ Pengaturan</a>
         </nav>
     </aside>
@@ -167,29 +166,33 @@ $info = $_SESSION['absensi_header'] ?? null;
         <?php endif; ?>
 
         <!-- Tabel Absensi -->
-        <div class="bg-white p-6 rounded shadow border border-[#E4C988] overflow-auto">
-            <h3 class="text-xl font-semibold text-[#C08261] mb-4">Data Absensi Terbaru</h3>
-            <table class="min-w-full table-auto border text-sm text-left">
-                <thead class="bg-[#F5E8C7] text-gray-800">
-                    <tr>
-                        <th class="border px-4 py-2">Tanggal</th>
-                        <th class="border px-4 py-2">Nama</th>
-                        <th class="border px-4 py-2">Kelas</th>
-                        <th class="border px-4 py-2">Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php while ($row = $data_absensi->fetch_assoc()): ?>
-                    <tr class="hover:bg-gray-100">
-                        <td class="border px-4 py-2"><?= htmlspecialchars($row['tanggal']) ?></td>
-                        <td class="border px-4 py-2"><?= htmlspecialchars($row['nama_siswa']) ?></td>
-                        <td class="border px-4 py-2"><?= htmlspecialchars($row['kelas']) ?></td>
-                        <td class="border px-4 py-2"><?= htmlspecialchars($row['status']) ?></td>
-                    </tr>
-                    <?php endwhile; ?>
-                </tbody>
-            </table>
-        </div>
+       <!-- Tabel Absensi -->
+<div class="bg-white p-6 rounded shadow border border-[#E4C988] overflow-auto">
+    <h3 class="text-xl font-semibold text-[#C08261] mb-4">Data Absensi Terbaru</h3>
+    <table class="min-w-full table-auto border text-sm text-left">
+        <thead class="bg-[#F5E8C7] text-gray-800">
+            <tr>
+                <th class="border px-4 py-2">Tanggal</th>
+                <th class="border px-4 py-2">Jam</th> <!-- Kolom baru -->
+                <th class="border px-4 py-2">Nama</th>
+                <th class="border px-4 py-2">Kelas</th>
+                <th class="border px-4 py-2">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php while ($row = $data_absensi->fetch_assoc()): ?>
+            <tr class="hover:bg-gray-100">
+                <td class="border px-4 py-2"><?= htmlspecialchars($row['tanggal']) ?></td>
+                <td class="border px-4 py-2"><?= htmlspecialchars(date('H:i', strtotime($row['jam']))) ?></td> <!-- Jam -->
+                <td class="border px-4 py-2"><?= htmlspecialchars($row['nama_siswa']) ?></td>
+                <td class="border px-4 py-2"><?= htmlspecialchars($row['kelas']) ?></td>
+                <td class="border px-4 py-2"><?= htmlspecialchars($row['status']) ?></td>
+            </tr>
+            <?php endwhile; ?>
+        </tbody>
+    </table>
+</div>
+
     </main>
 </div>
 
