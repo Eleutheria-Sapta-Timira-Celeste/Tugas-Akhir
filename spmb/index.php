@@ -7,6 +7,10 @@ $db = 'db_pgri371';
 $conn = new mysqli($host, $user, $pass, $db);
 if ($conn->connect_error) {
     die('Koneksi gagal: ' . $conn->connect_error);
+
+   
+
+    
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -84,6 +88,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 $stmt->bind_param(
+
+ 
+
   "ssssssssssiisssiissssssssdsssssds",
   $nama_lengkap,
   $jenis_kelamin,
@@ -121,13 +128,16 @@ $stmt->bind_param(
 );
 
 
+if ($stmt->execute()) {
+    $id_baru = $stmt->insert_id;  // Ambil ID dari data yang baru disimpan
+    $sukses = true;
+} else {
+    $sukses = false;
+    echo "Gagal menyimpan data: " . $stmt->error;
+}
 
+   
 
-    if ($stmt->execute()) {
-        echo "<p class='text-green-600 font-semibold'>Pendaftaran berhasil disimpan.</p>";
-    } else {
-        echo "<p class='text-red-600 font-semibold'>Error: " . htmlspecialchars($stmt->error) . "</p>";
-    }
 }
 ?>
 
@@ -375,13 +385,28 @@ $stmt->bind_param(
       <label for="no_telp_ibu" class="sm:w-40 font-medium">No Telp Ibu</label>
       <input id="no_telp_ibu" name="no_telp_ibu" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
     </div>
+<label for="foto_pas">Tambah Foto (jpg/jpeg/png, maks 2MB)</label><br>
+    <input type="file" name="foto_pas" accept=".jpg,.jpeg,.png" required><br><br>
 
     <!-- Submit button full width -->
     <div class="md:col-span-2">
       <button type="submit" class="bg-[#ef6c00] hover:bg-[#cc5a00] text-white font-bold py-2 px-6 rounded w-full">Daftar</button>
     </div>
   </div>
+
+
 </form>
+
+<form action="cetak_spmb.php" method="get" target="_blank" class="md:col-span-2">
+    <input type="hidden" name="id" value="<?= $id_baru ?>">
+    <button type="submit" class="bg-[#ef6c00] hover:bg-[#cc5a00] text-white font-bold py-2 px-6 rounded w-full">
+        Cetak Bukti Pendaftaran
+    </button>
+</form>
+
+
+
+
     </div>
                     <script>
                         function getNamaHariIndonesia(dayIndex) {
@@ -399,6 +424,9 @@ $stmt->bind_param(
                         const isoFormat = tanggalSekarang.toISOString().split('T')[0];
                         document.getElementById('inputTanggalDaftar').value = isoFormat;
                     </script>
+
+                    
+                    
 <br>
 <?php include('../includes/spmb_footer.php') ?>
 </body>
