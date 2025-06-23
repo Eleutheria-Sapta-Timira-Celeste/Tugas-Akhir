@@ -1,14 +1,9 @@
 <?php
-include "../connection/database.php";
+include '../connection/database.php';
 session_start();
 
-if (!isset($_SESSION["identity_code"])) {
-    header("Location: login.php");
-    exit();
-}
-
-if ($_SESSION["isadmin"] != 1) {
-    header("Location: scribe.php");
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    header("Location: ../login.php");
     exit();
 }
 
@@ -141,7 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 </p>
             </div>
             <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
-                class="mt-10 block text-white bg-[#ef6c00] hover:bg-[#e65c00] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#cc5200] dark:focus:ring-[#cc5200]"
+                class="mt-10 block text-white bg-[#ef6c00] hover:bg-[#e65c00] focus:ring-4 focus:outline-none focus:ring-[#cc5200] font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#cc5200] dark:focus:ring-[#cc5200]"
                 type="button">
                 Tambah Album Baru
             </button>
@@ -181,13 +176,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             <label for="album_name"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Album</label>
                             <input type="text" name="album_name" id="album_name"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#cc5200] focus:border-[#cc5200] block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                 placeholder="Nama Album Baru" required>
                         </div>
 
 
                         <button type="submit" name="submit_new_album"
-                            class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#cc5200] dark:focus:ring-[#cc5200]">Buat</button>
+                            class="w-full text-white bg-[#ef6c00] hover:bg-[#cc5200] focus:ring-4 focus:outline-none focus:ring-[#cc5200] font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#cc5200] dark:focus:ring-[#cc5200]">Buat</button>
 
                     </form>
                 </div>
@@ -197,7 +192,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
     <div class="mx-10 mb-10" id="accordion-color" data-accordion="collapse"
-        data-active-classes="bg-blue-100 dark:bg-gray-800 text-[#ef6c00[ dark:text-white">
+        data-active-classes="bg-[#cc5200] dark:bg-gray-800 text-[#ef6c00[ dark:text-white">
         <?php
         $fetch_all_album = "SELECT * FROM `gallery_album`;";
         $albums = mysqli_query($connection, $fetch_all_album);
@@ -210,11 +205,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                 echo '
         
-        <h2 id="accordion-color-heading-' .
-                    $albumId .
-                    '">
-            <button type="button"
-                class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-800 dark:border-gray-700 dark:text-gray-400 hover:bg-blue-100 dark:hover:bg-gray-800 gap-3"
+      <h2 id="accordion-color-heading-' . $albumId . '">
+           <button type="button"
+                class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-white border border-b-0 border-gray-50 bg-[#fa7c0f] hover:bg-[#e65c00] focus:ring-4 focus:ring-[#cc5200] dark:focus:ring-[#cc5200] dark:border-gray-700 gap-3"
                 data-accordion-target="#accordion-color-body-' . $albumId . '" aria-expanded="false"
                 aria-controls="accordion-color-body-' . $albumId . '">
                 <span>' . $row["album_name"] . '</span>
@@ -224,7 +217,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         d="M9 5 5 1 1 5" />
                 </svg>
             </button>
+
         </h2>
+
         <div id="accordion-color-body-' .
                     $albumId .
                     '" class="hidden" aria-labelledby="accordion-color-heading-' .

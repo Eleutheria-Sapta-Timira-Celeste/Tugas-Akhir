@@ -2,18 +2,12 @@
 include '../connection/database.php';
 session_start();
 
-if (!isset($_SESSION["identity_code"])) {
-    header("Location: login.php");
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    header("Location: ../login.php");
     exit();
 }
 
-if ($_SESSION["isadmin"] != 1) {
-    header("Location: scribe.php");
-    exit();
-}
-// Method POST It works now
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (isset($_POST['add_committe'])) {
 
@@ -276,9 +270,9 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                 </h1>
                 <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base">
                     🎉 Selamat datang di halaman pengelolaan dan pembaruan data staf dan kepanitiaan SMP PGRI 371 Pondok Aren! 📝
-Halaman ini dirancang dengan antarmuka yang mudah digunakan untuk membantu Anda melakukan perubahan data staf maupun struktur kepanitiaan secara efisien.
-Partisipasi Anda sangat penting dalam menjaga keakuratan dan keterkinian data.
-Silakan gunakan fitur yang tersedia untuk memastikan semua informasi tetap terupdate. 🚀
+                        Halaman ini dirancang dengan antarmuka yang mudah digunakan untuk membantu Anda melakukan perubahan data staf maupun struktur kepanitiaan secara efisien.
+                        Partisipasi Anda sangat penting dalam menjaga keakuratan dan keterkinian data.
+                        Silakan gunakan fitur yang tersedia untuk memastikan semua informasi tetap terupdate. 🚀
                 </p>
             </div>
 
@@ -303,7 +297,7 @@ Silakan gunakan fitur yang tersedia untuk memastikan semua informasi tetap terup
                 <!-- Modal header -->
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        Tambah Petugas
+                        Tambah Data Guru
                     </h3>
                     <button type="button"
                         class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -354,7 +348,7 @@ Silakan gunakan fitur yang tersedia untuk memastikan semua informasi tetap terup
 
 
                         <button type="submit" name="add_staff"
-                            class="w-full text-white bg-[#ef6c00] hover:bg-[#cc5200] focus:ring-4 focus:outline-none focus:ring-[#cc5200] font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#cc5200] dark:focus:ring-[#cc5200]">Tambah Petugas
+                            class="w-full text-white bg-[#ef6c00] hover:bg-[#cc5200] focus:ring-4 focus:outline-none focus:ring-[#cc5200] font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#cc5200] dark:focus:ring-[#cc5200]">Tambah Data Guru
                             </button>
 
                     </form>
@@ -435,7 +429,7 @@ Silakan gunakan fitur yang tersedia untuk memastikan semua informasi tetap terup
 
     <main>
         <!-- Start block -->
-      <section class="bg-[#ff8a33] dark:bg-[#ff8a33] p-3 mt-5 sm:p-5 antialiased">
+      <section class="bg-gray-50 dark:bg-gray-900 p-3 mt-5 sm:p-5 antialiased">
             <div class="mx-auto max-w-screen-xl px-0 lg:px-12">
                 <!-- Start coding here -->
                 <div class="bg-white dark:bg-white relative shadow-md sm:rounded-lg overflow-hidden">
@@ -647,7 +641,7 @@ Silakan gunakan fitur yang tersedia untuk memastikan semua informasi tetap terup
             <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
                 class="mt-10 block text-white bg-[#ef6c00] hover:bg-[#cc5200] focus:ring-4 focus:outline-none focus:ring-[#cc5200] font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#cc5200] dark:focus:ring-[#cc5200]"
                 type="button">
-                Tambah Petugas
+                Tambah Data Guru
             </button>
 
 
@@ -667,7 +661,7 @@ Silakan gunakan fitur yang tersedia untuk memastikan semua informasi tetap terup
                                 <label for="simple-search" class="sr-only">Search</label>
                                 <div class="relative w-full">
                                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                        <h2><b>Petugas Sekolah</b></h2>
+                                        <h2><b>Data Guru Sekolah</b></h2>
                                     </div>
 
                                 </div>

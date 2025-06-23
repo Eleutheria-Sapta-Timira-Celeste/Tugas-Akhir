@@ -2,13 +2,8 @@
 include '../connection/database.php';
 session_start();
 
-if (!isset($_SESSION["identity_code"])) {
-    header("Location: login.php");
-    exit();
-}
-
-if ($_SESSION["isadmin"] != 1) {
-    header("Location: scribe.php");
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    header("Location: ../login.php");
     exit();
 }
 

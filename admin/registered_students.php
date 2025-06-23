@@ -2,15 +2,12 @@
 include '../connection/database.php';
 session_start();
 
-if (!isset($_SESSION["identity_code"])) {
-    header("Location: login.php");
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    header("Location: ../login.php");
     exit();
 }
 
-if ($_SESSION["isadmin"] != 1) {
-    header("Location: scribe.php");
-    exit();
-}
+if ($_SERVER["REQUEST_METHOD"] === "POST") 
 mysqli_query($connectionobj, "UPDATE `notification` SET total_notification = 0 WHERE id = 1");
 
 if (isset($_POST['student_delete'])) {
@@ -188,11 +185,11 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg"
                 <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Nomor Telepon</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['no_telp'].'</dd></div>
             </dl>
             <div class="flex bottom-0 left-0 justify-center pb-4 space-x-4 w-full">
-            <button data-drawer-dismiss="drawer-read-product-advanced'.$student_Id.'" aria-controls="drawer-read-product-advanced'.$student_Id.'" type="button" class="text-white w-full inline-flex items-center justify-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            <button data-drawer-dismiss="drawer-read-product-advanced'.$student_Id.'" aria-controls="drawer-read-product-advanced'.$student_Id.'" type="button" class="text-white w-full inline-flex items-center justify-center bg-[#ef6c00] hover:bg-[#cc5200] focus:ring-4 focus:outline-none focus:ring-[#cc5200] font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#ef6c00] dark:focus:ring-[#ef6c00]">
                     
                     Back
                 </button>
-                <button onclick="mailto'.$student_Id.'()" type="button" class="inline-flex w-full items-center text-white justify-center bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-900">
+                <button onclick="mailto'.$student_Id.'()" type="button" class="inline-flex w-full items-center text-white justify-center bg-[#ef6c00] hover:bg-[#cc5200] focus:ring-4 focus:outline-none focus:ring-[#ef6c00] font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#ef6c00] dark:focus:ring-[#ef6c00]">
                     <svg aria-hidden="true" class="w-5 h-5 mr-1.5 -ml-1" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M8.098 5.013a.144.144 0 0 1 .202.134V6.3a.5.5 0 0 0 .5.5c.667 0 2.013.005 3.3.822.984.624 1.99 1.76 2.595 3.876-1.02-.983-2.185-1.516-3.205-1.799a8.74 8.74 0 0 0-1.921-.306 7.404 7.404 0 0 0-.798.008h-.013l-.005.001h-.001L8.8 9.9l-.05-.498a.5.5 0 0 0-.45.498v1.153c0 .108-.11.176-.202.134L4.114 8.254a.502.502 0 0 0-.042-.028.147.147 0 0 1 0-.252.497.497 0 0 0 .042-.028l3.984-2.933zM9.3 10.386c.068 0 .143.003.223.006.434.02 1.034.086 1.7.271 1.326.368 2.896 1.202 3.94 3.08a.5.5 0 0 0 .933-.305c-.464-3.71-1.886-5.662-3.46-6.66-1.245-.79-2.527-.942-3.336-.971v-.66a1.144 1.144 0 0 0-1.767-.96l-3.994 2.94a1.147 1.147 0 0 0 0 1.946l3.994 2.94a1.144 1.144 0 0 0 1.767-.96v-.667z" fill="white"></path> <path d="M5.232 4.293a.5.5 0 0 0-.7-.106L.54 7.127a1.147 1.147 0 0 0 0 1.946l3.994 2.94a.5.5 0 1 0 .593-.805L1.114 8.254a.503.503 0 0 0-.042-.028.147.147 0 0 1 0-.252.5.5 0 0 0 .042-.028l4.012-2.954a.5.5 0 0 0 .106-.699z" fill="white"></path>
 
