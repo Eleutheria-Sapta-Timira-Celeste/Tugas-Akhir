@@ -42,8 +42,8 @@ include '../connection/database.php';
             </svg>
         </button>
     </div>
-<<<<<<< HEAD
+
 </header>
-=======
+
 </header>
->>>>>>> 463c37e5efe5526b91dfece515aab9714be0101f
+
