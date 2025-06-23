@@ -84,9 +84,8 @@ $info = $_SESSION['absensi_header'] ?? null;
     <!-- Sidebar -->
     <aside class="w-64 bg-[#F5E8C7] p-6 shadow-md">
         <nav class="space-y-4">
-            <a href="dashboardguru.php" class="block px-4 py-2 hover:bg-[#D9C38C]">🏠 Dashboard</a>
+            <a href="dashboard.php" class="block px-4 py-2 hover:bg-[#D9C38C]">🏠 Dashboard</a>
             <a href="inputabsensi.php" class="block px-4 py-2 bg-[#E4C988] rounded">📝 Input Absensi</a>
-            <a href="jadwalmengajar.php" class="block px-4 py-2 hover:bg-[#D9C38C]">📅 Jadwal Mengajar</a>
             <a href="Pengaturan.php" class="block px-4 py-2 hover:bg-[#D9C38C]">⚙️ Pengaturan</a>
         </nav>
     </aside>
@@ -162,7 +161,7 @@ $info = $_SESSION['absensi_header'] ?? null;
                     <option value="Alpha">Alpha</option>
                 </select>
             </div>
-            <button type="submit" name="simpan_siswa" class="bg-[#C08261] text-white px-4 py-2 rounded">Simpan Kehadiran</button>
+            <button type="submit" style="background-color: #ef6c00;" class="hover:opacity-90 text-white px-4 py-2 rounded">Simpan Kehadiran</button>
         </form>
         <?php endif; ?>
 
@@ -189,6 +188,21 @@ $info = $_SESSION['absensi_header'] ?? null;
                     <?php endwhile; ?>
                 </tbody>
             </table>
+
+            <?php if ($info): ?>
+    <!-- Tombol Cetak -->
+
+    <div class="bg-white p-6 rounded shadow border border-[#] overflow-auto mt-6">
+        <form action="cetak_absensi.php" method="get" target="_blank">
+            <input type="hidden" name="kelas" value="<?= htmlspecialchars($info['kelas']) ?>">
+            <input type="hidden" name="tanggal" value="<?= htmlspecialchars($info['tanggal']) ?>">
+            <input type="hidden" name="jam" value="<?= htmlspecialchars($info['jam']) ?>">
+            <button type="submit" style="background-color: #ef6c00;" class="hover:opacity-90 text-white px-4 py-2 rounded">
+    🖨️ Cetak Absensi
+</button>
+        </form>
+    </div>
+<?php endif; ?>
         </div>
     </main>
 </div>

@@ -66,7 +66,7 @@ $data = $conn->query("SELECT * FROM absensi ORDER BY nama_siswa ASC");
             display: inline-block;
             margin-bottom: 20px;
             padding: 8px 16px;
-            background-color: #3498db;
+            background-color: #ef6c00;
             color: #fff;
             text-decoration: none;
             border-radius: 4px;
@@ -80,7 +80,7 @@ $data = $conn->query("SELECT * FROM absensi ORDER BY nama_siswa ASC");
 </head>
 <body>
 
-<a href="#" onclick="window.print()" class="btn-print">🖨️ Cetak / Print</a>
+<a href="#" onclick="window.print()" class="btn-print">🖨️ Cetak</a>
 
 <h1>SMP PGRI 371 PONDOK AREN</h1>
 <h2>Daftar Absensi Siswa</h2>
