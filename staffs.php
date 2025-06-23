@@ -48,7 +48,6 @@ $defaultavatar = "assects/images/defaults/defaultaltimage.jpg"
                                 <a>' . $row['name'] . '</a>
                             </h3>
                             <p>' . $row['position'] . '</p>
-                            <p>' . $row['contact_no'] . '</p>
                     </div>
                     
             ';
@@ -85,11 +84,9 @@ $defaultavatar = "assects/images/defaults/defaultaltimage.jpg"
                                     <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="' . $row_staff['image_src'] . '" onerror="this.src=`' . $defaultavatar . '`">
                                        <h3 class="mb-1 text-2xl font-bold tracking-tight text-[#ef6c00] dark:text-[#ef6c00]">
 
-                                            <a>' . $row_staff['name'] . '</a>
+                                            <a>' . $row_staff['name'] . ' ' . $row_staff['qualification'] . '</a>
                                         </h3>
                                         <p>' . $row_staff['post'] . ' </p>
-                                        <p>' . $row_staff['qualification'] . '</p>
-                                        <p>' . $row_staff['contact'] . '</p>
                                 </div>
                                 
                                     ';

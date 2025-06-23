@@ -1,11 +1,39 @@
 <?php
 session_start();
-if (!isset($_SESSION['user'])) {
-    header("Location: login.php");
-    exit;
+include '../connection/database.php';
+
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'siswa') {
+    header("Location: /Tugas-Akhir/login.php");
+    exit();
 }
-$user = $_SESSION['user'];
+
+$username = $_SESSION['username'];
+$foto     = $_SESSION['foto'] ?? 'default.png';
+
+// Ambil data siswa
+$query = "SELECT * FROM siswa WHERE username = ?";
+$stmt  = $connection->prepare($query);
+$stmt->bind_param("s", $username);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result && $result->num_rows > 0) {
+    $user = $result->fetch_assoc();
+} else {
+    // Default jika tidak ketemu
+    $user = [
+        'nis'             => '',
+        'nama'            => '',
+        'kelas'           => '',
+        'tempat_lahir'    => '',
+        'tanggal_lahir'   => '',
+        'nama_ayah'       => '',
+        'nama_ibu'        => '',
+        'foto'            => $foto
+    ];
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="id">
@@ -27,7 +55,7 @@ $user = $_SESSION['user'];
         <nav class="space-y-4">
             <a href="dashboard.php" class="block px-4 py-2 bg-[#E4C988] rounded hover:bg-[#D9C38C]">🏠 Dashboard</a>
             <a href="melihat_absensi.php" class="block px-4 py-2 rounded hover:bg-[#D9C38C]">📝 Absensi </a>
-            <a href="Pengaturan.php" class="block px-4 py-2 rounded hover:bg-[#D9C38C]">📝 Pengaturan </a>
+            <a href="Pengaturan.php" class="block px-4 py-2 rounded hover:bg-[#D9C38C]">⚙️ Pengaturan</a>
         </nav>
     </aside>
 

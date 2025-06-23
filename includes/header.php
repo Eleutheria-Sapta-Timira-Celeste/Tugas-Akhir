@@ -29,8 +29,9 @@ function homepage() {
                     <li><a href="notice.php" class="text-sm md:text-base hover:text-gray-900">Pengumuman</a></li>
                     <li><a href="extras.php" class="text-sm md:text-base hover:text-gray-900">Informasi Sekolah</a></li>
                     <li><a href="contactUs.php" class="text-sm md:text-base hover:text-gray-900">Hubungi</a></li>
-
-                    <!-- Dropdown Akses -->
+                    <li><a href="login.php" class="text-sm md:text-base hover:text-gray-900">Akses</a></li>
+<!-- 
+                    Dropdown Akses
                   <div class="relative">
     <button id="dropdownButton" class="text-sm md:text-base mr-5 hover:text-gray-900 inline-flex items-center">
         Akses
@@ -61,7 +62,7 @@ function homepage() {
     });
 </script>
                 
-        </nav>
+        </nav> -->
 
             <button onclick="spmb()"
                 class="inline-flex items-center border-0 py-1 px-3 focus:outline-none rounded text-base mt-4 md:mt-0 text-white bg-[#ef6c00] hover:bg-[#e65c00] focus:outline-none focus:ring-4 focus:ring-[#ef6c00] font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-[#ef6c00] dark:hover:bg-[#ef6coo] dark:focus:ring-[#ef6c00]">SPMB
