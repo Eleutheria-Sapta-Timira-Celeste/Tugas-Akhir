@@ -1,142 +1,91 @@
 <?php
+// Koneksi PDO
 $host = 'localhost';
-$user = 'root';
-$pass = '';
-$db = 'db_pgri371';
+$db   = 'db_pgri371';
+$user = 'root'; // sesuaikan
+$pass = '';     // sesuaikan
+$charset = 'utf8mb4';
 
-$conn = new mysqli($host, $user, $pass, $db);
-if ($conn->connect_error) {
-    die('Koneksi gagal: ' . $conn->connect_error);
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$options = [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+];
 
-   
-
-    
+try {
+    $pdo = new PDO($dsn, $user, $pass, $options);
+} catch (PDOException $e) {
+    die('Koneksi Gagal: ' . $e->getMessage());
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Simpan semua input ke variabel
-    $nama_lengkap = $_POST['nama_lengkap'];
-    $jenis_kelamin = $_POST['jenis_kelamin'];
-    $nis = $_POST['nis'];
-    $nik = $_POST['nik'];
-    $tempat_lahir = $_POST['tempat_lahir'];
-    $tanggal_lahir = $_POST['tanggal_lahir'];
-    $agama = $_POST['agama'];
-    $alamat_tinggal = $_POST['alamat_tinggal'];
-    $tempat_tinggal = $_POST['tempat_tinggal'];
-    $moda_transportasi = $_POST['moda_transportasi'];
-    $anak_keberapa = (int)$_POST['anak_keberapa'];
-    $jumlah_saudara_kandung = (int)$_POST['jumlah_saudara_kandung'];
-    $no_telp = $_POST['no_telp'];
-    $penerima_kip = $_POST['penerima_kip'];
-    $no_kip = $_POST['no_kip'];
-    $tinggi_cm = (int)$_POST['tinggi_cm'];
-    $berat_kg = (int)$_POST['berat_kg'];
-    $jarak_tempat_tinggal = $_POST['jarak_tempat_tinggal'];
-    $nama_ayah = $_POST['nama_ayah'];
-    $nik_ayah = $_POST['nik_ayah'];
-    $tempat_lahir_ayah = $_POST['tempat_lahir_ayah'];
-    $tanggal_lahir_ayah = $_POST['tanggal_lahir_ayah'];
-    $pendidikan_ayah = $_POST['pendidikan_ayah'];
-    $pekerjaan_ayah = $_POST['pekerjaan_ayah'];
-    $penghasilan_ayah = (float)$_POST['penghasilan_ayah'];
-    $nama_ibu = $_POST['nama_ibu'];
-    $nik_ibu = $_POST['nik_ibu'];
-    $tempat_lahir_ibu = $_POST['tempat_lahir_ibu'];
-    $tanggal_lahir_ibu = $_POST['tanggal_lahir_ibu'];
-    $pendidikan_ibu = $_POST['pendidikan_ibu'];
-    $pekerjaan_ibu = $_POST['pekerjaan_ibu'];
-    $penghasilan_ibu = (float)$_POST['penghasilan_ibu'];
-
-    // **Upload file pas_foto**
- $foto_pas = null;
-    if (isset($_FILES['foto_pas']) && $_FILES['foto_pas']['error'] == UPLOAD_ERR_OK) {
-        $allowed_ext = ['jpg', 'jpeg', 'png', 'gif'];
-        $file_tmp = $_FILES['foto_pas']['tmp_name'];
-        $file_name = basename($_FILES['foto_pas']['name']);
-        $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
-        $file_size = $_FILES['foto_pas']['size'];
-
-        if (in_array($file_ext, $allowed_ext) && $file_size <= 2 * 1024 * 1024) {
-            $upload_dir = "uploads_/";
-            if (!is_dir($upload_dir)) mkdir($upload_dir, 0755, true);
-
-            $foto_pas = time() . "_" . preg_replace("/[^a-zA-Z0-9\._-]/", "_", $file_name);
-            $target_file = $upload_dir . $foto_pas;
-
-            $mime_type = mime_content_type($file_tmp);
-            if (strpos($mime_type, "image/") === 0) {
-                if (!move_uploaded_file($file_tmp, $target_file)) {
-                    $foto_pas = null;
-                }
-            } else {
-                $foto_pas = null;
-            }
+// Proses Simpan
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Upload Foto
+    $foto_name = '';
+    if (isset($_FILES['foto_pas']) && $_FILES['foto_pas']['error'] === UPLOAD_ERR_OK) {
+        $target_dir = "uploads/";
+        if (!file_exists($target_dir)) {
+            mkdir($target_dir, 0777, true);
         }
+        $foto_name = time() . '_' . basename($_FILES["foto_pas"]["name"]);
+        $target_file = $target_dir . $foto_name;
+        move_uploaded_file($_FILES["foto_pas"]["tmp_name"], $target_file);
     }
 
-    if (!$foto_pas) $foto_pas = 'default.jpg'; // pastikan tidak null
+    // Insert Data
+    $sql = "INSERT INTO spmb 
+    (nama_lengkap, jenis_kelamin, nis, nik, tempat_lahir, tanggal_lahir, agama, alamat_tinggal, tempat_tinggal, moda_transportasi, anak_keberapa, jumlah_saudara_kandung, no_telp, penerima_kip, no_kip, tinggi_cm, berat_kg, jarak_tempat_tinggal, nama_ayah, nik_ayah, tempat_lahir_ayah, tanggal_lahir_ayah, pendidikan_ayah, pekerjaan_ayah, penghasilan_ayah, no_telp_ayah, nama_ibu, nik_ibu, tempat_lahir_ibu, tanggal_lahir_ibu, pendidikan_ibu, pekerjaan_ibu, penghasilan_ibu, no_telp_ibu, foto_pas)
+    VALUES 
+    (:nama_lengkap, :jenis_kelamin, :nis, :nik, :tempat_lahir, :tanggal_lahir, :agama, :alamat_tinggal, :tempat_tinggal, :moda_transportasi, :anak_keberapa, :jumlah_saudara_kandung, :no_telp, :penerima_kip, :no_kip, :tinggi_cm, :berat_kg, :jarak_tempat_tinggal, :nama_ayah, :nik_ayah, :tempat_lahir_ayah, :tanggal_lahir_ayah, :pendidikan_ayah, :pekerjaan_ayah, :penghasilan_ayah, :no_telp_ayah, :nama_ibu, :nik_ibu, :tempat_lahir_ibu, :tanggal_lahir_ibu, :pendidikan_ibu, :pekerjaan_ibu, :penghasilan_ibu, :no_telp_ibu, :foto_pas)";
 
-    // Buat prepared statement dengan query SQL murni
-  $stmt = $conn->prepare("INSERT INTO spmb_siswa (
-  nama_lengkap, jenis_kelamin, nis, nik, tempat_lahir, tanggal_lahir, agama, alamat_tinggal,
-  tempat_tinggal, moda_transportasi, anak_keberapa, jumlah_saudara_kandung, no_telp,
-  penerima_kip, no_kip, tinggi_cm, berat_kg, jarak_tempat_tinggal,
-  nama_ayah, nik_ayah, tempat_lahir_ayah, tanggal_lahir_ayah, pendidikan_ayah, pekerjaan_ayah, penghasilan_ayah,
-  nama_ibu, nik_ibu, tempat_lahir_ibu, tanggal_lahir_ibu, pendidikan_ibu, pekerjaan_ibu, penghasilan_ibu,
-  foto_pas
-) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $pdo->prepare($sql);
 
-$stmt->bind_param(
+    $params = [
+        ':nama_lengkap' => $_POST['nama_lengkap'],
+        ':jenis_kelamin' => $_POST['jenis_kelamin'],
+        ':nis' => $_POST['nis'],
+        ':nik' => $_POST['nik'],
+        ':tempat_lahir' => $_POST['tempat_lahir'],
+        ':tanggal_lahir' => $_POST['tanggal_lahir'],
+        ':agama' => $_POST['agama'],
+        ':alamat_tinggal' => $_POST['alamat_tinggal'],
+        ':tempat_tinggal' => $_POST['tempat_tinggal'],
+        ':moda_transportasi' => $_POST['moda_transportasi'],
+        ':anak_keberapa' => $_POST['anak_keberapa'],
+        ':jumlah_saudara_kandung' => $_POST['jumlah_saudara_kandung'],
+        ':no_telp' => $_POST['no_telp'],
+        ':penerima_kip' => $_POST['penerima_kip'],
+        ':no_kip' => $_POST['no_kip'],
+        ':tinggi_cm' => $_POST['tinggi_cm'],
+        ':berat_kg' => $_POST['berat_kg'],
+        ':jarak_tempat_tinggal' => $_POST['jarak_tempat_tinggal'],
+        ':nama_ayah' => $_POST['nama_ayah'],
+        ':nik_ayah' => $_POST['nik_ayah'],
+        ':tempat_lahir_ayah' => $_POST['tempat_lahir_ayah'],
+        ':tanggal_lahir_ayah' => $_POST['tanggal_lahir_ayah'],
+        ':pendidikan_ayah' => $_POST['pendidikan_ayah'],
+        ':pekerjaan_ayah' => $_POST['pekerjaan_ayah'],
+        ':penghasilan_ayah' => $_POST['penghasilan_ayah'],
+        ':no_telp_ayah' => $_POST['no_telp_ayah'],
+        ':nama_ibu' => $_POST['nama_ibu'],
+        ':nik_ibu' => $_POST['nik_ibu'],
+        ':tempat_lahir_ibu' => $_POST['tempat_lahir_ibu'],
+        ':tanggal_lahir_ibu' => $_POST['tanggal_lahir_ibu'],
+        ':pendidikan_ibu' => $_POST['pendidikan_ibu'],
+        ':pekerjaan_ibu' => $_POST['pekerjaan_ibu'],
+        ':penghasilan_ibu' => $_POST['penghasilan_ibu'],
+         ':no_telp_ibu' => $_POST['no_telp_ibu'],
+        ':foto_pas' => $foto_name
+    ];
 
- 
+    if ($stmt->execute($params)) {
+    // Ambil ID terakhir yang di-insert
+    $last_id = $pdo->lastInsertId();
 
-  "ssssssssssiisssiissssssssdsssssds",
-  $nama_lengkap,
-  $jenis_kelamin,
-  $nis,
-  $nik,
-  $tempat_lahir,
-  $tanggal_lahir,
-  $agama,
-  $alamat_tinggal,
-  $tempat_tinggal,
-  $moda_transportasi,
-  $anak_keberapa,
-  $jumlah_saudara_kandung,
-  $no_telp,
-  $penerima_kip,
-  $no_kip,
-  $tinggi_cm,
-  $berat_kg,
-  $jarak_tempat_tinggal,
-  $nama_ayah,
-  $nik_ayah,
-  $tempat_lahir_ayah,
-  $tanggal_lahir_ayah,
-  $pendidikan_ayah,
-  $pekerjaan_ayah,
-  $penghasilan_ayah,
-  $nama_ibu,
-  $nik_ibu,
-  $tempat_lahir_ibu,
-  $tanggal_lahir_ibu,
-  $pendidikan_ibu,
-  $pekerjaan_ibu,
-  $penghasilan_ibu,
-  $foto_pas
-);
-
-
-if ($stmt->execute()) {
-    $id_baru = $stmt->insert_id;  // Ambil ID dari data yang baru disimpan
-    $sukses = true;
-} else {
-    $sukses = false;
-    echo "Gagal menyimpan data: " . $stmt->error;
+    // Redirect ke halaman data spmb
+    header("Location: cetak_bukti.php?id=$last_id");
+    exit;
 }
-
-   
 
 }
 ?>
@@ -396,17 +345,6 @@ if ($stmt->execute()) {
 
 
 </form>
-
-<form action="cetak_spmb.php" method="get" target="_blank" class="md:col-span-2">
-    <input type="hidden" name="id" value="<?= $id_baru ?>">
-    <button type="submit" class="bg-[#ef6c00] hover:bg-[#cc5a00] text-white font-bold py-2 px-6 rounded w-full">
-        Cetak Bukti Pendaftaran
-    </button>
-</form>
-
-
-
-
     </div>
                     <script>
                         function getNamaHariIndonesia(dayIndex) {

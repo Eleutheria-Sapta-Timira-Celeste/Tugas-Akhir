@@ -9,7 +9,7 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    // Cek dulu username sudah ada?
+    // Cek username sudah ada?
     if ($role == 'siswa') {
         $cek = $connection->prepare("SELECT id FROM siswa WHERE username = ?");
     } else if ($role == 'guru') {
@@ -24,6 +24,26 @@ if (isset($_POST['submit'])) {
                         <strong class="font-bold">Gagal!</strong> Username sudah terdaftar, silakan pilih username lain.
                     </div>';
     } else {
+        // Upload foto
+        if (isset($_FILES['foto']) && $_FILES['foto']['error'] == 0) {
+            $foto = basename($_FILES['foto']['name']);
+
+            if ($role == 'siswa') {
+                $target_dir = "siswa/uploads/";
+            } elseif ($role == 'guru') {
+                $target_dir = "guru/uploads/";
+            }
+
+            if (!is_dir($target_dir)) {
+                mkdir($target_dir, 0777, true);
+            }
+
+            $foto_tmp = $_FILES['foto']['tmp_name'];
+            move_uploaded_file($foto_tmp, $target_dir . $foto);
+        } else {
+            $foto = 'default.png';
+        }
+
         if ($role == 'siswa') {
             $nama = $_POST['nama_siswa'];
             $nis = $_POST['nis'];
@@ -32,9 +52,6 @@ if (isset($_POST['submit'])) {
             $tanggal_lahir = $_POST['tanggal_lahir'];
             $nama_ayah = $_POST['nama_ayah'];
             $nama_ibu = $_POST['nama_ibu'];
-            $foto = $_FILES['foto']['name'];
-            $foto_tmp = $_FILES['foto']['tmp_name'];
-            move_uploaded_file($foto_tmp, "uploads/$foto");
 
             $stmt = $connection->prepare("INSERT INTO siswa (username, email, nama, nis, kelas, tempat_lahir, tanggal_lahir, nama_ayah, nama_ibu, foto, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             $stmt->bind_param("sssssssssss", $username, $email, $nama, $nis, $kelas, $tempat_lahir, $tanggal_lahir, $nama_ayah, $nama_ibu, $foto, $password);
@@ -44,16 +61,12 @@ if (isset($_POST['submit'])) {
             $nip = $_POST['nip'];
             $gelar = $_POST['gelar'];
             $mapel = $_POST['mapel'];
-            $foto = $_FILES['foto']['name'];
-            $foto_tmp = $_FILES['foto']['tmp_name'];
-            move_uploaded_file($foto_tmp, "uploads/$foto");
 
             $stmt = $connection->prepare("INSERT INTO guru (username, email, password, nama, NIP, gelar, mapel, foto) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             $stmt->bind_param("ssssssss", $username, $email, $password, $nama, $nip, $gelar, $mapel, $foto);
         }
 
         if ($stmt->execute()) {
-            // Redirect supaya tidak F5 submit ulang
             header("Location: register.php?success=1");
             exit();
         } else {
@@ -70,7 +83,6 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
                 </div>';
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="id">
@@ -124,27 +136,27 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
 
                     <div>
                         <label class="block mb-2 text-sm font-medium text-gray-700">Nama</label>
-                        <input type="text" name="nama_guru" class="bg-gray-50 border border-gray-300 rounded-lg w-full p-2.5" placeholder="Nama Guru">
+                        <input type="text" name="nama_guru" required class="bg-gray-50 border border-gray-300 rounded-lg w-full p-2.5" placeholder="Nama Guru">
                     </div>
 
                     <div>
                         <label class="block mb-2 text-sm font-medium text-gray-700">NIP</label>
-                        <input type="text" name="nip" class="bg-gray-50 border border-gray-300 rounded-lg w-full p-2.5" placeholder="NIP">
+                        <input type="text" name="nip" required class="bg-gray-50 border border-gray-300 rounded-lg w-full p-2.5" placeholder="NIP">
                     </div>
 
                     <div>
                         <label class="block mb-2 text-sm font-medium text-gray-700">Gelar</label>
-                        <input type="text" name="gelar" class="bg-gray-50 border border-gray-300 rounded-lg w-full p-2.5" placeholder="Gelar">
+                        <input type="text" name="gelar" required class="bg-gray-50 border border-gray-300 rounded-lg w-full p-2.5" placeholder="Gelar (cth: S.Pd)">
                     </div>
 
                     <div>
                         <label class="block mb-2 text-sm font-medium text-gray-700">Mapel</label>
-                        <input type="text" name="mapel" class="bg-gray-50 border border-gray-300 rounded-lg w-full p-2.5" placeholder="Mapel">
+                        <input type="text" name="mapel" required class="bg-gray-50 border border-gray-300 rounded-lg w-full p-2.5" placeholder="Mapel">
                     </div>
 
                     <div>
                         <label class="block mb-2 text-sm font-medium text-gray-700">Foto</label>
-                        <input type="file" name="foto" accept="image/*" class="w-full p-2 border rounded">
+                        <input type="file" name="foto" accept="image/*" class="w-full p-2 border rounded" required>
                     </div>
                 </div>
 
@@ -154,42 +166,42 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
 
                     <div>
                         <label class="block mb-2 text-sm font-medium text-gray-700">Nama</label>
-                        <input type="text" name="nama_siswa" class="bg-gray-50 border border-gray-300 rounded-lg w-full p-2.5" placeholder="Nama Siswa">
+                        <input type="text" name="nama_siswa" required class="bg-gray-50 border border-gray-300 rounded-lg w-full p-2.5" placeholder="Nama Siswa">
                     </div>
 
                     <div>
                         <label class="block mb-2 text-sm font-medium text-gray-700">NIS</label>
-                        <input type="text" name="nis" class="bg-gray-50 border border-gray-300 rounded-lg w-full p-2.5" placeholder="NIS">
+                        <input type="text" name="nis" required class="bg-gray-50 border border-gray-300 rounded-lg w-full p-2.5" placeholder="NIS">
                     </div>
 
                     <div>
                         <label class="block mb-2 text-sm font-medium text-gray-700">Kelas</label>
-                        <input type="text" name="kelas" class="bg-gray-50 border border-gray-300 rounded-lg w-full p-2.5" placeholder="Kelas">
+                        <input type="text" name="kelas" required class="bg-gray-50 border border-gray-300 rounded-lg w-full p-2.5" placeholder="Kelas">
                     </div>
 
                     <div>
                         <label class="block mb-2 text-sm font-medium text-gray-700">Tempat Lahir</label>
-                        <input type="text" name="tempat_lahir" class="bg-gray-50 border border-gray-300 rounded-lg w-full p-2.5" placeholder="Tempat Lahir">
+                        <input type="text" name="tempat_lahir" required class="bg-gray-50 border border-gray-300 rounded-lg w-full p-2.5" placeholder="Tempat Lahir">
                     </div>
 
                     <div>
                         <label class="block mb-2 text-sm font-medium text-gray-700">Tanggal Lahir</label>
-                        <input type="date" name="tanggal_lahir" class="bg-gray-50 border border-gray-300 rounded-lg w-full p-2.5">
+                        <input type="date" name="tanggal_lahir" required class="bg-gray-50 border border-gray-300 rounded-lg w-full p-2.5">
                     </div>
 
                     <div>
                         <label class="block mb-2 text-sm font-medium text-gray-700">Nama Ayah</label>
-                        <input type="text" name="nama_ayah" class="bg-gray-50 border border-gray-300 rounded-lg w-full p-2.5" placeholder="Nama Ayah">
+                        <input type="text" name="nama_ayah" required class="bg-gray-50 border border-gray-300 rounded-lg w-full p-2.5" placeholder="Nama Ayah">
                     </div>
 
                     <div>
                         <label class="block mb-2 text-sm font-medium text-gray-700">Nama Ibu</label>
-                        <input type="text" name="nama_ibu" class="bg-gray-50 border border-gray-300 rounded-lg w-full p-2.5" placeholder="Nama Ibu">
+                        <input type="text" name="nama_ibu" required class="bg-gray-50 border border-gray-300 rounded-lg w-full p-2.5" placeholder="Nama Ibu">
                     </div>
 
                     <div>
                         <label class="block mb-2 text-sm font-medium text-gray-700">Foto</label>
-                        <input type="file" name="foto" accept="image/*" class="w-full p-2 border rounded">
+                        <input type="file" name="foto" accept="image/*" class="w-full p-2 border rounded" required>
                     </div>
                 </div>
 
