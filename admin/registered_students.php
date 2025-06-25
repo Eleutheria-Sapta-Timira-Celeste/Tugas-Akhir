@@ -7,22 +7,18 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     exit();
 }
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") 
-mysqli_query($connectionobj, "UPDATE `notification` SET total_notification = 0 WHERE id = 1");
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    mysqli_query($connectionobj, "UPDATE `notification` SET total_notification = 0 WHERE id = 1");
+}
 
 if (isset($_POST['student_delete'])) {
-    echo '<script>console.log("Form is submitting");</script>';
     $studentId = $_POST["student_id"];
-
-    mysqli_query($connection, "DELETE FROM `spmb_siswa` WHERE id = $studentId;");
-    echo '
-        <script>
-        window.location.replace("registered_students.php");
-        
-        </script>';
+    mysqli_query($connection, "DELETE FROM `spmb` WHERE id = $studentId;");
+    echo '<script>window.location.replace("registered_students.php");</script>';
     exit;
 }
-$defaultavatar = "../assects/images/defaults/defaultaltimage.jpg"
+
+$defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
 ?>
 
 <!DOCTYPE html>
@@ -31,39 +27,40 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg"
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Siswa yang Terdaftar</title>
+    <title>Tambahkan Galeri</title>
     <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
     <link rel="icon" type="image/x-icon" href="../assects/images/admin_logo.png">
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
-
+    <link rel="stylesheet" href="../css/animation.css">
 
 </head>
 
-<body>
-    <?php include('../includes/admin_header.php') ?>
 
+<body class="flex flex-col min-h-screen">
+
+<?php include('../includes/admin_header.php') ?>
+
+<main class="flex-1">
+
+    <!-- Header Section -->
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-10 mx-auto">
             <div class="flex flex-col text-center w-full mb-5">
                 <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-[#ef6c00]">Halaman Data Pendaftaran Siswa</h1>
                 <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base">
-                                Selamat datang di halaman data pendaftaran siswa baru SMP PGRI 371 Pondok Aren khusus untuk admin.
-                                Halaman ini digunakan untuk memantau, mengelola, dan memverifikasi seluruh data pendaftaran dengan akurat dan efisien.
-                                Kami berharap sistem ini memudahkan proses administrasi demi kelancaran penerimaan siswa baru di sekolah.
+                    Selamat datang di halaman data pendaftaran siswa baru SMP PGRI 371 Pondok Aren khusus untuk admin.
+                    Halaman ini digunakan untuk memantau, mengelola, dan memverifikasi seluruh data pendaftaran dengan akurat dan efisien.
+                    Kami berharap sistem ini memudahkan proses administrasi demi kelancaran penerimaan siswa baru di sekolah.
                 </p>
             </div>
         </div>
     </section>
 
-
-
-
-    <!-- Start block -->
+    <!-- Table Section -->
     <section class="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5 antialiased">
         <div class="mx-auto max-w-screen-2xl px-4 lg:px-12">
             <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
-
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -75,54 +72,38 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg"
                             </tr>
                         </thead>
                         <tbody>
+                        <?php
+                        $fetch_all_students = "SELECT * FROM `spmb` ORDER BY id DESC;";
+                        $students = mysqli_query($connection, $fetch_all_students);
+                        $totalStudents = mysqli_num_rows($students);
 
-
-                            <?php
-                                $fetch_all_students = "SELECT * FROM `spmb_siswa` ORDER BY id DESC;";
-                                $students = mysqli_query($connection, $fetch_all_students);
-                                $totalStudents = mysqli_num_rows($students);
-
-                                if ($totalStudents > 0) {
-                                    while ($row = mysqli_fetch_assoc($students)) {
-                                        $student_Id = $row['id'];
-                                        echo '
-
-
-
+                        if ($totalStudents > 0) {
+                            while ($row = mysqli_fetch_assoc($students)) {
+                                $student_Id = $row['id'];
+                                echo '
                                 <tr class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
                                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        <div class="flex items-center mr-3">
-                                            '.$row['nama_lengkap'].'
-                                        </div>
+                                        '.$row['nama_lengkap'].'
                                     </th>
                                     <td class="px-4 py-3">
                                         <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">'.$row['jenis_kelamin'].'</span>
                                     </td>
-                                    
                                     <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">'.$row['created_at'].'</td>
-                                    
                                     <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         <div class="flex items-center space-x-4">
-                                            <button type="button" data-drawer-target="drawer-read-product-advanced'.$student_Id.'" data-drawer-show="drawer-read-product-advanced'.$student_Id.'" aria-controls="drawer-read-product-advanced'.$student_Id.'" class="py-2 px-3 flex items-center text-sm font-medium text-center text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="currentColor" class="w-4 h-4 mr-2 -ml-0.5">
-                                                    <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" />
-                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 010-1.113zM17.25 12a5.25 5.25 0 11-10.5 0 5.25 5.25 0 0110.5 0z" />
-                                                </svg>
+                                            <button type="button" data-drawer-target="drawer-read-product-advanced'.$student_Id.'" data-drawer-show="drawer-read-product-advanced'.$student_Id.'" aria-controls="drawer-read-product-advanced'.$student_Id.'" class="py-2 px-3 flex items-center text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700">
                                                 Preview
                                             </button>
-                                            <button type="button" data-modal-target="delete-modal'.$student_Id.'" data-modal-toggle="delete-modal'.$student_Id.'" class="flex items-center text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 -ml-0.5" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                    <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
-                                                </svg>
+                                            <button type="button" data-modal-target="delete-modal'.$student_Id.'" data-modal-toggle="delete-modal'.$student_Id.'" class="flex items-center text-red-700 border border-red-700 hover:bg-red-800 hover:text-white font-medium rounded-lg text-sm px-3 py-2">
                                                 Delete
                                             </button>
                                         </div>
                                     </td>
                                 </tr>
                                 ';
-                                    }
-                                }
-                                ?>
+                            }
+                        }
+                        ?>
                         </tbody>
                     </table>
                 </div>
@@ -130,9 +111,9 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg"
         </div>
     </section>
 
-
-    <?php
-        $fetch_all_students = "SELECT * FROM `spmb_siswa` ORDER BY id DESC;";
+    <!-- Preview Drawer Section -->
+   <?php
+        $fetch_all_students = "SELECT * FROM `spmb` ORDER BY id DESC;";
         $students = mysqli_query($connection, $fetch_all_students);
         $totalStudents = mysqli_num_rows($students);
 
@@ -155,17 +136,20 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg"
             
             <div class="grid grid-cols-3 gap-4 mb-4 sm:mb-5">
                 <div class="p-2 w-auto bg-gray-100 rounded-lg dark:bg-gray-700">
-                    <img src="'.$row['foto_pas'].'" onerror="this.src=`' . $defaultavatar . '`">
+                <img src="uploads/'.$row['foto_pas'].'" onerror="this.src=`' . $defaultavatar . '`">
                 </div>
+
             </div>
-
-
-
 
             <dl class="sm:mb-5"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">NISN SISWA</dt><dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400">'.$row['nis'].'</dd></dl>
             <dl class="grid grid-cols-2 gap-4 mb-4">
                 <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Nama Lengkap</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['nama_lengkap'].'</dd></div>
-
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Jenis Kelamin</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['jenis_kelamin'].'</dd></div>
+                        <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">NIK Siswa</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['nik'].'</dd></div>
+                        <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Tempat Lahir</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['tempat_lahir'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Tanggal Lahir</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['tanggal_lahir'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Agama/Kepercayan</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['agama'].'</dd></div>
+                   <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Tempat Tinggal</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['tempat_tinggal'].'</dd></div>
                 <div class="col-span-2 p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 sm:col-span-1 dark:border-gray-600">
                     <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Alamat Tinggal</dt>
                     <dd class="flex items-center text-gray-500 dark:text-gray-400">
@@ -175,15 +159,45 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg"
                         '.$row['alamat_tinggal'].'
                     </dd>
                 </div>
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Jenis Kelamin</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['jenis_kelamin'].'</dd></div>
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Tempat Lahir</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['tempat_lahir'].'</dd></div>
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Tanggal Lahir</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['tanggal_lahir'].'</dd></div>
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">NIK Siswa</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['nik'].'</dd></div>
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Agama/Kepercayan</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['agama'].'</dd></div>
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Nama Ayah</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['nama_ayah'].'</dd></div>
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Nama Ibu</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['nama_ibu'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Moda Transportasi</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['moda_transportasi'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Anak Ke- </dt><dd class="text-gray-500 dark:text-gray-400">'.$row['anak_keberapa'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Jumlah Saudara Kandung</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['jumlah_saudara_kandung'].'</dd></div>
                 <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Nomor Telepon</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['no_telp'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Siswa Penerima KIP</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['penerima_kip'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Nomor KIP Siswa</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['no_kip'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Tinggi Siswa</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['tinggi_cm'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Berat Badan Siswa</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['berat_kg'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Jarak Tempat Tinggal</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['jarak_tempat_tinggal'].'</dd></div>
             </dl>
+            
+            <br>
+             <!-- Data Ayah -->
+             <dl class="sm:mb-5"><dt class="mb-2 font-bold leading-none text-gray-900 dark:text-white">DATA AYAH</dt></dl>
+            <dl class="grid grid-cols-2 gap-4 mb-4">
+            <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Nama Ayah</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['nama_ayah'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">NIK Ayah</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['nik_ayah'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Tempat Lahir Ayah</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['tempat_lahir_ayah'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Tanggal Lahir Ayah</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['tanggal_lahir_ayah'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Pendidikan Ayah</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['pendidikan_ayah'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Pekerjaan Ayah</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['pekerjaan_ayah'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Penghasilan Ayah</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['penghasilan_ayah'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Nomor Telepon Ayah</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['no_telp_ayah'].'</dd></div>
+            </dl>
+
+             <br>
+             <!-- Data Ayah -->
+             <dl class="sm:mb-5"><dt class="mb-2 font-bold leading-none text-gray-900 dark:text-white">DATA IBU</dt></dl>
+            <dl class="grid grid-cols-2 gap-4 mb-4">
+            <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Nama Ibu</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['nama_ibu'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">NIK Ibu</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['nik_ibu'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Tempat Lahir Ibu</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['tempat_lahir_ibu'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Tanggal Lahir Ibu</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['tanggal_lahir_ibu'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Pendidikan Ibu</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['pendidikan_ibu'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Pekerjaan Ibu</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['pekerjaan_ibu'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Penghasilan Ibu</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['penghasilan_ibu'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Nomor Telepon ibu</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['no_telp_ibu'].'</dd></div>
+            </dl>
+             
             <div class="flex bottom-0 left-0 justify-center pb-4 space-x-4 w-full">
             <button data-drawer-dismiss="drawer-read-product-advanced'.$student_Id.'" aria-controls="drawer-read-product-advanced'.$student_Id.'" type="button" class="text-white w-full inline-flex items-center justify-center bg-[#ef6c00] hover:bg-[#cc5200] focus:ring-4 focus:outline-none focus:ring-[#cc5200] font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#ef6c00] dark:focus:ring-[#ef6c00]">
                     
@@ -238,18 +252,14 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg"
             }
         }
         ?>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+    
 
-  <?php include('../includes/admin_footer.php') ?>
+</main>
 
-    <script>
-    console.clear();
-</script>
+<?php include('../includes/admin_footer.php') ?>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+<script> console.clear(); </script>
 
 </body>
-
-<script>
-    console.clear();
-</script>
 </html>

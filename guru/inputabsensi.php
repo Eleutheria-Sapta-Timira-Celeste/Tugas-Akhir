@@ -166,7 +166,6 @@ $info = $_SESSION['absensi_header'] ?? null;
         <?php endif; ?>
 
         <!-- Tabel Absensi -->
-<<<<<<< HEAD
         <div class="bg-white p-6 rounded shadow border border-[#E4C988] overflow-auto">
             <h3 class="text-xl font-semibold text-[#C08261] mb-4">Data Absensi Terbaru</h3>
             <table class="min-w-full table-auto border text-sm text-left">
@@ -205,7 +204,7 @@ $info = $_SESSION['absensi_header'] ?? null;
     </div>
 <?php endif; ?>
         </div>
-=======
+
        <!-- Tabel Absensi -->
 <div class="bg-white p-6 rounded shadow border border-[#E4C988] overflow-auto">
     <h3 class="text-xl font-semibold text-[#C08261] mb-4">Data Absensi Terbaru</h3>
@@ -233,7 +232,7 @@ $info = $_SESSION['absensi_header'] ?? null;
     </table>
 </div>
 
->>>>>>> 463c37e5efe5526b91dfece515aab9714be0101f
+
     </main>
 </div>
 

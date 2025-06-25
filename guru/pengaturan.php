@@ -146,7 +146,7 @@ if (isset($_POST['update_password'])) {
                 <label class="block mb-1 font-semibold text-gray-700">Konfirmasi Password Baru</label>
                 <input type="password" name="password2" required class="w-full p-3 border border-orange-200 rounded focus:outline-none focus:ring-2 focus:ring-orange-400 transition">
             </div>
-            <button type="submit" name="update_password" class="w-full py-3 rounded bg-[#ef6c00] from-orange-500 to-amber-400 text-white font-bold text-lg shadow hover:scale-105 transition duration-300">
+            <button type="submit" name="update_password" class="w-full py-3 rounded bg-gradient-to-r from-orange-500 to-amber-400 text-white font-bold text-lg shadow hover:scale-105 transition duration-300">
                 Ubah Password
             </button>
         </form>
