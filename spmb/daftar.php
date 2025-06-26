@@ -333,10 +333,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
       <label for="no_telp_ibu" class="sm:w-40 font-medium">No Telp Ibu</label>
-      <input id="no_telp_ibu" name="no_telp_ibu" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+      <input id="no_telp_ibu" name="no_telp_ibu" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-3 focus:ring-2 focus:ring-[#ef6c00]" />
     </div>
-<label for="foto_pas">Tambah Foto (jpg/jpeg/png, maks 2MB)</label><br>
-    <input type="file" name="foto_pas" accept=".jpg,.jpeg,.png" required><br><br>
+   <div class="mb-4">
+    <label for="foto_pas" class="block mb-2 text-sm font-medium text-black-700">
+        Tambah Foto Siswa <span class="text-gray-500 text-xs">(jpg/jpeg/png, maks 2MB)</span>
+    </label>
+    <input 
+        type="file" 
+        name="foto_pas" 
+        accept=".jpg,.jpeg,.png" 
+        class="block w-full text-sm text-gray-700 file:mr-4 file:py-2 file:px-4
+               file:rounded-lg file:border-0
+               file:text-sm file:font-semibold
+               file:bg-orange-500 file:text-white
+               hover:file:bg-orange-600
+               border rounded p-1"
+        required>
+    </div>
+
 
     <!-- Submit button full width -->
     <div class="md:col-span-2">
