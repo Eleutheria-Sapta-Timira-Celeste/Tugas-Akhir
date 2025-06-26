@@ -30,6 +30,7 @@ if (isset($_POST['update_profile'])) {
     $nama  = $_POST['nama'];
     $gelar = $_POST['gelar'];
     $mapel = $_POST['mapel'];
+    $posisi_staff = $_POST['posisi_staff']; 
 
     // Update foto jika upload baru
     $foto = $data['foto'];
@@ -41,8 +42,8 @@ if (isset($_POST['update_profile'])) {
         $foto = $foto_name;
     }
 
-    $stmt = $conn->prepare("UPDATE guru SET nip=?, nama=?, gelar=?, mapel=?, foto=? WHERE username=?");
-    $stmt->bind_param("ssssss", $nip, $nama, $gelar, $mapel, $foto, $username);
+    $stmt = $conn->prepare("UPDATE guru SET nip=?, nama=?, gelar=?, mapel=?, posisi_staff=?, foto=? WHERE username=?");
+    $stmt->bind_param("sssssss", $nip, $nama, $gelar, $mapel, $posisi_staff, $foto, $username);
     if ($stmt->execute()) {
         $msg = "<div class='text-green-600 font-bold mb-2'>Profil berhasil diperbarui.</div>";
         $_SESSION['nama'] = $nama;
@@ -122,6 +123,10 @@ if (isset($_POST['update_password'])) {
             <div>
                 <label class="block mb-1 font-semibold text-gray-700">Mata Pelajaran</label>
                 <input type="text" name="mapel" value="<?= htmlspecialchars($data['mapel']) ?>" required class="w-full p-3 border border-orange-200 rounded focus:outline-none focus:ring-2 focus:ring-orange-400 transition">
+            </div>
+            <div>
+                <label class="block mb-1 font-semibold text-gray-700">Posisi Di Sekolah</label>
+                <input type="text" name="posisi_staff" value="<?= htmlspecialchars($data['posisi_staff']) ?>" required class="w-full p-3 border border-orange-200 rounded focus:outline-none focus:ring-2 focus:ring-orange-400 transition">
             </div>
             <div>
                 <label class="block mb-1 font-semibold text-gray-700">Foto</label>

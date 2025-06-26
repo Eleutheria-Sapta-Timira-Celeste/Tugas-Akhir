@@ -90,8 +90,26 @@ $result = $connectionobj->query("SELECT * FROM admin ORDER BY id ASC");
 <body class="bg-gray-100 flex flex-col min-h-screen">
 <?php include('../includes/admin_header.php'); ?>
 
+<!-- Bagian main setelah include header -->
 <main class="flex-grow">
-    <section class="max-w-6xl p-6 mx-auto mt-10 bg-[#fc941e] rounded-md shadow-md">
+
+    <!-- Header Deskripsi Halaman -->
+    <section class="text-gray-600 body-font">
+        <div class="container px-5 pt-5 mx-auto">
+            <div class="flex flex-col text-center w-full mb-5">
+                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4" style="color: #ef6c00;">Kelola Data Admin</h1>
+                <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base">
+                    🔐 Selamat datang di halaman pengelolaan akun Admin SMP PGRI 371 Pondok Aren! 👩‍💻👨‍💻<br>
+                    Di sini Anda dapat menambah, mengedit, atau menghapus data admin dengan mudah dan cepat.
+                    Admin memiliki akses penuh untuk mengelola data penting sekolah, sehingga memastikan keamanan dan integritas sistem sangatlah krusial.
+                    Pastikan hanya pengguna terpercaya yang diberikan hak akses ini. 💡
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tabel dan Tombol Tambah -->
+    <section class="max-w-6xl px-6 py-6 mx-auto bg-[#fc941e] rounded-md shadow-md mt-6">
         <div class="flex justify-between items-center mb-4">
             <h1 class="text-xl font-bold text-white">Manajemen Admin</h1>
             <button onclick="document.getElementById('addModal').classList.remove('hidden')" 
@@ -100,6 +118,7 @@ $result = $connectionobj->query("SELECT * FROM admin ORDER BY id ASC");
             </button>
         </div>
 
+        <!-- Tabel -->
         <div class="overflow-x-auto bg-white rounded shadow">
             <table class="w-full text-sm text-left text-gray-500 border border-gray-300">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-100">
@@ -113,60 +132,60 @@ $result = $connectionobj->query("SELECT * FROM admin ORDER BY id ASC");
                     </tr>
                 </thead>
                 <tbody>
-<?php while ($row = $result->fetch_assoc()): ?>
-<tr class="border-b border-gray-300">
-    <td class="px-4 py-2 border border-gray-300"><?= $row['id'] ?></td>
-    <td class="px-4 py-2 border border-gray-300"><?= htmlspecialchars($row['username']) ?></td>
-    <td class="px-4 py-2 border border-gray-300"><?= htmlspecialchars($row['nama_admin']) ?></td>
-    <td class="px-4 py-2 border border-gray-300"><?= htmlspecialchars($row['email']) ?></td>
-    <td class="px-4 py-2 border border-gray-300 text-center">
-        <?php if (!empty($row['logo'])): ?>
-            <img src="../<?= $row['logo'] ?>" class="h-10 mx-auto rounded">
-        <?php else: ?>
-            <span class="text-gray-400 italic">Tidak ada</span>
-        <?php endif; ?>
-    </td>
-    <td class="px-4 py-2 border border-gray-300 text-center">
-        <button onclick="document.getElementById('editModal<?= $row['id'] ?>').classList.remove('hidden')" class="inline-flex items-center text-blue-600 hover:underline mr-2">✏️ Edit</button>
-        <a href="?delete_id=<?= $row['id'] ?>" onclick="return confirm('Yakin ingin menghapus admin ini?')" class="inline-flex items-center text-red-600 hover:underline">🗑️ Hapus</a>
-    </td>
-</tr>
+                <?php while ($row = $result->fetch_assoc()): ?>
+                    <tr class="border-b border-gray-300">
+                        <td class="px-4 py-2 border border-gray-300"><?= $row['id'] ?></td>
+                        <td class="px-4 py-2 border border-gray-300"><?= htmlspecialchars($row['username']) ?></td>
+                        <td class="px-4 py-2 border border-gray-300"><?= htmlspecialchars($row['nama_admin']) ?></td>
+                        <td class="px-4 py-2 border border-gray-300"><?= htmlspecialchars($row['email']) ?></td>
+                        <td class="px-4 py-2 border border-gray-300 text-center">
+                            <?php if (!empty($row['logo'])): ?>
+                                <img src="../<?= $row['logo'] ?>" class="h-10 mx-auto rounded">
+                            <?php else: ?>
+                                <span class="text-gray-400 italic">Tidak ada</span>
+                            <?php endif; ?>
+                        </td>
+                        <td class="px-4 py-2 border border-gray-300 text-center">
+                            <button onclick="document.getElementById('editModal<?= $row['id'] ?>').classList.remove('hidden')" class="inline-flex items-center text-blue-600 hover:underline mr-2">✏️ Edit</button>
+                            <a href="?delete_id=<?= $row['id'] ?>" onclick="return confirm('Yakin ingin menghapus admin ini?')" class="inline-flex items-center text-red-600 hover:underline">🗑️ Hapus</a>
+                        </td>
+                    </tr>
 
-<!-- Modal Edit Admin -->
-<div id="editModal<?= $row['id'] ?>" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-50">
-    <div class="bg-white p-6 rounded-lg w-full max-w-md">
-        <h2 class="text-xl font-bold mb-4">Edit Admin</h2>
-        <form action="" method="POST" enctype="multipart/form-data">
-            <input type="hidden" name="edit_admin" value="1">
-            <input type="hidden" name="admin_id" value="<?= $row['id'] ?>">
-            <input type="hidden" name="current_logo" value="<?= $row['logo'] ?>">
+                    <!-- Modal Edit Admin -->
+                    <div id="editModal<?= $row['id'] ?>" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-50">
+                        <div class="bg-white p-6 rounded-lg w-full max-w-md">
+                            <h2 class="text-xl font-bold mb-4">Edit Admin</h2>
+                            <form action="" method="POST" enctype="multipart/form-data">
+                                <input type="hidden" name="edit_admin" value="1">
+                                <input type="hidden" name="admin_id" value="<?= $row['id'] ?>">
+                                <input type="hidden" name="current_logo" value="<?= $row['logo'] ?>">
 
-            <label class="block font-semibold mb-1">Username</label>
-            <input type="text" name="edit_username" value="<?= htmlspecialchars($row['username']) ?>" required class="w-full border px-3 py-2 mb-3 rounded">
+                                <label class="block font-semibold mb-1">Username</label>
+                                <input type="text" name="edit_username" value="<?= htmlspecialchars($row['username']) ?>" required class="w-full border px-3 py-2 mb-3 rounded">
 
-            <label class="block font-semibold mb-1">Nama Admin</label>
-            <input type="text" name="edit_nama_admin" value="<?= htmlspecialchars($row['nama_admin']) ?>" class="w-full border px-3 py-2 mb-3 rounded">
+                                <label class="block font-semibold mb-1">Nama Admin</label>
+                                <input type="text" name="edit_nama_admin" value="<?= htmlspecialchars($row['nama_admin']) ?>" class="w-full border px-3 py-2 mb-3 rounded">
 
-            <label class="block font-semibold mb-1">Email</label>
-            <input type="email" name="edit_email" value="<?= htmlspecialchars($row['email']) ?>" class="w-full border px-3 py-2 mb-3 rounded">
+                                <label class="block font-semibold mb-1">Email</label>
+                                <input type="email" name="edit_email" value="<?= htmlspecialchars($row['email']) ?>" class="w-full border px-3 py-2 mb-3 rounded">
 
-            <label class="block font-semibold mb-1">Foto / Logo (kosongkan jika tidak diubah)</label>
-            <input type="file" name="edit_file_upload" class="w-full border px-3 py-2 mb-4 rounded">
+                                <label class="block font-semibold mb-1">Foto / Logo (kosongkan jika tidak diubah)</label>
+                                <input type="file" name="edit_file_upload" class="w-full border px-3 py-2 mb-4 rounded">
 
-            <div class="flex justify-between">
-                <button type="button" onclick="document.getElementById('editModal<?= $row['id'] ?>').classList.add('hidden')" class="bg-gray-400 text-white px-4 py-2 rounded">Batal</button>
-                <button type="submit" class="bg-[#fc941e] text-white px-4 py-2 rounded hover:bg-[#e77b00]">Simpan</button>
-            </div>
-        </form>
-    </div>
-</div>
-
-<?php endwhile; ?>
+                                <div class="flex justify-between">
+                                    <button type="button" onclick="document.getElementById('editModal<?= $row['id'] ?>').classList.add('hidden')" class="bg-gray-400 text-white px-4 py-2 rounded">Batal</button>
+                                    <button type="submit" class="bg-[#fc941e] text-white px-4 py-2 rounded hover:bg-[#e77b00]">Simpan</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                <?php endwhile; ?>
                 </tbody>
             </table>
         </div>
     </section>
 </main>
+
 
 <!-- Modal Tambah Admin -->
 <div id="addModal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-50">
