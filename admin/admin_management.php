@@ -91,7 +91,7 @@ $result = $connectionobj->query("SELECT * FROM admin ORDER BY id ASC");
 <?php include('../includes/admin_header.php'); ?>
 
 <!-- Bagian main setelah include header -->
-<main class="flex-grow">
+<main class="flex-grow pb-24">
 
     <!-- Header Deskripsi Halaman -->
     <section class="text-gray-600 body-font">
