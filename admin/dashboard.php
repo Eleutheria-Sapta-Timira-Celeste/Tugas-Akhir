@@ -180,7 +180,7 @@ try {
                 </div>
 
                 <!-- Kelola Akun Guru -->
-                <div class="p-2 lg:w-1/3 md:w-1/2 w-full" onclick="manage_teacher()">
+                <div class="p-2 lg:w-1/3 md:w-1/2 w-full" onclick="guru_management()">
                     <div class="h-full flex items-center border p-4 rounded-lg hover:bg-blue-100 cursor-pointer">
                         <img src="../assects/images/adminavatars/kelola_akun_icon.png" alt="icon" class="w-16 h-16 rounded-full mr-4">
                         <div>
