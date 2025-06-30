@@ -20,11 +20,14 @@ if (!$row) {
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <title>Cetak Bukti Pendaftaran SPMB</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @media print {
+            .no-print {
+                display: none !important;
+            }
             .no-break {
                 break-inside: avoid;
                 page-break-inside: avoid;
@@ -35,20 +38,24 @@ if (!$row) {
         }
     </style>
 </head>
-<body class="bg-white text-black p-8">
+<body class="bg-white text-black p-0 m-0">
 
+    <!-- HEADER (TIDAK IKUT TERPRINT) -->
+     <div class="no-print">
+     <?php include('../includes/header_form.php'); ?>
+     </div>
+    <!-- KONTEN UTAMA -->
     <div class="max-w-5xl mx-auto p-6">
 
-        <!-- HEADER -->
+        <!-- Judul -->
         <div class="flex items-center justify-center mb-6 space-x-4">
             <img src="../assects/images/defaults/logo_warna_500.png" alt="Logo Sekolah" class="w-28 h-28 object-cover">
-            <div class="flex flex-col justify-center">
-                <h1 class="text-2xl font-bold text-center">SMP PGRI 371 PONDOK AREN</h1>
-                <h2 class="text-lg font-semibold text-center">Sistem Penerimaan Murid Baru (SPMB) 2025</h2>
+            <div class="flex flex-col justify-center text-center">
+                <h1 class="text-2xl font-bold">SMP PGRI 371 PONDOK AREN</h1>
+                <h2 class="text-lg font-semibold">Sistem Penerimaan Murid Baru (SPMB) 2025</h2>
             </div>
         </div>
 
-        <!-- JUDUL -->
         <h2 class="text-center text-lg font-bold border-y border-black py-2 mb-6">
             DATA PENDAFTARAN SPMB
         </h2>
@@ -58,27 +65,14 @@ if (!$row) {
             <h3 class="text-2xl font-bold mb-4">DATA SISWA</h3>
             <div class="grid grid-cols-3 gap-6 mb-6">
                 <div class="col-span-1 flex items-center justify-center">
-                    <img src="uploads/<?= $row['foto_pas'] ?>" 
-                        onerror="this.src='<?= $defaultavatar ?>'" 
-                        class="w-[90px] h-[120px] object-cover">
+                    <img src="uploads/<?= $row['foto_pas'] ?>" onerror="this.src='<?= $defaultavatar ?>'" class="w-[90px] h-[120px] object-cover">
                 </div>
-
                 <div class="col-span-2 grid grid-cols-2 gap-4 text-sm">
-                    <div class="p-2 rounded shadow-inner bg-gray-50 no-break">
-                        <strong>Nama Lengkap:</strong> <?= htmlspecialchars($row['nama_lengkap']) ?>
-                    </div>
-                    <div class="p-2 rounded shadow-inner bg-gray-50 no-break">
-                        <strong>NIS:</strong> <?= htmlspecialchars($row['nis']) ?>
-                    </div>
-                    <div class="p-2 rounded shadow-inner bg-gray-50 no-break">
-                        <strong>Jenis Kelamin:</strong> <?= htmlspecialchars($row['jenis_kelamin']) ?>
-                    </div>
-                    <div class="p-2 rounded shadow-inner bg-gray-50 no-break">
-                        <strong>NIK:</strong> <?= htmlspecialchars($row['nik']) ?>
-                    </div>
-                    <div class="p-2 rounded shadow-inner bg-gray-50 no-break">
-                        <strong>Tempat / Tanggal Lahir:</strong> <?= htmlspecialchars($row['tempat_lahir']) ?> / <?= htmlspecialchars($row['tanggal_lahir']) ?>
-                    </div>
+                    <div class="p-2 rounded shadow-inner bg-gray-50"><strong>Nama Lengkap:</strong> <?= htmlspecialchars($row['nama_lengkap']) ?></div>
+                    <div class="p-2 rounded shadow-inner bg-gray-50"><strong>NIS:</strong> <?= htmlspecialchars($row['nis']) ?></div>
+                    <div class="p-2 rounded shadow-inner bg-gray-50"><strong>Jenis Kelamin:</strong> <?= htmlspecialchars($row['jenis_kelamin']) ?></div>
+                    <div class="p-2 rounded shadow-inner bg-gray-50"><strong>NIK:</strong> <?= htmlspecialchars($row['nik']) ?></div>
+                    <div class="p-2 rounded shadow-inner bg-gray-50"><strong>Tempat / Tanggal Lahir:</strong> <?= htmlspecialchars($row['tempat_lahir']) ?> / <?= htmlspecialchars($row['tanggal_lahir']) ?></div>
                     <?php
                     $fields = [
                         'Agama' => 'agama',
@@ -93,12 +87,8 @@ if (!$row) {
                         'Berat (kg)' => 'berat_kg',
                         'Jarak Tempat Tinggal (km)' => 'jarak_tempat_tinggal'
                     ];
-
                     foreach ($fields as $label => $field) {
-                        echo '
-                        <div class="p-2 rounded shadow-inner bg-gray-50 no-break">
-                            <strong>'.$label.':</strong> '.htmlspecialchars($row[$field]).'
-                        </div>';
+                        echo '<div class="p-2 rounded shadow-inner bg-gray-50"><strong>'.$label.':</strong> '.htmlspecialchars($row[$field]).'</div>';
                     }
                     ?>
                 </div>
@@ -123,12 +113,8 @@ if (!$row) {
                     'Penghasilan' => 'penghasilan_ayah',
                     'No. Telepon' => 'no_telp_ayah'
                 ];
-
                 foreach ($fieldsAyah as $label => $field) {
-                    echo '
-                    <div class="p-2 rounded shadow-inner bg-gray-50 no-break">
-                        <strong>'.$label.':</strong> '.htmlspecialchars($row[$field]).'
-                    </div>';
+                    echo '<div class="p-2 rounded shadow-inner bg-gray-50"><strong>'.$label.':</strong> '.htmlspecialchars($row[$field]).'</div>';
                 }
                 ?>
             </div>
@@ -149,22 +135,26 @@ if (!$row) {
                     'Penghasilan' => 'penghasilan_ibu',
                     'No. Telepon' => 'no_telp_ibu'
                 ];
-
                 foreach ($fieldsIbu as $label => $field) {
-                    echo '
-                    <div class="p-2 rounded shadow-inner bg-gray-50 no-break">
-                        <strong>'.$label.':</strong> '.htmlspecialchars($row[$field]).'
-                    </div>';
+                    echo '<div class="p-2 rounded shadow-inner bg-gray-50"><strong>'.$label.':</strong> '.htmlspecialchars($row[$field]).'</div>';
                 }
                 ?>
             </div>
         </div>
-
+                <div class="no-print text-center mt-10">
+            <button onclick="window.print()" class="bg-orange-600 hover:bg-orange-700 text-white font-semibold px-5 py-2 rounded shadow">
+                Cetak Halaman Ini
+            </button>
+        </div>
     </div>
+    <!-- Tombol Cetak Halaman Ini -->
 
-    <script>
-        window.print();
-    </script>
+
+    <!-- FOOTER (TIDAK IKUT TERPRINT) -->
+   <div class="no-print">
+    <?php include('../includes/spmb_footer.php'); ?>
+</div>
+
 
 </body>
 </html>

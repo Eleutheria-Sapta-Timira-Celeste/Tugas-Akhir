@@ -11,7 +11,7 @@ $defaultavatar = "assects/images/defaults/defaultaltimage.jpg"
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Staff</title>
+    <title>Staff Sekolah</title>
     <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
     <link rel="icon" type="image/x-icon" href="assects/images/logo2.png">
 
@@ -46,8 +46,8 @@ $defaultavatar = "assects/images/defaults/defaultaltimage.jpg"
                 <?php
 
 
-                $management_committee = "SELECT * FROM `management_committee`;";
-                $management_committee_members = mysqli_query($connection, $management_committee);
+                $pimpinan_sekolah = "SELECT * FROM `pimpinan_sekolah`;";
+                $management_committee_members = mysqli_query($connection, $pimpinan_sekolah);
                 $total_management_committee_members = mysqli_num_rows($management_committee_members);
 
 
