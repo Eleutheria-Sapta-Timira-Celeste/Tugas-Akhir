@@ -168,6 +168,27 @@ try {
                             </div>
                         </div>
                     </div>
+                    <!-- Kelola Akun Siswa -->
+                <div class="p-2 lg:w-1/3 md:w-1/2 w-full" onclick="siswa_management()">
+                    <div class="h-full flex items-center border p-4 rounded-lg hover:bg-blue-100 cursor-pointer">
+                        <img src="../assects/images/adminavatars/kelola_akun_icon.png" alt="icon" class="w-16 h-16 rounded-full mr-4">
+                        <div>
+                            <h2 class="text-[#ef6c00] font-medium">Kelola Akun Siswa</h2>
+                            <p class="text-sm text-gray-500">Lihat dan kelola data akun siswa</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kelola Akun Guru -->
+                <div class="p-2 lg:w-1/3 md:w-1/2 w-full" onclick="guru_management()">
+                    <div class="h-full flex items-center border p-4 rounded-lg hover:bg-blue-100 cursor-pointer">
+                        <img src="../assects/images/adminavatars/kelola_akun_icon.png" alt="icon" class="w-16 h-16 rounded-full mr-4">
+                        <div>
+                            <h2 class="text-[#ef6c00] font-medium">Kelola Akun Guru</h2>
+                            <p class="text-sm text-gray-500">Lihat dan kelola data akun guru</p>
+                        </div>
+                    </div>
+                </div>
 
                 </div>
             </div>
@@ -186,6 +207,8 @@ try {
         function changeRoutine() { window.location.href = "changeRoutine.php"; }
         function changeStaff() { window.location.href = "changeStaff.php"; }
         function admin() { window.location.href = "admin_management.php"; }
+        function siswa_management() { window.location.href = "siswa_management.php"; }
+        function guru_management() { window.location.href = "guru_management.php"; }
     </script>
 
 </body>

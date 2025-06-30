@@ -266,7 +266,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-10 mx-auto">
             <div class="flex flex-col text-center w-full mb-5">
-                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4" style="color: #ef6c00;">Perbarui Kepanitiaan dan Staf
+                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4" style="color: #ef6c00;">Perbarui Staff Sekolah
                 </h1>
                 <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base">
                     🎉 Selamat datang di halaman pengelolaan dan pembaruan data staf dan kepanitiaan SMP PGRI 371 Pondok Aren! 📝
