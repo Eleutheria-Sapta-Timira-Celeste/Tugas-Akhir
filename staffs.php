@@ -21,18 +21,26 @@ $defaultavatar = "assects/images/defaults/defaultaltimage.jpg"
 <body>
     <?php include("includes/header.php") ?>
 
+    <section>
+    <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
+        <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
+            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-[#ef6c00] dark:text-[#ef6c00]">
+                Struktur Organisasi
+            </h2>
+            <p class="font-light text-gray-600 sm:text-xl dark:text-gray-600">
+                Berikut adalah struktur organisasi di SMP PGRI 371 Pondok Aren yang menggambarkan pembagian peran dan tanggung jawab dalam pengelolaan sekolah.
+            </p>
+        </div>
+
+        <div class="flex justify-center">
+            <img src="assects/images/defaults/struktur-1.png" 
+                 alt="Struktur Organisasi Sekolah"
+                 class="rounded-lg border border-gray-300 shadow-md max-w-[70%] h-auto">
+        </div>
+    </div>
+</section>
+
     <section class="bg-white dark:bg-white">
-
-    
-  <div class="flex flex-col text-center w-full mb-10">
-                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-[#ef6c00]"></h1>
-                
-            </div>
-
-   <div class="flex justify-center">
-                <img src="assects/images/defaults/struktur-1.png" alt="Kalender Akademik SMP PGRI 371"
-                     style="max-width: 70%; height: auto; border: 1px solid #ccc; border-radius: 10px;">
-            </div>
 
         <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
             <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
