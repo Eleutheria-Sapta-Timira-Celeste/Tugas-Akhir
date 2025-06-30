@@ -33,7 +33,6 @@ $defaultavatar = "assects/images/defaults/defaultaltimage.jpg"
                 <img src="assects/images/defaults/struktur-1.png" alt="Kalender Akademik SMP PGRI 371"
                      style="max-width: 70%; height: auto; border: 1px solid #ccc; border-radius: 10px;">
             </div>
-/>
 
         <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
             <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
@@ -46,7 +45,7 @@ $defaultavatar = "assects/images/defaults/defaultaltimage.jpg"
                 <?php
 
 
-                $pimpinan_sekolah = "SELECT * FROM `pimpinan_sekolah`;";
+                $pimpinan_sekolah = "SELECT * FROM pimpinan_sekolah;";
                 $management_committee_members = mysqli_query($connection, $pimpinan_sekolah);
                 $total_management_committee_members = mysqli_num_rows($management_committee_members);
 
@@ -55,7 +54,7 @@ $defaultavatar = "assects/images/defaults/defaultaltimage.jpg"
                     while ($row = mysqli_fetch_assoc($management_committee_members)) {
                         echo '
                     <div class="text-center text-gray-600 dark:text-gray-600">
-                        <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="' . $row['image_src'] . '" onerror="this.src=`' . $defaultavatar . '`">
+                        <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="' . $row['image_src'] . '" onerror="this.src=' . $defaultavatar . '">
                             <h3 class="mb-1 text-2xl font-bold tracking-tight text-[#ef6c00] dark:text-[#ef6c00]">
 
                                 <a>' . $row['name'] . '</a>
@@ -85,7 +84,7 @@ $defaultavatar = "assects/images/defaults/defaultaltimage.jpg"
                 <?php
 
 
-                $staffs = "SELECT * FROM `staffs`;";
+                $staffs = "SELECT * FROM staffs;";
                 $staffs_members = mysqli_query($connection, $staffs);
                 $total_staffs = mysqli_num_rows($staffs_members);
 
@@ -94,7 +93,7 @@ $defaultavatar = "assects/images/defaults/defaultaltimage.jpg"
                     while ($row_staff = mysqli_fetch_assoc($staffs_members)) {
                         echo '
                                 <div class="text-center text-gray-500 dark:text-gray-600">
-                                    <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="' . $row_staff['image_src'] . '" onerror="this.src=`' . $defaultavatar . '`">
+                                    <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="' . $row_staff['image_src'] . '" onerror="this.src=' . $defaultavatar . '">
                                        <h3 class="mb-1 text-2xl font-bold tracking-tight text-[#ef6c00] dark:text-[#ef6c00]">
 
                                             <a>' . $row_staff['name'] . ' ' . $row_staff['qualification'] . '</a>
