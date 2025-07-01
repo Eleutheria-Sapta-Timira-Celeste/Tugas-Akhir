@@ -2,7 +2,6 @@
 include 'connection/database.php';
 session_start();
 
-$message = "";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $role = $_POST['role'];
     $username = $_POST['username'];
@@ -89,15 +88,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             document.getElementById("formSiswa").classList.toggle("hidden", role !== "siswa");
             document.getElementById("formGuru").classList.toggle("hidden", role !== "guru");
         }
+
+        window.onload = () => {
+            const card = document.getElementById('registerCard');
+            card.classList.remove('opacity-0', '-translate-y-10');
+            card.classList.add('opacity-100', 'translate-y-0');
+        }
     </script>
 </head>
-<body class="bg-orange-50 min-h-screen flex items-center justify-center px-4">
+<body class="bg-orange-50 min-h-screen flex items-center justify-center p-6 sm:p-10 lg:p-16">
 
-    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-3xl">
+    <div id="registerCard" class="transition-all duration-700 transform opacity-0 -translate-y-10 bg-white w-full max-w-3xl p-8 sm:p-10 md:p-12 rounded-2xl shadow-2xl">
         <div class="flex justify-center mb-6">
-        <a href="#" class="flex items-center text-2xl font-semibold text-gray-900">
-            <img class="w-80 h-22" src="/Tugas-Akhir/assects/images/defaults/logoadmin.png" alt="logo">
-        </a>
+            <a href="#" class="flex items-center text-2xl font-semibold text-gray-900">
+                <img class="w-80 h-22" src="/Tugas-Akhir/assects/images/defaults/logoadmin.png" alt="logo">
+            </a>
         </div>
         <h1 class="text-2xl font-bold text-orange-600 mb-6 text-center">Form Registrasi Pengguna</h1>
 
@@ -136,69 +141,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
             </div>
 
-            <!-- Form Khusus Siswa -->
-                    <div id="formSiswa" class="hidden border-t pt-4">
+            <!-- Form Siswa -->
+            <div id="formSiswa" class="hidden border-t pt-4">
                 <h2 class="font-semibold text-orange-600 mb-4">Data Siswa</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-semibold mb-1">Nama Siswa</label>
-                        <input type="text" name="nama_siswa" placeholder="Nama Siswa" class="w-full border rounded px-3 py-2">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-semibold mb-1">NIS</label>
-                        <input type="text" name="nis" placeholder="NIS" class="w-full border rounded px-3 py-2">
-                    </div>
+                    <div><label class="block text-sm font-semibold mb-1">Nama Siswa</label><input type="text" name="nama_siswa" class="w-full border rounded px-3 py-2"></div>
+                    <div><label class="block text-sm font-semibold mb-1">NIS</label><input type="text" name="nis" class="w-full border rounded px-3 py-2"></div>
                     <div>
                         <label class="block text-sm font-semibold mb-1">Kelas</label>
-                        <input type="text" name="kelas" placeholder="Kelas" class="w-full border rounded px-3 py-2">
+                        <select name="kelas" required class="w-full border rounded px-3 py-2">
+                            <option value="">-- Pilih Kelas --</option>
+                            <option value="VII">VII</option>
+                            <option value="VIII">VIII</option>
+                            <option value="IX">IX</option>
+                        </select>
                     </div>
-                    <div>
-                        <label class="block text-sm font-semibold mb-1">Tempat Lahir</label>
-                        <input type="text" name="tempat_lahir" placeholder="Tempat Lahir" class="w-full border rounded px-3 py-2">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-semibold mb-1">Tanggal Lahir</label>
-                        <input type="date" name="tanggal_lahir" class="w-full border rounded px-3 py-2">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-semibold mb-1">Nama Ayah</label>
-                        <input type="text" name="nama_ayah" placeholder="Nama Ayah" class="w-full border rounded px-3 py-2">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-semibold mb-1">Nama Ibu</label>
-                        <input type="text" name="nama_ibu" placeholder="Nama Ibu" class="w-full border rounded px-3 py-2">
-                    </div>
+                    <div><label class="block text-sm font-semibold mb-1">Tempat Lahir</label><input type="text" name="tempat_lahir" class="w-full border rounded px-3 py-2"></div>
+                    <div><label class="block text-sm font-semibold mb-1">Tanggal Lahir</label><input type="date" name="tanggal_lahir" class="w-full border rounded px-3 py-2"></div>
+                    <div><label class="block text-sm font-semibold mb-1">Nama Ayah</label><input type="text" name="nama_ayah" class="w-full border rounded px-3 py-2"></div>
+                    <div><label class="block text-sm font-semibold mb-1">Nama Ibu</label><input type="text" name="nama_ibu" class="w-full border rounded px-3 py-2"></div>
                 </div>
             </div>
 
-
-            <!-- Form Khusus Guru -->
+            <!-- Form Guru -->
             <div id="formGuru" class="hidden border-t pt-4">
                 <h2 class="font-semibold text-orange-600 mb-4">Data Guru</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-semibold mb-1">Nama Lengkap</label>
-                        <input type="text" name="nama_guru" placeholder="Nama Lengkap" class="w-full border rounded px-3 py-2">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-semibold mb-1">NIP</label>
-                        <input type="text" name="nip" placeholder="NIP" class="w-full border rounded px-3 py-2">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-semibold mb-1">Gelar</label>
-                        <input type="text" name="gelar" placeholder="Gelar" class="w-full border rounded px-3 py-2">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-semibold mb-1">Mapel</label>
-                        <input type="text" name="mapel" placeholder="Mapel" class="w-full border rounded px-3 py-2">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-semibold mb-1">Posisi Staff</label>
-                        <input type="text" name="posisi_staff" placeholder="Posisi Staff" class="w-full border rounded px-3 py-2">
-                    </div>
+                    <div><label class="block text-sm font-semibold mb-1">Nama Lengkap</label><input type="text" name="nama_guru" class="w-full border rounded px-3 py-2"></div>
+                    <div><label class="block text-sm font-semibold mb-1">NIP</label><input type="text" name="nip" class="w-full border rounded px-3 py-2"></div>
+                    <div><label class="block text-sm font-semibold mb-1">Gelar</label><input type="text" name="gelar" class="w-full border rounded px-3 py-2"></div>
+                    <div><label class="block text-sm font-semibold mb-1">Mapel</label><input type="text" name="mapel" class="w-full border rounded px-3 py-2"></div>
+                    <div><label class="block text-sm font-semibold mb-1">Posisi Staff</label><input type="text" name="posisi_staff" class="w-full border rounded px-3 py-2"></div>
                 </div>
             </div>
-
 
             <div class="pt-6">
                 <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded font-semibold w-full">
@@ -206,9 +181,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </button>
             </div>
 
-             <div class="text-center mt-6">
-            <p class="text-sm text-gray-600">Sudah punya akun? <a href="login.php" class="text-blue-600 font-semibold hover:underline">Login di sini</a></p>
-        </div>
+            <div class="text-center mt-6">
+                <p class="text-sm text-gray-600">Sudah punya akun? <a href="login.php" class="text-blue-600 font-semibold hover:underline">Login di sini</a></p>
+            </div>
         </form>
     </div>
 </body>

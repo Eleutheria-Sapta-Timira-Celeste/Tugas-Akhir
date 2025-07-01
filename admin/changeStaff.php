@@ -465,7 +465,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                                 <?php
 
 
-                                $fetchmanagementCommitte = "SELECT * FROM `management_committee`;";
+                                $fetchmanagementCommitte = "SELECT * FROM `pimpinan_sekolah`;";
                                 $managementCommitte = mysqli_query($connection, $fetchmanagementCommitte);
                                 $totalmanagementCommitte = mysqli_num_rows($managementCommitte);
 
