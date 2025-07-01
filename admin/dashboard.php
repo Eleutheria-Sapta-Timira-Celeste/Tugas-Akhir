@@ -189,7 +189,17 @@ try {
                         </div>
                     </div>
                 </div>
-
+                
+<!-- Kelola Kurikulum -->
+                <div class="p-2 lg:w-1/3 md:w-1/2 w-full" onclick="kelola_kurikulum()">
+                    <div class="h-full flex items-center border p-4 rounded-lg hover:bg-blue-100 cursor-pointer">
+                        <img src="../assects/images/adminavatars/kelola_akun_icon.png" alt="icon" class="w-16 h-16 rounded-full mr-4">
+                        <div>
+                            <h2 class="text-[#ef6c00] font-medium">Kelola Kurikulum</h2>
+                            <p class="text-sm text-gray-500">Kelola Kurikulum</p>
+                        </div>
+                    </div>
+                </div>
                 </div>
             </div>
         </section>
@@ -209,6 +219,7 @@ try {
         function admin() { window.location.href = "admin_management.php"; }
         function siswa_management() { window.location.href = "siswa_management.php"; }
         function guru_management() { window.location.href = "guru_management.php"; }
+        function kelola_kurikulum() { window.location.href = "kelola_kurikulum.php"; }
     </script>
 
 </body>
