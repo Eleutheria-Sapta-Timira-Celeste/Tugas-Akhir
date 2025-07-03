@@ -110,9 +110,9 @@ include 'connection/database.php';
                         </div>
                     </div>
                     <div class="py-2">
-                        <p class="mb-2 text-base font-medium text-sm md:text-base">Subject: ' . $row['about'] . '</p>
-                        <p class="text-justify leading-snug text-base text-sm md:text-base">' . $row['notice_description'] . '</p>
-                    </div>
+    <p class="mb-2 text-base font-medium text-sm md:text-base break-words">Subject: ' . $row['about'] . '</p>
+    <p class="text-justify leading-snug text-base text-sm md:text-base break-words">' . $row['notice_description'] . '</p>
+</div>
                 </div>
             ';
         }
