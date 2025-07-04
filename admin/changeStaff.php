@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
         // Insert data into the school_notice table
-        $sql = "INSERT INTO pimpinan_sekolah (name, position, contact_no, image_src) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO management_committee (name, position, contact_no, image_src) VALUES (?, ?, ?, ?)";
 
         $stmt = $connectionobj->prepare($sql);
 
@@ -113,7 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (isset($_POST['committe_delete'])) {
         $committeId = $_POST['comitteDelete_id'];
-        mysqli_query($connection, "DELETE FROM `pimpinan_sekolah` WHERE id = $committeId;");
+        mysqli_query($connection, "DELETE FROM `management_committee` WHERE id = $committeId;");
         echo '
             <script>
             window.location.replace("changeStaff.php");            
@@ -161,7 +161,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
         // Insert data into the school_notice table
-        $sql = "UPDATE pimpinan_sekolah SET name=?, position=?, contact_no=?, image_src=? WHERE id=?";
+        $sql = "UPDATE management_committee SET name=?, position=?, contact_no=?, image_src=? WHERE id=?";
 
         $stmt = $connectionobj->prepare($sql);
 
@@ -180,7 +180,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         $stmt->close();
-        $connectionobj->close();  
+        $connectionobj->close();
     }
 
 
@@ -465,7 +465,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                                 <?php
 
 
-                                $fetchmanagementCommitte = "SELECT * FROM `pimpinan_sekolah`;";
+                                $fetchmanagementCommitte = "SELECT * FROM `management_committee`;";
                                 $managementCommitte = mysqli_query($connection, $fetchmanagementCommitte);
                                 $totalmanagementCommitte = mysqli_num_rows($managementCommitte);
 
@@ -534,7 +534,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
 
         <!-- Update modal -->
         <?php
-        $fetchmanagementCommitte = "SELECT * FROM `pimpinan_sekolah`;";
+        $fetchmanagementCommitte = "SELECT * FROM `management_committee`;";
         $managementCommitte = mysqli_query($connection, $fetchmanagementCommitte);
         $totalmanagementCommitte = mysqli_num_rows($managementCommitte);
 
@@ -615,8 +615,8 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                                         <button  name="committe_delete" type="submit" class="py-2 px-3 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900">Ya, Saya yakin</button>
                                     </div>
                                 </div>
-                                <form>
-                            </div
+                                </form>
+                            </div>
                         </div>
                         
                        
