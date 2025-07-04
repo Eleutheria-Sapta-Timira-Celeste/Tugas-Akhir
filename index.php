@@ -44,6 +44,24 @@ try {
     </style>
 </head>
 
+<style>
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.animate-gradient {
+  background-size: 300% 300%;
+  animation: gradientFlow 8s ease infinite;
+}
+</style>
+
 <body>
    
 <?php include('includes/header.php') ?>
@@ -119,13 +137,15 @@ try {
     </div>
 
 
-<h1 class="mt-10 mx-6 text-6xl font-black uppercase tracking-wider text-center 
-    bg-gradient-to-r from-amber-300 to-rose-400 via-yellow-200 text-gray-900 
-    py-8 px-6 rounded-2xl shadow-3xl border-4 border-yellow-500 
-    transition-all duration-500 ease-in-out 
-    hover:animate-[gradient-shift_1s_linear_infinite]">
-     SMP PGRI 371 Pondok Aren 
-</h1>
+            <!-- Judul Profesional -->
+            <div class="max-w-5xl mx-auto text-center px-4 mt-10">
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-yellow-400 to-pink-500 animate-gradient">
+                SMP PGRI 371 Pondok Aren
+            </h1>
+            <p class="text-sm md:text-lg mt-2 text-gray-600 font-medium">
+                Unggul dalam Prestasi, Terpuji dalam Bertindak
+            </p>
+            </div>
 
 
 
