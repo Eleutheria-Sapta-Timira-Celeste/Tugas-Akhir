@@ -2,6 +2,7 @@
 session_start();
 include '../connection/database.php';
 
+// Validasi role siswa
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'siswa') {
     header("Location: /Tugas-Akhir/login.php");
     exit();
@@ -21,19 +22,24 @@ if ($result && $result->num_rows > 0) {
     $user = $result->fetch_assoc();
 } else {
     $user = [
-        'nis'             => '',
-        'nama'            => '',
-        'kelas'           => '',
-        'tempat_lahir'    => '',
-        'tanggal_lahir'   => '',
-        'nama_ayah'       => '',
-        'nama_ibu'        => '',
-        'foto'            => $foto
+        'nis'           => '',
+        'nama'          => '',
+        'kelas'         => '',
+        'tempat_lahir'  => '',
+        'tanggal_lahir' => '',
+        'nama_ayah'     => '',
+        'nama_ibu'      => '',
+        'foto'          => $foto
     ];
 }
 
-// Ambil data absensi
-$data_absensi = $connection->query("SELECT * FROM absensi WHERE username = '$username' ORDER BY tanggal DESC");
+// Ambil data absensi lengkap dengan mapel
+$data_absensi = $connection->query("
+    SELECT tanggal, jam, mapel, status 
+    FROM absensi 
+    WHERE username = '$username' 
+    ORDER BY tanggal DESC
+");
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +58,6 @@ $data_absensi = $connection->query("SELECT * FROM absensi WHERE username = '$use
 
     <!-- Sidebar -->
     <aside class="w-64 bg-[#F5E8C7] text-gray-800 min-h-full p-6 shadow-md">
-        <h1 class="text-2xl font-bold mb-6"></h1>
         <nav class="space-y-4">
             <a href="dashboard.php" class="block px-4 py-2 rounded hover:bg-[#D9C38C]">🏠 Dashboard</a>
             <a href="melihat_absensi.php" class="block px-4 py-2 bg-[#E4C988] rounded">📝 Absensi</a>
@@ -60,7 +65,7 @@ $data_absensi = $connection->query("SELECT * FROM absensi WHERE username = '$use
         </nav>
     </aside>
 
-    <!-- Main Content -->
+    <!-- Konten Utama -->
     <main class="flex-1 p-6 bg-gradient-to-br from-orange-100 via-white to-yellow-100">
         <div class="max-w-5xl mx-auto bg-white/90 p-8 rounded-2xl shadow-2xl">
             <h2 class="text-3xl font-extrabold mb-4 flex items-center gap-2 text-orange-600">
@@ -70,45 +75,44 @@ $data_absensi = $connection->query("SELECT * FROM absensi WHERE username = '$use
                 Riwayat Absensi Saya
             </h2>
 
-           <div class="overflow-x-auto mt-6">
-    <table class="w-full border-collapse rounded-xl overflow-hidden shadow">
-        <thead>
-            <tr class="bg-gradient-to-r from-orange-500 to-yellow-400 text-white">
-                <th class="p-3 text-left">Tanggal</th>
-                <th class="p-3 text-left">Jam</th> <!-- Kolom Jam -->
-                <th class="p-3 text-left">Kelas</th>
-                <th class="p-3 text-left">Keterangan</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php while ($row = $data_absensi->fetch_assoc()) { 
-                $badgeColor = [
-                    'Hadir' => 'bg-green-100 text-green-700',
-                    'Alpha' => 'bg-red-100 text-red-700',
-                    'Izin'  => 'bg-yellow-100 text-yellow-700',
-                    'Sakit' => 'bg-blue-100 text-blue-700'
-                ];
-                $ket = htmlspecialchars($row['status']);
-                $color = $badgeColor[$ket] ?? 'bg-gray-100 text-gray-700';
-            ?>
-            <tr class="hover:bg-orange-50 transition-colors duration-200 even:bg-gray-50">
-                <td class="p-3"><?= htmlspecialchars($row['tanggal']) ?></td>
-                <td class="p-3"><?= htmlspecialchars(date('H:i', strtotime($row['jam']))) ?></td> <!-- Tampilkan jam -->
-                <td class="p-3"><?= htmlspecialchars($row['kelas']) ?></td>
-                <td class="p-3">
-                    <span class="px-3 py-1 rounded-full text-xs font-semibold <?= $color ?>">
-                        <?= $ket ?>
-                    </span>
-                </td>
-            </tr>
-            <?php } ?>
-        </tbody>
-    </table>
-</div>
+            <div class="overflow-x-auto mt-6">
+                <table class="w-full border-collapse rounded-xl overflow-hidden shadow">
+                    <thead>
+                        <tr class="bg-gradient-to-r from-orange-500 to-yellow-400 text-white">
+                            <th class="p-3 text-left">Tanggal</th>
+                            <th class="p-3 text-left">Jam</th>
+                            <th class="p-3 text-left">Mata Pelajaran</th>
+                            <th class="p-3 text-left">Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while ($row = $data_absensi->fetch_assoc()) {
+                            $badgeColor = [
+                                'Hadir' => 'bg-green-100 text-green-700',
+                                'Alpha' => 'bg-red-100 text-red-700',
+                                'Izin'  => 'bg-yellow-100 text-yellow-700',
+                                'Sakit' => 'bg-blue-100 text-blue-700'
+                            ];
+                            $ket = htmlspecialchars($row['status']);
+                            $color = $badgeColor[$ket] ?? 'bg-gray-100 text-gray-700';
+                        ?>
+                        <tr class="hover:bg-orange-50 transition-colors duration-200 even:bg-gray-50">
+                            <td class="p-3"><?= htmlspecialchars($row['tanggal']) ?></td>
+                            <td class="p-3"><?= htmlspecialchars(date('H:i', strtotime($row['jam']))) ?></td>
+                            <td class="p-3"><?= htmlspecialchars($row['mapel']) ?></td>
+                            <td class="p-3">
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold <?= $color ?>">
+                                    <?= $ket ?>
+                                </span>
+                            </td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
 
         </div>
     </main>
-
 </div>
 
 <!-- FOOTER -->
