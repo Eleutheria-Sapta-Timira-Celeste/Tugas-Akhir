@@ -4,9 +4,9 @@
         <h1 class="text-2xl font-bold text-orange-600">SPMB Online</h1>
         <span class="ml-2 text-gray-600">SMP PGRI 371 Pondok Aren</span>
     </div>
-    <a href="daftar.php"
-       class="inline-flex items-center gap-2 border border-gray-400 text-gray-700 px-4 py-2 rounded-lg font-medium hover:bg-[#ef6c00] active:scale-95 transition transform duration-150 ease-in-out">
-       
-        Daftarkan Murid
+    <a href="../index.php"
+        class="inline-flex items-center gap-2 bg-[#ef6c00] text-white px-4 py-2 rounded-lg font-medium shadow hover:bg-orange-600 active:scale-95 transition transform duration-150 ease-in-out">
+            Kembali Ke Beranda
     </a>
+
 </header>

@@ -44,7 +44,7 @@
     <!-- 02 -->
     <div class="bg-white p-4 rounded shadow border-l-4 border-orange-500">
       <h4 class="font-bold mb-2">02. Calon Peserta Didik</h4>
-      <p>Mengakses situs SPMB dan melakukan pendaftaran secara daring melalui menu Daftarkan Murid.</p>
+      <p>Mengakses situs SPMB dan melakukan pendaftaran secara daring melalui link di bawah.</p>
       <a href="daftar.php" class="text-orange-600 text-sm mt-2 inline-block hover:underline">Daftar Online</a>
     </div>
 

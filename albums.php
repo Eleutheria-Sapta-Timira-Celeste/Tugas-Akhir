@@ -39,10 +39,10 @@ if (isset($_POST['sessionAlbum'])) {
     <div class="mx-auto max-w-screen-2xl px-4 md:px-8 mt-5">
         <div class="mb-4 flex items-center justify-between gap-8 sm:mb-8 md:mb-12">
             <div class="flex items-center gap-12">
-                <h2 class="text-2xl font-bold text-[#ef6c00] lg:text-3xl dark:text-[#e65c00]">Albums</h2>
+                <h2 class="text-2xl font-bold text-[#ef6c00] lg:text-3xl dark:text-[#e65c00]">Galeri</h2>
 
                 <p class="hidden max-w-screen-sm text-gray-500 dark:text-gray-800 md:block">
-                Silakan buka album tersebut untuk mengakses dan melihat semua gambar yang ada di dalamnya
+                Silakan buka galeri sekolah untuk mengakses dan melihat semua gambar yang ada di dalamnya
                 </p>
             </div>           
         </div>        

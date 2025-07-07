@@ -146,17 +146,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </select>
     </div>
 
-    <!-- NIS -->
-    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-      <label for="nis" class="sm:w-40 font-medium">NIS</label>
-      <input id="nis" name="nis" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
-    </div>
+   <!-- NIS -->
+<div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+  <label for="nis" class="sm:w-40 font-medium">NIS</label>
+  <div class="w-full sm:flex-1">
+    <input 
+      id="nis" 
+      name="nis" 
+      required 
+      pattern="\\d{8,10}" 
+      oninput="validateInput(this, 8, 'nisError', 10)" 
+      class="w-full border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+    <small id="nisError" class="text-red-600 hidden">NIS harus 8–10 digit angka.</small>
+  </div>
+</div>
 
-    <!-- NIK -->
-    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-      <label for="nik" class="sm:w-40 font-medium">NIK</label>
-      <input id="nik" name="nik" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
-    </div>
+<!-- NIK Siswa -->
+<div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+  <label for="nik" class="sm:w-40 font-medium">NIK Siswa</label>
+  <div class="w-full sm:flex-1">
+    <input 
+      id="nik" 
+      name="nik" 
+      required 
+      pattern="\\d{16}" 
+      oninput="validateInput(this, 16, 'nikSiswaError')" 
+      class="w-full border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+    <small id="nikSiswaError" class="text-red-600 hidden">NIK Siswa harus 16 digit angka.</small>
+  </div>
+</div>
+
 
     <!-- Tempat Lahir -->
     <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
@@ -258,11 +277,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <input id="nama_ayah" name="nama_ayah" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
     </div>
 
-    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+   <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
       <label for="nik_ayah" class="sm:w-40 font-medium">NIK Ayah</label>
-      <input id="nik_ayah" name="nik_ayah" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+      <div class="w-full sm:flex-1">
+        <input 
+          id="nik_ayah" 
+          name="nik_ayah" 
+          required 
+          pattern="\\d{16}" 
+          oninput="validateInput(this, 16, 'nikAyahError')" 
+          class="w-full border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+        <small id="nikAyahError" class="text-red-600 hidden">NIK Ayah harus 16 digit angka.</small>
+      </div>
     </div>
-
     <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
       <label for="tempat_lahir_ayah" class="sm:w-40 font-medium">Tempat Lahir Ayah</label>
       <input id="tempat_lahir_ayah" name="tempat_lahir_ayah" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
@@ -301,10 +328,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <input id="nama_ibu" name="nama_ibu" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
     </div>
 
+    
     <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
       <label for="nik_ibu" class="sm:w-40 font-medium">NIK Ibu</label>
-      <input id="nik_ibu" name="nik_ibu" required class="w-full sm:flex-1 border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+      <div class="w-full sm:flex-1">
+        <input 
+          id="nik_ibu" 
+          name="nik_ibu" 
+          required 
+          pattern="\\d{16}" 
+          oninput="validateInput(this, 16, 'nikIbuError')" 
+          class="w-full border border-[#ef6c00] rounded px-3 py-2 focus:ring-2 focus:ring-[#ef6c00]" />
+        <small id="nikIbuError" class="text-red-600 hidden">NIK Ibu harus 16 digit angka.</small>
+      </div>
     </div>
+
 
     <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
       <label for="tempat_lahir_ibu" class="sm:w-40 font-medium">Tempat Lahir Ibu</label>
@@ -378,6 +416,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         const isoFormat = tanggalSekarang.toISOString().split('T')[0];
                         document.getElementById('inputTanggalDaftar').value = isoFormat;
                     </script>
+<script>
+function validateInput(input, minLength, errorId, maxLength = minLength) {
+    const error = document.getElementById(errorId);
+    const value = input.value;
+    if (/^\d+$/.test(value) && value.length >= minLength && value.length <= maxLength) {
+        error.classList.add('hidden');
+        input.classList.remove('border-red-500');
+    } else {
+        error.classList.remove('hidden');
+        input.classList.add('border-red-500');
+    }
+}
+</script>
 
                     
                     
