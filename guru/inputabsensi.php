@@ -21,12 +21,24 @@ if (isset($_POST['reset_header'])) {
 
 // 🔁 Reset semua data absensi milik guru ini
 if (isset($_POST['reset_tabel'])) {
-    $stmt = $connection->prepare("DELETE FROM absensi WHERE guru = ?");
-    $stmt->bind_param("s", $nama);
+    $stmt = $connection->prepare("DELETE FROM absensi WHERE guru = ? AND mapel = ?");
+    $stmt->bind_param("ss", $nama, $mapel);
     if ($stmt->execute()) {
-        $pesan = "Semua data absensi Anda telah dihapus!";
+        $pesan = "Semua data absensi Anda untuk mapel ini telah dihapus!";
     } else {
         $pesan = "Gagal menghapus data absensi!";
+    }
+}
+
+// 🔁 Reset absensi per kelas untuk mapel guru ini
+if (isset($_POST['reset_tabel_spesifik']) && isset($_POST['kelas_reset'])) {
+    $kelas_reset = $_POST['kelas_reset'];
+    $stmt = $connection->prepare("DELETE FROM absensi WHERE guru = ? AND mapel = ? AND kelas = ?");
+    $stmt->bind_param("sss", $nama, $mapel, $kelas_reset);
+    if ($stmt->execute()) {
+        $pesan = "Data absensi kelas $kelas_reset berhasil dihapus.";
+    } else {
+        $pesan = "Gagal menghapus data absensi kelas $kelas_reset.";
     }
 }
 
@@ -48,7 +60,6 @@ if (isset($_POST['simpan_semua']) && isset($_SESSION['absensi_header'])) {
     $jumlah_berhasil = 0;
     $jumlah_gagal = 0;
 
-    // ❌ Hapus dulu absensi lama guru ini untuk tanggal & jam yg sama
     $stmt_delete = $connection->prepare("DELETE FROM absensi WHERE guru = ? AND tanggal = ? AND jam = ?");
     $stmt_delete->bind_param("sss", $nama, $h['tanggal'], $h['jam']);
     $stmt_delete->execute();
@@ -181,23 +192,28 @@ $info = $_SESSION['absensi_header'] ?? null;
             </form>
         <?php endif; ?>
 
-        <!-- 🔁 Tabel Riwayat Absensi -->
+        <!-- 🔁 Tabel Riwayat Absensi per Kelas (mapel dibatasi sesuai guru) -->
         <?php
-        $kelas_data = ['VII', 'VIII', 'IX'];
-        foreach ($kelas_data as $kelas_item):
-            $stmt = $connection->prepare("SELECT * FROM absensi WHERE kelas = ? AND guru = ? ORDER BY tanggal DESC, jam DESC");
-            $stmt->bind_param("ss", $kelas_item, $nama);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            if ($result->num_rows > 0):
+        $stmt = $connection->prepare("SELECT * FROM absensi WHERE guru = ? AND mapel = ? ORDER BY kelas ASC, tanggal DESC, jam DESC");
+        $stmt->bind_param("ss", $nama, $mapel);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $grouped_absensi = [];
+        while ($row = $result->fetch_assoc()) {
+            $grouped_absensi[$row['kelas']][] = $row;
+        }
+
+        foreach ($grouped_absensi as $kelas => $data):
         ?>
         <div class="bg-white p-6 rounded shadow border border-[#E4C988] overflow-auto mt-6">
             <div class="flex items-center justify-between mb-3">
-                <h3 class="text-xl font-semibold text-[#C08261]">Data Absensi Kelas <?= $kelas_item ?></h3>
+                <h3 class="text-xl font-semibold text-[#C08261]">Riwayat Kelas <?= htmlspecialchars($kelas) ?> - Mapel <?= htmlspecialchars($mapel) ?></h3>
                 <div class="space-x-2">
-                    <a href="cetak_absensi.php?kelas=<?= urlencode($kelas_item) ?>" class="text-sm text-blue-600 underline">🖨 Cetak</a>
+                    <a href="cetak_absensi.php?kelas=<?= urlencode($kelas) ?>&mapel=<?= urlencode($mapel) ?>" class="text-sm text-blue-600 underline">🖨 Cetak</a>
                     <form method="post" style="display:inline">
-                        <button type="submit" name="reset_tabel" onclick="return confirm('Yakin ingin menghapus semua data absensi Anda?')" class="text-sm text-red-600 underline">🔄 Reset</button>
+                        <input type="hidden" name="kelas_reset" value="<?= htmlspecialchars($kelas) ?>">
+                        <button type="submit" name="reset_tabel_spesifik" onclick="return confirm('Yakin ingin hapus semua absensi kelas ini?')" class="text-sm text-red-600 underline">🔄 Reset</button>
                     </form>
                 </div>
             </div>
@@ -208,23 +224,21 @@ $info = $_SESSION['absensi_header'] ?? null;
                         <th class="border px-4 py-2">Jam</th>
                         <th class="border px-4 py-2">Nama</th>
                         <th class="border px-4 py-2">Status</th>
-                        <th class="border px-4 py-2">Mapel</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php while ($row = $result->fetch_assoc()): ?>
+                    <?php foreach ($data as $row): ?>
                     <tr class="hover:bg-gray-50">
                         <td class="border px-4 py-2"><?= htmlspecialchars($row['tanggal']) ?></td>
                         <td class="border px-4 py-2"><?= htmlspecialchars(date('H:i', strtotime($row['jam']))) ?></td>
                         <td class="border px-4 py-2"><?= htmlspecialchars($row['nama_siswa']) ?></td>
                         <td class="border px-4 py-2"><?= htmlspecialchars($row['status']) ?></td>
-                        <td class="border px-4 py-2"><?= htmlspecialchars($row['mapel']) ?></td>
                     </tr>
-                    <?php endwhile; ?>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
-        <?php endif; endforeach; ?>
+        <?php endforeach; ?>
     </main>
 </div>
 <?php include('../includes/admin_footer.php'); ?>
