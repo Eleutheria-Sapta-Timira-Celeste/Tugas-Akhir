@@ -45,10 +45,12 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
 
     <!-- Header Section -->
     <section class="text-gray-600 body-font">
-        <div class="container px-5 py-10 mx-auto">
-            <div class="flex flex-col text-center w-full mb-5">
-                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-[#ef6c00]">Halaman Data Pendaftaran Siswa</h1>
-                <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base">
+        <div class="container px-5 py-4 mx-auto">
+            <div class="flex flex-col text-center w-full mb-2">
+                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-[#ef6c00]">
+                    Halaman Data Pendaftaran Siswa
+                </h1>
+                <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base text-gray-700">
                     Selamat datang di halaman data pendaftaran siswa baru SMP PGRI 371 Pondok Aren khusus untuk admin.
                     Halaman ini digunakan untuk memantau, mengelola, dan memverifikasi seluruh data pendaftaran dengan akurat dan efisien.
                     Kami berharap sistem ini memudahkan proses administrasi demi kelancaran penerimaan siswa baru di sekolah.
@@ -58,52 +60,62 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
     </section>
 
     <!-- Table Section -->
-    <section class="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5 antialiased">
+    <section class="bg-[#fff9f2] p-4 sm:p-6">
         <div class="mx-auto max-w-screen-2xl px-4 lg:px-12">
-            <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
+            <div class="bg-white border border-[#fc941e]/30 shadow-md sm:rounded-lg overflow-hidden">
                 <div class="overflow-x-auto">
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <table class="w-full text-sm text-left text-gray-800">
+                        <thead class="text-xs uppercase bg-[#fc941e] text-white">
                             <tr>
-                                <th scope="col" class="p-4">Nama Siswa</th>
-                                <th scope="col" class="p-4">Jenis Kelamin</th>
-                                <th scope="col" class="p-4">Tanggal Pendaftaran</th>
-                                <th scope="col" class="p-4">Aksi</th>
+                                <th scope="col" class="p-4 font-semibold">Nama Siswa</th>
+                                <th scope="col" class="p-4 font-semibold">Jenis Kelamin</th>
+                                <th scope="col" class="p-4 font-semibold">Tanggal Pendaftaran</th>
+                                <th scope="col" class="p-4 font-semibold">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                        <?php
-                        $fetch_all_students = "SELECT * FROM `spmb` ORDER BY id DESC;";
-                        $students = mysqli_query($connection, $fetch_all_students);
-                        $totalStudents = mysqli_num_rows($students);
+                            <?php
+                            $fetch_all_students = "SELECT * FROM `spmb` ORDER BY id DESC;";
+                            $students = mysqli_query($connection, $fetch_all_students);
+                            $totalStudents = mysqli_num_rows($students);
 
-                        if ($totalStudents > 0) {
-                            while ($row = mysqli_fetch_assoc($students)) {
-                                $student_Id = $row['id'];
-                                echo '
-                                <tr class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
-                                    <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        '.$row['nama_lengkap'].'
-                                    </th>
-                                    <td class="px-4 py-3">
-                                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">'.$row['jenis_kelamin'].'</span>
-                                    </td>
-                                    <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">'.$row['created_at'].'</td>
-                                    <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        <div class="flex items-center space-x-4">
-                                            <button type="button" data-drawer-target="drawer-read-product-advanced'.$student_Id.'" data-drawer-show="drawer-read-product-advanced'.$student_Id.'" aria-controls="drawer-read-product-advanced'.$student_Id.'" class="py-2 px-3 flex items-center text-sm font-medium text-center text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700">
-                                                Preview
-                                            </button>
-                                            <button type="button" data-modal-target="delete-modal'.$student_Id.'" data-modal-toggle="delete-modal'.$student_Id.'" class="flex items-center text-red-700 border border-red-700 hover:bg-red-800 hover:text-white font-medium rounded-lg text-sm px-3 py-2">
-                                                Delete
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                ';
+                            if ($totalStudents > 0) {
+                                while ($row = mysqli_fetch_assoc($students)) {
+                                    $student_Id = $row['id'];
+                                    echo '
+                                    <tr class="border-b hover:bg-[#fff3dc] transition">
+                                        <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">'
+                                            . $row['nama_lengkap'] .
+                                        '</td>
+                                        <td class="px-4 py-3">
+                                            <span class="bg-[#fdebcf] text-[#a35300] text-xs font-medium px-2 py-0.5 rounded">'
+                                                . $row['jenis_kelamin'] .
+                                            '</span>
+                                        </td>
+                                        <td class="px-4 py-3 font-medium text-gray-700 whitespace-nowrap">'
+                                            . $row['created_at'] .
+                                        '</td>
+                                        <td class="px-4 py-3 whitespace-nowrap">
+                                            <div class="flex items-center space-x-2">
+                                                <button type="button"
+                                                    data-drawer-target="drawer-read-product-advanced' . $student_Id . '"
+                                                    data-drawer-show="drawer-read-product-advanced' . $student_Id . '"
+                                                    aria-controls="drawer-read-product-advanced' . $student_Id . '"
+                                                    class="py-1.5 px-3 text-sm font-medium text-white bg-[#fc941e] rounded hover:bg-[#e28114] transition">
+                                                    👁️ Preview
+                                                </button>
+                                                <button type="button"
+                                                    data-modal-target="delete-modal' . $student_Id . '"
+                                                    data-modal-toggle="delete-modal' . $student_Id . '"
+                                                    class="py-1.5 px-3 text-sm font-medium text-white bg-red-600 rounded hover:bg-red-700 transition">
+                                                    🗑 Hapus
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>';
+                                }
                             }
-                        }
-                        ?>
+                            ?>
                         </tbody>
                     </table>
                 </div>
@@ -185,7 +197,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
             </dl>
 
              <br>
-             <!-- Data Ayah -->
+             <!-- Data Ibu -->
              <dl class="sm:mb-5"><dt class="mb-2 font-bold leading-none text-gray-900 dark:text-white">DATA IBU</dt></dl>
             <dl class="grid grid-cols-2 gap-4 mb-4">
             <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Nama Ibu</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['nama_ibu'].'</dd></div>
