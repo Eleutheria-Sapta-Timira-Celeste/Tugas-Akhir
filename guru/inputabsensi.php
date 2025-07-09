@@ -108,7 +108,7 @@ $info = $_SESSION['absensi_header'] ?? null;
         <nav class="space-y-4">
             <a href="dashboard.php" class="block px-4 py-2 hover:bg-[#D9C38C]">🏠 Dashboard</a>
             <a href="inputabsensi.php" class="block px-4 py-2 bg-[#E4C988] rounded">📝 Input Absensi</a>
-            <a href="Pengaturan.php" class="block px-4 py-2 hover:bg-[#D9C38C]">⚙️ Pengaturan</a>
+            <a href="Pengaturan.php" class="block px-4 py-2 hover:bg-[#D9C38C]">⚙ Pengaturan</a>
         </nav>
     </aside>
     <main class="flex-1 p-6">

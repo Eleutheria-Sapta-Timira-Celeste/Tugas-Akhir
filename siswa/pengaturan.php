@@ -20,14 +20,15 @@ $data = $query->get_result()->fetch_assoc();
 
 // Update profile
 if (isset($_POST['update_profile'])) {
-    $nama = $_POST['nama'];
-    $kelas = $_POST['kelas'];
-    $tempat_lahir = $_POST['tempat_lahir'];
-    $tanggal_lahir = $_POST['tanggal_lahir'];
-    $nama_ayah = $_POST['nama_ayah'];
-    $nama_ibu = $_POST['nama_ibu'];
+    $nama           = $_POST['nama'];
+    $kelas          = $_POST['kelas'];
+    $tempat_lahir   = $_POST['tempat_lahir'];
+    $tanggal_lahir  = $_POST['tanggal_lahir'];
+    $nama_ayah      = $_POST['nama_ayah'];
+    $nama_ibu       = $_POST['nama_ibu'];
+    $alamat         = $_POST['alamat'];
+    $no_telepon     = $_POST['no_telepon'];
 
-    // Update foto jika ada upload baru
     $foto = $data['foto'];
     if (isset($_FILES['foto']) && $_FILES['foto']['error'] == 0) {
         $target_dir = "uploads/";
@@ -36,8 +37,9 @@ if (isset($_POST['update_profile'])) {
         move_uploaded_file($_FILES["foto"]["tmp_name"], $target_dir . $foto);
     }
 
-    $stmt = $conn->prepare("UPDATE siswa SET nama=?, kelas=?, tempat_lahir=?, tanggal_lahir=?, nama_ayah=?, nama_ibu=?, foto=? WHERE nis=?");
-    $stmt->bind_param("ssssssss", $nama, $kelas, $tempat_lahir, $tanggal_lahir, $nama_ayah, $nama_ibu, $foto, $nis);
+    $stmt = $conn->prepare("UPDATE siswa SET nama=?, kelas=?, tempat_lahir=?, tanggal_lahir=?, nama_ayah=?, nama_ibu=?, alamat=?, no_telepon=?, foto=? WHERE nis=?");
+    $stmt->bind_param("ssssssssss", $nama, $kelas, $tempat_lahir, $tanggal_lahir, $nama_ayah, $nama_ibu, $alamat, $no_telepon, $foto, $nis);
+
     if ($stmt->execute()) {
         $msg = "<div class='text-green-600 font-bold mb-2'>Profil berhasil diperbarui.</div>";
         $_SESSION['nama'] = $nama;
@@ -75,12 +77,10 @@ if (isset($_POST['update_password'])) {
 </head>
 <body class="bg-[#FFF9F0] flex flex-col min-h-screen">
 
-<!-- HEADER -->
 <?php include('../includes/header_siswa.php'); ?>
 
 <div class="flex flex-1">
 
-    <!-- Sidebar -->
     <aside class="w-64 bg-[#F5E8C7] text-gray-800 min-h-full p-6 shadow-md">
         <nav class="space-y-4">
             <a href="dashboard.php" class="block px-4 py-2 rounded hover:bg-[#D9C38C]">🏠 Dashboard</a>
@@ -89,12 +89,11 @@ if (isset($_POST['update_password'])) {
         </nav>
     </aside>
 
-    <!-- Main Content -->
     <main class="flex-1 p-6 bg-[#FFF9F0]">
         <h2 class="text-3xl font-bold text-gray-800 mb-6">Pengaturan Profil Siswa</h2>
         <?= $msg ?>
 
-        <!-- Update Profile -->
+        <!-- Update Profil -->
         <form method="post" enctype="multipart/form-data" class="space-y-4 mb-8 bg-white p-6 rounded-lg shadow border border-[#E4C988]">
             <div>
                 <label class="block mb-1 font-semibold text-gray-700">NIS</label>
@@ -103,6 +102,10 @@ if (isset($_POST['update_password'])) {
             <div>
                 <label class="block mb-1 font-semibold text-gray-700">Nama</label>
                 <input type="text" name="nama" value="<?= htmlspecialchars($data['nama']) ?>" required class="w-full p-3 border border-orange-200 rounded focus:outline-none focus:ring-2 focus:ring-orange-400 transition">
+            </div>
+            <div>
+                <label class="block mb-1 font-semibold text-gray-700">Jenis Kelamin</label>
+                <input type="text" value="<?= htmlspecialchars($data['jenis_kelamin']) ?>" disabled class="w-full p-3 border border-gray-200 rounded bg-gray-100">
             </div>
             <div>
                 <label class="block mb-1 font-semibold text-gray-700">Kelas</label>
@@ -128,6 +131,16 @@ if (isset($_POST['update_password'])) {
                     <input type="text" name="nama_ibu" value="<?= htmlspecialchars($data['nama_ibu']) ?>" required class="w-full p-3 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400 transition">
                 </div>
             </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block mb-1 font-semibold text-gray-700">Alamat</label>
+                    <textarea name="alamat" rows="2" class="w-full p-3 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"><?= htmlspecialchars($data['alamat']) ?></textarea>
+                </div>
+                <div>
+                    <label class="block mb-1 font-semibold text-gray-700">No Telepon</label>
+                    <input type="text" name="no_telepon" value="<?= htmlspecialchars($data['no_telepon']) ?>" class="w-full p-3 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400 transition">
+                </div>
+            </div>
             <div>
                 <label class="block mb-1 font-semibold text-gray-700">Foto</label>
                 <?php if ($data['foto']) { ?>
@@ -140,7 +153,7 @@ if (isset($_POST['update_password'])) {
             </button>
         </form>
 
-        <!-- Update Password -->
+        <!-- Ubah Password -->
         <h3 class="text-xl font-bold mb-4 text-orange-600">Ubah Password</h3>
         <form method="post" class="space-y-4 bg-white p-6 rounded-lg shadow border border-[#E4C988]">
             <div>
@@ -158,8 +171,6 @@ if (isset($_POST['update_password'])) {
     </main>
 </div>
 
-<!-- FOOTER -->
 <?php include('../includes/footer_siswa.php'); ?>
-
 </body>
 </html>
