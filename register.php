@@ -3,12 +3,14 @@ include 'connection/database.php';
 session_start();
 
 $message = "";
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $role = $_POST['role'];
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
+    // Cek username apakah sudah ada
     $cek = $connection->prepare(
         $role === 'siswa' ? "SELECT id FROM siswa WHERE username = ?" : "SELECT id FROM guru WHERE username = ?"
     );
@@ -22,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 
+    // Upload foto jika ada
     $foto = 'default.png';
     if (isset($_FILES['foto']) && $_FILES['foto']['error'] === 0) {
         $foto = basename($_FILES['foto']['name']);
@@ -30,14 +33,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         move_uploaded_file($_FILES['foto']['tmp_name'], $target_dir . $foto);
     }
 
+    // Jika role adalah siswa
     if ($role === 'siswa') {
-        $nama = $_POST['nama_siswa'];
-        $nis = $_POST['nis'];
-        $kelas = $_POST['kelas'];
-        $tempat_lahir = $_POST['tempat_lahir'];
-        $tanggal_lahir = $_POST['tanggal_lahir'];
-        $nama_ayah = $_POST['nama_ayah'];
-        $nama_ibu = $_POST['nama_ibu'];
+        $nama            = $_POST['nama_siswa'];
+        $nis             = $_POST['nis'];
+        $kelas           = $_POST['kelas'];
+        $tempat_lahir    = $_POST['tempat_lahir'];
+        $tanggal_lahir   = $_POST['tanggal_lahir'];
+        $nama_ayah       = $_POST['nama_ayah'];
+        $nama_ibu        = $_POST['nama_ibu'];
+        $jenis_kelamin   = $_POST['jenis_kelamin'];
+        $alamat          = $_POST['alamat'];
+        $no_telepon      = $_POST['no_telepon'];
 
         if (!preg_match('/^\d{10}$/', $nis)) {
             $_SESSION['notif'] = 'NIS harus 10 digit angka.';
@@ -45,6 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit();
         }
 
+        // Cek NIS apakah sudah digunakan
         $cekNIS = $connection->prepare("SELECT id FROM siswa WHERE nis = ?");
         $cekNIS->bind_param("s", $nis);
         $cekNIS->execute();
@@ -55,13 +63,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit();
         }
 
-        $stmt = $connection->prepare("INSERT INTO siswa (username, email, nama, nis, kelas, tempat_lahir, tanggal_lahir, nama_ayah, nama_ibu, foto, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssssssss", $username, $email, $nama, $nis, $kelas, $tempat_lahir, $tanggal_lahir, $nama_ayah, $nama_ibu, $foto, $password);
+        // INSERT siswa
+        $stmt = $connection->prepare("INSERT INTO siswa 
+            (username, email, nama, nis, kelas, tempat_lahir, tanggal_lahir, nama_ayah, nama_ibu, jenis_kelamin, alamat, no_telepon, foto, password) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssssssssssss", $username, $email, $nama, $nis, $kelas, $tempat_lahir, $tanggal_lahir, $nama_ayah, $nama_ibu, $jenis_kelamin, $alamat, $no_telepon, $foto, $password);
     } else {
-        $nama = $_POST['nama_guru'];
-        $nip = $_POST['nip'];
-        $gelar = $_POST['gelar'];
-        $mapel = $_POST['mapel'];
+        // Untuk guru
+        $nama   = $_POST['nama_guru'];
+        $nip    = $_POST['nip'];
+        $gelar  = $_POST['gelar'];
+        $mapel  = $_POST['mapel'];
         $posisi = $_POST['posisi_staff'];
 
         if (!preg_match('/^\d{18}$/', $nip)) {
@@ -70,7 +82,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit();
         }
 
-        $stmt = $connection->prepare("INSERT INTO guru (username, email, password, nama, nip, gelar, mapel, foto, posisi_staff) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $connection->prepare("INSERT INTO guru 
+            (username, email, password, nama, nip, gelar, mapel, foto, posisi_staff) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("sssssssss", $username, $email, $password, $nama, $nip, $gelar, $mapel, $foto, $posisi);
     }
 
@@ -85,6 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -137,23 +152,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         </div>
 
-        <div id="formSiswa" class="hidden border-t pt-4">
-            <h2 class="font-semibold text-orange-600 mb-2">Data Siswa</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input type="text" name="nama_siswa" placeholder="Nama Siswa" class="w-full border rounded px-3 py-2">
-                <input type="text" name="nis" placeholder="NIS (10 digit)" maxlength="10" pattern="\d{10}" title="NIS harus 10 digit angka" class="w-full border rounded px-3 py-2">
-                <select name="kelas" class="w-full border rounded px-3 py-2">
-                    <option value="">-- Pilih Kelas --</option>
-                    <option value="VII">VII</option>
-                    <option value="VIII">VIII</option>
-                    <option value="IX">IX</option>
-                </select>
-                <input type="text" name="tempat_lahir" placeholder="Tempat Lahir" class="w-full border rounded px-3 py-2">
-                <input type="date" name="tanggal_lahir" class="w-full border rounded px-3 py-2">
-                <input type="text" name="nama_ayah" placeholder="Nama Ayah" class="w-full border rounded px-3 py-2">
-                <input type="text" name="nama_ibu" placeholder="Nama Ibu" class="w-full border rounded px-3 py-2">
+            <div id="formSiswa" class="border-t pt-4">
+                <h2 class="font-semibold text-orange-600 mb-2">Data Siswa</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Nama dan NIS -->
+                    <input type="text" name="nama_siswa" placeholder="Nama Siswa" class="w-full border rounded px-3 py-2" required>
+                    <input type="text" name="nis" placeholder="NIS (10 digit)" maxlength="10" pattern="\d{10}" title="NIS harus 10 digit angka" class="w-full border rounded px-3 py-2" required>
+
+                    <!-- Jenis Kelamin -->
+                    <select name="jenis_kelamin" class="w-full border rounded px-3 py-2" required>
+                        <option value="">-- Pilih Jenis Kelamin --</option>
+                        <option value="Laki - Laki">Laki - Laki</option>
+                        <option value="Perempuan">Perempuan</option>
+                    </select>
+
+                    <!-- Kelas dan Tempat Lahir -->
+                    <select name="kelas" class="w-full border rounded px-3 py-2" required>
+                        <option value="">-- Pilih Kelas --</option>
+                        <option value="VII">VII</option>
+                        <option value="VIII">VIII</option>
+                        <option value="IX">IX</option>
+                    </select>
+
+                    <input type="text" name="tempat_lahir" placeholder="Tempat Lahir" class="w-full border rounded px-3 py-2">
+                    <input type="date" name="tanggal_lahir" class="w-full border rounded px-3 py-2">
+
+                    <!-- Orang Tua -->
+                    <input type="text" name="nama_ayah" placeholder="Nama Ayah" class="w-full border rounded px-3 py-2">
+                    <input type="text" name="nama_ibu" placeholder="Nama Ibu" class="w-full border rounded px-3 py-2">
+
+                    <!-- Alamat dan No Telepon -->
+                    <textarea name="alamat" placeholder="Alamat Lengkap" class="w-full border rounded px-3 py-2 md:col-span-2" rows="3"></textarea>
+                    <input type="text" name="no_telepon" placeholder="No Telepon (08xxxxxx)" class="w-full border rounded px-3 py-2 md:col-span-2">
+                </div>
             </div>
-        </div>
+
 
         <div id="formGuru" class="hidden border-t pt-4">
             <h2 class="font-semibold text-orange-600 mb-2">Data Guru</h2>
