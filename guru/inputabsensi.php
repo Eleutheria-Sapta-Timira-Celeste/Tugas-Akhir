@@ -13,13 +13,13 @@ $mapel    = $_SESSION['mapel'] ?? 'Mapel';
 
 $pesan = "";
 
-// 🔁 Reset header absensi
+// Reset header absensi
 if (isset($_POST['reset_header'])) {
     unset($_SESSION['absensi_header']);
     $pesan = "Header absensi telah direset!";
 }
 
-// 🔁 Reset semua data absensi milik guru ini
+// Reset semua data absensi milik guru ini
 if (isset($_POST['reset_tabel'])) {
     $stmt = $connection->prepare("DELETE FROM absensi WHERE guru = ? AND mapel = ?");
     $stmt->bind_param("ss", $nama, $mapel);
@@ -30,7 +30,7 @@ if (isset($_POST['reset_tabel'])) {
     }
 }
 
-// 🔁 Reset absensi per kelas untuk mapel guru ini
+// Reset absensi per kelas
 if (isset($_POST['reset_tabel_spesifik']) && isset($_POST['kelas_reset'])) {
     $kelas_reset = $_POST['kelas_reset'];
     $stmt = $connection->prepare("DELETE FROM absensi WHERE guru = ? AND mapel = ? AND kelas = ?");
@@ -42,7 +42,7 @@ if (isset($_POST['reset_tabel_spesifik']) && isset($_POST['kelas_reset'])) {
     }
 }
 
-// ✅ Simpan header absensi
+// Simpan header absensi
 if (isset($_POST['simpan_header'])) {
     $_SESSION['absensi_header'] = [
         'kelas'   => $_POST['kelas'],
@@ -53,7 +53,7 @@ if (isset($_POST['simpan_header'])) {
     $pesan = "Header absensi berhasil disimpan!";
 }
 
-// ✅ Simpan semua absensi siswa
+// Simpan absensi siswa
 if (isset($_POST['simpan_semua']) && isset($_SESSION['absensi_header'])) {
     $h = $_SESSION['absensi_header'];
     $status_data = $_POST['status'];
@@ -115,13 +115,13 @@ $info = $_SESSION['absensi_header'] ?? null;
         <h2 class="text-2xl font-bold mb-4">Form Input Absensi</h2>
 
         <?php if ($pesan): ?>
-            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4 text-center">
                 <?= htmlspecialchars($pesan) ?>
             </div>
         <?php endif; ?>
 
         <?php if (!$info): ?>
-            <form method="post" class="bg-white p-6 rounded shadow border border-[#E4C988] max-w-xl mb-8">
+            <form method="post" class="bg-white p-6 rounded shadow border border-[#E4C988] max-w-xl mx-auto mb-8">
                 <div class="mb-4">
                     <label class="block">Hari & Tanggal</label>
                     <input type="date" name="tanggal" required class="w-full px-3 py-2 rounded border bg-gray-100">
@@ -139,7 +139,7 @@ $info = $_SESSION['absensi_header'] ?? null;
                         <option value="IX">IX</option>
                     </select>
                 </div>
-                <button type="submit" name="simpan_header" class="bg-[#C08261] text-white px-4 py-2 rounded">Simpan Header</button>
+                <button type="submit" name="simpan_header" class="bg-[#C08261] text-white px-4 py-2 rounded w-full">Simpan Header</button>
             </form>
         <?php endif; ?>
 
@@ -152,47 +152,56 @@ $info = $_SESSION['absensi_header'] ?? null;
                     <div class="flex"><div class="w-32 font-semibold">Tanggal</div><div>: <?= date('d/m/Y', strtotime($info['tanggal'])) ?></div></div>
                     <div class="flex"><div class="w-32 font-semibold">Jam</div><div>: <?= date('H:i', strtotime($info['jam'])) ?></div></div>
                 </div>
-                <form method="post" class="mt-3">
-                    <button type="submit" name="reset_header" onclick="return confirm('Yakin ingin reset header absensi?')" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">🔄 Reset Header</button>
+                <form method="post" class="mt-3 text-center">
+                    <button type="submit" name="reset_header" onclick="return confirm('Yakin ingin reset header absensi?')" class="bg-red-500 text-white px-4 py-2 rounded">🔄 Reset Header</button>
                 </form>
             </div>
 
             <form method="post" class="bg-white p-6 rounded shadow border border-[#E4C988] overflow-auto mb-8">
-                <h3 class="text-lg font-semibold text-[#C08261] mb-4">Daftar Kehadiran Siswa</h3>
-                <table class="min-w-full border text-sm mb-4">
-                    <thead class="bg-[#F5E8C7]">
-                        <tr>
-                            <th class="border px-3 py-2">No</th>
-                            <th class="border px-3 py-2">Nama</th>
-                            <th class="border px-3 py-2">Hadir</th>
-                            <th class="border px-3 py-2">Izin</th>
-                            <th class="border px-3 py-2">Sakit</th>
-                            <th class="border px-3 py-2">Alpha</th>
-                        </tr>
+                <h3 class="text-lg font-semibold text-[#C08261] mb-4 text-center">Daftar Kehadiran Siswa</h3>
+                <table class="min-w-full border text-sm text-center mb-4">
+                    <thead class="bg-[#F5E8C7] text-center text-gray-800">
+    <tr>
+        <th class="border px-1 py-1 align-middle" rowspan="2">No</th>
+        <th class="border px-1 py-1 align-middle" rowspan="2">NISN</th>
+        <th class="border px-1 py-1 align-middle" rowspan="2">Nama</th>
+        <th class="border px-1 py-1" colspan="4">Kehadiran</th>
+    </tr>
+    <tr>
+        <th class="border px-1 py-1">Hadir</th>
+        <th class="border px-1 py-1">Izin</th>
+        <th class="border px-1 py-1">Sakit</th>
+        <th class="border px-1 py-1">Alpha</th>
+    </tr>
+</thead>
+
                     </thead>
                     <tbody>
                         <?php
                         $no = 1;
                         $kelas = $info['kelas'];
-                        $siswa = $connection->query("SELECT username, nama FROM siswa WHERE kelas = '$kelas' ORDER BY nama ASC");
+                        $siswa = $connection->query("SELECT username, nama, nis FROM siswa WHERE kelas = '$kelas' ORDER BY nama ASC");
                         while ($row = $siswa->fetch_assoc()):
                         ?>
                         <tr>
                             <td class="border px-3 py-2"><?= $no++ ?></td>
-                            <td class="border px-3 py-2"><?= htmlspecialchars($row['nama']) ?></td>
-                            <td class="border px-3 py-2 text-center"><input type="radio" name="status[<?= $row['username'] ?>]" value="Hadir" required></td>
-                            <td class="border px-3 py-2 text-center"><input type="radio" name="status[<?= $row['username'] ?>]" value="Izin"></td>
-                            <td class="border px-3 py-2 text-center"><input type="radio" name="status[<?= $row['username'] ?>]" value="Sakit"></td>
-                            <td class="border px-3 py-2 text-center"><input type="radio" name="status[<?= $row['username'] ?>]" value="Alpha"></td>
+                            <td class="border px-3 py-2"><?= htmlspecialchars($row['nis']) ?></td>
+                            <td class="border px-3 py-2 text-left"><?= htmlspecialchars($row['nama']) ?></td>
+                            <td class="border px-3 py-2"><input type="radio" name="status[<?= $row['username'] ?>]" value="Hadir" required></td>
+                            <td class="border px-3 py-2"><input type="radio" name="status[<?= $row['username'] ?>]" value="Izin"></td>
+                            <td class="border px-3 py-2"><input type="radio" name="status[<?= $row['username'] ?>]" value="Sakit"></td>
+                            <td class="border px-3 py-2"><input type="radio" name="status[<?= $row['username'] ?>]" value="Alpha"></td>
                         </tr>
                         <?php endwhile; ?>
                     </tbody>
                 </table>
-                <button type="submit" name="simpan_semua" class="bg-[#C08261] text-white px-4 py-2 rounded hover:bg-opacity-90">✅ Simpan Semua</button>
+                <div class="text-center">
+                    <button type="submit" name="simpan_semua" class="bg-[#C08261] text-white px-6 py-2 rounded hover:bg-opacity-90">✅ Simpan Semua</button>
+                </div>
             </form>
         <?php endif; ?>
 
-        <!-- 🔁 Tabel Riwayat Absensi per Kelas (mapel dibatasi sesuai guru) -->
+        <!-- Riwayat -->
         <?php
         $stmt = $connection->prepare("SELECT * FROM absensi WHERE guru = ? AND mapel = ? ORDER BY kelas ASC, tanggal DESC, jam DESC");
         $stmt->bind_param("ss", $nama, $mapel);
@@ -217,21 +226,22 @@ $info = $_SESSION['absensi_header'] ?? null;
                     </form>
                 </div>
             </div>
-            <table class="min-w-full table-auto border text-sm">
-                <thead class="bg-[#F5E8C7] text-gray-800">
-                    <tr>
-                        <th class="border px-4 py-2">Tanggal</th>
-                        <th class="border px-4 py-2">Jam</th>
-                        <th class="border px-4 py-2">Nama</th>
-                        <th class="border px-4 py-2">Status</th>
-                    </tr>
-                </thead>
+            <table class="min-w-full table-fixed border text-sm text-center">
+    <thead class="bg-[#F5E8C7] text-gray-800">
+        <tr>
+            <th class="w-1/4 border px-4 py-2">Tanggal</th>
+            <th class="w-1/4 border px-4 py-2">Jam</th>
+            <th class="w-1/4 border px-4 py-2">Nama</th>
+            <th class="w-1/4 border px-4 py-2">Status</th>
+        </tr>
+    </thead>
+
                 <tbody>
                     <?php foreach ($data as $row): ?>
                     <tr class="hover:bg-gray-50">
                         <td class="border px-4 py-2"><?= htmlspecialchars($row['tanggal']) ?></td>
                         <td class="border px-4 py-2"><?= htmlspecialchars(date('H:i', strtotime($row['jam']))) ?></td>
-                        <td class="border px-4 py-2"><?= htmlspecialchars($row['nama_siswa']) ?></td>
+                        <td class="border px-4 py-2 text-left"><?= htmlspecialchars($row['nama_siswa']) ?></td>
                         <td class="border px-4 py-2"><?= htmlspecialchars($row['status']) ?></td>
                     </tr>
                     <?php endforeach; ?>
@@ -243,8 +253,4 @@ $info = $_SESSION['absensi_header'] ?? null;
 </div>
 <?php include('../includes/admin_footer.php'); ?>
 </body>
-
 </html>
-
-</html>
-
