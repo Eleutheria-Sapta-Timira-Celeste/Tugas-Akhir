@@ -122,7 +122,7 @@ while ($row = $result->fetch_assoc()) {
         <?php if (count($data) > 0): ?>
             <?php $no = 1; foreach ($data as $row): ?>
             <tr>
-                <td><?= $no++ ?></td>
+                <td style="width: 40px;"><?= $no++ ?></td>
                 <td style="text-align:left;"><?= htmlspecialchars($row['nama_siswa']) ?></td>
                 <td><?= htmlspecialchars($row['status']) ?></td>
             </tr>
