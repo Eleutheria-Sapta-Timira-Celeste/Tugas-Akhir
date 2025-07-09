@@ -25,11 +25,14 @@ if ($result && $result->num_rows > 0) {
     $user = [
         'nis'             => '',
         'nama'            => '',
+        'jenis_kelamin'   => '',
         'kelas'           => '',
         'tempat_lahir'    => '',
         'tanggal_lahir'   => '',
         'nama_ayah'       => '',
         'nama_ibu'        => '',
+        'alamat'          => '',
+        'no_telepon'      => '',
         'foto'            => $foto
     ];
 }
@@ -87,6 +90,10 @@ if ($result && $result->num_rows > 0) {
                         <input type="text" value="<?= htmlspecialchars($user['nama']) ?>" disabled class="w-full mt-1 px-3 py-2 border rounded bg-gray-100">
                     </div>
                     <div>
+                        <label class="block text-sm font-medium text-gray-700">Jenis Kelamin</label>
+                        <input type="text" value="<?= htmlspecialchars($user['jenis_kelamin']) ?>" disabled class="w-full mt-1 px-3 py-2 border rounded bg-gray-100">
+                    </div>
+                    <div>
                         <label class="block text-sm font-medium text-gray-700">Kelas</label>
                         <input type="text" value="<?= htmlspecialchars($user['kelas']) ?>" disabled class="w-full mt-1 px-3 py-2 border rounded bg-gray-100">
                     </div>
@@ -101,6 +108,14 @@ if ($result && $result->num_rows > 0) {
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Nama Ibu</label>
                         <input type="text" value="<?= htmlspecialchars($user['nama_ibu']) ?>" disabled class="w-full mt-1 px-3 py-2 border rounded bg-gray-100">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Alamat</label>
+                        <input type="text" value="<?= htmlspecialchars($user['alamat']) ?>" disabled class="w-full mt-1 px-3 py-2 border rounded bg-gray-100">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">No Telepon</label>
+                        <input type="text" value="<?= htmlspecialchars($user['no_telepon']) ?>" disabled class="w-full mt-1 px-3 py-2 border rounded bg-gray-100">
                     </div>
                 </div>
             </div>
