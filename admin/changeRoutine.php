@@ -7,256 +7,202 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     exit();
 }
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-
-    if (isset($_POST['update_notice'])) {
-        $classId = $_POST["class_id"];
-        $IDImage = 'file-upload-modified'. $classId;
-        $fileUploadName = $_FILES[$IDImage]['name'];
-        $fileUploadTmp = $_FILES[$IDImage]['tmp_name'];
-        
-
-        $targetDirectory = '../assects/images/Routines/';
-        $targetFilePath = "../assects/images/Routines/" . basename($fileUploadName);
-        $sqlfileurl = "";
-
-        if (move_uploaded_file($fileUploadTmp, $targetFilePath)) {
-
-            $sqlfileurl = "assects/images/Routines/" . basename($fileUploadName);
-        }
-
-        date_default_timezone_set('Asia/Kathmandu');
-        $currentDate = date("d/m/Y");
-        $currentTime = date("h:i A");
-
-        if ($connectionobj->connect_error) {
-            die("Connection failed: " . $connectionobj->connect_error);
-        }
-
-        $last_modified_default = $currentTime . " " . $currentDate;
-
-        // Insert data into the school_notice table
-        $sql = "UPDATE schoolRoutine SET routine_url=?, last_modified=? WHERE id=?";
-
-        $stmt = $connectionobj->prepare($sql);
-
-
-        $stmt->bind_param("sss", $sqlfileurl, $last_modified_default, $classId);
-
-        if ($stmt->execute()) {
-            echo '
-            <script>
-            alert("Routine has been updated sucessfully")
-            window.location.replace("changeRoutine.php");
-              
-            </script>';
-        } else {
-            echo "Error: " . $stmt->error;
-        }
-
-        $stmt->close();
-        $connectionobj->close();
+// Handle delete
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['delete_routine'], $_POST['delete_id'])) {
+    $deleteId = $_POST['delete_id'];
+    $stmt = $connectionobj->prepare("DELETE FROM schoolRoutine WHERE id = ?");
+    $stmt->bind_param("i", $deleteId);
+    if ($stmt->execute()) {
+        echo '<script>alert("Jadwal berhasil dihapus."); window.location.replace("changeRoutine.php");</script>';
+    } else {
+        echo '<script>alert("Gagal menghapus.");</script>';
     }
+    $stmt->close();
 }
 
+// Handle insert/update
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['update_notice'])) {
+    $classId = $_POST["class_id"];
+    $className = trim($_POST["class_name"]);
+    $IDImage = 'file-upload-modified' . $classId;
+    $fileUploadName = $_FILES[$IDImage]['name'] ?? '';
+    $fileUploadTmp = $_FILES[$IDImage]['tmp_name'] ?? '';
+    $targetDirectory = '../assects/images/Routines/';
+    $sqlfileurl = "";
+
+    if (!empty($fileUploadName)) {
+        $targetFilePath = $targetDirectory . basename($fileUploadName);
+        if (move_uploaded_file($fileUploadTmp, $targetFilePath)) {
+            $sqlfileurl = "assects/images/Routines/" . basename($fileUploadName);
+        }
+    }
+
+    date_default_timezone_set('Asia/Jakarta');
+    $last_modified = date("H:i d/m/Y");
+
+    if ($classId == 0) {
+        $stmt = $connectionobj->prepare("INSERT INTO schoolRoutine (class, routine_url, last_modified) VALUES (?, ?, ?)");
+        $stmt->bind_param("sss", $className, $sqlfileurl, $last_modified);
+    } else {
+        if (!empty($sqlfileurl)) {
+            $stmt = $connectionobj->prepare("UPDATE schoolRoutine SET class=?, routine_url=?, last_modified=? WHERE id=?");
+            $stmt->bind_param("sssi", $className, $sqlfileurl, $last_modified, $classId);
+        } else {
+            $stmt = $connectionobj->prepare("UPDATE schoolRoutine SET class=?, last_modified=? WHERE id=?");
+            $stmt->bind_param("ssi", $className, $last_modified, $classId);
+        }
+    }
+
+    if ($stmt->execute()) {
+        echo '<script>alert("Jadwal berhasil disimpan."); window.location.replace("changeRoutine.php");</script>';
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+    $stmt->close();
+}
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="id">
 <head>
     <meta charset="UTF-8">
+    <title>Ubah Jadwal Kelas</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jadwal Kelas</title>
-    <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
-    <link rel="icon" type="image/x-icon" href="../assects/images/admin_logo.png">
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
-
-
+    <style>
+        html, body { margin: 0; padding: 0; background-color: #ffffff; min-height: 100%; display: flex; flex-direction: column; }
+        main { flex: 1; }
+        footer { margin-top: auto; }
+        .btn-orange { background-color: #fc941e; color: white; }
+        .btn-orange:hover { background-color: #e67c00; }
+        .modal-bg { background-color: rgba(0, 0, 0, 0.4); }
+        input[type="file"]::file-selector-button {
+            background-color: #fc941e;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        input[type="file"]::file-selector-button:hover {
+            background-color: #e67c00;
+        }
+    </style>
 </head>
-
 <body>
-    <?php include('../includes/admin_header.php') ?>
+<?php include('../includes/admin_header.php'); ?>
 
-    <main>
-    <section class="text-gray-600 body-font">
-        <div class="container px-5 py-10 pb-0 mx-auto">
-            <div class="flex flex-col text-center w-full mb-20">
-                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4" style="color: #ef6c00;">Ubah Jadwal Kelas</h1>
-                <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base"> 🏫 Di halaman ini anda dapat mengubah jadwal kelas untuk para siswa/siswi📅 
-                </p>
-            </div>
-        </div>   
-    </section>
-        <!-- Start block -->
-        <section class="bg-gray-50 dark:bg-[#ef6c00] p-3 mt-0 sm:p-5 antialiased">
-            <div class="mx-auto max-w-screen-xl px-0 lg:px-12">
-                <!-- Start coding here -->
-                <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
-                    <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
-                        
+<main class="py-10 px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-10">
+        <h1 class="text-3xl font-bold text-[#fc941e]">Ubah Jadwal Kelas</h1>
+        <p class="text-gray-600 max-w-3xl mx-auto">
+            Halaman ini memungkinkan admin sekolah untuk mengelola jadwal pelajaran setiap kelas dalam bentuk gambar. 
+            Admin dapat menambahkan, memperbarui, atau menghapus file jadwal agar siswa/siswi selalu memperoleh informasi terbaru terkait pembelajaran di kelas masing-masing. 
+            Dengan pengelolaan yang terpusat dan fleksibel, penyampaian jadwal menjadi lebih praktis dan efisien.
+        </p>
+    </div>
 
-                    </div>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                <tr>
-                                    <th scope="col" class="px-4 py-3">Kelas</th>
-                              
-                                    <th scope="col" class="px-4 py-3">Terakhir Diperbarui</th>
-                                    <th scope="col" class="px-4 py-3">
-                                        <span class="sr-only">Aksi</span>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
+    <div class="flex justify-end mb-4 max-w-6xl mx-auto">
+        <button data-modal-target="modal0" data-modal-toggle="modal0" class="btn-orange px-4 py-2 rounded text-sm">+ Tambah Jadwal</button>
+    </div>
 
+    <div class="bg-white shadow rounded-lg overflow-x-auto max-w-6xl mx-auto">
+        <table class="w-full text-sm text-left text-gray-700">
+            <thead class="text-xs uppercase bg-gray-100">
+                <tr>
+                    <th class="px-4 py-3">Kelas</th>
+                    <th class="px-4 py-3">Terakhir Diperbarui</th>
+                    <th class="px-4 py-3 text-center">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $result = mysqli_query($connection, "SELECT * FROM schoolRoutine ORDER BY id DESC");
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo '<tr class="border-b">
+                        <td class="px-4 py-3">' . htmlspecialchars($row['class']) . '</td>
+                        <td class="px-4 py-3">' . $row['last_modified'] . '</td>
+                        <td class="px-4 py-3 text-center space-x-2">
+                            <button data-modal-target="modal' . $row['id'] . '" data-modal-toggle="modal' . $row['id'] . '" class="btn-orange px-3 py-1 rounded text-sm">Edit</button>
+                            <button onclick="confirmDelete(' . $row['id'] . ')" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-sm">Hapus</button>
+                        </td>
+                    </tr>';
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
 
-                                $fetch_notice_data = "SELECT * FROM `schoolRoutine` ORDER BY id DESC;";
-                                $class = mysqli_query($connection, $fetch_notice_data);
-                                $totalNotice = mysqli_num_rows($class);
-
-                                if ($totalNotice > 0) {
-                                    while ($row = mysqli_fetch_assoc($class)) {
-                                        $classId = $row['id'];
-                                        echo '
-                                            <tr class="border-b dark:border-gray-700">
-                                                <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white  max-w-[10rem] truncate">' . $row['class'] . '</th>
-                                                
-
-                                                <td class="px-4 py-3">' . $row['last_modified'] . '</td>
-                                                <td class="px-4 py-3 flex items-center justify-end">
-                                                    <button id="apple-imac-27-dropdown-button" data-dropdown-toggle="apple-imac-27-dropdown' . $row['id'] . '" class="inline-flex items-center text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700 p-1.5 dark:hover-bg-gray-800 text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100" type="button">
-                                                        <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                                                        </svg>
-                                                    </button>
-                                                    <div id="apple-imac-27-dropdown' . $classId . '" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                                                        <ul class="py-1 text-sm" aria-labelledby="apple-imac-27-dropdown-button">
-                                                            <li>
-                                                                <button type="button" data-modal-target="updateProductModal' . $classId . '" data-modal-toggle="updateProductModal' . $classId . '" class="flex w-full items-center py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-gray-700 dark:text-gray-200">
-                                                                    <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                                        <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
-                                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
-                                                                    </svg>
-                                                                Ubah
-                                                                </button>
-                                                            </li>
-
-                                                            
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                
-                                            ';
-                                    }
-                                }
-                                ?>
-
-
-                            </tbody>
-                        </table>
-                    </div>
-                    <nav class="flex flex-col md:flex-row justify-between items-start md:items-center space-y- md:space-y-0 p-4" aria-label="Table navigation">
-
-                    </nav>
+    <!-- Delete Modal -->
+    <div id="deleteModal" class="hidden modal-bg fixed top-0 left-0 z-50 w-full h-full flex justify-center items-center">
+        <div class="bg-white rounded-lg p-6 w-full max-w-sm">
+            <h3 class="text-lg font-bold mb-4">Konfirmasi Hapus</h3>
+            <p class="mb-6 text-gray-600">Apakah Anda yakin ingin menghapus jadwal ini?</p>
+            <form method="post">
+                <input type="hidden" name="delete_id" id="delete_id">
+                <div class="flex justify-end gap-2">
+                    <button type="button" onclick="document.getElementById('deleteModal').classList.add('hidden')" class="px-4 py-2 rounded border">Batal</button>
+                    <button type="submit" name="delete_routine" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded">Hapus</button>
                 </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Tambah -->
+    <div id="modal0" class="hidden modal-bg fixed top-0 left-0 z-50 w-full h-full flex justify-center items-center">
+        <div class="bg-white rounded-lg p-6 w-full max-w-md">
+            <h3 class="text-lg font-bold mb-4">Tambah Jadwal</h3>
+            <form method="post" enctype="multipart/form-data">
+                <input type="hidden" name="class_id" value="0">
+                <div class="mb-4">
+                    <label class="block mb-1 text-sm font-medium">Nama Kelas</label>
+                    <input type="text" name="class_name" required class="w-full border rounded p-2">
+                </div>
+                <div class="mb-4">
+                    <label class="block mb-1 text-sm font-medium">Upload Jadwal (gambar)</label>
+                    <input type="file" name="file-upload-modified0" class="w-full border rounded p-2">
+                </div>
+                <button name="update_notice" type="submit" class="btn-orange w-full py-2 rounded">Simpan</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Edit (Loop) -->
+    <?php
+    $result = mysqli_query($connection, "SELECT * FROM schoolRoutine ORDER BY id DESC");
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo '
+        <div id="modal' . $row['id'] . '" class="hidden modal-bg fixed top-0 left-0 z-50 w-full h-full flex justify-center items-center">
+            <div class="bg-white rounded-lg p-6 w-full max-w-md">
+                <h3 class="text-lg font-bold mb-4">Edit Jadwal</h3>
+                <form method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="class_id" value="' . $row['id'] . '">
+                    <div class="mb-4">
+                        <label class="block mb-1 text-sm font-medium">Nama Kelas</label>
+                        <input type="text" name="class_name" value="' . htmlspecialchars($row['class']) . '" required class="w-full border rounded p-2">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block mb-1 text-sm font-medium">Upload Jadwal Baru (gambar)</label>
+                        <input type="file" name="file-upload-modified' . $row['id'] . '" class="w-full border rounded p-2">
+                    </div>
+                    <button name="update_notice" type="submit" class="btn-orange w-full py-2 rounded">Simpan Perubahan</button>
+                </form>
             </div>
-        </section>
-        
-        <!-- Update modal -->
-        <?php
-        $fetch_notice_data = "SELECT * FROM `schoolRoutine` ORDER BY id DESC;";
-        $class = mysqli_query($connection, $fetch_notice_data);
-        $totalNotice = mysqli_num_rows($class);
+        </div>';
+    }
+    ?>
+</main>
 
-        
+<?php include('../includes/admin_footer.php'); ?>
 
-        if ($totalNotice > 0) {
-            while ($row = mysqli_fetch_assoc($class)) {
-                $classId = $row['id'];
-                echo '
-
-                        <div id="updateProductModal' . $classId . '" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                            <div class="relative p-4 w-full max-w-2xl max-h-full">
-                                <!-- Modal content -->
-                                
-                                <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
-                                    <!-- Modal header -->
-                                    <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
-                                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Tambah Jadwal Kelas</h3>
-                                        <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateProductModal' . $classId . '">
-                                            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                            </svg>
-                                            <span class="sr-only">Close modal</span>
-                                        </button>
-                                    </div>
-                                    <!-- Modal body -->
-                                    <form method="post" id="UpdateNotice' . $classId . '" enctype="multipart/form-data">
-                                        <div class="grid gap-4 mb-4 sm:grid-cols-1">
-                                        <div><label for="new_file" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kalau kamu tidak memilih gambar apa pun, jadwal akan dihapus dari situs web, atau cukup pilih "kosong" untuk menghapus jadwal.</label></div><br>
-                                            <div class="flex items-center justify-center w-full">
-       
-                                                <input name="file-upload-modified'.$classId.'" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file">
-                                                <input class="hidden" name="class_id" value="' . $classId . '" type="text">
-                                            </div>
-
-                                            
-                                            
-                                        </div>
-                                        
-                                        <div class="flex items-center space-x-4">
-                                            <button name="update_notice" type="submit" class="text-white bg-[#ef6c00] hover:bg-[#cc5200] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#cc5200] dark:focus:ring-[#cc5200] ">Tambah Jadwal Kelas</button>
-                                            
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        ';
-            }
-        }
-        ?>
-
-
-    </main>
-
-    <?php include('../includes/admin_footer.php') ?>
-
-    <script>
-        function displayFileName() {
-            var fileInput = document.getElementById('file-upload');
-            var fileInfoContainer = document.getElementById('file-info');
-
-
-            if (fileInput.files.length > 0) {
-                fileInfoContainer.innerHTML = '         File: ' + fileInput.files[0].name;
-                fileInfoContainer.classList.remove('hidden');
-
-            }
-        }
-
-        function displayFileNameShow() {
-            var fileInput = document.getElementById('dropzone-file');
-            var fileInfoContainer = document.getElementById('file-info-modified');
-
-            if (fileInput.files.length > 0) {
-                fileInfoContainer.innerHTML = 'File: ' + fileInput.files[0].name;
-                fileInfoContainer.classList.remove('hidden');
-            }
-        }
-
-        console.clear();
-    </script>
-
-
+<script>
+    function confirmDelete(id) {
+        document.getElementById('delete_id').value = id;
+        document.getElementById('deleteModal').classList.remove('hidden');
+    }
+</script>
 
 </body>
-
-
 </html>
