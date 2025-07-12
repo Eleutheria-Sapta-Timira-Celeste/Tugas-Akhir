@@ -57,7 +57,7 @@ if (isset($_POST['update_flash_notice'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
+    <title>Kartu Sambutan</title>
     <link rel="icon" type="image/x-icon" href="../assects/images/admin_logo.png">
     <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
 </head>

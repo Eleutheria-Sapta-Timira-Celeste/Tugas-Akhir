@@ -27,7 +27,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambahkan Galeri</title>
+    <title>Data Pendaftaran Siswa</title>
     <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
@@ -134,12 +134,12 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                 $student_Id = $row['id'];
                 echo '
         <!-- Preview Drawer -->
-        <div id="drawer-read-product-advanced'.$student_Id.'" class="overflow-y-auto fixed top-0 left-0 z-50 p-4 w-full max-w-lg h-screen bg-white transition-transform -translate-x-full dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
+        <div id="drawer-read-product-advanced'.$student_Id.'" class="overflow-y-auto fixed top-0 left-0 z-50 p-4 w-full max-w-lg h-screen bg-white transition-transform -translate-x-full " tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
             <div>
-                <h4 id="read-drawer-label" class="mb-1.5 leading-none text-xl font-semibold text-gray-900 dark:text-white">Tanggal Pendaftaran</h4>
-                <h5 class="mb-5 text-xl font-bold text-gray-900 dark:text-white">'.$row['created_at'].'</h5>
+                <h4 id="read-drawer-label" class="mb-1.5 leading-none text-xl font-semibold text-gray-900">Tanggal Pendaftaran</h4>
+                <h5 class="mb-5 text-xl font-bold text-gray-900">'.$row['created_at'].'</h5>
             </div>
-            <button type="button" data-drawer-dismiss="drawer-read-product-advanced'.$student_Id.'" aria-controls="drawer-read-product-advanced'.$student_Id.'" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+            <button type="button" data-drawer-dismiss="drawer-read-product-advanced'.$student_Id.'" aria-controls="drawer-read-product-advanced'.$student_Id.'" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center ">
                 <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
                 </svg>
@@ -147,67 +147,67 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
             </button>
             
             <div class="grid grid-cols-3 gap-4 mb-4 sm:mb-5">
-                <div class="p-2 w-auto bg-gray-100 rounded-lg dark:bg-gray-700">
-                <img src="uploads/'.$row['foto_pas'].'" onerror="this.src=`' . $defaultavatar . '`">
+                <div class="p-2 w-auto bg-gray-100 rounded-lg">
+                <img src="spmb/uploads/'.$row['foto_pas'].'" onerror="this.src=`' . $defaultavatar . '`">
                 </div>
 
             </div>
 
-            <dl class="sm:mb-5"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">NISN SISWA</dt><dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400">'.$row['nis'].'</dd></dl>
+            <dl class="sm:mb-5"><dt class="mb-2 font-semibold leading-none text-gray-900">NISN SISWA</dt><dd class="mb-4 font-light text-gray-500 sm:mb-5 ">'.$row['nis'].'</dd></dl>
             <dl class="grid grid-cols-2 gap-4 mb-4">
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Nama Lengkap</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['nama_lengkap'].'</dd></div>
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Jenis Kelamin</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['jenis_kelamin'].'</dd></div>
-                        <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">NIK Siswa</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['nik'].'</dd></div>
-                        <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Tempat Lahir</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['tempat_lahir'].'</dd></div>
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Tanggal Lahir</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['tanggal_lahir'].'</dd></div>
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Agama/Kepercayan</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['agama'].'</dd></div>
-                   <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Tempat Tinggal</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['tempat_tinggal'].'</dd></div>
-                <div class="col-span-2 p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 sm:col-span-1 dark:border-gray-600">
-                    <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Alamat Tinggal</dt>
-                    <dd class="flex items-center text-gray-500 dark:text-gray-400">
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 "><dt class="mb-2 font-semibold leading-none text-gray-900">Nama Lengkap</dt><dd class="text-gray-500 ">'.$row['nama_lengkap'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 "><dt class="mb-2 font-semibold leading-none text-gray-900">Jenis Kelamin</dt><dd class="text-gray-500">'.$row['jenis_kelamin'].'</dd></div>
+                        <div class="p-3 bg-gray-100 rounded-lg border border-gray-200"><dt class="mb-2 font-semibold leading-none text-gray-900">NIK Siswa</dt><dd class="text-gray-500">'.$row['nik'].'</dd></div>
+                        <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 "><dt class="mb-2 font-semibold leading-none text-gray-900 ">Tempat Lahir</dt><dd class="text-gray-500">'.$row['tempat_lahir'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 "><dt class="mb-2 font-semibold leading-none text-gray-900 ">Tanggal Lahir</dt><dd class="text-gray-500 ">'.$row['tanggal_lahir'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 "><dt class="mb-2 font-semibold leading-none text-gray-900 ">Agama/Kepercayan</dt><dd class="text-gray-500">'.$row['agama'].'</dd></div>
+                   <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 "><dt class="mb-2 font-semibold leading-none text-gray-900 ">Tempat Tinggal</dt><dd class="text-gray-500">'.$row['tempat_tinggal'].'</dd></div>
+                <div class="col-span-2 p-3 bg-gray-100 rounded-lg border border-gray-200  sm:col-span-1 ">
+                    <dt class="mb-2 font-semibold leading-none text-gray-900">Alamat Tinggal</dt>
+                    <dd class="flex items-center text-gray-500">
                         <svg class="w-4 h-4 mr-1.5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
                         </svg>
                         '.$row['alamat_tinggal'].'
                     </dd>
                 </div>
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Moda Transportasi</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['moda_transportasi'].'</dd></div>
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Anak Ke- </dt><dd class="text-gray-500 dark:text-gray-400">'.$row['anak_keberapa'].'</dd></div>
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Jumlah Saudara Kandung</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['jumlah_saudara_kandung'].'</dd></div>
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Nomor Telepon</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['no_telp'].'</dd></div>
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Siswa Penerima KIP</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['penerima_kip'].'</dd></div>
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Nomor KIP Siswa</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['no_kip'].'</dd></div>
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Tinggi Siswa</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['tinggi_cm'].'</dd></div>
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Berat Badan Siswa</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['berat_kg'].'</dd></div>
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Jarak Tempat Tinggal</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['jarak_tempat_tinggal'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 "><dt class="mb-2 font-semibold leading-none text-gray-900 ">Moda Transportasi</dt><dd class="text-gray-500 ">'.$row['moda_transportasi'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 "><dt class="mb-2 font-semibold leading-none text-gray-900 ">Anak Ke- </dt><dd class="text-gray-500 ">'.$row['anak_keberapa'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 "><dt class="mb-2 font-semibold leading-none text-gray-900 ">Jumlah Saudara Kandung</dt><dd class="text-gray-500">'.$row['jumlah_saudara_kandung'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 "><dt class="mb-2 font-semibold leading-none text-gray-900 ">Nomor Telepon</dt><dd class="text-gray-500 ">'.$row['no_telp'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 "><dt class="mb-2 font-semibold leading-none text-gray-900 ">Siswa Penerima KIP</dt><dd class="text-gray-500 ">'.$row['penerima_kip'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 "><dt class="mb-2 font-semibold leading-none text-gray-900 ">Nomor KIP Siswa</dt><dd class="text-gray-500">'.$row['no_kip'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 "><dt class="mb-2 font-semibold leading-none text-gray-900 ">Tinggi Siswa</dt><dd class="text-gray-500">'.$row['tinggi_cm'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 "><dt class="mb-2 font-semibold leading-none text-gray-900 ">Berat Badan Siswa</dt><dd class="text-gray-500">'.$row['berat_kg'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 "><dt class="mb-2 font-semibold leading-none text-gray-900 ">Jarak Tempat Tinggal</dt><dd class="text-gray-500">'.$row['jarak_tempat_tinggal'].'</dd></div>
             </dl>
             
             <br>
              <!-- Data Ayah -->
-             <dl class="sm:mb-5"><dt class="mb-2 font-bold leading-none text-gray-900 dark:text-white">DATA AYAH</dt></dl>
+             <dl class="sm:mb-5"><dt class="mb-2 font-bold leading-none text-gray-900">DATA AYAH</dt></dl>
             <dl class="grid grid-cols-2 gap-4 mb-4">
-            <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Nama Ayah</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['nama_ayah'].'</dd></div>
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">NIK Ayah</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['nik_ayah'].'</dd></div>
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Tempat Lahir Ayah</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['tempat_lahir_ayah'].'</dd></div>
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Tanggal Lahir Ayah</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['tanggal_lahir_ayah'].'</dd></div>
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Pendidikan Ayah</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['pendidikan_ayah'].'</dd></div>
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Pekerjaan Ayah</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['pekerjaan_ayah'].'</dd></div>
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Penghasilan Ayah</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['penghasilan_ayah'].'</dd></div>
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Nomor Telepon Ayah</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['no_telp_ayah'].'</dd></div>
+            <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 "><dt class="mb-2 font-semibold leading-none text-gray-900 ">Nama Ayah</dt><dd class="text-gray-500 ">'.$row['nama_ayah'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 "><dt class="mb-2 font-semibold leading-none text-gray-900 ">NIK Ayah</dt><dd class="text-gray-500">'.$row['nik_ayah'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 "><dt class="mb-2 font-semibold leading-none text-gray-900 ">Tempat Lahir Ayah</dt><dd class="text-gray-500 ">'.$row['tempat_lahir_ayah'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 "><dt class="mb-2 font-semibold leading-none text-gray-900 ">Tanggal Lahir Ayah</dt><dd class="text-gray-500">'.$row['tanggal_lahir_ayah'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 "><dt class="mb-2 font-semibold leading-none text-gray-900 ">Pendidikan Ayah</dt><dd class="text-gray-500 ">'.$row['pendidikan_ayah'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 "><dt class="mb-2 font-semibold leading-none text-gray-900 ">Pekerjaan Ayah</dt><dd class="text-gray-500">'.$row['pekerjaan_ayah'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 "><dt class="mb-2 font-semibold leading-none text-gray-900 ">Penghasilan Ayah</dt><dd class="text-gray-500 ">'.$row['penghasilan_ayah'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 "><dt class="mb-2 font-semibold leading-none text-gray-900 ">Nomor Telepon Ayah</dt><dd class="text-gray-500">'.$row['no_telp_ayah'].'</dd></div>
             </dl>
 
              <br>
              <!-- Data Ibu -->
-             <dl class="sm:mb-5"><dt class="mb-2 font-bold leading-none text-gray-900 dark:text-white">DATA IBU</dt></dl>
+             <dl class="sm:mb-5"><dt class="mb-2 font-bold leading-none text-gray-900 ">DATA IBU</dt></dl>
             <dl class="grid grid-cols-2 gap-4 mb-4">
-            <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Nama Ibu</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['nama_ibu'].'</dd></div>
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">NIK Ibu</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['nik_ibu'].'</dd></div>
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Tempat Lahir Ibu</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['tempat_lahir_ibu'].'</dd></div>
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Tanggal Lahir Ibu</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['tanggal_lahir_ibu'].'</dd></div>
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Pendidikan Ibu</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['pendidikan_ibu'].'</dd></div>
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Pekerjaan Ibu</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['pekerjaan_ibu'].'</dd></div>
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Penghasilan Ibu</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['penghasilan_ibu'].'</dd></div>
-                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"><dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Nomor Telepon ibu</dt><dd class="text-gray-500 dark:text-gray-400">'.$row['no_telp_ibu'].'</dd></div>
+            <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 "><dt class="mb-2 font-semibold leading-none text-gray-900 ">Nama Ibu</dt><dd class="text-gray-500 ">'.$row['nama_ibu'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 "><dt class="mb-2 font-semibold leading-none text-gray-900 ">NIK Ibu</dt><dd class="text-gray-500 ">'.$row['nik_ibu'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 "><dt class="mb-2 font-semibold leading-none text-gray-900 ">Tempat Lahir Ibu</dt><dd class="text-gray-500 ">'.$row['tempat_lahir_ibu'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 "><dt class="mb-2 font-semibold leading-none text-gray-900 ">Tanggal Lahir Ibu</dt><dd class="text-gray-500 ">'.$row['tanggal_lahir_ibu'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 "><dt class="mb-2 font-semibold leading-none text-gray-900 ">Pendidikan Ibu</dt><dd class="text-gray-500">'.$row['pendidikan_ibu'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 "><dt class="mb-2 font-semibold leading-none text-gray-900 ">Pekerjaan Ibu</dt><dd class="text-gray-500 ">'.$row['pekerjaan_ibu'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 "><dt class="mb-2 font-semibold leading-none text-gray-900 ">Penghasilan Ibu</dt><dd class="text-gray-500 ">'.$row['penghasilan_ibu'].'</dd></div>
+                <div class="p-3 bg-gray-100 rounded-lg border border-gray-200 "><dt class="mb-2 font-semibold leading-none text-gray-900 ">Nomor Telepon ibu</dt><dd class="text-gray-500 ">'.$row['no_telp_ibu'].'</dd></div>
             </dl>
              
             <div class="flex bottom-0 left-0 justify-center pb-4 space-x-4 w-full">
