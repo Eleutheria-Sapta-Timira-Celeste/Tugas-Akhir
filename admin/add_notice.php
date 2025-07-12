@@ -1,73 +1,61 @@
 <?php
-include '../connection/database.php';
 session_start();
+include '../connection/database.php';
 
+// Hanya izinkan admin
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    header("Location: ../login.php");
+    echo "<script>alert('Hanya admin yang bisa mengakses halaman ini.'); window.location.href='../login.php';</script>";
     exit();
 }
 
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    // Publish new notice
+    // Tambah Notice
     if (isset($_POST['publish_notice'])) {
-
         $fileUploadName = $_FILES['file-upload']['name'];
         $fileUploadTmp = $_FILES['file-upload']['tmp_name'];
         $sqlfileurl = "";
 
-        $targetDirectory = '../assects/images/notices_files/';
-        $targetFilePath = $targetDirectory . basename($fileUploadName);
+        if (!empty($fileUploadName)) {
+            $targetDirectory = '../assects/images/notices_files/';
+            $targetFilePath = $targetDirectory . basename($fileUploadName);
 
-        if (move_uploaded_file($fileUploadTmp, $targetFilePath)) {
-            $sqlfileurl = "assects/images/notices_files/" . basename($fileUploadName);
+            if (move_uploaded_file($fileUploadTmp, $targetFilePath)) {
+                $sqlfileurl = "assects/images/notices_files/" . basename($fileUploadName);
+            }
         }
 
         date_default_timezone_set('Asia/Jakarta');
         $currentDate = date("d/m/Y");
         $currentTime = date("h:i A");
 
-        // Data
         $description = $_POST['description'];
         $about_notice = $_POST['about_notice'];
         $posted_by = $_SESSION["username"];
-        $logo = isset($_SESSION["foto"]) ? $_SESSION["foto"] : "default.jpg";
+        $logo = $_SESSION["logo"] ?? "default.jpg";
         $last_modified_default = "Not Modified";
 
-// lanjut insert ke database...
-
-
-        // Insert ke database
         $sql = "INSERT INTO school_notice (logo, notice_description, posted_by, date, time, image_url, about, last_modified) 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-
         $stmt = $connection->prepare($sql);
         $stmt->bind_param("ssssssss", $logo, $description, $posted_by, $currentDate, $currentTime, $sqlfileurl, $about_notice, $last_modified_default);
 
         if ($stmt->execute()) {
-            echo '<script>
-                alert("Notice berhasil dipublish!");
-                window.location.replace("add_notice.php");
-            </script>';
+            echo '<script>alert("Pengumuman berhasil dipublish!"); window.location.replace("add_notice.php");</script>';
         } else {
             echo "Error: " . $stmt->error;
         }
-
         $stmt->close();
     }
 
-    // Delete notice
+    // Hapus Notice
     if (isset($_POST['notice_delete'])) {
         $noticeId = $_POST["notice_id"];
-        mysqli_query($connection, "DELETE FROM `school_notice` WHERE id = $noticeId");
-        echo '<script>
-            window.location.replace("add_notice.php");
-        </script>';
+        mysqli_query($connection, "DELETE FROM school_notice WHERE id = $noticeId");
+        echo '<script>window.location.replace("add_notice.php");</script>';
         exit;
     }
 
-    // Update notice
+    // Update Notice
     if (isset($_POST['update_notice'])) {
         $noticeId = $_POST["notice_id"];
         $IDImage = 'file-upload-modified' . $noticeId;
@@ -75,37 +63,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $fileUploadTmp = $_FILES[$IDImage]['tmp_name'];
         $sqlfileurl = $_POST["image_name"];
 
-        $targetDirectory = '../assects/images/notices_files/';
-        $targetFilePath = $targetDirectory . basename($fileUploadName);
-
-        if (move_uploaded_file($fileUploadTmp, $targetFilePath)) {
-            $sqlfileurl = "assects/images/notices_files/" . basename($fileUploadName);
+        if (!empty($fileUploadName)) {
+            $targetDirectory = '../assects/images/notices_files/';
+            $targetFilePath = $targetDirectory . basename($fileUploadName);
+            if (move_uploaded_file($fileUploadTmp, $targetFilePath)) {
+                $sqlfileurl = "assects/images/notices_files/" . basename($fileUploadName);
+            }
         }
 
         date_default_timezone_set('Asia/Jakarta');
         $currentDate = date("d/m/Y");
         $currentTime = date("h:i A");
-
         $description = $_POST['notice_description'];
         $about_notice = $_POST['about_notice'];
         $last_modified_default = $currentTime . " " . $currentDate;
 
-        $sql = "UPDATE school_notice 
-                SET notice_description = ?, about = ?, image_url = ?, last_modified = ? 
-                WHERE id = ?";
-
+        $sql = "UPDATE school_notice SET notice_description = ?, about = ?, image_url = ?, last_modified = ? WHERE id = ?";
         $stmt = $connection->prepare($sql);
         $stmt->bind_param("ssssi", $description, $about_notice, $sqlfileurl, $last_modified_default, $noticeId);
 
         if ($stmt->execute()) {
-            echo '<script>
-                alert("Notice berhasil diupdate!");
-                window.location.replace("add_notice.php");
-            </script>';
+            echo '<script>alert("Pengumuman berhasil diperbarui!"); window.location.replace("add_notice.php");</script>';
         } else {
             echo "Error: " . $stmt->error;
         }
-
         $stmt->close();
     }
 
@@ -135,161 +116,128 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php include ('../includes/admin_header.php') ?>
 
     <main>
-        <section class="max-w-4xl p-6 mx-auto bg-[#fc941e] rounded-md shadow-md dark:bg-[#fc941e] mt-10">
-            <h1 class="text-xl font-bold text-white capitalize dark:text-white">Tambahkan Pengumuman</h1>
-            <form action="" method="post" enctype="multipart/form-data">
+        <section class="max-w-4xl p-6 mx-auto bg-[#fc941e] rounded-md shadow-md mt-10">
+    <h1 class="text-xl font-bold text-white mb-4">📢 Tambahkan Pengumuman</h1>
 
-                <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-1">
+    <form action="" method="post" enctype="multipart/form-data" class="space-y-6">
 
-
-
-                    <div id="file-upload-container"
-                        class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-[#fff8e1] border-dashed rounded-md">
-                        <div class="space-y-1 text-center">
-                            <div id="upload-container">
-                                <svg class="mx-auto h-12 w-12 text-white" stroke="currentColor" fill="none"
-                                    viewBox="0 0 48 48" aria-hidden="true">
-                                    <path
-                                        d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                                <div class="flex text-sm text-gray-600">
-                                    <label for="file-upload"
-                                       class="relative cursor-pointer bg-[#fc941e] rounded-md font-medium text-[#222222] hover:text-black focus:outline-none">
-
-                                        <span class="">Tambahkan File</span>
-                                        <input type="file" name="file-upload" id="file-upload" type="file"
-                                            class="sr-only" onchange="displayFileName()">
-                                    </label>
-                                    <p id="file-info" class="pl-1 text-white">atau tarik dan jatuhkan file di dalam kotak ini</p>
-                                </div>
-
-                            </div>
-                        </div>
+        <!-- Upload File -->
+        <div class="flex flex-col gap-2">
+            <label class="text-white font-medium">Upload File (opsional)</label>
+            <div class="flex items-center justify-center w-full">
+                <label for="file-upload" class="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed rounded-lg cursor-pointer bg-[#fff8e1] border-[#f9c57d] hover:bg-[#fff2d4] transition-all duration-300">
+                    <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                        <svg class="w-10 h-10 mb-3 text-[#fc941e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M7 16V4m0 0L3 8m4-4l4 4M17 16v-8m0 0l-4 4m4-4l4 4"/>
+                        </svg>
+                        <p class="mb-1 text-sm text-gray-600"><span class="font-semibold">Klik untuk upload</span> atau drag & drop</p>
+                        <p class="text-xs text-gray-500">PNG, JPG, PDF (max 2MB)</p>
                     </div>
+                    <input id="file-upload" name="file-upload" type="file" class="hidden" onchange="displayFileName()">
+                </label>
+            </div>
+            <p id="file-info" class="text-sm text-white font-medium mt-1"></p>
+        </div>
 
-                    <div>
-                        <label class="text-white dark:text-white">Subjek <span style="color: red;">*</span></label>
-                        <input name="about_notice" required id="passwordConfirmation" type="text"
-                            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-[#fff8e1] rounded-md dark:bg-[#fff8e1] dark:text-black dark:border-gray-600 focus:border-[#fff8e1] dark:focus:border-[#fff8e1] focus:outline-none focus:ring-[#fff8e1]">
-                    </div>
+        <!-- Judul/Subjek -->
+        <div>
+            <label class="text-white font-medium block mb-1">Subjek <span class="text-red-200">*</span></label>
+            <input name="about_notice" required type="text"
+                   class="w-full px-4 py-2 border rounded-md bg-white text-gray-800 border-[#fcdca4] focus:outline-none focus:ring-2 focus:ring-white focus:border-white transition-all">
+        </div>
 
-                    <div>
-                        <label class="text-white dark:text-white " for="passwordConfirmation">Tulis Pengumuman...
-                            <span style="color: red;">*</span></label>
-                        <textarea name="description" required minlength="40" id="textarea" type="textarea"
-                            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-[#fff8e1] rounded-md dark:bg-[#fff8e1] dark:text-black dark:border-gray-600 focus:border-[#fff8e1] dark:focus:border-[#fff8e1] focus:outline-none focus:ring-[#fff8e1]"></textarea>
-                    </div>
+        <!-- Deskripsi -->
+        <div>
+            <label class="text-white font-medium block mb-1">Tulis Pengumuman <span class="text-red-200">*</span></label>
+            <textarea name="description" required minlength="40"
+                      class="w-full px-4 py-3 h-36 border rounded-md bg-white text-gray-800 border-[#fcdca4] focus:outline-none focus:ring-2 focus:ring-white focus:border-white resize-none transition-all"></textarea>
+        </div>
 
-                </div>
+        <!-- Tombol -->
+        <div class="flex justify-end">
+            <button type="submit" name="publish_notice"
+                    class="px-6 py-2 text-sm font-semibold text-white bg-[#1a1a1a] rounded hover:bg-white hover:text-black border hover:border-black transition-all">
+                    Tambahkan
+            </button>
+        </div>
+    </form>
+</section>
 
-                <div class="flex justify-end mt-6">
-                    <button type="submit" name="publish_notice"
-                        class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-black rounded-md hover:bg-white focus:outline-none focus:bg-gray-600">Tambahkan</button>
-                </div>
-            </form>
-        </section>
 
         <!-- Start block -->
-        <section class="bg-gray-50 dark:bg-gray-900 p-3 mt-5 sm:p-5 antialiased">
-            <div class="mx-auto max-w-screen-xl px-0 lg:px-12">
-                <!-- Start coding here -->
-                <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
-                    <div
-                        class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
-                        <div class="w-full md:w-1/2">
-                            <form class="flex items-center">
-                         
-                                <div class="relative w-full">
-                                    
-                                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                        
-                                    </div>
-                                    <input disabled type="text" id="simple-search" readonly value="📓 Pengumuman terbaru ditampilkan di bagian atas (urutan menurun)"
-                                        class="font-black bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="Recent notice is shown in top (DESC)" required="">
-                                </div>
-                            </form>
+        <section class="bg-[#fff7ee] p-3 mt-5 sm:p-5 antialiased">
+    <div class="mx-auto max-w-screen-xl px-0 lg:px-12">
+        <div class="bg-white border border-[#fc941e] shadow-md sm:rounded-lg overflow-hidden">
+            <div class="flex flex-col md:flex-row items-center justify-between p-4">
+                <div class="w-full md:w-1/2">
+                    <form class="flex items-center">
+                        <div class="relative w-full">
+                            <input disabled type="text" readonly value="📓 Pengumuman terbaru ditampilkan di bagian atas (urutan menurun)"
+                                class="font-semibold text-[#1a1a1a] bg-[#fff7ee] border border-[#fc941e] text-sm rounded-lg block w-full p-2.5"
+                                required="">
                         </div>
-
-                    </div>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <thead
-                                class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                <tr>
-                                    <th scope="col" class="px-4 py-3">Judul</th>
-                                    <th scope="col" class="px-4 py-4">Diterbitkan</th>
-                                    <th scope="col" class="px-4 py-3">Terakhir Diubah</th>
-                                    <th scope="col" class="px-4 py-3">
-                                        <span class="sr-only">Actions</span>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-
-
-                                $fetch_notice_data = "SELECT * FROM `school_notice` ORDER BY id DESC;";
-                                $notices = mysqli_query($connection, $fetch_notice_data);
-                                $totalNotice = mysqli_num_rows($notices);
-
-                                if ($totalNotice > 0) {
-                                    while ($row = mysqli_fetch_assoc($notices)) {
-                                        $noticeId = $row['id'];
-                                        echo '
-                                            <tr class="border-b dark:border-gray-700">
-                                                <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white  max-w-[10rem] truncate">' . $row['about'] . '</th>
-                                                <td class="px-4 py-3">' . $row['time'] . ' ' . $row['date'] . '</td>
-
-                                                <td class="px-4 py-3">' . $row['last_modified'] . '</td>
-                                                <td class="px-4 py-3 flex items-center justify-end">
-                                                    <button id="apple-imac-27-dropdown-button" data-dropdown-toggle="apple-imac-27-dropdown' . $row['id'] . '" class="inline-flex items-center text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700 p-1.5 dark:hover-bg-gray-800 text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100" type="button">
-                                                        <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                                                        </svg>
-                                                    </button>
-                                                    <div id="apple-imac-27-dropdown' . $noticeId . '" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                                                        <ul class="py-1 text-sm" aria-labelledby="apple-imac-27-dropdown-button">
-                                                            <li>
-                                                                <button type="button" data-modal-target="updateProductModal' . $noticeId . '" data-modal-toggle="updateProductModal' . $noticeId . '" class="flex w-full items-center py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-gray-700 dark:text-gray-200">
-                                                                    <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                                        <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
-                                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
-                                                                    </svg>
-                                                                    Ubah
-                                                                </button>
-                                                            </li>
-
-                                                            <li>
-                                                                <button type="button" data-modal-target="deleteModal' . $row['id'] . '" data-modal-toggle="deleteModal' . $row['id'] . '" class="flex w-full items-center py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 text-red-500 dark:hover:text-red-400">
-                                                                    <svg class="w-4 h-4 mr-2" viewbox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                                                        <path fill-rule="evenodd" clip-rule="evenodd" fill="currentColor" d="M6.09922 0.300781C5.93212 0.30087 5.76835 0.347476 5.62625 0.435378C5.48414 0.523281 5.36931 0.649009 5.29462 0.798481L4.64302 2.10078H1.59922C1.36052 2.10078 1.13161 2.1956 0.962823 2.36439C0.79404 2.53317 0.699219 2.76209 0.699219 3.00078C0.699219 3.23948 0.79404 3.46839 0.962823 3.63718C1.13161 3.80596 1.36052 3.90078 1.59922 3.90078V12.9008C1.59922 13.3782 1.78886 13.836 2.12643 14.1736C2.46399 14.5111 2.92183 14.7008 3.39922 14.7008H10.5992C11.0766 14.7008 11.5344 14.5111 11.872 14.1736C12.2096 13.836 12.3992 13.3782 12.3992 12.9008V3.90078C12.6379 3.90078 12.8668 3.80596 13.0356 3.63718C13.2044 3.46839 13.2992 3.23948 13.2992 3.00078C13.2992 2.76209 13.2044 2.53317 13.0356 2.36439C12.8668 2.1956 12.6379 2.10078 12.3992 2.10078H9.35542L8.70382 0.798481C8.62913 0.649009 8.5143 0.523281 8.37219 0.435378C8.23009 0.347476 8.06631 0.30087 7.89922 0.300781H6.09922ZM4.29922 5.70078C4.29922 5.46209 4.39404 5.23317 4.56282 5.06439C4.73161 4.8956 4.96052 4.80078 5.19922 4.80078C5.43791 4.80078 5.66683 4.8956 5.83561 5.06439C6.0044 5.23317 6.09922 5.46209 6.09922 5.70078V11.1008C6.09922 11.3395 6.0044 11.5684 5.83561 11.7372C5.66683 11.906 5.43791 12.0008 5.19922 12.0008C4.96052 12.0008 4.73161 11.906 4.56282 11.7372C4.39404 11.5684 4.29922 11.3395 4.29922 11.1008V5.70078ZM8.79922 4.80078C8.56052 4.80078 8.33161 4.8956 8.16282 5.06439C7.99404 5.23317 7.89922 5.46209 7.89922 5.70078V11.1008C7.89922 11.3395 7.99404 11.5684 8.16282 11.7372C8.33161 11.906 8.56052 12.0008 8.79922 12.0008C9.03791 12.0008 9.26683 11.906 9.43561 11.7372C9.6044 11.5684 9.69922 11.3395 9.69922 11.1008V5.70078C9.69922 5.46209 9.6044 5.23317 9.43561 5.06439C9.26683 4.8956 9.03791 4.80078 8.79922 4.80078Z" />
-                                                                    </svg>
-                                                                    Hapus
-                                                                </button>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                
-                                            ';
-                                    }
-                                }
-                                ?>
-
-
-                            </tbody>
-                        </table>
-                    </div>
-                    <nav class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4"
-                        aria-label="Table navigation">
-
-                    </nav>
+                    </form>
                 </div>
             </div>
-        </section>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left text-[#1a1a1a]">
+                    <thead class="text-xs uppercase bg-[#fc941e] text-white">
+                        <tr>
+                            <th class="px-4 py-3">Judul</th>
+                            <th class="px-4 py-3">Diterbitkan</th>
+                            <th class="px-4 py-3">Terakhir Diubah</th>
+                            <th class="px-4 py-3"><span class="sr-only">Actions</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $fetch_notice_data = "SELECT * FROM `school_notice` ORDER BY id DESC;";
+                        $notices = mysqli_query($connection, $fetch_notice_data);
+                        $totalNotice = mysqli_num_rows($notices);
+
+                        if ($totalNotice > 0) {
+                            while ($row = mysqli_fetch_assoc($notices)) {
+                                $noticeId = $row['id'];
+                                echo '
+                                    <tr class="border-b border-[#fc941e]/30 hover:bg-[#fff3dc]">
+                                        <td class="px-4 py-3 font-medium max-w-[12rem] truncate">' . $row['about'] . '</td>
+                                        <td class="px-4 py-3">' . $row['time'] . ' ' . $row['date'] . '</td>
+                                        <td class="px-4 py-3">' . $row['last_modified'] . '</td>
+                                        <td class="px-4 py-3 text-right">
+                                            <button id="dropdown-btn' . $noticeId . '" data-dropdown-toggle="dropdown' . $noticeId . '" class="text-[#fc941e] hover:text-[#d67812]">
+                                                ⋮
+                                            </button>
+                                            <div id="dropdown' . $noticeId . '" class="hidden z-10 w-44 bg-white border border-gray-200 rounded shadow">
+                                                <ul class="py-1 text-sm text-gray-700">
+                                                    <li>
+                                                        <button type="button" data-modal-target="updateProductModal' . $noticeId . '" data-modal-toggle="updateProductModal' . $noticeId . '"
+                                                            class="w-full text-left px-4 py-2 hover:bg-[#fc941e]/10 text-[#1a1a1a]">
+                                                            ✏️ Ubah
+                                                        </button>
+                                                    </li>
+                                                    <li>
+                                                        <button type="button" data-modal-target="deleteModal' . $noticeId . '" data-modal-toggle="deleteModal' . $noticeId . '"
+                                                            class="w-full text-left px-4 py-2 hover:bg-red-50 text-red-600">
+                                                            🗑 Hapus
+                                                        </button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ';
+                            }
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
 
         <!-- Update modal -->
         <?php
