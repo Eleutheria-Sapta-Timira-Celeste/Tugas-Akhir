@@ -7,10 +7,10 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     exit();
 }
 
-// Handle delete
+// Hapus jadwal
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['delete_routine'], $_POST['delete_id'])) {
     $deleteId = $_POST['delete_id'];
-    $stmt = $connectionobj->prepare("DELETE FROM schoolRoutine WHERE id = ?");
+    $stmt = $connectionobj->prepare("DELETE FROM schoolroutine WHERE id = ?");
     $stmt->bind_param("i", $deleteId);
     if ($stmt->execute()) {
         echo '<script>alert("Jadwal berhasil dihapus."); window.location.replace("changeRoutine.php");</script>';
@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['delete_routine'], $_P
     $stmt->close();
 }
 
-// Handle insert/update
+// Tambah atau update jadwal
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['update_notice'])) {
     $classId = $_POST["class_id"];
     $className = trim($_POST["class_name"]);
@@ -41,14 +41,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['update_notice'])) {
     $last_modified = date("H:i d/m/Y");
 
     if ($classId == 0) {
-        $stmt = $connectionobj->prepare("INSERT INTO schoolRoutine (class, routine_url, last_modified) VALUES (?, ?, ?)");
+        $stmt = $connectionobj->prepare("INSERT INTO schoolroutine (class, routine_url, last_modified) VALUES (?, ?, ?)");
         $stmt->bind_param("sss", $className, $sqlfileurl, $last_modified);
     } else {
         if (!empty($sqlfileurl)) {
-            $stmt = $connectionobj->prepare("UPDATE schoolRoutine SET class=?, routine_url=?, last_modified=? WHERE id=?");
+            $stmt = $connectionobj->prepare("UPDATE schoolroutine SET class=?, routine_url=?, last_modified=? WHERE id=?");
             $stmt->bind_param("sssi", $className, $sqlfileurl, $last_modified, $classId);
         } else {
-            $stmt = $connectionobj->prepare("UPDATE schoolRoutine SET class=?, last_modified=? WHERE id=?");
+            $stmt = $connectionobj->prepare("UPDATE schoolroutine SET class=?, last_modified=? WHERE id=?");
             $stmt->bind_param("ssi", $className, $last_modified, $classId);
         }
     }
@@ -94,34 +94,32 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['update_notice'])) {
 <body>
 <?php include('../includes/admin_header.php'); ?>
 
-<main class="py-10 px-4 sm:px-6 lg:px-8">
+<main class="py-7 px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-10">
         <h1 class="text-3xl font-bold text-[#fc941e]">Ubah Jadwal Kelas</h1>
-        <p class="text-gray-600 max-w-3xl mx-auto">
-            Halaman ini memungkinkan admin sekolah untuk mengelola jadwal pelajaran setiap kelas dalam bentuk gambar. 
+        <p class="text-gray-600 max-w-3xl mx-auto">Halaman ini memungkinkan admin sekolah untuk mengelola jadwal pelajaran setiap kelas dalam bentuk gambar. 
             Admin dapat menambahkan, memperbarui, atau menghapus file jadwal agar siswa/siswi selalu memperoleh informasi terbaru terkait pembelajaran di kelas masing-masing. 
-            Dengan pengelolaan yang terpusat dan fleksibel, penyampaian jadwal menjadi lebih praktis dan efisien.
-        </p>
+            Dengan pengelolaan yang terpusat dan fleksibel, penyampaian jadwal menjadi lebih praktis dan efisien.</p>
     </div>
 
-    <div class="flex justify-end mb-4 max-w-6xl mx-auto">
+    <div class="flex justify-end mb-2 max-w-6xl mx-auto">
         <button data-modal-target="modal0" data-modal-toggle="modal0" class="btn-orange px-4 py-2 rounded text-sm">+ Tambah Jadwal</button>
     </div>
 
     <div class="bg-white shadow rounded-lg overflow-x-auto max-w-6xl mx-auto">
         <table class="w-full text-sm text-left text-gray-700">
-            <thead class="text-xs uppercase bg-gray-100">
+            <thead class="text-xs text-white uppercase bg-[#fc941e]">
                 <tr>
                     <th class="px-4 py-3">Kelas</th>
                     <th class="px-4 py-3">Terakhir Diperbarui</th>
                     <th class="px-4 py-3 text-center">Aksi</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="divide-y divide-gray-200">
                 <?php
-                $result = mysqli_query($connection, "SELECT * FROM schoolRoutine ORDER BY id DESC");
+                $result = mysqli_query($connection, "SELECT * FROM schoolroutine ORDER BY id DESC");
                 while ($row = mysqli_fetch_assoc($result)) {
-                    echo '<tr class="border-b">
+                    echo '<tr class="hover:bg-orange-50 transition">
                         <td class="px-4 py-3">' . htmlspecialchars($row['class']) . '</td>
                         <td class="px-4 py-3">' . $row['last_modified'] . '</td>
                         <td class="px-4 py-3 text-center space-x-2">
@@ -150,28 +148,34 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['update_notice'])) {
         </div>
     </div>
 
-    <!-- Modal Tambah -->
-    <div id="modal0" class="hidden modal-bg fixed top-0 left-0 z-50 w-full h-full flex justify-center items-center">
-        <div class="bg-white rounded-lg p-6 w-full max-w-md">
-            <h3 class="text-lg font-bold mb-4">Tambah Jadwal</h3>
+    <!-- Modal Tambah Jadwal -->
+    <div id="modal0" class="hidden fixed inset-0 z-50 bg-black bg-opacity-50 flex justify-center items-center">
+        <div class="bg-white rounded-xl shadow-lg w-full max-w-md p-6 relative">
+            <h3 class="text-xl font-semibold mb-6 text-center">Tambah Jadwal Kelas</h3>
             <form method="post" enctype="multipart/form-data">
                 <input type="hidden" name="class_id" value="0">
                 <div class="mb-4">
-                    <label class="block mb-1 text-sm font-medium">Nama Kelas</label>
-                    <input type="text" name="class_name" required class="w-full border rounded p-2">
+                    <label class="block mb-2 text-sm font-medium text-gray-700">Nama Kelas</label>
+                    <input type="text" name="class_name" required class="w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-orange-500">
                 </div>
-                <div class="mb-4">
-                    <label class="block mb-1 text-sm font-medium">Upload Jadwal (gambar)</label>
-                    <input type="file" name="file-upload-modified0" class="w-full border rounded p-2">
+                <div class="mb-6">
+                    <label class="block mb-2 text-sm font-medium text-gray-700">Upload Jadwal (Gambar)</label>
+                    <input type="file" name="file-upload-modified0" required
+                        class="w-full border rounded-lg p-2 
+                               file:px-4 file:py-2 
+                               file:rounded-md file:border-0 
+                               file:text-sm file:font-medium 
+                               file:bg-white file:text-orange 
+                               hover:file:bg-white"/>
                 </div>
-                <button name="update_notice" type="submit" class="btn-orange w-full py-2 rounded">Simpan</button>
+                <button name="update_notice" type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 rounded-lg">Simpan</button>
             </form>
         </div>
     </div>
 
     <!-- Modal Edit (Loop) -->
     <?php
-    $result = mysqli_query($connection, "SELECT * FROM schoolRoutine ORDER BY id DESC");
+    $result = mysqli_query($connection, "SELECT * FROM schoolroutine ORDER BY id DESC");
     while ($row = mysqli_fetch_assoc($result)) {
         echo '
         <div id="modal' . $row['id'] . '" class="hidden modal-bg fixed top-0 left-0 z-50 w-full h-full flex justify-center items-center">
@@ -198,10 +202,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['update_notice'])) {
 <?php include('../includes/admin_footer.php'); ?>
 
 <script>
-    function confirmDelete(id) {
-        document.getElementById('delete_id').value = id;
-        document.getElementById('deleteModal').classList.remove('hidden');
-    }
+function confirmDelete(id) {
+    document.getElementById('delete_id').value = id;
+    document.getElementById('deleteModal').classList.remove('hidden');
+}
 </script>
 
 </body>
