@@ -26,7 +26,7 @@ if (isset($_POST['add_siswa'])) {
 
     if (!empty($fotoName)) {
         if (move_uploaded_file($fotoTmp, $targetDir . $fotoName)) {
-            $fotoPath = $fotoName; // Simpan hanya nama file
+            $fotoPath = $fotoName;
         }
     }
 
@@ -58,7 +58,7 @@ if (isset($_POST['edit_siswa'])) {
     if (!empty($fotoName)) {
         $targetDir = '../siswa/uploads/';
         if (move_uploaded_file($fotoTmp, $targetDir . $fotoName)) {
-            $fotoPath = $fotoName; // Simpan hanya nama file
+            $fotoPath = $fotoName;
         }
     }
 
@@ -79,10 +79,20 @@ if (isset($_GET['delete_id'])) {
     echo "<script>alert('Siswa berhasil dihapus!'); window.location='siswa_management.php';</script>";
 }
 
-// Ambil semua data siswa
-$result = $connectionobj->query("SELECT * FROM siswa ORDER BY id ASC");
+// Filter Kelas dan Search Nama
+$whereClause = '';
+if (isset($_GET['filter_kelas']) && $_GET['filter_kelas'] !== '') {
+    $kelasFilter = $connectionobj->real_escape_string($_GET['filter_kelas']);
+    $whereClause .= ($whereClause ? " AND " : "WHERE ") . "kelas = '$kelasFilter'";
+}
+if (isset($_GET['search_nama']) && $_GET['search_nama'] !== '') {
+    $namaSearch = $connectionobj->real_escape_string($_GET['search_nama']);
+    $whereClause .= ($whereClause ? " AND " : "WHERE ") . "nama LIKE '%$namaSearch%'";
+}
+$result = $connectionobj->query("SELECT * FROM siswa $whereClause ORDER BY id ASC");
 ?>
 
+<!-- Bagian HTML -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -97,25 +107,42 @@ $result = $connectionobj->query("SELECT * FROM siswa ORDER BY id ASC");
 <?php include('../includes/admin_header.php'); ?>
 
 <main class="flex-grow pb-24">
-    <!-- Header Deskripsi Halaman -->
     <section class="text-gray-600 body-font">
         <div class="container px-5 pt-5 mx-auto">
             <div class="flex flex-col text-center w-full mb-5">
                 <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4" style="color: #ef6c00;">Kelola Data Siswa</h1>
                 <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base">
                     🎓 Selamat datang di halaman pengelolaan akun Siswa SMP PGRI 371 Pondok Aren! 🧑‍🎓👩‍🎓<br>
-                    Di sini Anda dapat menambah, mengedit, atau menghapus data siswa dengan mudah dan cepat.<br>
-                    Data siswa sangat penting untuk administrasi sekolah, mulai dari presensi hingga laporan akademik.
-                    Pastikan informasi yang dimasukkan akurat dan selalu diperbarui sesuai kondisi terkini. 📚
+                    Di sini Anda dapat menambah, mengedit, atau menghapus data siswa.
                 </p>
             </div>
         </div>
     </section>
+           
 
-    <!-- Section Konten Tabel -->
+        <!-- TABEL SISWA -->
+        <!-- Section Konten Tabel -->
     <section class="max-w-6xl px-6 py-6 mx-auto bg-[#fc941e] rounded-md shadow-md mt-6">
+        <div class="flex gap-2">
+                    <select name="filter_kelas" class="px-3 py-2 rounded text-sm border border-gray-300">
+                        <option value="">-- Semua Kelas --</option>
+                        <?php
+                        $kelasList = ['VII', 'VIII', 'IX'];
+                        foreach ($kelasList as $kelas) {
+                            $selected = (isset($_GET['filter_kelas']) && $_GET['filter_kelas'] == $kelas) ? 'selected' : '';
+                            echo '<option value="' . $kelas . '" ' . $selected . '>' . $kelas . '</option>';
+                        }
+                        ?>
+                    </select>
+                    <input type="text" name="search_nama" value="<?= isset($_GET['search_nama']) ? htmlspecialchars($_GET['search_nama']) : '' ?>" placeholder="Cari nama..." class="px-3 py-2 rounded text-sm border border-gray-300">
+                    <button type="submit" class="bg-white text-[#5d2eff] text-sm font-semibold px-4 py-2 rounded hover:bg-gray-100 shadow">🔍 Cari</button>
+                    <?php if (!empty($_GET['filter_kelas']) || !empty($_GET['search_nama'])): ?>
+                        <a href="siswa_management.php" class="bg-red-500 text-white px-3 py-2 rounded text-sm hover:bg-red-600">Reset</a>
+                    <?php endif; ?>
+                </div>
+                
         <div class="flex justify-between items-center mb-4">
-                <h1 class="text-xl font-bold text-white">Manajemen Siswa</h1>
+                <h1 class="text-xl font-bold text-white">Daftar Siswa</h1>
                 <button onclick="document.getElementById('addModal').classList.remove('hidden')" class="bg-white px-4 py-2 rounded text-sm font-semibold text-[#5d2eff] hover:bg-gray-100 shadow">➕ Tambah Siswa</button>
             </div>
 
@@ -218,6 +245,9 @@ $result = $connectionobj->query("SELECT * FROM siswa ORDER BY id ASC");
         </div>
     </section>
     <!-- Modal Tambah Siswa -->
+
+                    
+
                     <div id="addModal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-50 overflow-y-auto">
                     <div class="bg-white p-6 rounded-lg w-full max-w-md my-10 max-h-screen overflow-y-auto">
                         <h2 class="text-xl font-bold mb-4">Tambah Siswa</h2>
@@ -266,6 +296,8 @@ $result = $connectionobj->query("SELECT * FROM siswa ORDER BY id ASC");
                     </div>
 
 </main>
+
+
 
 <?php if (file_exists('../includes/admin_footer.php')) include('../includes/admin_footer.php'); ?>
 </body>
