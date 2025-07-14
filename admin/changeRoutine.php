@@ -158,16 +158,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['update_notice'])) {
                     <label class="block mb-2 text-sm font-medium text-gray-700">Nama Kelas</label>
                     <input type="text" name="class_name" required class="w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-orange-500">
                 </div>
-                <div class="mb-6">
+                <div class="mb-4">
                     <label class="block mb-2 text-sm font-medium text-gray-700">Upload Jadwal (Gambar)</label>
-                    <input type="file" name="file-upload-modified0" required
-                        class="w-full border rounded-lg p-2 
-                               file:px-4 file:py-2 
-                               file:rounded-md file:border-0 
-                               file:text-sm file:font-medium 
-                               file:bg-white file:text-orange 
-                               hover:file:bg-white"/>
+                
+                    <div class="w-full border rounded-lg p-1 focus:outline-none focus:ring-2 focus:ring-orange-500">
+                        <!-- Tombol Upload -->
+                        <label class="bg-[#fc941e] text-white px-4 py-2 text-sm font-medium cursor-pointer hover:bg-[#fc941e]">
+                            Pilih
+                            <input type="file" name="file-upload-modified0" id="file-upload-modified0"
+                                class="hidden" required
+                                onchange="document.getElementById('file-name-display').value = this.files[0]?.name || 'Belum ada file dipilih'">
+                        </label>
+
+                        <!-- Input tampilkan nama file -->
+                        <input type="text" id="file-name-display" readonly
+                            class="flex-1 px-4 py-2 text-sm  text-gray-700 border-0 bg-white focus:outline-none"
+                            placeholder="Belum ada file dipilih">
+                    </div>
                 </div>
+
+
                 <button name="update_notice" type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 rounded-lg">Simpan</button>
             </form>
         </div>

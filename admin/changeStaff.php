@@ -227,10 +227,10 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
         class="fadeIn hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative p-4 w-full max-w-md max-h-full">
             <!-- Modal content -->
-            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <div class="relative bg-white rounded-lg shadow ">
                 <!-- Modal header -->
-                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
+                    <h3 class="text-xl font-semibold text-[#ef6c00] ">
                         Tambah Data Guru
                     </h3>
                     <button type="button"
@@ -248,41 +248,41 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                 <div class="p-4 md:p-5">
                     <form class="space-y-4" action="" method="POST" enctype="multipart/form-data">
                         <div><label for="new_file"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pilih gambar ukuran pas foto agar tampilan pratinjau lebih jelas</label></div>
+                                class="block mb-2 text-sm font-medium text-gray-900 ">Pilih gambar ukuran pas foto agar tampilan pratinjau lebih jelas</label></div>
                         <div class="flex items-center justify-center w-full">
 
 
                             <input name="file-upload-modified"
-                                class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50  focus:outline-none "
                                 id="file_input" type="file" accept="image/*">
 
                         </div>
                         <div>
                             <label for="staffName"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 ">Nama</label>
                             <input type="text" name="staffName"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="Annisa Putri" required>
                             <label for="staffPost"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Posisi</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 ">Posisi</label>
                             <input type="text" name="staffPost"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="Guru" required>
                             <label for="staffContact"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIP</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 ">NIP</label>
                             <input type="text" name="staffContact"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="9804545454" required>
                             <label for="staffqualification"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kualifikasi</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 ">Kualifikasi</label>
                             <input type="text" name="staffQualification"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="S,Pd" required>
                         </div>
 
 
                         <button type="submit" name="add_staff"
-                            class="w-full text-white bg-[#fc941e] hover:bg-[#ef6c00] focus:ring-4 focus:outline-none focus:ring-[#ef6c00] font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#fc941e] dark:hover:bg-[#ef6c00] dark:focus:ring-[#ef6c00]">Tambah Data Guru
+                            class="w-full text-white bg-[#fc941e] hover:bg-[#ef6c00] focus:ring-4 focus:outline-none focus:ring-[#ef6c00] font-medium rounded-lg text-sm px-5 py-2.5 text-center">Tambah Data Guru
                             </button>
 
                     </form>
@@ -297,14 +297,14 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
         class="fadeIn hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative p-4 w-full max-w-md max-h-full">
             <!-- Modal content -->
-            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <div class="relative bg-white rounded-lg shadow ">
                 <!-- Modal header -->
-                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t ">
+                    <h3 class="text-xl font-semibold text-gray-900 ">
                         Tambah Anggota Petugas
                     </h3>
                     <button type="button"
-                        class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
                         data-modal-hide="authentication-modal2">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
@@ -318,30 +318,30 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                 <div class="p-4 md:p-5">
                     <form class="space-y-4" action="" method="POST" enctype="multipart/form-data">
                         <div><label for="new_file"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pilih foto ukuran pas foto agar tampilan lebih jelas</label></div>
+                                class="block mb-2 text-sm font-medium text-gray-900 ">Pilih foto ukuran pas foto agar tampilan lebih jelas</label></div>
                         <div class="flex items-center justify-center w-full">
 
 
                             <input name="file-upload-modified"
-                                class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50  focus:outline-none"
                                 id="file_input" type="file" accept="image/*">
 
                         </div>
                         <div>
                             <label for="committeName"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white]">Nama</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 ]">Nama</label>
                             <input type="text" name="committeName"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="Annisa Aulia" required>
                             <label for="staffPost"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Posisi</label>
+                                class="block mb-2 text-sm font-medium text-gray-900">Posisi</label>
                             <input type="text" name="committePosition"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="Guru" required>
                             <label for="committeContact"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIP</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 ">NIP</label>
                             <input type="text" name="staffContact"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="9804545454" required>
                            
                         </div>
@@ -415,8 +415,8 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                                                     <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
                                                 </svg>
                                             </button>
-                                            <div id="dropdown-' . $id . '" class="hidden z-10 w-44 bg-white rounded shadow dark:bg-gray-700">
-                                                <ul class="py-1 text-sm text-gray-700 dark:text-gray-200">
+                                            <div id="dropdown-' . $id . '" class="hidden z-10 w-44 bg-white rounded shadow">
+                                                <ul class="py-1 text-sm text-gray-700">
                                                     <li>
                                                         <button type="button" data-modal-target="editModal-' . $id . '" data-modal-toggle="editModal-' . $id . '" class="flex w-full px-4 py-2 hover:bg-[#fc941e]/20 dark:hover:bg-[#fc941e]/30">Ubah</button>
                                                     </li>
@@ -434,25 +434,25 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                                     <!-- Modal Edit -->
                                     <div id="editModal-' . $id . '" class="hidden fixed z-50 inset-0 overflow-y-auto">
                                         <div class="flex items-center justify-center min-h-screen">
-                                            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-lg">
-                                                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Ubah Data Pimpinan</h3>
+                                            <div class="bg-white  p-6 rounded-lg shadow-lg w-full max-w-lg">
+                                                <h3 class="text-lg font-semibold text-gray-900  mb-2">Ubah Data Pimpinan</h3>
                                                 <hr class="border-[#fc941e] mb-4">
                                                 <form method="post" enctype="multipart/form-data">
                                                     <div class="mb-4">
-                                                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Foto</label>
-                                                        <input type="file" name="file-upload-modified' . $id . '" accept="image/*" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400">
+                                                        <label class="block mb-2 text-sm font-medium text-gray-900">Foto</label>
+                                                        <input type="file" name="file-upload-modified' . $id . '" accept="image/*" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 ">
                                                     </div>
                                                     <div class="mb-4">
-                                                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
-                                                        <input type="text" name="comitteName" value="' . $row['name'] . '" class="w-full p-2.5 rounded border border-gray-300 bg-gray-50 dark:bg-gray-700 dark:text-white">
+                                                        <label class="block mb-2 text-sm font-medium text-gray-900 ">Nama</label>
+                                                        <input type="text" name="comitteName" value="' . $row['name'] . '" class="w-full p-2.5 rounded border border-gray-300 bg-gray-50">
                                                     </div>
                                                     <div class="mb-4">
-                                                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Posisi</label>
-                                                        <input type="text" name="comittepost" value="' . $row['position'] . '" class="w-full p-2.5 rounded border border-gray-300 bg-gray-50 dark:bg-gray-700 dark:text-white">
+                                                        <label class="block mb-2 text-sm font-medium text-gray-900 >Posisi</label>
+                                                        <input type="text" name="comittepost" value="' . $row['position'] . '" class="w-full p-2.5 rounded border border-gray-300 bg-gray-50">
                                                     </div>
                                                     <div class="mb-4">
-                                                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIP</label>
-                                                        <input type="text" name="comittePhone" value="' . $row['contact_no'] . '" class="w-full p-2.5 rounded border border-gray-300 bg-gray-50 dark:bg-gray-700 dark:text-white">
+                                                        <label class="block mb-2 text-sm font-medium text-gray-900 ">NIP</label>
+                                                        <input type="text" name="comittePhone" value="' . $row['contact_no'] . '" class="w-full p-2.5 rounded border border-gray-300 bg-gray-50">
                                                     </div>
                                                     <input type="hidden" name="committeId" value="' . $id . '">
                                                     <input type="hidden" name="imageLocationcommitte" value="' . $row['image_src'] . '">
@@ -482,7 +482,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
         <div class="container px-5 py-4 mx-auto">
 
             <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
-                class="mt-10 block text-white bg-[#ef6c00] hover:bg-[#cc5200] focus:ring-4 focus:outline-none focus:ring-[#cc5200] font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#cc5200] dark:focus:ring-[#cc5200]"
+                class="mt-10 block text-white bg-[#fc941e] hover:bg-[#ef6c00] focus:ring-4 focus:outline-none focus:ring-[#fc941e] font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#fc941e] dark:hover:bg-[#ef6c00] dark:focus:ring-[#fc941e]"
                 type="button">
                 Tambah Data Guru
             </button>
@@ -508,7 +508,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                     </div>
                 </div>
                 <div class="overflow-x-auto">
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-black">
+                    <table class="w-full text-sm text-left text-gray-500">
                         <thead class="text-xs text-white uppercase bg-[#fc941e] dark:bg-[#fc941e] dark:text-white">
                             <tr>
                                 <th scope="col" class="px-4 py-3">Nama</th>
@@ -542,15 +542,15 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                                                     <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
                                                 </svg>
                                             </button>
-                                            <div id="dropdown-staff-' . $staffsId . '" class="hidden z-10 w-44 bg-white rounded shadow dark:bg-gray-700">
-                                                <ul class="py-1 text-sm text-gray-700 dark:text-gray-200">
+                                            <div id="dropdown-staff-' . $staffsId . '" class="hidden z-10 w-44 bg-white rounded shadow ">
+                                                <ul class="py-1 text-sm text-gray-700 ">
                                                     <li>
-                                                        <button type="button" data-modal-target="updatestaffsModel' . $staffsId . '" data-modal-toggle="updatestaffsModel' . $staffsId . '" class="flex w-full px-4 py-2 hover:bg-[#fc941e]/20 dark:hover:bg-[#fc941e]/30">Ubah</button>
+                                                        <button type="button" data-modal-target="updatestaffsModel' . $staffsId . '" data-modal-toggle="updatestaffsModel' . $staffsId . '" class="flex w-full px-4 py-2 hover:bg-[#fc941e]/20 dark:hover:bg-[#fc941e]">Ubah</button>
                                                     </li>
                                                     <li>
                                                         <form method="POST">
                                                             <input type="hidden" name="staffDelete_id" value="' . $staffsId . '">
-                                                            <button name="staffDelete" type="submit" class="flex w-full px-4 py-2 text-red-600 hover:bg-[#fc941e]/20 dark:hover:bg-[#fc941e]/30">Hapus</button>
+                                                            <button name="staffDelete" type="submit" class="flex w-full px-4 py-2 text-red-600 hover:bg-[#fc941e]/20 dark:hover:bg-[#fc941e]">Hapus</button>
                                                         </form>
                                                     </li>
                                                 </ul>
@@ -585,11 +585,11 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                             <div class="relative p-4 w-full max-w-2xl max-h-full">
                                 <!-- Modal content -->
                                 
-                                <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+                                <div class="relative p-4 bg-white rounded-lg shadow  sm:p-5">
                                     <!-- Modal header -->
-                                    <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
-                                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Perbarui Petugas</h3>
-                                        <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updatestaffsModel' . $staffsId . '">
+                                    <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 ">
+                                        <h3 class="text-lg font-semibold text-[#ef6c00]">Perbarui Petugas</h3>
+                                        <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-toggle="updatestaffsModel' . $staffsId . '">
                                             <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
                                             </svg>
@@ -599,25 +599,25 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                                     <!-- Modal body -->
                                     <form method="post" id="UpdateNotice' . $staffsId . '" enctype="multipart/form-data">
                                         <div class="grid gap-4 mb-4 sm:grid-cols-1">
-                                        <div><label for="new_file" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Berkas (Jika kosong, akan menggunakan yang sebelumnya)</label></div><br>
+                                        <div><label for="new_file" class="block mb-2 text-sm font-medium text-gray-900 ">Berkas (Jika kosong, akan menggunakan yang sebelumnya)</label></div><br>
                                             <div class="flex items-center justify-center w-full">
                                                
                                             
-                                                <input name="file-upload-modified' . $staffsId . '" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file" accept="image/*">
+                                                <input name="file-upload-modified' . $staffsId . '" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50  focus:outline-none " id="file_input" type="file" accept="image/*">
 
                                             </div>
 
                                             <div class="sm:col-span-2">
-                                                <label for="subject" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
-                                                <input type="text" name="staffName" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="' . $row['name'] . '" placeholder="Bisswass Niroula">
-                                                <label for="post" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Posisi</label>
-                                                <input type="text" name="staffPost" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="' . $row['post'] . '" placeholder="Teacher">
-                                                <label for="post" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kualifikasi</label>
-                                                <input type="text" name="staffqualification" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="' . $row['qualification'] . '" placeholder="PHD  ">
-                                                <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIP</label>
-                                                <input type="text" name="staffPhone" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="' . $row['contact'] . '" placeholder="9812000000">
+                                                <label for="subject" class="block mb-2 text-sm font-medium text-gray-900 ">Nama</label>
+                                                <input type="text" name="staffName" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " value="' . $row['name'] . '" placeholder="Bisswass Niroula">
+                                                <label for="post" class="block mb-2 text-sm font-medium text-gray-900 ">Posisi</label>
+                                                <input type="text" name="staffPost" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " value="' . $row['post'] . '" placeholder="Teacher">
+                                                <label for="post" class="block mb-2 text-sm font-medium text-gray-900 ">Kualifikasi</label>
+                                                <input type="text" name="staffqualification" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " value="' . $row['qualification'] . '" placeholder="PHD  ">
+                                                <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 ">NIP</label>
+                                                <input type="text" name="staffPhone" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " value="' . $row['contact'] . '" placeholder="9812000000">
 
-                                                <input type="text" name="imageLocation" id="name" class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="' . $row['image_src'] . '" placeholder="9812000000">
+                                                <input type="text" name="imageLocation" id="name" class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " value="' . $row['image_src'] . '" placeholder="9812000000">
                                                 
                                                 </div>
                                             <input type="hidden" name="staffId" value="' . $staffsId . '" />
