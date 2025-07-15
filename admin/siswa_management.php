@@ -122,29 +122,44 @@ $result = $connectionobj->query("SELECT * FROM siswa $whereClause ORDER BY id AS
 
         <!-- TABEL SISWA -->
         <!-- Section Konten Tabel -->
+
+        
     <section class="max-w-6xl px-6 py-6 mx-auto bg-[#fc941e] rounded-md shadow-md mt-6">
-        <div class="flex gap-2">
-                    <select name="filter_kelas" class="px-3 py-2 rounded text-sm border border-gray-300">
-                        <option value="">-- Semua Kelas --</option>
-                        <?php
-                        $kelasList = ['VII', 'VIII', 'IX'];
-                        foreach ($kelasList as $kelas) {
-                            $selected = (isset($_GET['filter_kelas']) && $_GET['filter_kelas'] == $kelas) ? 'selected' : '';
-                            echo '<option value="' . $kelas . '" ' . $selected . '>' . $kelas . '</option>';
-                        }
-                        ?>
-                    </select>
-                    <input type="text" name="search_nama" value="<?= isset($_GET['search_nama']) ? htmlspecialchars($_GET['search_nama']) : '' ?>" placeholder="Cari nama..." class="px-3 py-2 rounded text-sm border border-gray-300">
-                    <button type="submit" class="bg-white text-[#5d2eff] text-sm font-semibold px-4 py-2 rounded hover:bg-gray-100 shadow">🔍 Cari</button>
-                    <?php if (!empty($_GET['filter_kelas']) || !empty($_GET['search_nama'])): ?>
-                        <a href="siswa_management.php" class="bg-red-500 text-white px-3 py-2 rounded text-sm hover:bg-red-600">Reset</a>
-                    <?php endif; ?>
-                </div>
+    <div class="flex justify-between items-center mt-4 mb-4">
+    <!-- KIRI: Judul -->
+    <h1 class="text-xl font-bold text-white">MANAJEMEN SISWA</h1>
+
+    <!-- KANAN: Form Filter -->
+    <form method="GET" action="siswa_management.php">
+        <div class="flex gap-2 items-center">
+            <select name="filter_kelas" class="px-3 py-2 rounded text-sm border border-gray-300">
+                <option value="">-- Semua Kelas --</option>
+                <?php
+                $kelasList = ['VII', 'VIII', 'IX'];
+                foreach ($kelasList as $kelas) {
+                    $selected = (isset($_GET['filter_kelas']) && $_GET['filter_kelas'] == $kelas) ? 'selected' : '';
+                    echo '<option value="' . $kelas . '" ' . $selected . '>' . $kelas . '</option>';
+                }
+                ?>
+            </select>
+
+            <input type="text" name="search_nama" value="<?= isset($_GET['search_nama']) ? htmlspecialchars($_GET['search_nama']) : '' ?>" placeholder="Cari nama..." class="px-3 py-2 rounded text-sm border border-gray-300">
+
+            <button type="submit" class="bg-white text-[#5d2eff] text-sm font-semibold px-4 py-2 rounded hover:bg-gray-100 shadow">🔍 Cari</button>
+
+            <?php if (!empty($_GET['filter_kelas']) || !empty($_GET['search_nama'])): ?>
+                <a href="siswa_management.php" class="bg-red-500 text-white px-3 py-2 rounded text-sm hover:bg-red-600">Reset</a>
+            <?php endif; ?>
+        </div>
+    </form>
+</div>
+
+
                 
-        <div class="flex justify-between items-center mb-4">
-                <h1 class="text-xl font-bold text-white">Daftar Siswa</h1>
-                <button onclick="document.getElementById('addModal').classList.remove('hidden')" class="bg-white px-4 py-2 rounded text-sm font-semibold text-[#5d2eff] hover:bg-gray-100 shadow">➕ Tambah Siswa</button>
-            </div>
+        <div class="flex justify-end items-center mt-4 mb-4">
+   
+    <button onclick="document.getElementById('addModal').classList.remove('hidden')" class="bg-white px-4 py-2 rounded text-sm font-semibold text-[#5d2eff] hover:bg-gray-100 shadow">➕ Tambah Siswa</button>
+</div>
 
             <div class="overflow-x-auto bg-white rounded shadow">
                 <table class="w-full text-sm text-left text-gray-500 border">
