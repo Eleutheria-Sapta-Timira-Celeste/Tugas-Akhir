@@ -8,7 +8,6 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
 }
 
 try {
-
     $query1 = "SELECT * FROM web_content WHERE id = 1";
     $query2 = "SELECT * FROM web_content WHERE id = 2";
     $query3 = "SELECT * FROM web_content WHERE id = 4";
@@ -21,9 +20,7 @@ try {
     $result4 = mysqli_query($connection, $query4);
     $result5 = mysqli_query($connection, $query5);
 
-
     if ($result1) {
-
         $home = mysqli_fetch_assoc($result1);
         $about = mysqli_fetch_assoc($result2);
         $contactus = mysqli_fetch_assoc($result3);
@@ -35,22 +32,14 @@ try {
 } catch (Exception $e) {
     echo "Error: " . $e->getMessage();
 } finally {
-
     mysqli_close($connection);
 }
 
-// Updating Web Content from here php
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-
-
-
     if ($connectionobj->connect_error) {
         die("Connection failed: " . $connectionobj->connect_error);
     }
 
-    //HOME PAGE - Variables to get new site content
     $homeOne = $_POST['homeOne'];
     $homeTwo = $_POST['homeTwo'];
     $homeThree = $_POST['homeThree'];
@@ -60,7 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $homeSeven = $_POST['homeSeven'];
     $homeEight = $_POST['homeEight'];
 
-    //ABOUT PAGE - Variables to get new site content
     $aboutOne = $_POST['aboutOne'];
     $aboutTwo = $_POST['aboutTwo'];
     $aboutThree = $_POST['aboutThree'];
@@ -83,28 +71,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $aboutTwenty = $_POST['aboutTwenty'];
     $aboutTwentyone = $_POST['aboutTwentyone'];
 
-    //Extra PAGE - Variables to get new site content
     $extraOne = $_POST['extraOne'];
-
-    //Contact Us PAGE - Variables to get new site content
     $contactOne = $_POST['contactOne'];
-
-    //Join Us Us PAGE - Variables to get new site content
     $joinOne = $_POST['joinOne'];
 
-    
-    //Preparing Querry for each site
     $homequerry = "UPDATE `web_content` SET `one` = ?, `two` = ?, `three`= ?, `four` = ?, `five` = ?, `six` = ?,  `seven`= ?, `eight`= ? WHERE `web_content`.`id` = 1;";
-
     $aboutquerry = "UPDATE `web_content` SET `one` = ?, `two` = ?, `three`= ?, `four` = ?, `five` = ?, `six` = ?,  `seven`= ?, `eight`= ?, `nine`= ?, `ten`= ?, `eleven`= ?, `twelve`= ?, `thirteen`= ?, `fourteen`= ?, `fifteen`= ?, `sixteen`= ?, `seventeen`= ?, `eighteen`= ?, `ninteen`= ?, `twenty`= ?, `twentyone`= ? WHERE `web_content`.`id` = 2;";
-
     $extraquerry = "UPDATE `web_content` SET `one` = ? WHERE `web_content`.`id` = 6;";
-
     $contactquerry = "UPDATE `web_content` SET `one` = ? WHERE `web_content`.`id` = 4;";
-
     $joinquerry = "UPDATE `web_content` SET `one` = ? WHERE `web_content`.`id` = 5;";
-
-
 
     $stmt = $connectionobj->prepare($homequerry);
     $aboutExecute = $connectionobj->prepare($aboutquerry);
@@ -112,28 +87,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $contactExecute = $connectionobj->prepare($contactquerry);
     $joinExecute = $connectionobj->prepare($joinquerry);
 
-
-
-
-    // Binding String param each page
     $stmt->bind_param("ssssssss", $homeOne, $homeTwo, $homeThree, $homeFour, $homeFive, $homeSix, $homeSeven, $homeEight);
-
     $aboutExecute->bind_param("sssssssssssssssssssss", $aboutOne, $aboutTwo, $aboutThree, $aboutFour, $aboutFive, $aboutSix, $aboutSeven, $aboutEight, $aboutNine, $aboutTen, $aboutEleven, $aboutTwelve, $aboutThirteen, $aboutFourteen, $aboutFifteen, $aboutSixteen, $aboutSeventeen, $aboutEighteen, $aboutNinteen, $aboutTwenty, $aboutTwentyone);
-
     $extraExecute->bind_param("s", $extraOne);
     $contactExecute->bind_param("s", $contactOne);
     $joinExecute->bind_param("s", $joinOne);
 
-
-
-    // Executing and alerting site sucess
     if ($stmt->execute() && $aboutExecute->execute() && $extraExecute->execute() && $contactExecute->execute() && $joinExecute->execute()) {
-        echo "
-            <script>
-            alert('Content Update Sucessfully!');
-            window.location.replace('site_content.php');
-            </script>
-        ";
+        echo "<script>alert('Content Update Sucessfully!'); window.location.replace('site_content.php');</script>";
     } else {
         echo "Error: " . $stmt->error;
     }
@@ -143,10 +104,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $extraExecute->close();
     $contactExecute->close();
     $joinExecute->close();
-
     $connectionobj->close();
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -155,19 +114,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Situs Konten</title>
-    <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
+    <title>Edit Konten Situs</title>
     <link rel="icon" type="image/x-icon" href="../assects/images/admin_logo.png">
-
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+    <style>
+      body,
+      section,
+      .border,
+      textarea,
+      .dark\:bg-gray-900,
+      .dark\:hover\:bg-gray-800,
+      .hover\:bg-gray-100,
+      .dark\:text-gray-400,
+      .dark\:text-gray-600,
+      .text-gray-500,
+      .dark\:border-gray-700,
+      .border-gray-200 {
+        background-color: white !important;
+        color: #333 !important;
+      }
+      textarea {
+        background-color: white !important;
+        color: #333 !important;
+        border: 1px solid #ccc !important;
+      }
+      .hover\:bg-gray-100:hover,
+      .dark\:hover\:bg-gray-800:hover {
+        background-color: #f9f9f9 !important;
+      }
 
-
+      button:focus, button:active, button:focus-visible {
+        outline: none !important;
+        box-shadow: none !important;
+      }
+    </style>
 </head>
 
 <body>
-    <?php include('../includes/admin_header.php') ?>
-        <section class="text-gray-600 body-font">
+<?php include('../includes/admin_header.php') ?>
+
+<section class="text-gray-600 body-font">
             <div class="container px-5 py-10 mx-auto">
                 <div class="flex flex-col text-center w-full mb-5">
                     <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4" style="color: #e65100;">
@@ -342,17 +329,9 @@ Ubah Isi Konten Situs</h1>
         </div>
     </form>
 
-        
 
-    <?php include('../includes/admin_footer.php') ?>
 
-<script>
 
-console.clear();
-
-</script>
-
+<?php include('../includes/admin_footer.php') ?>
 </body>
-
-
 </html>
