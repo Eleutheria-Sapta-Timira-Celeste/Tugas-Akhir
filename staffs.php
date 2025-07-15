@@ -48,35 +48,27 @@ $defaultavatar = "assects/images/defaults/defaultaltimage.jpg"
                 <p class="font-light text-gray-600 sm:text-xl dark:text-gray-600">SMP PGRI 371 Pondok Aren dipimpin oleh seorang Kepala Sekolah yang bertanggung jawab dalam mengarahkan visi, misi, serta kebijakan sekolah untuk menciptakan lingkungan belajar yang kondusif dan berprestasi.</p>
             </div>
 
-            <div class="grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+           <div class="flex justify-center px-4">
+    <?php
+    $pimpinan_sekolah = "SELECT * FROM pimpinan_sekolah LIMIT 1;";
+    $result = mysqli_query($connection, $pimpinan_sekolah);
 
-                <?php
+    if ($row = mysqli_fetch_assoc($result)) {
+        echo '
+        <div class="text-center text-gray-700 dark:text-gray-300">
+            <img class="mx-auto mb-4 w-36 h-36 rounded-full   shadow-md"
+                 src="' . $row['image_src'] . '"
+                 onerror="this.src=\'' . $defaultavatar . '\'">
+            <h3 class="mb-1 text-xl font-semibold text-[#ef6c00] dark:text-[#ef6c00] leading-tight">
+                ' . $row['name'] . '
+            </h3>
+            <p class="text-sm text-gray-500">' . $row['position'] . '</p>
+        </div>
+        ';
+    }
+    ?>
+</div>
 
-
-                $pimpinan_sekolah = "SELECT * FROM pimpinan_sekolah;";
-                $management_committee_members = mysqli_query($connection, $pimpinan_sekolah);
-                $total_management_committee_members = mysqli_num_rows($management_committee_members);
-
-
-                if ($total_management_committee_members > 0) {
-                    while ($row = mysqli_fetch_assoc($management_committee_members)) {
-                        echo '
-                    <div class="text-center text-gray-600 dark:text-gray-600">
-                        <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="' . $row['image_src'] . '" onerror="this.src=' . $defaultavatar . '">
-                            <h3 class="mb-1 text-2xl font-bold tracking-tight text-[#ef6c00] dark:text-[#ef6c00]">
-
-                                <a>' . $row['name'] . '</a>
-                            </h3>
-                            <p>' . $row['position'] . '</p>
-                    </div>
-                    
-            ';
-                    }
-                }
-
-                ?>
-
-            </div>
         </div>
     </section>
     <section class="bg-white dark:bg-white">

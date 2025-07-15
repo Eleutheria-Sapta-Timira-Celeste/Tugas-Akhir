@@ -9,41 +9,52 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    // Tambah Pimpinan Sekolah
-    if (isset($_POST['add_committe'])) {
-        $IDImage = 'file-upload-modified';
-        $fileUploadName = $_FILES[$IDImage]['name'];
-        $fileUploadTmp = $_FILES[$IDImage]['tmp_name'];
+   if (isset($_POST['add_pimpinan'])) {
 
-        $targetDirectory = '../assects/images/pta/';
-        $targetFilePath = $targetDirectory . basename($fileUploadName);
-        $sqlfileurl = "";
+    $pimpinanFileInput = 'file-upload-pimpinan';
+    $pimpinanFileName = $_FILES[$pimpinanFileInput]['name'] ?? '';
+    $pimpinanFileTmp = $_FILES[$pimpinanFileInput]['tmp_name'] ?? '';
 
-        if (!empty($fileUploadName) && move_uploaded_file($fileUploadTmp, $targetFilePath)) {
-            $sqlfileurl = "assects/images/pta/" . basename($fileUploadName);
-        }
+    $pimpinanTargetDir = '../assects/images/staff/';
+    $pimpinanImageSrc = '';
 
-        if ($connectionobj->connect_error) {
-            die("Connection failed: " . $connectionobj->connect_error);
-        }
-
-        $committeName = $_POST['committeName'];
-        $committePosition = $_POST['committePosition'];
-        $committePhone = $_POST["staffContact"];
-
-        $sql = "INSERT INTO pimpinan_sekolah (name, position, contact_no, image_src) VALUES (?, ?, ?, ?)";
-        $stmt = $connectionobj->prepare($sql);
-        $stmt->bind_param("ssss", $committeName, $committePosition, $committePhone, $sqlfileurl);
-
-        if ($stmt->execute()) {
-            echo '<script>alert("Pimpinan sekolah berhasil ditambahkan.");</script>';
-        } else {
-            echo "Error: " . $stmt->error;
-        }
-
-        $stmt->close();
-        $connectionobj->close();
+    // Buat folder jika belum ada
+    if (!is_dir($pimpinanTargetDir)) {
+        mkdir($pimpinanTargetDir, 0755, true);
     }
+
+    // Pindahkan file upload jika ada file
+    if (!empty($pimpinanFileName)) {
+        $targetPath = $pimpinanTargetDir . basename($pimpinanFileName);
+
+        if (move_uploaded_file($pimpinanFileTmp, $targetPath)) {
+            $pimpinanImageSrc = 'assects/images/staff/' . basename($pimpinanFileName);
+        } else {
+            echo '<script>alert("Gagal upload foto. Cek izin folder atau nama file.");</script>';
+        }
+    }
+
+    // Ambil data input dari form
+    $pimpinanName = $_POST['pimpinanName'] ?? '';
+    $pimpinanPosition = $_POST['pimpinanPosition'] ?? '';
+    $pimpinanPhone = $_POST['pimpinanPhone'] ?? '';
+
+    // Simpan ke database
+    $sql = "INSERT INTO pimpinan_sekolah (name, position, contact_no, image_src) VALUES (?, ?, ?, ?)";
+    $stmt = $connectionobj->prepare($sql);
+    $stmt->bind_param("ssss", $pimpinanName, $pimpinanPosition, $pimpinanPhone, $pimpinanImageSrc);
+
+    if ($stmt->execute()) {
+        echo '<script>alert("Data pimpinan berhasil ditambahkan.")</script>';
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+
+    $stmt->close();
+    $connectionobj->close();
+}
+
+
 
     // Tambah Staff
     if (isset($_POST['add_staff'])) {
@@ -83,12 +94,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     // Hapus Pimpinan Sekolah
-    if (isset($_POST['committe_delete'])) {
-        $committeId = $_POST['comitteDelete_id'];
-        mysqli_query($connectionobj, "DELETE FROM `pimpinan_sekolah` WHERE id = $committeId;");
-        echo '<script>window.location.replace("changeStaff.php");</script>';
-        exit;
-    }
+   if (isset($_POST['pimpinanDelete'])) {
+    $pimpinanId = (int)$_POST['pimpinanDelete_id'];
+    mysqli_query($connectionobj, "DELETE FROM pimpinan_sekolah WHERE id = $pimpinanId");
+    echo '<script>window.location.replace("changeStaff.php");</script>';
+    exit;
+}
+
+
 
     // Hapus Staff
     if (isset($_POST['staffDelete'])) {
@@ -98,42 +111,70 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit;
     }
 
-    // Update Pimpinan Sekolah
-    if (isset($_POST['update_committe'])) {
-        $committeId = $_POST['committeId'];
-        $IDImage = 'file-upload-modified' . $committeId;
-        $fileUploadName = $_FILES[$IDImage]['name'];
-        $fileUploadTmp = $_FILES[$IDImage]['tmp_name'];
+   // === Update Pimpinan Sekolah ===
+if (isset($_POST['update_pimpinan'])) {
 
-        $targetDirectory = '../assects/images/pta/';
-        $targetFilePath = $targetDirectory . basename($fileUploadName);
-        $sqlfileurl = $_POST['imageLocationcommitte'];
+    /* ---------- 1. Ambil ID ---------- */
+    $pimpinanId = (int)$_POST['pimpinanId'];
 
-        if (!empty($fileUploadName) && move_uploaded_file($fileUploadTmp, $targetFilePath)) {
-            $sqlfileurl = "assects/images/pta/" . basename($fileUploadName);
-        }
+    /* ---------- 2. Ambil informasi file (jika user pilih foto baru) ---------- */
+    $pimpinanFileInput = 'file-upload-pimpinan' . $pimpinanId;      // <input name="file-upload-pimpinan{ID}">
+    $pimpinanFileName  = $_FILES[$pimpinanFileInput]['name'] ?? '';
+    $pimpinanFileTmp   = $_FILES[$pimpinanFileInput]['tmp_name'] ?? '';
 
-        if ($connectionobj->connect_error) {
-            die("Connection failed: " . $connectionobj->connect_error);
-        }
-
-        $committeName = $_POST['comitteName'];
-        $committePost = $_POST['comittepost'];
-        $committePhone = $_POST["comittePhone"];
-
-        $sql = "UPDATE pimpinan_sekolah SET name=?, position=?, contact_no=?, image_src=? WHERE id=?";
-        $stmt = $connectionobj->prepare($sql);
-        $stmt->bind_param("sssss", $committeName, $committePost, $committePhone, $sqlfileurl, $committeId);
-
-        if ($stmt->execute()) {
-            echo '<script>alert("Pimpinan sekolah berhasil diperbarui."); window.location.replace("changeStaff.php");</script>';
-        } else {
-            echo "Error: " . $stmt->error;
-        }
-
-        $stmt->close();
-        $connectionobj->close();
+    $pimpinanTargetDir = '../assects/images/staff/';                 // path fisik
+    if (!is_dir($pimpinanTargetDir)) {
+        mkdir($pimpinanTargetDir, 0755, true);                       // buat folder jika belum ada
     }
+
+    /* Ambil path lama dari hidden input */
+    $pimpinanImageSrc  = $_POST['pimpinanImageLocation'] ?? '';
+
+    /* ---------- 3. Jika ada file baru, pindahkan ---------- */
+    if (!empty($pimpinanFileName)) {
+        $targetPath = $pimpinanTargetDir . basename($pimpinanFileName);
+
+        if (move_uploaded_file($pimpinanFileTmp, $targetPath)) {
+            $pimpinanImageSrc = 'assects/images/staff/' . basename($pimpinanFileName);
+
+         
+        } else {
+            echo '<script>alert("Gagal mengunggah foto baru. Periksa izin folder.");</script>';
+        }
+    }
+
+    /* ---------- 4. Ambil input teks ---------- */
+    $pimpinanName     = $_POST['pimpinanName']     ?? '';
+    $pimpinanPosition = $_POST['pimpinanPosition'] ?? '';
+    $pimpinanPhone    = $_POST['pimpinanPhone']    ?? '';
+
+    /* ---------- 5. Update database ---------- */
+    $sql  = "UPDATE pimpinan_sekolah
+             SET name = ?, position = ?, contact_no = ?, image_src = ?
+             WHERE id = ?";
+    $stmt = $connectionobj->prepare($sql);
+    $stmt->bind_param("ssssi",
+        $pimpinanName,
+        $pimpinanPosition,
+        $pimpinanPhone,
+        $pimpinanImageSrc,
+        $pimpinanId
+    );
+
+    if ($stmt->execute()) {
+        echo '<script>
+                alert("Data pimpinan berhasil di‑update.");
+                window.location.replace("changeStaff.php");
+              </script>';
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+
+    $stmt->close();
+    $connectionobj->close();
+}
+
+
 
     // Update Staff
     if (isset($_POST['update_staffs'])) {
@@ -293,69 +334,66 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
 
     <!-- Adding Committe Menber -->
 
-    <div id="authentication-modal2" tabindex="-1" aria-hidden="true"
-        class="fadeIn hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-        <div class="relative p-4 w-full max-w-md max-h-full">
-            <!-- Modal content -->
-            <div class="relative bg-white rounded-lg shadow ">
-                <!-- Modal header -->
-                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t ">
-                    <h3 class="text-xl font-semibold text-gray-900 ">
-                        Tambah Anggota Petugas
-                    </h3>
-                    <button type="button"
-                        class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
-                        data-modal-hide="authentication-modal2">
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                        </svg>
-                        <span class="sr-only">Close modal</span>
+   <div id="authentication-modal2" tabindex="-1" aria-hidden="true"
+    class="fadeIn hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-md max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow">
+            <!-- Modal header -->
+            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
+                <h3 class="text-xl font-semibold text-gray-900">
+                    Tambah Pimpinan Sekolah
+                </h3>
+                <button type="button"
+                    class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                    data-modal-hide="authentication-modal2">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    </svg>
+                    <span class="sr-only">Tutup</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <div class="p-4 md:p-5">
+                <form class="space-y-4" action="" method="POST" enctype="multipart/form-data">
+                    <div>
+                        <label for="file-upload-pimpinan"
+                            class="block mb-2 text-sm font-medium text-gray-900">Pilih Foto (ukuran pas foto)</label>
+                        <input name="file-upload-pimpinan" id="file-upload-pimpinan" type="file" accept="image/*"
+                            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none">
+                    </div>
+
+                    <div>
+                        <label for="pimpinanName"
+                            class="block mb-2 text-sm font-medium text-gray-900">Nama</label>
+                        <input type="text" name="pimpinanName" id="pimpinanName"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                            placeholder="Misalnya: Annisa Aulia" required>
+
+                        <label for="pimpinanPosition"
+                            class="block mt-4 mb-2 text-sm font-medium text-gray-900">Posisi / Jabatan</label>
+                        <input type="text" name="pimpinanPosition" id="pimpinanPosition"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                            placeholder="Misalnya: Kepala Sekolah" required>
+
+                        <label for="pimpinanPhone"
+                            class="block mt-4 mb-2 text-sm font-medium text-gray-900">Kontak / NIP</label>
+                        <input type="text" name="pimpinanPhone" id="pimpinanPhone"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                            placeholder="Misalnya: 198209022005021002" required>
+                    </div>
+
+                    <button type="submit" name="add_pimpinan"
+                        class="w-full text-white bg-[#ef6c00] hover:bg-[#cc5200] focus:ring-4 focus:outline-none focus:ring-[#cc5200] font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#cc5200] dark:focus:ring-[#cc5200]">
+                        Tambah Pimpinan
                     </button>
-                </div>
-                <!-- Modal body -->
-                <div class="p-4 md:p-5">
-                    <form class="space-y-4" action="" method="POST" enctype="multipart/form-data">
-                        <div><label for="new_file"
-                                class="block mb-2 text-sm font-medium text-gray-900 ">Pilih foto ukuran pas foto agar tampilan lebih jelas</label></div>
-                        <div class="flex items-center justify-center w-full">
-
-
-                            <input name="file-upload-modified"
-                                class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50  focus:outline-none"
-                                id="file_input" type="file" accept="image/*">
-
-                        </div>
-                        <div>
-                            <label for="committeName"
-                                class="block mb-2 text-sm font-medium text-gray-900 ]">Nama</label>
-                            <input type="text" name="committeName"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Annisa Aulia" required>
-                            <label for="staffPost"
-                                class="block mb-2 text-sm font-medium text-gray-900">Posisi</label>
-                            <input type="text" name="committePosition"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Guru" required>
-                            <label for="committeContact"
-                                class="block mb-2 text-sm font-medium text-gray-900 ">NIP</label>
-                            <input type="text" name="staffContact"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="9804545454" required>
-                           
-                        </div>
-
-
-                        <button type="submit" name="add_committe"
-                            class="w-full text-white bg-[#ef6c00] hover:bg-[#cc5200] focus:ring-4 focus:outline-none focus:ring-[#cc5200] font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#cc5200] dark:focus:ring-[#cc5200]">Tambah Petugas
-                            </button>
-
-                    </form>
-                </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
 
 
@@ -392,82 +430,98 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                                 <th class="px-4 py-3"><span class="sr-only">Actions</span></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <?php
-                            $query = "SELECT * FROM `pimpinan_sekolah`;";
-                            $result = mysqli_query($connectionobj, $query);
-                            if (mysqli_num_rows($result) > 0) {
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                    $id = $row['id'];
-                                    echo '
-                                    <tr class="border-[#fcddb8] dark:border-[#fcddb8]">
-                                        <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-black">
-                                            <div class="flex items-center mr-3">
-                                                <img src="../' . $row['image_src'] . '" alt="" class="h-8 w-auto mr-3 rounded" onerror="this.src=`' . $defaultavatar . '`">
-                                                ' . $row['name'] . '
-                                            </div>
-                                        </th>
-                                        <td class="px-4 py-3">' . $row['position'] . '</td>
-                                        <td class="px-4 py-3">' . $row['contact_no'] . '</td>
-                                        <td class="px-4 py-3 flex items-center justify-end">
-                                            <button data-dropdown-toggle="dropdown-' . $id . '" class="text-[#fc941e] hover:text-[#e77e08]">
-                                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                                                </svg>
-                                            </button>
-                                            <div id="dropdown-' . $id . '" class="hidden z-10 w-44 bg-white rounded shadow">
-                                                <ul class="py-1 text-sm text-gray-700">
-                                                    <li>
-                                                        <button type="button" data-modal-target="editModal-' . $id . '" data-modal-toggle="editModal-' . $id . '" class="flex w-full px-4 py-2 hover:bg-[#fc941e]/20 dark:hover:bg-[#fc941e]/30">Ubah</button>
-                                                    </li>
-                                                    <li>
-                                                        <form method="POST">
-                                                            <input type="hidden" name="comitteDelete_id" value="' . $id . '">
-                                                            <button name="committe_delete" type="submit" class="flex w-full px-4 py-2 text-red-600 hover:bg-[#fc941e]/20 dark:hover:bg-[#fc941e]/30">Hapus</button>
-                                                        </form>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <!-- Modal Edit -->
-                                    <div id="editModal-' . $id . '" class="hidden fixed z-50 inset-0 overflow-y-auto">
-                                        <div class="flex items-center justify-center min-h-screen">
-                                            <div class="bg-white  p-6 rounded-lg shadow-lg w-full max-w-lg">
-                                                <h3 class="text-lg font-semibold text-gray-900  mb-2">Ubah Data Pimpinan</h3>
-                                                <hr class="border-[#fc941e] mb-4">
-                                                <form method="post" enctype="multipart/form-data">
-                                                    <div class="mb-4">
-                                                        <label class="block mb-2 text-sm font-medium text-gray-900">Foto</label>
-                                                        <input type="file" name="file-upload-modified' . $id . '" accept="image/*" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 ">
-                                                    </div>
-                                                    <div class="mb-4">
-                                                        <label class="block mb-2 text-sm font-medium text-gray-900 ">Nama</label>
-                                                        <input type="text" name="comitteName" value="' . $row['name'] . '" class="w-full p-2.5 rounded border border-gray-300 bg-gray-50">
-                                                    </div>
-                                                    <div class="mb-4">
-                                                        <label class="block mb-2 text-sm font-medium text-gray-900 >Posisi</label>
-                                                        <input type="text" name="comittepost" value="' . $row['position'] . '" class="w-full p-2.5 rounded border border-gray-300 bg-gray-50">
-                                                    </div>
-                                                    <div class="mb-4">
-                                                        <label class="block mb-2 text-sm font-medium text-gray-900 ">NIP</label>
-                                                        <input type="text" name="comittePhone" value="' . $row['contact_no'] . '" class="w-full p-2.5 rounded border border-gray-300 bg-gray-50">
-                                                    </div>
-                                                    <input type="hidden" name="committeId" value="' . $id . '">
-                                                    <input type="hidden" name="imageLocationcommitte" value="' . $row['image_src'] . '">
-                                                    <div class="flex justify-end">
-                                                        <button type="submit" name="update_committe" class="px-4 py-2 bg-[#fc941e] text-white rounded hover:bg-[#e77e08] transition">Simpan</button>
-                                                    </div>
-                                                </form>
-                                            </div>
+                       <tbody>
+                        <?php
+                        $query = "SELECT * FROM `pimpinan_sekolah`;";
+                        $result = mysqli_query($connectionobj, $query);
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $pimpinanId = $row['id'];
+                                echo '
+                                <tr class="border-[#fcddb8] dark:border-[#fcddb8]">
+                                    <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-black">
+                                        <div class="flex items-center mr-3">
+                                            <img src="../' . $row['image_src'] . '" alt="" class="h-8 w-auto mr-3 rounded" onerror="this.src=`' . $defaultavatar . '`">
+                                            ' . $row['name'] . '
                                         </div>
-                                    </div>
-                                    ';
-                                }
-                            }
-                            ?>
-                        </tbody>
+                                    </th>
+                                    <td class="px-4 py-3">' . $row['position'] . '</td>
+                                    <td class="px-4 py-3">' . $row['contact_no'] . '</td>
+                                   <td class="px-4 py-3 flex items-center justify-end relative z-50">
+
+                                        <button data-dropdown-toggle="dropdown-pimpinan' . $pimpinanId . '" class="text-[#fc941e] hover:text-[#e77e08]">
+                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                                <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+                                            </svg>
+                                        </button>
+                                        <div id="dropdown-pimpinan' . $pimpinanId .'" class="hidden z-10 w-44 bg-white rounded shadow">
+                                            <ul class="py-1 text-sm text-gray-700">
+                                                <li>
+                                                    <button type="button"
+                                                            data-modal-target="updatePimpinanModal' . $pimpinanId .'"
+                                                            data-modal-toggle="updatePimpinanModal' . $pimpinanId . '"
+                                                            class="flex w-full px-4 py-2 hover:bg-[#fc941e]/20 dark:hover:bg-[#fc941e]">
+                                                        Ubah
+                                                    </button>
+                                                </li>
+                                                <li>
+                                                    <form method="POST">
+                                                        <input type="hidden" name="pimpinanDelete_id" value="' . $pimpinanId . '">
+                                                        <button name="pimpinanDelete" type="submit"
+                                                                class="flex w-full px-4 py-2 text-red-600 hover:bg-[#fc941e]/20 dark:hover:bg-[#fc941e]">
+                                                            Hapus
+                                                        </button>
+                                                    </form>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+
+        <!-- Modal Update -->
+        <div id="updatePimpinanModal' . $pimpinanId . '" class="hidden fixed z-50 inset-0 overflow-y-auto">
+            <div class="flex items-center justify-center min-h-screen">
+                <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Ubah Data Pimpinan</h3>
+                    <hr class="border-[#fc941e] mb-4">
+                    <form method="post" enctype="multipart/form-data">
+                        <div class="mb-4">
+                            <label class="block mb-2 text-sm font-medium text-gray-900">Foto</label>
+                            <input type="file" name="file-upload-pimpinan' . $pimpinanId . '" accept="image/*"
+                                   class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block mb-2 text-sm font-medium text-gray-900">Nama</label>
+                            <input type="text" name="pimpinanName" value="' . $row['name'] . '"
+                                   class="w-full p-2.5 rounded border border-gray-300 bg-gray-50">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block mb-2 text-sm font-medium text-gray-900">Posisi</label>
+                            <input type="text" name="pimpinanPosition" value="' . $row['position'] . '"
+                                   class="w-full p-2.5 rounded border border-gray-300 bg-gray-50">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block mb-2 text-sm font-medium text-gray-900">NIP / Kontak</label>
+                            <input type="text" name="pimpinanPhone" value="' . $row['contact_no'] . '"
+                                   class="w-full p-2.5 rounded border border-gray-300 bg-gray-50">
+                        </div>
+                        <input type="hidden" name="pimpinanId" value="' . $pimpinanId . '">
+                        <input type="hidden" name="pimpinanImageLocation" value="' . $row['image_src'] . '">
+                        <div class="flex justify-end">
+                            <button type="submit" name="update_pimpinan"
+                                    class="px-4 py-2 bg-[#fc941e] text-white rounded hover:bg-[#e77e08] transition">
+                                Simpan
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        ';
+    }
+}
+?>
+</tbody>
                     </table>
                 </div>
             </div>
@@ -545,7 +599,8 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                                             <div id="dropdown-staff-' . $staffsId . '" class="hidden z-10 w-44 bg-white rounded shadow ">
                                                 <ul class="py-1 text-sm text-gray-700 ">
                                                     <li>
-                                                        <button type="button" data-modal-target="updatestaffsModel' . $staffsId . '" data-modal-toggle="updatestaffsModel' . $staffsId . '" class="flex w-full px-4 py-2 hover:bg-[#fc941e]/20 dark:hover:bg-[#fc941e]">Ubah</button>
+                                                        <button type="button" data-modal-target="updatestaffsModel' . $staffsId . '" 
+                                                        data-modal-toggle="updatestaffsModel' . $staffsId . '" class="flex w-full px-4 py-2 hover:bg-[#fc941e]/20 dark:hover:bg-[#fc941e]">Ubah</button>
                                                     </li>
                                                     <li>
                                                         <form method="POST">
