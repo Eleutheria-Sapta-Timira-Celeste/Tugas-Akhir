@@ -57,8 +57,8 @@ Informasi Sekolah</h1>
                     <div class="p-2 lg:w-1/3 md:w-1/2 w-full" onclick="gallery()">
                         <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg hover:bg-blue-100">
                             <img alt="team"
-                                class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-                                src="assects/images/extras_avatar/gallery.jpg">
+                                class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4 p-1"
+                                src="assects/images/extras_avatar/galery.jpg">
                             <div class="flex-grow">
                                <h2 class="title-font font-medium" style="color: #ef6c00;">Galeri</h2>
                                 <p class="text-sm md:text-base text-gray-500">Kegiatan, Momen, dan Hari Besar</p>
@@ -68,8 +68,8 @@ Informasi Sekolah</h1>
                     <div class="p-2 lg:w-1/3 md:w-1/2 w-full" onclick="schoolroutine()">
                         <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg hover:bg-blue-100">
                             <img alt="team"
-                                class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-                                src="assects/images/extras_avatar/class_routine.jpg">
+                                class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4 p-1"
+                                src="assects/images/extras_avatar/jad.jpg">
                             <div class="flex-grow">
                                 <h2 class="title-font font-medium" style="color: #ef6c00;">Jadwal Kelas</h2>
                                 <p class="text-sm md:text-base text-gray-500">Jadwal Kelas Sekolah</p>
@@ -81,8 +81,8 @@ Informasi Sekolah</h1>
                     <div class="p-2 lg:w-1/3 md:w-1/2 w-full" onclick="nepalicalender()">
                         <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg hover:bg-blue-100">
                             <img alt="team"
-                                class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-                                src="assects/images/extras_avatar/calender.png">
+                                class="w-16 h-16 bg-gray-100  object-contain object-cover object-center flex-shrink-0 rounded-full mr-4 p-1"
+                                src="assects/images/extras_avatar/calle.jpg">
                             <div class="flex-grow">
                          <h2 class="title-font font-medium" style="color: #ef6c00;">Kalender Akademik</h2></h2>
                                 <p class="text-sm md:text-base text-gray-500">Liburan, Hari Besar, Pendidikan</p>
@@ -92,8 +92,8 @@ Informasi Sekolah</h1>
                    <div class="p-2 lg:w-1/3 md:w-1/2 w-full" onclick="window.location.href='kurikulum.php'">
                     <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg hover:bg-blue-100 cursor-pointer">
                         <img alt="team"
-                            class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-                            src="assects/images/extras_avatar/cirriculam.jfif">
+                            class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4 p-1"
+                            src="assects/images/extras_avatar/kurikulum.jpg">
                         <div class="flex-grow">
                             <h2 class="title-font font-medium" style="color: #ef6c00;">Kurikulum</h2>
                             <p class="text-sm md:text-base text-gray-500">Kurikulum Merdeka</p>
@@ -106,8 +106,8 @@ Informasi Sekolah</h1>
                     <div class="p-2 lg:w-1/3 md:w-1/2 w-full" onclick="staffs()">
                         <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg hover:bg-blue-100">
                             <img alt="team"
-                                class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-                                src="assects/images/extras_avatar/staffs.png">
+                                class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4 p-1"
+                                src="assects/images/extras_avatar/stafff.jpg">
                             <div class="flex-grow">
                                 <h2 class="title-font font-medium" style="color: #ef6c00;">Tenaga Kependidikan</h2></h2>
                                 <p class="text-sm md:text-base text-gray-500">Pimpinan dan Staff Sekolah
@@ -119,8 +119,8 @@ Informasi Sekolah</h1>
                         <div data-modal-target="default-modal" data-modal-toggle="default-modal"
                             class="h-full flex items-center border-gray-200 border p-4 rounded-lg hover:bg-blue-100">
                             <img alt="team"
-                                class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-                                src="assects/images/extras_avatar/social_icon.webp">
+                                class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4 p-1"
+                                src="assects/images/extras_avatar/medsos.jpg">
                             <div class="flex-grow">
                         <h2 class="title-font font-medium" style="color: #ef6c00;">Sosial Media</h2></h2>
                                 <p class="text-sm md:text-base text-gray-500">Terhubung di Platform Lain</p>
