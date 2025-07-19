@@ -169,6 +169,16 @@ try {
                         </div>
                     </div>
 
+                      <div class="p-2 lg:w-1/3 md:w-1/2 w-full" onclick="homepage_media()">
+                        <div class="h-full flex items-center border p-4 rounded-lg hover:bg-blue-100 cursor-pointer">
+                            <img src="../assects/images/adminavatars/adminadd.png" alt="icon" class="w-16 h-16 rounded-full mr-4">
+                            <div>
+                                <h2 class="text-[#ef6c00] font-medium">Home Page Media</h2>
+                                <p class="text-sm text-gray-500">Kelola Foto dan Video Sekolah</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -186,6 +196,7 @@ try {
         function changeRoutine() { window.location.href = "changeRoutine.php"; }
         function changeStaff() { window.location.href = "changeStaff.php"; }
         function admin() { window.location.href = "admin.php"; }
+        function homepage_media() { window.location.href = "homepage_media.php"; }
     </script>
 
 </body>
