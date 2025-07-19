@@ -329,9 +329,6 @@ Ubah Isi Konten Situs</h1>
         </div>
     </form>
 
-
-
-
 <?php include('../includes/admin_footer.php') ?>
 </body>
 </html>
