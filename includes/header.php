@@ -42,7 +42,7 @@
         if (window.scrollY > 50) {
             navbar.classList.remove('text-white');
             navbar.classList.add('text-white', 'shadow-lg');
-            navbar.style.backgroundColor = '#d49f5f';
+            navbar.style.backgroundColor = '#f2a555';
         } else {
             navbar.classList.add('text-white');
             navbar.classList.remove('text-black', 'shadow-lg');

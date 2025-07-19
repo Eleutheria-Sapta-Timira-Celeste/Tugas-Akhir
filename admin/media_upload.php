@@ -55,7 +55,7 @@ if (isset($_GET['delete'])) {
         @unlink('../' . $media['path']);
     }
     mysqli_query($connection, "DELETE FROM media WHERE id = $id");
-    header("Location: media_list.php");
+    header("Location: media_upload.php");
     exit();
 }
 

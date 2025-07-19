@@ -3,6 +3,11 @@ include 'connection/database.php';
 
 try {
 
+    
+// Ambil media gambar utama (optional)
+$imageResult = mysqli_query($connection, "SELECT * FROM media WHERE type = 'image' ORDER BY uploaded_at DESC LIMIT 1");
+$topImage = mysqli_fetch_assoc($imageResult);
+
     $query = "SELECT * FROM web_content WHERE id = 2";
     $result = mysqli_query($connection, $query);
 
@@ -22,6 +27,8 @@ try {
 ?>
 
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,12 +44,17 @@ try {
 
 <body>
     <?php include('includes/header.php') ?>
+
+   <?php if ($topImage): ?>
+  <div class="relative w-full h-[500px] overflow-hidden mb-6">
+    <img src="<?= $topImage['path'] ?>" alt="Gambar Utama" class="w-full h-full object-cover  shadow-md">
+  </div>
+<?php endif; ?>
+
+    
     <main>
-
-
-
         <section class="text-gray-700 body-font animate-fadeIn">
-    <div class="container mx-auto flex px-5 py-16 md:flex-row flex-col items-center">
+    <div class="container mx-auto flex px-5 py-5 md:flex-row flex-col items-center">
         <!-- Text Section -->
         <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 
             items-center text-center animate-fadeIn">
