@@ -33,7 +33,7 @@ if (isset($_POST['sessionAlbum'])) {
 
     </style>
 </head>
-<?php include('includes/header.php') ?>
+<?php include('includes/header2.php') ?>
 
 <div class="bg-white dark:bg-[#fdf6f6] h-full py-2 sm:py-2 lg:py-5 mb-7">
     <div class="mx-auto max-w-screen-2xl px-4 md:px-8 mt-5">

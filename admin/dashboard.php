@@ -2,25 +2,20 @@
 include '../connection/database.php';
 session_start();
 
-// Cek apakah user sudah login dan role-nya admin
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: /Tugas-Akhir/login.php");
     exit();
 }
 
 try {
-    // Query notifikasi
     $query1 = "SELECT * FROM notification WHERE id = 1";
     $query2 = "SELECT * FROM notification WHERE id = 2";
-
     $result1 = mysqli_query($connection, $query1);
     $result2 = mysqli_query($connection, $query2);
 
     if ($result1 && $result2) {
         $row = mysqli_fetch_assoc($result1);
         $feedback = mysqli_fetch_assoc($result2);
-    } else {
-        echo "Error executing the query: " . mysqli_error($connection);
     }
 } catch (Exception $e) {
     echo "Error: " . $e->getMessage();
@@ -31,190 +26,83 @@ try {
 
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Dashboard Admin</title>
-    <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
+    <title>Dashboard Admin - SMP PGRI 371 Pondok Aren</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" type="image/x-icon" href="../assects/images/admin_logo.png">
+    <link rel="icon" href="../assects/images/defaults/logo_warna.png" />
 </head>
+<body class="flex bg-gray-100 min-h-screen">
+    
 
-<body class="bg-gray-100">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-[#d49f5f] text-white flex-shrink-0 min-h-screen shadow-lg">
+        <div class="p-6 text-center font-bold text-xs tracking-wide border-b border-orange-300">
+            <img src="../assects/images/defaults/logo_warna.png" alt="Logo" class="mx-auto mb-2 w-16 h-16 ">
+            SMP PGRI 371 Pondok Aren
+        </div>
+        <nav class="mt-6 flex flex-col space-y-2 px-4">
+            <button onclick="flash_notice()" class="hover:bg-orange-600 p-3 rounded flex items-center gap-2">📝 Kartu Sambutan</button>
+            <button onclick="add_notice()" class="hover:bg-orange-600 p-3 rounded flex items-center gap-2">📢 Tambah Pengumuman</button>
+            <button onclick="registered_students()" class="hover:bg-orange-600 p-3 rounded flex items-center justify-between">
+                <span>👨‍🎓 Pendaftar</span>
+                <?php if ($row['total_notification'] != 0): ?>
+                    <span class="bg-red-600 px-2 py-0.5 text-xs rounded-full"><?= $row['total_notification']; ?></span>
+                <?php endif; ?>
+            </button>
+            <button onclick="changeRoutine()" class="hover:bg-orange-600 p-3 rounded flex items-center gap-2">📅 Jadwal Kelas</button>
+            <button onclick="changeStaff()" class="hover:bg-orange-600 p-3 rounded flex items-center gap-2">👥 Ubah Staff</button>
+            <button onclick="site_content()" class="hover:bg-orange-600 p-3 rounded flex items-center gap-2">🌐 Konten Website</button>
+            <button onclick="add_gallery()" class="hover:bg-orange-600 p-3 rounded flex items-center gap-2">🖼️ Tambah Galeri</button>
+            <button onclick="feedback_page()" class="hover:bg-orange-600 p-3 rounded flex justify-between">
+                <span>💬 Feedback</span>
+                <?php if ($feedback['total_notification'] != 0): ?>
+                    <span class="bg-red-600 px-2 py-0.5 text-xs rounded-full"><?= $feedback['total_notification']; ?></span>
+                <?php endif; ?>
+            </button>
+            <button onclick="admin()" class="hover:bg-orange-600 p-3 rounded flex items-center gap-2">🔐 Kelola Admin</button>
+            <button onclick="siswa_management()" class="hover:bg-orange-600 p-3 rounded flex items-center gap-2">📋 Akun Siswa</button>
+            <button onclick="guru_management()" class="hover:bg-orange-600 p-3 rounded flex items-center gap-2">📘 Akun Guru</button>
+            <button onclick="kelola_kurikulum()" class="hover:bg-orange-600 p-3 rounded flex items-center gap-2">📚 Kurikulum</button>
+            <button onclick="homepage_media()" class="hover:bg-orange-600 p-3 rounded flex items-center gap-2">🏠 Media Beranda</button>
+        </nav>
+    </aside>
 
-    <?php include('../includes/admin_header.php'); ?>
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col">
+        <!-- Header -->
+        <header class="bg-white shadow px-6 py-4 flex items-center justify-between">
+            <div>
+                <h1 class="text-2xl font-bold text-[#ef6c00]">Dashboard Admin</h1>
+                <p class="text-sm text-gray-500">SMP PGRI 371 Pondok Aren</p>
+            </div>
+            <div class="text-gray-600">
+                👤 <span class="font-semibold"><?= $_SESSION['username']; ?></span>
+            </div>
+        </header>
 
-    <main class="p-6">
-        <section class="text-gray-600 body-font">
-            <div class="container px-5 py-10 mx-auto">
-                <div class="flex flex-col text-center w-full mb-10">
-                    <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-[#ef6c00]">
-                        Selamat Datang di Panel Admin
-                    </h1>
-                    <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base">
-                        Selamat datang, <b><?= $_SESSION['username']; ?></b> di Panel Admin SMP PGRI 371 Pondok Aren 🏫.
-                        Di sini Anda dapat mengelola seluruh data dan konten sekolah. 📊
-                    </p>
+        <main class="p-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Selamat Datang, <span class="text-[#ef6c00]"><?= $_SESSION['username']; ?></span> 👋</h2>
+            <p class="text-gray-600 mb-8">Silakan pilih menu di sebelah kiri untuk mulai mengelola sistem sekolah.</p>
+
+            <!-- Konten Card -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-5 rounded-lg shadow hover:shadow-md transition">
+                    <h3 class="font-semibold text-lg text-[#ef6c00] mb-2">Kartu Sambutan</h3>
+                    <p class="text-gray-600 text-sm">Buat atau ubah sambutan dari kepala sekolah untuk halaman utama.</p>
                 </div>
-
-                <div class="flex flex-wrap -m-2">
-
-                    <!-- Kartu Sambutan -->
-                    <div class="p-2 lg:w-1/3 md:w-1/2 w-full" onclick="flash_notice()">
-                        <div class="h-full flex items-center border p-4 rounded-lg hover:bg-blue-100 cursor-pointer">
-                            <img src="../assects/images/adminavatars/flash_notice.png" alt="icon" class="w-16 h-16 rounded-full mr-4">
-                            <div>
-                                <h2 class="text-[#ef6c00] font-medium">Kartu Sambutan</h2>
-                                <p class="text-sm text-gray-500">Buat baru kartu sambutan</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Tambah Pengumuman -->
-                    <div class="p-2 lg:w-1/3 md:w-1/2 w-full" onclick="add_notice()">
-                        <div class="h-full flex items-center border p-4 rounded-lg hover:bg-blue-100 cursor-pointer">
-                            <img src="../assects/images/adminavatars/notice.jpg" alt="icon" class="w-16 h-16 rounded-full mr-4">
-                            <div>
-                                <h2 class="text-[#ef6c00] font-medium">Tambah Pengumuman</h2>
-                                <p class="text-sm text-gray-500">Tambah atau ubah pengumuman</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Siswa Mendaftar -->
-                    <div class="p-2 lg:w-1/3 md:w-1/2 w-full" onclick="registered_students()">
-                        <div class="relative h-full flex items-center border p-4 rounded-lg hover:bg-blue-100 cursor-pointer">
-                            <img src="../assects/images/adminavatars/registered.png" alt="icon" class="w-16 h-16 rounded-full mr-4">
-                            <div>
-                                <h2 class="text-[#ef6c00] font-medium">Lihat Siswa yang Mendaftar</h2>
-                                <p class="text-sm text-gray-500">Siswa yang mendaftar online</p>
-                            </div>
-                            <?php if ($row['total_notification'] != 0): ?>
-                                <div class="absolute w-6 h-6 text-xs font-bold text-white bg-red-500 rounded-full flex items-center justify-center -top-2 -right-2">
-                                    <?= $row['total_notification']; ?>
-                                </div>
-                            <?php endif; ?>
-                        </div>
-                    </div>
-
-                    <!-- Jadwal Kelas -->
-                    <div class="p-2 lg:w-1/3 md:w-1/2 w-full" onclick="changeRoutine()">
-                        <div class="h-full flex items-center border p-4 rounded-lg hover:bg-blue-100 cursor-pointer">
-                            <img src="../assects/images/adminavatars/routine.png" alt="icon" class="w-16 h-16 rounded-full mr-4">
-                            <div>
-                                <h2 class="text-[#ef6c00] font-medium">Jadwal Kelas</h2>
-                                <p class="text-sm text-gray-500">Ubah jadwal kelas</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Ubah Staff -->
-                    <div class="p-2 lg:w-1/3 md:w-1/2 w-full" onclick="changeStaff()">
-                        <div class="h-full flex items-center border p-4 rounded-lg hover:bg-blue-100 cursor-pointer">
-                            <img src="../assects/images/adminavatars/staffs.png" alt="icon" class="w-16 h-16 rounded-full mr-4">
-                            <div>
-                                <h2 class="text-[#ef6c00] font-medium">Ubah Detail Staff</h2>
-                                <p class="text-sm text-gray-500">Tambah/ubah data staff sekolah</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Ubah Konten Website -->
-                    <div class="p-2 lg:w-1/3 md:w-1/2 w-full" onclick="site_content()">
-                        <div class="h-full flex items-center border p-4 rounded-lg hover:bg-blue-100 cursor-pointer">
-                            <img src="../assects/images/adminavatars/site content.jpg" alt="icon" class="w-16 h-16 rounded-full mr-4">
-                            <div>
-                                <h2 class="text-[#ef6c00] font-medium">Ubah Konten Website</h2>
-                                <p class="text-sm text-gray-500">Ubah seluruh isi konten website</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Tambah Galeri -->
-                    <div class="p-2 lg:w-1/3 md:w-1/2 w-full" onclick="add_gallery()">
-                        <div class="h-full flex items-center border p-4 rounded-lg hover:bg-blue-100 cursor-pointer">
-                            <img src="../assects/images/adminavatars/add gallery.png" alt="icon" class="w-16 h-16 rounded-full mr-4">
-                            <div>
-                                <h2 class="text-[#ef6c00] font-medium">Tambah Galeri</h2>
-                                <p class="text-sm text-gray-500">Tambah galeri kegiatan sekolah</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Feedback -->
-                    <div class="p-2 lg:w-1/3 md:w-1/2 w-full" onclick="feedback_page()">
-                        <div class="relative h-full flex items-center border p-4 rounded-lg hover:bg-blue-100 cursor-pointer">
-                            <img src="../assects/images/adminavatars/feedback.png" alt="icon" class="w-16 h-16 rounded-full mr-4">
-                            <div>
-                                <h2 class="text-[#ef6c00] font-medium">Lihat Umpan Balik</h2>
-                                <p class="text-sm text-gray-500">Feedback dari pengunjung</p>
-                            </div>
-                            <?php if ($feedback['total_notification'] != 0): ?>
-                                <div class="absolute w-6 h-6 text-xs font-bold text-white bg-red-500 rounded-full flex items-center justify-center -top-2 -right-2">
-                                    <?= $feedback['total_notification']; ?>
-                                </div>
-                            <?php endif; ?>
-                        </div>
-                    </div>
-
-                    <!-- Admin dan Scribe -->
-                    <div class="p-2 lg:w-1/3 md:w-1/2 w-full" onclick="admin()">
-                        <div class="h-full flex items-center border p-4 rounded-lg hover:bg-blue-100 cursor-pointer">
-                            <img src="../assects/images/adminavatars/adminadd.png" alt="icon" class="w-16 h-16 rounded-full mr-4">
-                            <div>
-                                <h2 class="text-[#ef6c00] font-medium">Tambah / Hapus Admin</h2>
-                                <p class="text-sm text-gray-500">Kelola data admin sekolah</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Kelola Akun Siswa -->
-                <div class="p-2 lg:w-1/3 md:w-1/2 w-full" onclick="siswa_management()">
-                    <div class="h-full flex items-center border p-4 rounded-lg hover:bg-blue-100 cursor-pointer">
-                        <img src="../assects/images/adminavatars/kelola_akun_icon.png" alt="icon" class="w-16 h-16 rounded-full mr-4">
-                        <div>
-                            <h2 class="text-[#ef6c00] font-medium">Kelola Akun Siswa</h2>
-                            <p class="text-sm text-gray-500">Lihat dan kelola data akun siswa</p>
-                        </div>
-                    </div>
+                <div class="bg-white p-5 rounded-lg shadow hover:shadow-md transition">
+                    <h3 class="font-semibold text-lg text-[#ef6c00] mb-2">Pengumuman</h3>
+                    <p class="text-gray-600 text-sm">Kelola informasi penting yang akan tampil di halaman siswa/guru.</p>
                 </div>
-
-                <!-- Kelola Akun Guru -->
-                <div class="p-2 lg:w-1/3 md:w-1/2 w-full" onclick="guru_management()">
-                    <div class="h-full flex items-center border p-4 rounded-lg hover:bg-blue-100 cursor-pointer">
-                        <img src="../assects/images/adminavatars/kelola_akun_icon.png" alt="icon" class="w-16 h-16 rounded-full mr-4">
-                        <div>
-                            <h2 class="text-[#ef6c00] font-medium">Kelola Akun Guru</h2>
-                            <p class="text-sm text-gray-500">Lihat dan kelola data akun guru</p>
-                        </div>
-                    </div>
-                </div>
-                
-<!-- Kelola Kurikulum -->
-                <div class="p-2 lg:w-1/3 md:w-1/2 w-full" onclick="kelola_kurikulum()">
-                    <div class="h-full flex items-center border p-4 rounded-lg hover:bg-blue-100 cursor-pointer">
-                        <img src="../assects/images/adminavatars/kelola_akun_icon.png" alt="icon" class="w-16 h-16 rounded-full mr-4">
-                        <div>
-                            <h2 class="text-[#ef6c00] font-medium">Kelola Kurikulum</h2>
-                            <p class="text-sm text-gray-500">Kelola Kurikulum</p>
-                        </div>
-                    </div>
-                </div>
-                </div>
-                 <div class="p-2 lg:w-1/3 md:w-1/2 w-full" onclick="homepage_media()">
-                    <div class="h-full flex items-center border p-4 rounded-lg hover:bg-blue-100 cursor-pointer">
-                        <img src="../assects/images/adminavatars/kelola_akun_icon.png" alt="icon" class="w-16 h-16 rounded-full mr-4">
-                        <div>
-                            <h2 class="text-[#ef6c00] font-medium">Home Page Media</h2>
-                            <p class="text-sm text-gray-500">Kelola Media Halaman Beranda</p>
-                        </div>
-                    </div>
+                <div class="bg-white p-5 rounded-lg shadow hover:shadow-md transition">
+                    <h3 class="font-semibold text-lg text-[#ef6c00] mb-2">Jadwal Kelas</h3>
+                    <p class="text-gray-600 text-sm">Atur jadwal pelajaran untuk masing-masing kelas.</p>
                 </div>
             </div>
-        </section>
-    </main>
-
-    <?php include('../includes/admin_footer.php'); ?>
+        </main>
+    </div>
 
     <script>
         function add_notice() { window.location.href = "add_notice.php"; }
@@ -231,6 +119,5 @@ try {
         function kelola_kurikulum() { window.location.href = "kelola_kurikulum.php"; }
         function homepage_media() { window.location.href = "media_upload.php"; }
     </script>
-
 </body>
 </html>
