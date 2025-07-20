@@ -3,6 +3,10 @@ include 'connection/database.php';
 
 try {
 
+    // Ambil media gambar utama (optional)
+    $imageResult = mysqli_query($connection, "SELECT * FROM media WHERE type = 'image' and position = 'informasi_sekolah' ORDER BY uploaded_at DESC LIMIT 1");
+    $topImage = mysqli_fetch_assoc($imageResult);
+
     $query = "SELECT * FROM web_content WHERE id = 6";
     $result = mysqli_query($connection, $query);
 
@@ -37,19 +41,20 @@ try {
 </head>
 
 <body>
-
-
-
-
-
-
     <?php include("includes/header.php") ?>
+
+    <?php if ($topImage): ?>
+    <div class="relative w-full h-[500px] overflow-hidden mb-6">
+        <img src="<?= $topImage['path'] ?>" alt="Gambar Utama" class="w-full h-full object-cover  shadow-md">
+    </div>
+    <?php endif; ?>
+
     <main>
         <section class="text-gray-600 body-font">
             <div class="container px-5 py-10 mx-auto">
                 <div class="flex flex-col text-center w-full mb-20">
                     <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4" style="color: #ef6c00;">
-Informasi Sekolah</h1>
+                    Informasi Sekolah</h1>
                     <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base"><?php echo $row['one'];?>
                     </p>
                 </div>
