@@ -3,6 +3,11 @@ include 'connection/database.php';
 
 try {
 
+    
+// Ambil media gambar utama (optional)
+$imageResult = mysqli_query($connection, "SELECT * FROM media WHERE type = 'image' and position = 'aboutus' ORDER BY uploaded_at DESC LIMIT 1");
+$topImage = mysqli_fetch_assoc($imageResult);
+
     $query = "SELECT * FROM web_content WHERE id = 2";
     $result = mysqli_query($connection, $query);
 
@@ -22,6 +27,8 @@ try {
 ?>
 
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,12 +44,17 @@ try {
 
 <body>
     <?php include('includes/header.php') ?>
+
+   <?php if ($topImage): ?>
+  <div class="relative w-full h-[500px] overflow-hidden mb-6">
+    <img src="<?= $topImage['path'] ?>" alt="Gambar Utama" class="w-full h-full object-cover  shadow-md">
+  </div>
+<?php endif; ?>
+
+    
     <main>
-
-
-
         <section class="text-gray-700 body-font animate-fadeIn">
-    <div class="container mx-auto flex px-5 py-16 md:flex-row flex-col items-center">
+    <div class="container mx-auto flex px-5 py-5 md:flex-row flex-col items-center">
         <!-- Text Section -->
         <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 
             items-center text-center animate-fadeIn">
@@ -233,7 +245,7 @@ try {
             <!-- Left Section -->
             <div class="sm:w-1/2 mb-10 px-4 animate-fadeIn">
                 <div class="rounded-lg h-64 overflow-hidden shadow-lg transition duration-500 hover:scale-105 hover:shadow-xl">
-                    <img alt="content" class="object-cover object-center h-full w-full" src="assects/images/courses/pramuka.jpg">
+                    <img alt="content" class="object-cover object-center h-full w-full" src="assects/images/schoolImages/pramuka.jpeg">
                 </div>
                 <h2 class="title-font text-2xl font-semibold mt-6 mb-3 text-gray-900">
                     Perkemahan Pramuka
@@ -265,7 +277,7 @@ try {
     <div class="container px-5 py-16 mx-auto">
         <div class="w-full mb-12 text-center">
             <h1 class="title-font sm:text-4xl text-3xl mb-6 font-extrabold text-orange-700 animate-pulse">
-                🏫 Fasilitas Sekolah
+                Fasilitas Sekolah
             </h1>
             <div class="w-12 h-1 rounded mt-2 mx-auto bg-orange-500 animate-pulse"></div>
         </div>

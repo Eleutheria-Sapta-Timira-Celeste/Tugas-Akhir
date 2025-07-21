@@ -29,7 +29,7 @@ if (!isset($_SESSION["selectedAlbum"])) {
 
     </style>
 </head>
-<?php include('includes/header.php') ?>
+<?php include('includes/header2.php') ?>
 
 <div class="bg-white dark:bg-[#fdf6f6] h-full py-2 sm:py-2 lg:py-5 mb-7">
     <div class="mx-auto max-w-screen-2xl px-4 md:px-8 mt-5">
@@ -43,10 +43,7 @@ if (!isset($_SESSION["selectedAlbum"])) {
                 </p>
             </div>
 
-           <a href="albums.php"
-   class="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 transition duration-150 hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-indigo-300 md:px-6 md:py-3 md:text-base">
-   ← <span>Back</span>
-</a>
+           
 
 
         </div>

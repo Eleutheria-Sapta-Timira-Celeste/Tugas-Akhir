@@ -1,5 +1,10 @@
 <?php
 include 'connection/database.php';
+
+    // Ambil media gambar utama (optional)
+    $imageResult = mysqli_query($connection, "SELECT * FROM media WHERE type = 'image' and position = 'pengumuman' ORDER BY uploaded_at DESC LIMIT 1");
+    $topImage = mysqli_fetch_assoc($imageResult);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,28 +19,16 @@ include 'connection/database.php';
 
 <body>
     <?php include("includes/header.php") ?>
+     <?php if ($topImage): ?>
+    <div class="relative w-full h-[500px] overflow-hidden mb-6">
+        <img src="<?= $topImage['path'] ?>" alt="Gambar Utama" class="w-full h-full object-cover  shadow-md">
+    </div>
+    <?php endif; ?>
 
-    <div id="alert-border-3" class="flex items-center p-4 mb-4 border-t-4 rounded-lg shadow-md 
-        bg-yellow-100 text-gray-900 border-yellow-300 transition-opacity duration-500 animate-fadeIn"
-        style="opacity: 0; display: none;">
-        <svg class="flex-shrink-0 w-5 h-5 text-yellow-700 animate-pulse" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor" viewBox="0 0 20 20">
-            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 
-                     1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 
-                     1v4h1a1 1 0 0 1 0 2Z" />
-        </svg>
-        <div class="ms-3 text-sm font-medium animate-fadeIn">
-            🔔 <span class="font-semibold">Pengumuman Terbaru!</span> Akan ditampilkan terlebih dahulu.
-        </div>
-        <button onclick="closethankfeedback()" type="button"
-            class="ms-auto -mx-1.5 -my-1.5 rounded-full p-1.5 hover:bg-yellow-200 hover:opacity-80 transition duration-300 
-            inline-flex items-center justify-center h-8 w-8 text-yellow-900">
-            <span class="sr-only">Batalkan</span>
-            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-            </svg>
-        </button>
+    <div class="text-center mt-10">
+    <h2 class="text-3xl font-bold text-[#8A6640] border-b-4 inline-block border-[#8A6640] mb-0">
+        Pengumuman Sekolah
+    </h2>
     </div>
 
     <script>
