@@ -2,7 +2,7 @@
 include 'connection/database.php';
 
 // Ambil media video utama (optional)
-$videoResult = mysqli_query($connection, "SELECT * FROM media WHERE type = 'video' ORDER BY uploaded_at DESC LIMIT 1");
+$videoResult = mysqli_query($connection, "SELECT * FROM media WHERE type = 'video' AND position = 'home' ORDER BY uploaded_at DESC LIMIT 1");
 $topVideo = mysqli_fetch_assoc($videoResult);
 
 
@@ -57,7 +57,7 @@ try {
       <source src="<?= $topVideo['path'] ?>" type="video/mp4">
       Browser tidak mendukung video.
     </video>
-    
+  
   </div>
 <?php endif; ?>
 

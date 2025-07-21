@@ -60,7 +60,7 @@ if (isset($_POST['feedbackDelete'])) {
             <div class="bg-white relative shadow-md sm:rounded-lg overflow-hidden">
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm text-left text-gray-700">
-                        <thead class="text-xs text-white uppercase" style="background-color: #fc6941;">
+                        <thead class="text-xs text-white uppercase" style="background-color: #fc941e;">
                             <tr>
                                 <th scope="col" class="px-4 py-4">Tanggal</th>
                                 <th scope="col" class="px-4 py-3">Dikirim Oleh</th>

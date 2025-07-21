@@ -1,6 +1,10 @@
 <?php
 include 'connection/database.php';
 
+  // Ambil media gambar utama (optional)
+    $imageResult = mysqli_query($connection, "SELECT * FROM media WHERE type = 'image' and position = 'hubungi' ORDER BY uploaded_at DESC LIMIT 1");
+    $topImage = mysqli_fetch_assoc($imageResult);
+
 try {
 
     $query = "SELECT * FROM web_content WHERE id = 4";
@@ -36,7 +40,13 @@ try {
 </head>
 
 <body>
-    <?php include('includes/header.php') ?>
+     <?php include("includes/header.php") ?>
+     <?php if ($topImage): ?>
+    <div class="relative w-full h-[500px] overflow-hidden mb-6">
+        <img src="<?= $topImage['path'] ?>" alt="Gambar Utama" class="w-full h-full object-cover  shadow-md">
+    </div>
+    <?php endif; ?>
+
     <main>
 
         <section class="text-gray-600 body-font">

@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <?php include("includes/header.php") ?>
+    <?php include("includes/header2.php") ?>
 
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-10 mx-auto">

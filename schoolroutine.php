@@ -23,7 +23,7 @@ include 'connection/database.php';
 
     </style>
 </head>
-<?php include('includes/header.php') ?>
+<?php include('includes/header2.php') ?>
 
 
 <section class="text-gray-600 body-font">

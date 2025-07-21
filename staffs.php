@@ -1,6 +1,11 @@
 <?php
 include 'connection/database.php';
-$defaultavatar = "assects/images/defaults/defaultaltimage.jpg"
+
+    // Ambil media gambar utama (optional)
+    $imageResult = mysqli_query($connection, "SELECT * FROM media WHERE type = 'image' and position = 'hubungi' ORDER BY uploaded_at DESC LIMIT 1");
+    $topImage = mysqli_fetch_assoc($imageResult);
+
+    $defaultavatar = "assects/images/defaults/defaultaltimage.jpg"
 ?>
 
 
@@ -21,6 +26,12 @@ $defaultavatar = "assects/images/defaults/defaultaltimage.jpg"
 <body>
     <?php include("includes/header.php") ?>
 
+     <?php if ($topImage): ?>
+    <div class="relative w-full h-[500px] overflow-hidden mb-6">
+        <img src="<?= $topImage['path'] ?>" alt="Gambar Utama" class="w-full h-full object-cover  shadow-md">
+    </div>
+    <?php endif; ?>
+    
     <section>
     <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
         <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
