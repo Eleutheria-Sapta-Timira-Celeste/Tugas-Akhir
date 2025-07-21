@@ -18,7 +18,6 @@ if (!isset($_SESSION)) {
     }
 </script>
 
-</script>
 
 <!-- Header -->
 <header class="shadow-inherit text-gray-600 body-font sticky top-0 z-50"
