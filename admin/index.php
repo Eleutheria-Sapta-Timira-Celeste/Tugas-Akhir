@@ -1,3 +1,7 @@
+<?php
+$page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,28 +17,15 @@
 
     <div class="flex-1 flex flex-col min-h-screen ml-64 transition-all duration-300" id="main-content">
         <?php include 'headerr_admin.php'; ?>
-        <?php include 'dashboard.php'; ?>
-        
+
+        <?php
+        if ($page === 'dashboard') {
+            include 'dashboard.php';
+        } elseif ($page === 'flash_notice') {
+            include 'flash_notice.php';
+        }
+        ?>
     </div>
-
-    <script>
-        const toggleBtn = document.getElementById('toggleSidebar');
-        const sidebar = document.getElementById('sidebar');
-        const mainContent = document.getElementById('main-content');
-        const labels = document.querySelectorAll('.sidebar-label');
-
-        toggleBtn.addEventListener('click', () => {
-            sidebar.classList.toggle('w-64');
-            sidebar.classList.toggle('w-16');
-
-            mainContent.classList.toggle('ml-64');
-            mainContent.classList.toggle('ml-16');
-
-            labels.forEach(label => {
-                label.classList.toggle('hidden');
-            });
-        });
-    </script>
 
 </body>
 </html>

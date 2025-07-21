@@ -98,7 +98,7 @@ try {
         function add_notice() { window.location.href = "add_notice.php"; }
         function site_content() { window.location.href = "site_content.php"; }
         function feedback_page() { window.location.href = "feedback.php"; }
-        function flash_notice() { window.location.href = "flash_notice.php"; }
+        function flash_notice() { window.location.href = "index.php?page=flash_notice"; }
         function add_gallery() { window.location.href = "add_gallery.php"; }
         function registered_students() { window.location.href = "registered_students.php"; }
         function changeRoutine() { window.location.href = "changeRoutine.php"; }
