@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $_SESSION['foto'] = $user['foto'] ?? 'default.png';
                 }
 
-                header("Location: /Tugas-Akhir/$role/dashboard.php");
+                header("Location: /Tugas-Akhir/$role/index.php");
                 exit();
             } else {
                 $error = "Password salah!";
