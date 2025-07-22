@@ -82,19 +82,8 @@ if (isset($_POST['update_password'])) {
 </head>
 <body class="bg-[#FFF9F0] flex flex-col min-h-screen">
 
-<!-- HEADER -->
-<?php include('../includes/header_guru.php'); ?>
 
 <div class="flex flex-1">
-
-    <!-- Sidebar -->
-    <aside class="w-64 bg-[#F5E8C7] text-gray-800 min-h-full p-6 shadow-md">
-        <nav class="space-y-4">
-            <a href="dashboard.php" class="block px-4 py-2 rounded hover:bg-[#D9C38C]">🏠 Dashboard</a>
-            <a href="inputabsensi.php" class="block px-4 py-2 rounded hover:bg-[#D9C38C]">📝 Absensi </a>
-            <a href="pengaturan.php" class="block px-4 py-2 bg-[#E4C988] rounded hover:bg-[#D9C38C]">⚙️ Pengaturan </a>
-        </nav>
-    </aside>
 
     <!-- Main Content -->
     <main class="flex-1 p-6 bg-[#FFF9F0]">
@@ -158,9 +147,6 @@ if (isset($_POST['update_password'])) {
 
     </main>
 </div>
-
-<!-- FOOTER -->
-<?php include('../includes/footer_guru.php'); ?>
 
 </body>
 </html>

@@ -18,15 +18,15 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'guru') {
 
     <!-- Menu -->
     <nav class="mt-4 flex flex-col px-2 space-y-1 text-sm">
-        <button onclick="dashboard_guru()" class="hover:bg-[#bd8035] p-2 rounded flex items-center gap-3 transition">
-            <span class="text-xl">📝</span>
+        <button onclick="window.location.href='index.php?page=dashboard'" class="hover:bg-[#bd8035] p-2 rounded flex items-center gap-3 transition">
+            <span class="text-xl">🏠</span>
             <span class="menu-text">Dashboard</span>
         </button>
-        <button onclick="input_absensi()" class="hover:bg-[#bd8035] p-2 rounded flex items-center gap-3 transition">
-            <span class="text-xl">📢</span>
+        <button onclick="window.location.href='index.php?page=inputabsensi'" class="hover:bg-[#bd8035] p-2 rounded flex items-center gap-3 transition">
+            <span class="text-xl">📝</span>
             <span class="menu-text">Absensi</span>
         </button>
-        <button onclick="pengaturan_guru()" class="hover:bg-[#bd8035] p-2 rounded flex items-center gap-3 transition">
+        <button onclick="window.location.href='index.php?page=pengaturan'" class="hover:bg-[#bd8035] p-2 rounded flex items-center gap-3 transition">
             <span class="text-xl">⚙️</span>
             <span class="menu-text">Pengaturan</span>
         </button>
@@ -36,6 +36,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'guru') {
         </button>
     </nav>
 </aside>
+
 
 <script>
     function dashboard_guru() { window.location.href = "index.php?page=dashboard"; }

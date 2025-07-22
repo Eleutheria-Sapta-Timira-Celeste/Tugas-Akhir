@@ -1,5 +1,6 @@
 <?php
 include '../connection/database.php';
+
 session_start();
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'guru') {
@@ -29,8 +30,6 @@ try {
             'mapel' => ''
         ];
     }
-
-    $stmt->close();
 } catch (Exception $e) {
     die("Error: " . $e->getMessage());
 }
@@ -47,25 +46,22 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="flex min-h-screen bg-[#FFF9F0]">
+<body class="bg-[#FFF9F0] flex">
 
     <?php include 'sidebar.php'; ?>
 
-    <!-- Kontainer Konten + Header -->
-    <div class="flex flex-col flex-1 transition-all duration-300" id="main-content">
+    <div class="flex-1 flex flex-col min-h-screen ml-64 transition-all duration-300" id="main-content">
         <?php include 'headerr_guru.php'; ?>
 
-        <main class="p-6">
-            <?php
-            if ($page === 'dashboard') {
-                include 'dashboard.php';
-            } elseif ($page === 'inputabsensi') {
-                include 'inputabsensi.php';
-            } elseif ($page === 'pengaturan') {
-                include 'pengaturan.php';
-            }
-            ?>
-        </main>
+        <?php
+        if ($page === 'dashboard') {
+            include 'dashboard.php';
+        } elseif ($page === 'inputabsensi') {
+            include 'inputabsensi.php';
+        } elseif ($page === 'pengaturan') {
+            include 'pengaturan.php';
+        }
+        ?>
     </div>
 
 </body>
