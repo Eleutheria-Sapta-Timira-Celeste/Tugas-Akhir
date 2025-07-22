@@ -30,7 +30,7 @@ if (isset($_POST['add_admin'])) {
     $insert = $connectionobj->prepare("INSERT INTO admin (username, password, nama_admin, email, logo) VALUES (?, ?, ?, ?, ?)");
     $insert->bind_param("sssss", $username, $password, $nama_admin, $email, $logoPath);
     if ($insert->execute()) {
-        echo "<script>alert('Admin berhasil ditambahkan!'); window.location='admin_management.php';</script>";
+        echo "<script>alert('Admin berhasil ditambahkan!'); window.location='index.php?page=admin_management';</script>";
     }
     $insert->close();
 }
@@ -56,7 +56,7 @@ if (isset($_POST['edit_admin'])) {
     $update = $connectionobj->prepare("UPDATE admin SET username=?, nama_admin=?, email=?, logo=? WHERE id=?");
     $update->bind_param("ssssi", $username, $nama_admin, $email, $logoPath, $id);
     if ($update->execute()) {
-        echo "<script>alert('Admin berhasil diupdate!'); window.location='admin_management.php';</script>";
+        echo "<script>alert('Admin berhasil diupdate!'); window.location='index.php?page=admin_management';</script>";
     }
     $update->close();
 }
@@ -72,7 +72,7 @@ if (isset($_GET['delete_id'])) {
         if ($row['total'] == 0) {
             $connectionobj->query("ALTER TABLE admin AUTO_INCREMENT = 1");
         }
-        echo "<script>alert('Admin berhasil dihapus!'); window.location='admin_management.php';</script>";
+        echo "<script>alert('Admin berhasil dihapus!'); window.location='index.php?page=admin_management';</script>";
     }
     $del->close();
 }
@@ -150,7 +150,8 @@ $result = $connectionobj->query("SELECT * FROM admin ORDER BY id ASC");
                         </td>
                         <td class="px-4 py-2 border border-gray-300 text-center">
                             <button onclick="document.getElementById('editModal<?= $row['id'] ?>').classList.remove('hidden')" class="inline-flex items-center text-blue-600 hover:underline mr-2">✏️ Edit</button>
-                            <a href="?delete_id=<?= $row['id'] ?>" onclick="return confirm('Yakin ingin menghapus admin ini?')" class="inline-flex items-center text-red-600 hover:underline">🗑️ Hapus</a>
+                            <a href="admin_management.php?delete_id=<?= $row['id'] ?>" onclick="return confirm('Yakin ingin menghapus admin ini?')" class="inline-flex items-center text-red-600 hover:underline">🗑️ Hapus</a>
+
                         </td>
                     </tr>
 

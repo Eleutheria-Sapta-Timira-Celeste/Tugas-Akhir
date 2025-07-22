@@ -28,11 +28,11 @@ if (isset($_POST['update_kurikulum']) && $kurikulum) {
 
     // Simpan pesan sukses dan redirect
     $_SESSION['success_message'] = "Konten kurikulum berhasil diperbarui!";
-    header("Location: kelola_kurikulum.php");
-    exit();
+echo "<script>window.location.href='index.php?page=kelola_kurikulum';</script>";
+exit();
+
 }
 ?>
-
 
 
 <main class="p-6 bg-gray-100 min-h-screen">

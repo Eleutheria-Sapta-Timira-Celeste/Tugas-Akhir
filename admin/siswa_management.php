@@ -36,7 +36,7 @@ if (isset($_POST['add_siswa'])) {
     $stmt->bind_param("sssssssssss", $username, $email, $nama, $nis, $kelas, $tempat_lahir, $tanggal_lahir, $nama_ayah, $nama_ibu, $fotoPath, $password);
     $stmt->execute();
     $stmt->close();
-    echo "<script>alert('Siswa berhasil ditambahkan!'); window.location='siswa_management.php';</script>";
+    echo "<script>alert('Siswa berhasil ditambahkan!'); window.location='index.php?page=siswa_management';</script>";
 }
 
 // Edit Siswa
@@ -68,7 +68,7 @@ if (isset($_POST['edit_siswa'])) {
     $stmt->bind_param("ssssssssssi", $username, $email, $nama, $nis, $kelas, $tempat_lahir, $tanggal_lahir, $nama_ayah, $nama_ibu, $fotoPath, $id);
     $stmt->execute();
     $stmt->close();
-    echo "<script>alert('Data siswa berhasil diupdate!'); window.location='siswa_management.php';</script>";
+    echo "<script>alert('Data siswa berhasil diupdate!'); window.location='index.php?page=siswa_management';</script>";
 }
 
 // Delete siswa
@@ -76,10 +76,16 @@ if (isset($_GET['delete_id'])) {
     $id = intval($_GET['delete_id']);
     $stmt = $connectionobj->prepare("DELETE FROM siswa WHERE id = ?");
     $stmt->bind_param("i", $id);
-    $stmt->execute();
+
+    if ($stmt->execute()) {
+        echo "<script>alert('Siswa berhasil dihapus!'); window.location='index.php?page=siswa_management';</script>";
+    } else {
+        echo "Gagal menghapus siswa: " . $stmt->error;
+    }
+
     $stmt->close();
-    echo "<script>alert('Siswa berhasil dihapus!'); window.location='siswa_management.php';</script>";
 }
+
 
 // Filter Kelas dan Search Nama
 $whereClause = '';
@@ -131,25 +137,27 @@ $result = $connectionobj->query("SELECT * FROM siswa $whereClause ORDER BY id AS
     <h1 class="text-xl font-bold text-white">MANAJEMEN SISWA</h1>
 
     <!-- KANAN: Form Filter -->
-    <form method="GET" action="siswa_management.php">
-        <div class="flex gap-2 items-center">
-            <select name="filter_kelas" class="px-3 py-2 rounded text-sm border border-gray-300">
-                <option value="">-- Semua Kelas --</option>
-                <?php
-                $kelasList = ['VII', 'VIII', 'IX'];
-                foreach ($kelasList as $kelas) {
-                    $selected = (isset($_GET['filter_kelas']) && $_GET['filter_kelas'] == $kelas) ? 'selected' : '';
-                    echo '<option value="' . $kelas . '" ' . $selected . '>' . $kelas . '</option>';
-                }
-                ?>
-            </select>
+    <form method="GET" action="index.php">
+    <div class="flex gap-2 items-center">
+        <!-- Hidden input untuk tetap menyertakan "page=siswa_management" -->
+        <input type="hidden" name="page" value="siswa_management">
 
+        <select name="filter_kelas" class="px-3 py-2 rounded text-sm border border-gray-300">
+            <option value="">-- Semua Kelas --</option>
+            <?php
+            $kelasList = ['VII', 'VIII', 'IX'];
+            foreach ($kelasList as $kelas) {
+                $selected = (isset($_GET['filter_kelas']) && $_GET['filter_kelas'] == $kelas) ? 'selected' : '';
+                echo '<option value="' . $kelas . '" ' . $selected . '>' . $kelas . '</option>';
+            }
+            ?>
+        </select>
             <input type="text" name="search_nama" value="<?= isset($_GET['search_nama']) ? htmlspecialchars($_GET['search_nama']) : '' ?>" placeholder="Cari nama..." class="px-3 py-2 rounded text-sm border border-gray-300">
 
             <button type="submit" class="bg-white text-[#5d2eff] text-sm font-semibold px-4 py-2 rounded hover:bg-gray-100 shadow">🔍 Cari</button>
 
             <?php if (!empty($_GET['filter_kelas']) || !empty($_GET['search_nama'])): ?>
-                <a href="siswa_management.php" class="bg-red-500 text-white px-3 py-2 rounded text-sm hover:bg-red-600">Reset</a>
+                <a href="index.php?page=siswa_management" class="bg-red-500 text-white px-3 py-2 rounded text-sm hover:bg-red-600">Reset</a>
             <?php endif; ?>
         </div>
     </form>
@@ -200,7 +208,8 @@ $result = $connectionobj->query("SELECT * FROM siswa $whereClause ORDER BY id AS
                             </td>
                             <td class="px-3 py-2 border text-center">
                                 <button onclick="document.getElementById('editModal<?= $row['id'] ?>').classList.remove('hidden')" class="text-blue-600 hover:underline mr-2">✏️ Edit</button>
-                                <a href="?delete_id=<?= $row['id'] ?>" onclick="return confirm('Yakin hapus siswa ini?')" class="text-red-600 hover:underline">🗑️</a>
+                                <a href="index.php?page=siswa_management&delete_id=<?= $row['id'] ?>" onclick="return confirm('Yakin hapus siswa ini?')" class="text-red-600 hover:underline">🗑️</a>
+
                             </td>
                         </tr>
 

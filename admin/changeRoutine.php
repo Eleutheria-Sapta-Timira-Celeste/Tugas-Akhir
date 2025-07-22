@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['delete_routine'], $_P
     $stmt = $connectionobj->prepare("DELETE FROM schoolroutine WHERE id = ?");
     $stmt->bind_param("i", $deleteId);
     if ($stmt->execute()) {
-        echo '<script>alert("Jadwal berhasil dihapus."); window.location.replace("changeRoutine.php");</script>';
+        echo '<script>alert("Jadwal berhasil dihapus."); window.location.replace("index.php?page=changeRoutine");</script>';
     } else {
         echo '<script>alert("Gagal menghapus.");</script>';
     }
@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['update_notice'])) {
     }
 
     if ($stmt->execute()) {
-        echo '<script>alert("Jadwal berhasil disimpan."); window.location.replace("changeRoutine.php");</script>';
+        echo '<script>alert("Jadwal berhasil disimpan."); window.location.replace("index.php?page=changeRoutine");</script>';
     } else {
         echo "Error: " . $stmt->error;
     }

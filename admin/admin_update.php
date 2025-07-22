@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_admin'])) {
     $update->bind_param("sssssi", $username, $nama_admin, $email, $hashedPassword, $logoPath, $admin_id);
 
     if ($update->execute()) {
-        echo "<script>alert('Data admin berhasil diperbarui!'); window.location='admin_management.php';</script>";
+        echo "<script>alert('Data admin berhasil diperbarui!'); window.location='index.php?page=admin_management';</script>";
     } else {
         echo "<script>alert('Gagal memperbarui: {$update->error}');</script>";
     }

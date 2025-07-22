@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             }
         }
         echo '<script>alert("New images added successfully");
-        window.location.replace("add_gallery.php");
+        window.location.replace("index.php?page=add_gallery");
         
         </script>';
         $connectionobj->close();
@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         mysqli_query($connection, "DELETE FROM `gallery_album` WHERE id = $album_Id;");
         echo '
             <script>
-            window.location.replace("add_gallery.php");            
+            window.location.replace("index.php?page=add_gallery");            
             </script>';
         exit;
     }
@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         mysqli_query($connection, "DELETE FROM `gallery_images` WHERE id = $imageId;");
         echo '
             <script>
-            window.location.replace("add_gallery.php");            
+            window.location.replace("index.php?page=add_gallery");            
             </script>';
         exit;
     }
@@ -93,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             echo '
             <script>
             alert("New Album is Created")
-            window.location.replace("add_gallery.php");
+            window.location.replace("index.php?page=add_gallery");
             
             </script>';
         } else {

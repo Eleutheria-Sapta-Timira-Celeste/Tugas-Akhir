@@ -15,7 +15,7 @@ mysqli_query($connectionobj, "UPDATE `notification` SET total_notification = 0 W
 if (isset($_POST['feedbackDelete'])) {
     $feedback__Id = $_POST["feedback_id"];
     mysqli_query($connection, "DELETE FROM `contactfeedback` WHERE id = $feedback__Id;");
-    echo '<script>window.location.replace("feedback.php");</script>';
+    echo '<script>window.location.replace("index.php?page=feedback");</script>';
     exit;
 }
 ?>

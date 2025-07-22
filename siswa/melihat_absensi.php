@@ -1,5 +1,4 @@
 <?php
-session_start();
 include '../connection/database.php';
 
 // Validasi role siswa
@@ -51,19 +50,10 @@ $data_absensi = $connection->query("
 </head>
 <body class="bg-[#FFF9F0] flex flex-col min-h-screen">
 
-<!-- HEADER SISWA -->
-<?php include('../includes/header_siswa.php'); ?>
 
 <div class="flex flex-1">
 
-    <!-- Sidebar -->
-    <aside class="w-64 bg-[#F5E8C7] text-gray-800 min-h-full p-6 shadow-md">
-        <nav class="space-y-4">
-            <a href="dashboard.php" class="block px-4 py-2 rounded hover:bg-[#D9C38C]">🏠 Dashboard</a>
-            <a href="melihat_absensi.php" class="block px-4 py-2 bg-[#E4C988] rounded">📝 Absensi</a>
-            <a href="Pengaturan.php" class="block px-4 py-2 rounded hover:bg-[#D9C38C]">⚙️ Pengaturan</a>
-        </nav>
-    </aside>
+   
 
     <!-- Konten Utama -->
     <main class="flex-1 p-6 bg-gradient-to-br from-orange-100 via-white to-yellow-100">
@@ -114,9 +104,6 @@ $data_absensi = $connection->query("
         </div>
     </main>
 </div>
-
-<!-- FOOTER -->
-<?php include('../includes/admin_footer.php'); ?>
 
 </body>
 </html>
