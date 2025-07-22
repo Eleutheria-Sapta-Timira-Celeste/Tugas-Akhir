@@ -43,18 +43,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_param("ssssssss", $logo, $description, $posted_by, $currentDate, $currentTime, $sqlfileurl, $about_notice, $last_modified_default);
 
         if ($stmt->execute()) {
-            echo '<script>alert("Pengumuman berhasil dipublish!"); window.location.replace("add_notice.php");</script>';
-        } else {
-            echo "Error: " . $stmt->error;
-        }
-        $stmt->close();
+    echo '<script>alert("Pengumuman berhasil dipublish!"); window.location.replace("index.php?page=add_notice");</script>';
+} else {
+    echo "Error: " . $stmt->error;
+}
+$stmt->close();
+
     }
 
     // Hapus Notice
     if (isset($_POST['notice_delete'])) {
         $noticeId = $_POST["notice_id"];
         mysqli_query($connection, "DELETE FROM school_notice WHERE id = $noticeId");
-        echo '<script>window.location.replace("add_notice.php");</script>';
+        echo '<script>window.location.replace("index.php?page=add_notice");</script>';
         exit;
     }
 
@@ -86,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_param("ssssi", $description, $about_notice, $sqlfileurl, $last_modified_default, $noticeId);
 
         if ($stmt->execute()) {
-            echo '<script>alert("Pengumuman berhasil diperbarui!"); window.location.replace("add_notice.php");</script>';
+            echo '<script>alert("Pengumuman berhasil diperbarui!"); window.location.replace("index.php?page=add_notice");</script>';
         } else {
             echo "Error: " . $stmt->error;
         }

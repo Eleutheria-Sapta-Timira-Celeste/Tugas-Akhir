@@ -47,16 +47,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 if (isset($_GET['delete'])) {
-    $id = $_GET['delete'];
+    $id = intval($_GET['delete']);
     $query = mysqli_query($connection, "SELECT * FROM media WHERE id = $id");
     $media = mysqli_fetch_assoc($query);
     if ($media && ($media['type'] === 'image' || $media['type'] === 'video')) {
         @unlink('../' . $media['path']);
     }
     mysqli_query($connection, "DELETE FROM media WHERE id = $id");
-    header("Location: media_upload.php");
+    echo "<script>window.location.href='index.php?page=media_upload';</script>";
     exit();
 }
+
+
+    
+
 
 $mediaQuery = mysqli_query($connection, "SELECT * FROM media ORDER BY uploaded_at DESC");
 ?>
@@ -138,7 +142,8 @@ $mediaQuery = mysqli_query($connection, "SELECT * FROM media ORDER BY uploaded_a
                 <span class="text-sm text-gray-700 font-semibold"><?= ucfirst($m['type']) ?></span><br>
                 <span class="text-xs text-gray-500 italic">Halaman: <?= $m['position'] ?></span>
               </div>
-              <a href="?delete=<?= $m['id'] ?>" onclick="return confirm('Yakin hapus media ini?')" class="text-red-600 hover:underline text-sm">Hapus</a>
+              <a href="index.php?page=media_upload&delete=<?= $m['id'] ?>" onclick="return confirm('Yakin hapus media ini?')" class="text-red-600 hover:underline text-sm">Hapus</a>
+
             </div>
           </div>
         <?php endwhile; ?>

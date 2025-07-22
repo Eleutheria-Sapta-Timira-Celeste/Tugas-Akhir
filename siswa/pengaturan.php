@@ -1,7 +1,6 @@
 <?php
-// filepath: c:\xampp\htdocs\Tugas-Akhir\siswa\pengaturan.php
-session_start();
-include 'koneksi.php';
+
+include '../connection/database.php';
 
 // Pastikan siswa sudah login
 if (!isset($_SESSION['nis'])) {
@@ -13,7 +12,7 @@ $nis = $_SESSION['nis'];
 $msg = "";
 
 // Ambil data siswa
-$query = $conn->prepare("SELECT * FROM siswa WHERE nis = ?");
+$query = $connection->prepare("SELECT * FROM siswa WHERE nis = ?");
 $query->bind_param("s", $nis);
 $query->execute();
 $data = $query->get_result()->fetch_assoc();
@@ -57,7 +56,7 @@ if (isset($_POST['update_password'])) {
         $msg = "<div class='text-red-600 font-bold mb-2'>Password baru tidak sama.</div>";
     } else {
         $hash = password_hash($pass1, PASSWORD_DEFAULT);
-        $stmt = $conn->prepare("UPDATE siswa SET password=? WHERE nis=?");
+        $stmt = $connection->prepare("UPDATE siswa SET password=? WHERE nis=?");
         $stmt->bind_param("ss", $hash, $nis);
         if ($stmt->execute()) {
             $msg = "<div class='text-green-600 font-bold mb-2'>Password berhasil diubah.</div>";
@@ -77,17 +76,11 @@ if (isset($_POST['update_password'])) {
 </head>
 <body class="bg-[#FFF9F0] flex flex-col min-h-screen">
 
-<?php include('../includes/header_siswa.php'); ?>
+
 
 <div class="flex flex-1">
 
-    <aside class="w-64 bg-[#F5E8C7] text-gray-800 min-h-full p-6 shadow-md">
-        <nav class="space-y-4">
-            <a href="dashboard.php" class="block px-4 py-2 rounded hover:bg-[#D9C38C]">🏠 Dashboard</a>
-            <a href="melihat_absensi.php" class="block px-4 py-2 rounded hover:bg-[#D9C38C]">📝 Absensi</a>
-            <a href="pengaturan.php" class="block px-4 py-2 bg-[#E4C988] rounded hover:bg-[#D9C38C]">⚙️ Pengaturan</a>
-        </nav>
-    </aside>
+  
 
     <main class="flex-1 p-6 bg-[#FFF9F0]">
         <h2 class="text-3xl font-bold text-gray-800 mb-6">Pengaturan Profil Siswa</h2>
@@ -170,7 +163,5 @@ if (isset($_POST['update_password'])) {
         </form>
     </main>
 </div>
-
-<?php include('../includes/footer_siswa.php'); ?>
 </body>
 </html>

@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 if (isset($_POST['student_delete'])) {
     $studentId = intval($_POST["student_id"]);
     mysqli_query($connection, "DELETE FROM `spmb` WHERE id = $studentId;");
-    echo '<script>window.location.replace("registered_students.php");</script>';
+    echo '<script>window.location.replace("index.php?page=registered_students");</script>';
     exit;
 }
 

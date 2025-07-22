@@ -1,5 +1,4 @@
 <?php
-include '../connection/database.php';
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -99,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
    if (isset($_POST['pimpinanDelete'])) {
     $pimpinanId = (int)$_POST['pimpinanDelete_id'];
     mysqli_query($connectionobj, "DELETE FROM pimpinan_sekolah WHERE id = $pimpinanId");
-    echo '<script>window.location.replace("changeStaff.php");</script>';
+    echo '<script>window.location.replace("index.php?page=changeStaff");</script>';
     exit;
 }
 
@@ -108,8 +107,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Hapus Staff
     if (isset($_POST['staffDelete'])) {
         $staffId = $_POST['staffDelete_id'];
-        mysqli_query($connectionobj, "DELETE FROM `staffs` WHERE id = $staffId;");
-        echo '<script>window.location.replace("changeStaff.php");</script>';
+        mysqli_query($connectionobj, "DELETE FROM staffs WHERE id = $staffId;");
+        echo '<script>window.location.replace("index.php?page=changeStaff");</script>';
         exit;
     }
 
@@ -166,7 +165,7 @@ if (isset($_POST['update_pimpinan'])) {
     if ($stmt->execute()) {
         echo '<script>
                 alert("Data pimpinan berhasil di‑update.");
-                window.location.replace("changeStaff.php");
+                window.location.replace("index.php?page=changeStaff");
               </script>';
     } else {
         echo "Error: " . $stmt->error;
@@ -237,8 +236,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
 </head>
 
 <body>
-    
-
+  
 
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-10 mx-auto">
@@ -434,7 +432,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                         </thead>
                        <tbody>
                         <?php
-                        $query = "SELECT * FROM `pimpinan_sekolah`;";
+                        $query = "SELECT * FROM pimpinan_sekolah;";
                         $result = mysqli_query($connectionobj, $query);
                         if (mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_assoc($result)) {
@@ -443,7 +441,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                                 <tr class="border-[#fcddb8] dark:border-[#fcddb8]">
                                     <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-black">
                                         <div class="flex items-center mr-3">
-                                            <img src="../' . $row['image_src'] . '" alt="" class="h-8 w-auto mr-3 rounded" onerror="this.src=`' . $defaultavatar . '`">
+                                            <img src="../' . $row['image_src'] . '" alt="" class="h-8 w-auto mr-3 rounded" onerror="this.src=' . $defaultavatar . '">
                                             ' . $row['name'] . '
                                         </div>
                                     </th>
@@ -511,7 +509,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                         <input type="hidden" name="pimpinanImageLocation" value="' . $row['image_src'] . '">
                         <div class="flex justify-end">
                             <button type="submit" name="update_pimpinan"
-                                    class="px-4 py-2 bg-[#fc941e] text-white rounded hover:bg-[#e77e08] transition">
+                                    class="px-4 py-2 bg-[#fc941e] text-white rounded hover:bg-[#e77e08] ">
                                 Simpan
                             </button>
                         </div>
@@ -576,7 +574,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                         </thead>
                         <tbody>
                             <?php
-                            $query = "SELECT * FROM `staffs`;";
+                            $query = "SELECT * FROM staffs;";
                             $result = mysqli_query($connectionobj, $query);
                             if (mysqli_num_rows($result) > 0) {
                                 while ($row = mysqli_fetch_assoc($result)) {
@@ -585,7 +583,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                                     <tr class="border-[#fcddb8] dark:border-[#fcddb8]">
                                         <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-black">
                                             <div class="flex items-center mr-3">
-                                                <img src="../' . $row['image_src'] . '" alt="" class="h-8 w-auto mr-3 rounded" onerror="this.src=`' . $defaultavatar . '`">
+                                                <img src="../' . $row['image_src'] . '" alt="" class="h-8 w-auto mr-3 rounded" onerror="this.src=' . $defaultavatar . '">
                                                 ' . $row['name'] . '
                                             </div>
                                         </th>
@@ -629,7 +627,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
 
         <!-- Update modal -->
         <?php
-        $fetchmanagementCommitte = "SELECT * FROM `staffs`;";
+        $fetchmanagementCommitte = "SELECT * FROM staffs;";
         $managementCommitte = mysqli_query($connection, $fetchmanagementCommitte);
         $totalmanagementCommitte = mysqli_num_rows($managementCommitte);
 
@@ -726,7 +724,8 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
 
     </main>
 
-   
+    
+
     <script>
         function displayFileName() {
             var fileInput = document.getElementById('file-upload');

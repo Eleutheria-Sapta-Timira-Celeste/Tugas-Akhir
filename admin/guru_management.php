@@ -34,7 +34,7 @@ if (isset($_POST['add_guru'])) {
     $stmt->bind_param("sssssssss", $username, $email, $password, $nama, $nip, $gelar, $mapel, $fotoPath, $posisi);
     $stmt->execute();
     $stmt->close();
-    echo "<script>alert('Guru berhasil ditambahkan!'); window.location='guru_management.php';</script>";
+    echo "<script>alert('Guru berhasil ditambahkan!'); window.location='index.php?page=guru_management';</script>";
 }
 
 // Edit Guru
@@ -64,7 +64,7 @@ if (isset($_POST['edit_guru'])) {
     $stmt->bind_param("ssssssssi", $username, $email, $nama, $nip, $gelar, $mapel, $fotoPath, $posisi, $id);
     $stmt->execute();
     $stmt->close();
-    echo "<script>alert('Data guru berhasil diupdate!'); window.location='guru_management.php';</script>";
+    echo "<script>alert('Data guru berhasil diupdate!'); window.location='index.php?page=guru_management';</script>";
 }
 
 // Hapus Guru
@@ -74,7 +74,7 @@ if (isset($_GET['delete_id'])) {
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $stmt->close();
-    echo "<script>alert('Guru berhasil dihapus!'); window.location='guru_management.php';</script>";
+    echo "<script>alert('Guru berhasil dihapus!'); window.location='index.php?page=guru_management';</script>";
 }
 
 $result = $connectionobj->query("SELECT * FROM guru ORDER BY id ASC");
@@ -148,7 +148,8 @@ $result = $connectionobj->query("SELECT * FROM guru ORDER BY id ASC");
                         <td class="px-3 py-2 border text-center">
                             <div class="flex justify-center space-x-4">
                                 <button onclick="document.getElementById('editModal<?= $row['id'] ?>').classList.remove('hidden')" class="text-sm text-gray-700 hover:underline">✏️ Edit</button>
-                                <a href="?delete_id=<?= $row['id'] ?>" onclick="return confirm('Yakin hapus guru ini?')" class="text-sm text-gray-700 hover:underline">🗑️ Hapus</a>
+                               <a href="guru_management.php?delete_id=<?= $row['id'] ?>" onclick="return confirm('Yakin hapus guru ini?')" class="text-sm text-gray-700 hover:underline">🗑️ Hapus</a>
+
                             </div>
                         </td>
                     </tr>

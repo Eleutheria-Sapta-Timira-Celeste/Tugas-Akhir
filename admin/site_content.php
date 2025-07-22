@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $joinExecute->bind_param("s", $joinOne);
 
     if ($stmt->execute() && $aboutExecute->execute() && $extraExecute->execute() && $contactExecute->execute() && $joinExecute->execute()) {
-        echo "<script>alert('Content Update Sucessfully!'); window.location.replace('site_content.php');</script>";
+        echo "<script>alert('Content Update Sucessfully!'); window.location.replace('index.php?page=site_content');</script>";
     } else {
         echo "Error: " . $stmt->error;
     }
