@@ -47,7 +47,6 @@ $allowed_pages = ['dashboard', 'flash_notice', 'add_notice', 'changeRoutine', 'r
         
         <!-- Header -->
         <?php include 'headerr_admin.php'; ?>
-<<<<<<< HEAD
 
         <!-- Dynamic Page Content -->
         <div class="p-6">
@@ -64,18 +63,9 @@ $allowed_pages = ['dashboard', 'flash_notice', 'add_notice', 'changeRoutine', 'r
             }
             ?>
         </div>
-=======
-        <?php
-            if ($page === 'dashboard') {
-                include 'dashboard.php';
-            } elseif ($page === 'flash_notice') {
-                include 'flash_notice.php';
-            } elseif ($page === 'add_notice') {
-                include 'add_notice.php';
-            }
-            ?>
 
->>>>>>> 4f78e2ffab637718ec2e31f067eeb35338778d70
+
+
     </div>
 
 </body>
