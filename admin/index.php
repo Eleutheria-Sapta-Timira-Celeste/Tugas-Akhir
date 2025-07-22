@@ -23,6 +23,8 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
             include 'dashboard.php';
         } elseif ($page === 'flash_notice') {
             include 'flash_notice.php';
+        } elseif ($page === 'registered_students') {
+            include 'registered_students.php';
         }
         ?>
     </div>
