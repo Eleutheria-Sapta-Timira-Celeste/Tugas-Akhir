@@ -1,6 +1,8 @@
 <?php
 include '../connection/database.php';
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: ../login.php");
@@ -120,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 
 <body>
-    <?php include "../includes/admin_header.php"; ?>
+    
 
 
 
@@ -421,7 +423,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     </div>
 
-    <?php include "../includes/admin_footer.php"; ?>
+    
 
 
 

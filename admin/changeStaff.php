@@ -1,6 +1,8 @@
 <?php
 include '../connection/database.php';
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: ../login.php");
@@ -235,7 +237,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
 </head>
 
 <body>
-    <?php include ('../includes/admin_header.php') ?>
+    
 
 
     <section class="text-gray-600 body-font">
@@ -724,8 +726,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
 
     </main>
 
-    <?php include ('../includes/admin_footer.php') ?>
-
+   
     <script>
         function displayFileName() {
             var fileInput = document.getElementById('file-upload');

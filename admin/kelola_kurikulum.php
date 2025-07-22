@@ -1,6 +1,8 @@
 <?php
 include '../connection/database.php';
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Cek hak akses admin
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
@@ -31,7 +33,7 @@ if (isset($_POST['update_kurikulum']) && $kurikulum) {
 }
 ?>
 
-<?php include('../includes/admin_header.php'); ?>
+
 
 <main class="p-6 bg-gray-100 min-h-screen">
     <div class="max-w-4xl mx-auto bg-white p-6 rounded shadow">
@@ -71,4 +73,4 @@ if (isset($_POST['update_kurikulum']) && $kurikulum) {
     </div>
 </main>
 
-<?php include('../includes/admin_footer.php'); ?>
+
