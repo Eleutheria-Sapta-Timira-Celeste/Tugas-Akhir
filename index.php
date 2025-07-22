@@ -7,23 +7,30 @@ $topVideo = mysqli_fetch_assoc($videoResult);
 
 
 try {
+
     $query = "SELECT * FROM web_content WHERE id = 1";
     $flash_query = "SELECT * FROM flash_notice WHERE id = 1";
 
     $result = mysqli_query($connection, $query);
     $flash_result = mysqli_query($connection, $flash_query);
 
-    if ($result && $flash_result) {
-        $row = mysqli_fetch_assoc($result) ?? [];
-        $flash_notice = mysqli_fetch_assoc($flash_result) ?? [];
+
+
+    if ($result) {
+
+        $row = mysqli_fetch_assoc($result);
+        $flash_notice = mysqli_fetch_assoc($flash_result);
+
     } else {
         echo "Error executing the query: " . mysqli_error($connection);
     }
 } catch (Exception $e) {
     echo "Error: " . $e->getMessage();
 } finally {
+
     mysqli_close($connection);
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +52,23 @@ try {
       background-size: 300% 300%;
       animation: gradientFlow 8s ease infinite;
     }
+
+        /* Modal awalnya transparan dan invisible */
+    #info-popup {
+      opacity: 0;
+      pointer-events: none; /* biar ga bisa diklik saat transparan */
+      transition: opacity 1.5s ease;
+    }
+
+    /* Class aktif untuk fade-in */
+    #info-popup.show {
+      opacity: 1;
+      pointer-events: auto; /* aktifkan klik */
+    }
+
   </style>
+
+  
 </head>
 <body>
 
@@ -128,42 +151,73 @@ try {
 <?php include('includes/footer.php') ?>
 
 <?php if (isset($flash_notice['trun_flash']) && $flash_notice['trun_flash'] === "1") : ?>
-<div id="info-popup" tabindex="-1" class="fadeIn hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
-  <div class="relative p-4 w-full max-w-lg h-full md:h-auto">
-    <div class="relative p-4 bg-white rounded-lg shadow md:p-8">
-      <div class="mb-4 text-sm font-light text-black-500">
-        <h3 class="mb-3 text-2xl font-bold text-gray-900"><?= $flash_notice['title'] ?></h3>
-        <img class="object-cover w-full rounded-lg" src="<?= $flash_notice['image_url'] ?>" alt="">
-        <p class="mt-3 font-bold"><?= $flash_notice['message'] ?></p>
-      </div>
-      <div class="justify-between items-center pt-0 space-y-4 sm:flex sm:space-y-0">
-        <a href="aboutus.php" style="color: #ef6c00;" class="font-medium hover:underline">Lihat Tentang Sekolah</a>
-        <div class="items-center space-y-4 sm:space-x-4 sm:flex sm:space-y-0">
-          <button id="close-modal" type="button"
-                  style="background-color: #ef6c00;"
-                  class="py-2 px-4 w-full text-sm font-medium text-white rounded-lg sm:w-auto hover:brightness-110 focus:ring-4 focus:outline-none focus:ring-orange-300">
-            Close
-          </button>
-        </div>
-      </div>
+<div id="info-popup" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
+  <div class="bg-white rounded-xl shadow-2xl w-full max-w-sm mx-4 p-6 relative">
+
+    <button id="close-modal" aria-label="Tutup"
+            class="absolute top-3 right-4 text-gray-400 hover:text-gray-600 transition text-xl font-bold">&times;</button>
+
+    <div class="text-center mb-4">
+      <h2 class="text-xl font-bold text-gray-800"><?= $flash_notice['title'] ?></h2>
+      <p class="text-xs text-gray-500">Info terbaru dari SMP PGRI 371</p>
+    </div>
+
+    <?php if (!empty($flash_notice['image_url'])) : ?>
+    <div class="mb-4 rounded-md overflow-hidden">
+      <img src="<?= $flash_notice['image_url'] ?>" alt="Notice Image" class="w-full h-50 object-cover rounded-md shadow">
+    </div>
+    <?php endif; ?>
+
+    <p class="text-sm text-gray-700 text-center leading-snug mb-5">
+      <?= $flash_notice['message'] ?>
+    </p>
+
+   <div class="flex flex-col sm:flex-row justify-center gap-4">
+      <a href="aboutus.php"
+         class="inline-flex justify-center items-center text-sm font-semibold text-[#ef6c00] hover:underline transition">
+         Pelajari lebih lanjut
+      </a>
+      <button onclick="document.getElementById('info-popup').style.display='none'"
+              class="bg-[#ef6c00] hover:bg-orange-600 text-white px-6 py-2 rounded-lg text-sm font-semibold shadow transition">
+        Tutup
+      </button>
     </div>
   </div>
 </div>
 <?php endif; ?>
 
-<script>
-const modalEl = document.getElementById('info-popup');
-if (modalEl) {
-  const privacyModal = new Modal(modalEl, { placement: 'center' });
-  privacyModal.show();
-  document.getElementById('close-modal').addEventListener('click', () => privacyModal.hide());
-}
 
-setInterval(() => {
-  const btn = document.getElementsByClassName('nextimage')[0];
-  if (btn) btn.click();
-}, 5000);
+
+
+
+
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const modal = document.getElementById("info-popup");
+    if (!modal) return;
+
+    // Modal awal hidden dengan opacity 0 dan pointer-events:none
+    // Kita tambah class show agar fade in
+    setTimeout(() => {
+      modal.classList.add("show");
+    }, 100); // delay kecil supaya animasi jalan halus
+
+    // Close button
+    const closeBtn = document.getElementById("close-modal");
+    closeBtn.addEventListener("click", () => {
+      // fade out sebelum hide
+      modal.classList.remove("show");
+      setTimeout(() => {
+        modal.style.display = "none";
+      }, 1500); // sama dengan durasi transisi
+    });
+  });
 </script>
 
+
 </body>
+
+
 </html>
