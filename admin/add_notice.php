@@ -1,5 +1,8 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 include '../connection/database.php';
 
 // Hanya izinkan admin
@@ -113,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <?php include ('../includes/admin_header.php') ?>
+   
 
     <main>
         <section class="max-w-4xl p-6 mx-auto bg-[#fc941e] rounded-md shadow-md mt-10">
@@ -193,7 +196,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </thead>
                     <tbody>
                         <?php
-                        $fetch_notice_data = "SELECT * FROM `school_notice` ORDER BY id DESC;";
+                        $fetch_notice_data = "SELECT * FROM school_notice ORDER BY id DESC;";
                         $notices = mysqli_query($connection, $fetch_notice_data);
                         $totalNotice = mysqli_num_rows($notices);
 
@@ -241,7 +244,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <!-- Update modal -->
         <?php
-        $fetch_notice_data = "SELECT * FROM `school_notice` ORDER BY id DESC;";
+        $fetch_notice_data = "SELECT * FROM school_notice ORDER BY id DESC;";
         $notices = mysqli_query($connection, $fetch_notice_data);
         $totalNotice = mysqli_num_rows($notices);
 
@@ -334,7 +337,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     </main>
 
-    <?php include ('../includes/admin_footer.php') ?>
+
 
     <script>
         function displayFileName() {
