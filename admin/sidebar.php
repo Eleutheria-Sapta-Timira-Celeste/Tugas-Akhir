@@ -99,18 +99,18 @@ try {
 
 <script>
         function add_notice() { window.location.href = "index.php?page=add_notice"; }
-        function site_content() { window.location.href = "site_content.php"; }
-        function feedback_page() { window.location.href = "feedback.php"; }
+        function site_content() { window.location.href = "index.php?page=site_content"; }
+        function feedback_page() { window.location.href = "index.php?page=feedback"; }
         function flash_notice() { window.location.href = "index.php?page=flash_notice"; }
-        function add_gallery() { window.location.href = "add_gallery.php"; }
-        function registered_students() { window.location.href = "registered_students.php"; }
-        function changeRoutine() { window.location.href = "changeRoutine.php"; }
-        function changeStaff() { window.location.href = "changeStaff.php"; }
-        function admin() { window.location.href = "admin_management.php"; }
-        function siswa_management() { window.location.href = "siswa_management.php"; }
-        function guru_management() { window.location.href = "guru_management.php"; }
-        function kelola_kurikulum() { window.location.href = "kelola_kurikulum.php"; }
-        function homepage_media() { window.location.href = "media_upload.php"; }
+        function add_gallery() { window.location.href = "index.php?page=add_gallery"; }
+        function registered_students() { window.location.href = "index.php?page=registered_students"; }
+        function changeRoutine() { window.location.href = "index.php?page=changeRoutine"; }
+        function changeStaff() { window.location.href = "index.php?page=changeStaff"; }
+        function admin() { window.location.href = "index.php?page=admin_management"; }
+        function siswa_management() { window.location.href = "index.php?page=siswa_management"; }
+        function guru_management() { window.location.href = "index.php?page=guru_management"; }
+        function kelola_kurikulum() { window.location.href = "index.php?page=kelola_kurikulum"; }
+        function homepage_media() { window.location.href = "index.php?page=media_upload"; }
         function logoutsession() {
     if (confirm("Yakin ingin logout?")) {
         window.location.href = "/Tugas-Akhir/logout.php";

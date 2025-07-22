@@ -1,6 +1,8 @@
 <?php
 include '../connection/database.php';
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: ../login.php");
@@ -152,7 +154,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-<?php include('../includes/admin_header.php') ?>
+
 
 <section class="text-gray-600 body-font">
             <div class="container px-5 py-10 mx-auto">
@@ -329,6 +331,6 @@ Ubah Isi Konten Situs</h1>
         </div>
     </form>
 
-<?php include('../includes/admin_footer.php') ?>
+
 </body>
 </html>

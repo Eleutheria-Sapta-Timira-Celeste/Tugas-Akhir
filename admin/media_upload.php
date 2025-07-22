@@ -1,6 +1,8 @@
 <?php
 include '../connection/database.php';
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: ../login.php");
@@ -69,8 +71,7 @@ $mediaQuery = mysqli_query($connection, "SELECT * FROM media ORDER BY uploaded_a
 </head>
 <body class="bg-gray-100 min-h-screen">
 
-  <?php include('../includes/admin_header.php') ?>
-
+  
   <section class="text-gray-600 body-font">
     <div class="container px-5 py-10 mx-auto">
       <div class="flex flex-col text-center w-full mb-6">
@@ -145,7 +146,7 @@ $mediaQuery = mysqli_query($connection, "SELECT * FROM media ORDER BY uploaded_a
     </div>
   </section>
 
-  <?php include('../includes/admin_footer.php') ?>
+ 
 
   <script>
     function handleTypeChange() {

@@ -1,6 +1,8 @@
 <?php
 include '../connection/database.php';
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: ../login.php");
@@ -40,7 +42,7 @@ if (isset($_POST['feedbackDelete'])) {
 </head>
 
 <body class="bg-white">
-    <?php include('../includes/admin_header.php') ?>
+   
 
     <!-- Header Section -->
     <section class="text-gray-600 body-font bg-white">
@@ -136,6 +138,6 @@ if (isset($_POST['feedbackDelete'])) {
         </div>
     </section>
 
-    <?php include('../includes/admin_footer.php') ?>
+   
 </body>
 </html>

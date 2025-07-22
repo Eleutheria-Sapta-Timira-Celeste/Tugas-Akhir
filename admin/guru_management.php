@@ -1,6 +1,8 @@
 <?php
 include '../connection/database.php';
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: /Tugas-Akhir/login.php");
     exit();
@@ -89,7 +91,7 @@ $result = $connectionobj->query("SELECT * FROM guru ORDER BY id ASC");
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
 </head>
 <body class="bg-gray-100 flex flex-col min-h-screen">
-<?php include('../includes/admin_header.php'); ?>
+
 
 <main class="flex-grow pb-24">
     <section class="text-gray-600 body-font">
@@ -240,6 +242,6 @@ $result = $connectionobj->query("SELECT * FROM guru ORDER BY id ASC");
     </div>
 </main>
 
-<?php if (file_exists('../includes/admin_footer.php')) include('../includes/admin_footer.php'); ?>
+
 </body>
 </html>

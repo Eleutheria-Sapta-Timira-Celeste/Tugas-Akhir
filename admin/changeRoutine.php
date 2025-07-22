@@ -1,9 +1,13 @@
 <?php
 include '../connection/database.php';
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
+
+// Hanya izinkan admin
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    header("Location: ../login.php");
+    echo "<script>alert('Hanya admin yang bisa mengakses halaman ini.'); window.location.href='../login.php';</script>";
     exit();
 }
 
@@ -92,7 +96,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['update_notice'])) {
     </style>
 </head>
 <body>
-<?php include('../includes/admin_header.php'); ?>
 
 <main class="py-7 px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-10">
@@ -209,7 +212,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['update_notice'])) {
     ?>
 </main>
 
-<?php include('../includes/admin_footer.php'); ?>
+
 
 <script>
 function confirmDelete(id) {

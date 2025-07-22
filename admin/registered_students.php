@@ -1,6 +1,8 @@
 <?php
 include '../connection/database.php';
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: ../login.php");
@@ -39,7 +41,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
 
 <body class="flex flex-col min-h-screen">
 
-<?php include('../includes/admin_header.php') ?>
+
 
 <main class="flex-1">
 
@@ -290,7 +292,6 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
         <!-- ...konten halaman... -->
     </main>
 
-    <?php include('../includes/admin_footer.php') ?>
 </body>
 
 

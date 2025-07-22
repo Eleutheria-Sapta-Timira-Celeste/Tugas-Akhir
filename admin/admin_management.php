@@ -1,6 +1,9 @@
 <?php
 include '../connection/database.php';
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: /Tugas-Akhir/login.php");
     exit();
@@ -88,7 +91,7 @@ $result = $connectionobj->query("SELECT * FROM admin ORDER BY id ASC");
 </head>
 
 <body class="bg-gray-100 flex flex-col min-h-screen">
-<?php include('../includes/admin_header.php'); ?>
+
 
 <!-- Bagian main setelah include header -->
 <main class="flex-grow pb-24">
@@ -211,6 +214,6 @@ $result = $connectionobj->query("SELECT * FROM admin ORDER BY id ASC");
     </div>
 </div>
 
-<?php if (file_exists('../includes/admin_footer.php')) include('../includes/admin_footer.php'); ?>
+
 </body>
 </html>
