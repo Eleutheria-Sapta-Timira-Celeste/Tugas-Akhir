@@ -17,16 +17,16 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
 
     <div class="flex-1 flex flex-col min-h-screen ml-64 transition-all duration-300" id="main-content">
         <?php include 'headerr_admin.php'; ?>
-
         <?php
-        if ($page === 'dashboard') {
-            include 'dashboard.php';
-        } elseif ($page === 'flash_notice') {
-            include 'flash_notice.php';
-        } elseif ($page === 'registered_students') {
-            include 'registered_students.php';
-        }
-        ?>
+            if ($page === 'dashboard') {
+                include 'dashboard.php';
+            } elseif ($page === 'flash_notice') {
+                include 'flash_notice.php';
+            } elseif ($page === 'add_notice') {
+                include 'add_notice.php';
+            }
+            ?>
+
     </div>
 
 </body>

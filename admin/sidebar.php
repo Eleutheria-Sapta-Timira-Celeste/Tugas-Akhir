@@ -1,6 +1,9 @@
 <?php
 include '../connection/database.php';
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: /Tugas-Akhir/login.php");
@@ -95,7 +98,7 @@ try {
 
 
 <script>
-        function add_notice() { window.location.href = "add_notice.php"; }
+        function add_notice() { window.location.href = "index.php?page=add_notice"; }
         function site_content() { window.location.href = "site_content.php"; }
         function feedback_page() { window.location.href = "feedback.php"; }
         function flash_notice() { window.location.href = "index.php?page=flash_notice"; }
