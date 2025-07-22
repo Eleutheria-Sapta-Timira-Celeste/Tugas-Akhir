@@ -4,13 +4,32 @@ if (!isset($_SESSION)) {
 }
 ?>
 
-<!-- HEADER -->
-<header class="bg-[#bd8035] text-white flex items-center justify-between h-16 px-4 transition-all duration-300">
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Script untuk navigasi -->
+<script>
+    function logoutsession() {
+        window.location.replace('/Tugas-Akhir/logout.php'); // arahkan ke root logout.php
+    }
+
+    function indexme() {
+        window.location.replace('/Tugas-Akhir/guru/dashboard.php'); // dashboard admin
+    }
+</script>
+
+
+<header class="bg-[#bd8035] text-white flex items-center justify-between h-16 w-full transition-all duration-300 pl-4 pr-6">
     <div class="flex items-center gap-4">
-        <button onclick="toggleSidebar()" class="text-white text-2xl focus:outline-none" id="toggleSidebar">
-            ☰
+        <button id="toggleSidebar" class="text-white text-2xl focus:outline-none">
+            <i class="fas fa-bars"></i>
         </button>
         <span class="font-bold text-lg">SMP PGRI 371 Pondok Aren</span>
+    </div>
+    <div class="flex items-center gap-4">
+        
+
+
     </div>
 </header>
 
@@ -40,8 +59,7 @@ if (!isset($_SESSION)) {
             sidebar.classList.add("w-64");
             mainContent.classList.remove("ml-20");
             mainContent.classList.add("ml-64");
-
-            logo.classList.add("w-16", "h-16");
+ logo.classList.add("w-16", "h-16");
             logo.classList.remove("w-10", "h-10");
             menuTexts.forEach(text => text.classList.remove("hidden"));
 
@@ -61,10 +79,10 @@ if (!isset($_SESSION)) {
             sidebar.classList.add("w-20");
             mainContent.classList.remove("ml-64");
             mainContent.classList.add("ml-20");
-
             logo.classList.add("w-10", "h-10");
             logo.classList.remove("w-16", "h-16");
             menuTexts.forEach(text => text.classList.add("hidden"));
         }
     });
 </script>
+

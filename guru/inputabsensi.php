@@ -1,6 +1,7 @@
 <?php
-session_start();
 include '../connection/database.php';
+
+
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'guru') {
     header("Location: /Tugas-Akhir/login.php");
@@ -102,15 +103,9 @@ $info = $_SESSION['absensi_header'] ?? null;
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-[#FFF9F0] flex flex-col min-h-screen">
-<?php include('../includes/header_guru.php'); ?>
+
 <div class="flex flex-1">
-    <aside class="w-64 bg-[#F5E8C7] p-6 shadow-md">
-        <nav class="space-y-4">
-            <a href="dashboard.php" class="block px-4 py-2 hover:bg-[#D9C38C]">🏠 Dashboard</a>
-            <a href="inputabsensi.php" class="block px-4 py-2 bg-[#E4C988] rounded">📝 Input Absensi</a>
-            <a href="Pengaturan.php" class="block px-4 py-2 hover:bg-[#D9C38C]">⚙ Pengaturan</a>
-        </nav>
-    </aside>
+   
     <main class="flex-1 p-6">
         <h2 class="text-2xl font-bold mb-4">Form Input Absensi</h2>
 
@@ -251,6 +246,5 @@ $info = $_SESSION['absensi_header'] ?? null;
         <?php endforeach; ?>
     </main>
 </div>
-<?php include('../includes/admin_footer.php'); ?>
 </body>
 </html>
