@@ -72,29 +72,6 @@ $page = $_GET['page'] ?? 'dashboard';
         </main>
     </div>
 
-    <script>
-    const toggleButton = document.getElementById("toggleSidebar");
-    const sidebar = document.getElementById("sidebar");
-    const labels = document.querySelectorAll(".menu-text");
-    const logo = document.getElementById("sidebar-logo");
-    const mainContent = document.getElementById("main-content");
-
-    toggleButton.addEventListener("click", () => {
-        if (sidebar.classList.contains("w-64")) {
-            sidebar.classList.replace("w-64", "w-20");
-            mainContent.classList.replace("ml-64", "ml-20");
-            labels.forEach(label => label.classList.add("hidden"));
-            logo.classList.replace("w-16", "w-10");
-            logo.classList.replace("h-16", "h-10");
-        } else {
-            sidebar.classList.replace("w-20", "w-64");
-            mainContent.classList.replace("ml-20", "ml-64");
-            labels.forEach(label => label.classList.remove("hidden"));
-            logo.classList.replace("w-10", "w-16");
-            logo.classList.replace("h-10", "h-16");
-        }
-    });
-    </script>
-
+   
 </body>
 </html>

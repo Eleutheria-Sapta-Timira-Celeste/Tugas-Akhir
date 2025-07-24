@@ -4,59 +4,49 @@ if (!isset($_SESSION)) {
 }
 ?>
 
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- Untuk icon FontAwesome -->
+
+<!-- Script untuk navigasi -->
 <script>
-function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    const logo = document.getElementById('sidebar-logo');
-    const menuTexts = document.querySelectorAll('.menu-text');
-    const mainContent = document.getElementById('main-content');
-
-    const isExpanded = sidebar.classList.contains('w-64');
-
-    if (isExpanded) {
-        sidebar.classList.remove('w-64');
-        sidebar.classList.add('w-20');
-        logo.classList.add('w-10', 'h-10');
-        logo.classList.remove('w-16', 'h-16');
-        mainContent.classList.remove('ml-64');
-        mainContent.classList.add('ml-20');
-        menuTexts.forEach(text => text.classList.add('hidden'));
-        localStorage.setItem('sidebarState', 'collapsed');
-    } else {
-        sidebar.classList.remove('w-20');
-        sidebar.classList.add('w-64');
-        logo.classList.remove('w-10', 'h-10');
-        logo.classList.add('w-16', 'h-16');
-        mainContent.classList.remove('ml-20');
-        mainContent.classList.add('ml-64');
-        menuTexts.forEach(text => text.classList.remove('hidden'));
-        localStorage.setItem('sidebarState', 'expanded');
+    function logoutsession() {
+        window.location.replace('/Tugas-Akhir/logout.php');
     }
-}
 
-document.addEventListener("DOMContentLoaded", function () {
-    const sidebar = document.getElementById('sidebar');
-    const logo = document.getElementById('sidebar-logo');
-    const menuTexts = document.querySelectorAll('.menu-text');
-    const mainContent = document.getElementById('main-content');
-    const state = localStorage.getItem('sidebarState');
-
-    if (state === 'collapsed') {
-        sidebar.classList.remove('w-64');
-        sidebar.classList.add('w-20');
-        logo.classList.add('w-10', 'h-10');
-        logo.classList.remove('w-16', 'h-16');
-        mainContent.classList.remove('ml-64');
-        mainContent.classList.add('ml-20');
-        menuTexts.forEach(text => text.classList.add('hidden'));
+    function indexme() {
+        window.location.replace('/Tugas-Akhir/siswa/dashboard.php');
     }
-});
+
+    function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        const mainContent = document.getElementById("main-content");
+
+       sidebar.classList.toggle("w-64");
+sidebar.classList.toggle("w-16");
+
+mainContent.classList.toggle("ml-64");
+mainContent.classList.toggle("ml-16");
+
+    }
 </script>
-<header class="bg-[#bd8035] text-white flex items-center justify-between h-16 px-4 transition-all duration-300">
+
+<aside id="sidebar" class="bg-[#d49f5f] text-white h-screen fixed top-0 left-0 w-64 flex flex-col transition-transform transform -translate-x-full duration-300 z-50">
+    <div class="p-4 text-center border-b border-orange-300">
+        <span class="text-sm font-bold block">Sidebar Aktif</span>
+    </div>
+    <nav class="p-4">
+        <button onclick="logoutsession()" class="hover:bg-[#bd8035] p-2 rounded w-full text-left">Logout</button>
+    </nav>
+</aside>
+
+<header class="bg-[#bd8035] text-white flex items-center justify-between h-16 w-full transition-all duration-300 pl-6 pr-6">
     <div class="flex items-center gap-4">
-        <button id="toggleSidebar" class="text-white text-2xl focus:outline-none">
-            ☰
+        <button onclick="toggleSidebar()" id="toggleSidebar" class="text-white text-2xl focus:outline-none ml-2">
+            <i class="fas fa-bars"></i>
         </button>
         <span class="font-bold text-lg">SMP PGRI 371 Pondok Aren</span>
     </div>
 </header>
+
+

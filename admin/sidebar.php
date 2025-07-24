@@ -118,3 +118,28 @@ try {
 }
 
     </script>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function () {
+    const toggleButton = document.getElementById('toggleSidebar');
+    const sidebar = document.getElementById('sidebar');
+    const labels = document.querySelectorAll('.sidebar-label');
+
+    let sidebarCollapsed = false;
+
+    toggleButton.addEventListener('click', () => {
+        sidebarCollapsed = !sidebarCollapsed;
+
+        if (sidebarCollapsed) {
+            sidebar.classList.remove('w-64');
+            sidebar.classList.add('w-20');
+            labels.forEach(label => label.classList.add('hidden'));
+        } else {
+            sidebar.classList.remove('w-20');
+            sidebar.classList.add('w-64');
+            labels.forEach(label => label.classList.remove('hidden'));
+        }
+    });
+});
+</script>
+
