@@ -120,7 +120,7 @@ $stmt->close();
    
 
 <main class="p-6 bg-gray-100 min-h-screen">
-    <section class="max-w-4xl mx-auto p-6 sm:p-8 bg-[#d99a52] rounded-md shadow-md mt-10">
+    <section class="max-w-4xl mx-auto p-6 sm:p-8 bg-[#fc941e] rounded-md shadow-md mt-10">
     <h1 class="text-xl font-bold text-white mb-4">📢 Tambahkan Pengumuman</h1>
 
     <form action="" method="post" enctype="multipart/form-data" class="space-y-6">
