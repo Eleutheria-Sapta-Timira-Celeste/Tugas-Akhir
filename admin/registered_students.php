@@ -62,8 +62,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
     </section>
 
     <!-- Table Section -->
-    <section class="bg-[#fff9f2] p-4 sm:p-6">
-        <div class="mx-auto max-w-screen-2xl px-4 lg:px-12">
+    <section class=" p-4 sm:p-6">
             <div class="bg-white border border-[#fc941e]/30 shadow-md sm:rounded-lg overflow-hidden">
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm text-left text-gray-800">

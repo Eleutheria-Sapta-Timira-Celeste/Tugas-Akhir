@@ -110,7 +110,7 @@ $stmt->close();
     <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
     <link rel="icon" type="image/x-icon" href="../assects/images/pgri-putih.png">
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
+   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
 
 
@@ -119,83 +119,94 @@ $stmt->close();
 <body>
    
 
-    <main>
-        <section class="max-w-4xl p-6 mx-auto bg-[#fc941e] rounded-md shadow-md mt-10">
+<main class="p-6 bg-gray-100 min-h-screen">
+    <section class="max-w-4xl mx-auto p-6 sm:p-8 bg-[#d99a52] rounded-md shadow-md mt-10">
     <h1 class="text-xl font-bold text-white mb-4">📢 Tambahkan Pengumuman</h1>
 
     <form action="" method="post" enctype="multipart/form-data" class="space-y-6">
 
-        <!-- Upload File -->
-        <div class="flex flex-col gap-2">
-            <label class="text-white font-medium">Upload File (opsional)</label>
-            <div class="flex items-center justify-center w-full">
-                <label for="file-upload" class="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed rounded-lg cursor-pointer bg-[#fff8e1] border-[#f9c57d] hover:bg-[#fff2d4] transition-all duration-300">
-                    <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                        <svg class="w-10 h-10 mb-3 text-[#fc941e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M7 16V4m0 0L3 8m4-4l4 4M17 16v-8m0 0l-4 4m4-4l4 4"/>
-                        </svg>
-                        <p class="mb-1 text-sm text-gray-600"><span class="font-semibold">Klik untuk upload</span> atau drag & drop</p>
-                        <p class="text-xs text-gray-500">PNG, JPG, PDF (max 2MB)</p>
-                    </div>
-                    <input id="file-upload" name="file-upload" type="file" class="hidden" onchange="displayFileName()">
-                </label>
-            </div>
-            <p id="file-info" class="text-sm text-white font-medium mt-1"></p>
-        </div>
-
-        <!-- Judul/Subjek -->
-        <div>
-            <label class="text-white font-medium block mb-1">Subjek <span class="text-red-200">*</span></label>
-            <input name="about_notice" required type="text"
-                   class="w-full px-4 py-2 border rounded-md bg-white text-gray-800 border-[#fcdca4] focus:outline-none focus:ring-2 focus:ring-white focus:border-white transition-all">
-        </div>
-
-        <!-- Deskripsi -->
-        <div>
-            <label class="text-white font-medium block mb-1">Tulis Pengumuman <span class="text-red-200">*</span></label>
-            <textarea name="description" required minlength="40"
-                      class="w-full px-4 py-3 h-36 border rounded-md bg-white text-gray-800 border-[#fcdca4] focus:outline-none focus:ring-2 focus:ring-white focus:border-white resize-none transition-all"></textarea>
-        </div>
-
-        <!-- Tombol -->
-        <div class="flex justify-end">
-            <button type="submit" name="publish_notice"
-                    class="px-6 py-2 text-sm font-semibold text-white bg-[#1a1a1a] rounded hover:bg-white hover:text-black border hover:border-black transition-all">
-                    Tambahkan
-            </button>
-        </div>
-    </form>
-</section>
-
-
-        <!-- Start block -->
-        <section class="bg-[#fff7ee] p-3 mt-5 sm:p-5 antialiased">
-    <div class="mx-auto max-w-screen-xl px-0 lg:px-12">
-        <div class="bg-white border border-[#fc941e] shadow-md sm:rounded-lg overflow-hidden">
-            <div class="flex flex-col md:flex-row items-center justify-between p-4">
-                <div class="w-full md:w-1/2">
-                    <form class="flex items-center">
-                        <div class="relative w-full">
-                            <input disabled type="text" readonly value="📓 Pengumuman terbaru ditampilkan di bagian atas (urutan menurun)"
-                                class="font-semibold text-[#1a1a1a] bg-[#fff7ee] border border-[#fc941e] text-sm rounded-lg block w-full p-2.5"
-                                required="">
+      <!-- Upload File -->
+            <div class="flex flex-col gap-2">
+                <label class="text-white font-medium">Upload File (opsional)</label>
+                <div class="flex items-center justify-center w-full">
+                    <label for="file-upload" 
+                        class="flex items-center justify-center w-full h-40 border-2 border-dashed rounded-lg cursor-pointer bg-[#fff8e1] border-[#f9c57d] hover:bg-[#fff2d4] transition-all duration-300 relative text-center px-4">
+                        
+                        <!-- Default content -->
+                        <div id="upload-default" class="flex flex-col items-center justify-center">
+                            <svg class="w-10 h-10 mb-3 text-[#fc941e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M7 16V4m0 0L3 8m4-4l4 4M17 16v-8m0 0l-4 4m4-4l4 4"/>
+                            </svg>
+                            <p class="mb-1 text-sm text-gray-600">
+                                <span class="font-semibold">Klik untuk upload</span> atau drag & drop
+                            </p>
+                            <p class="text-xs text-gray-500">PNG, JPG, PDF (max 2MB)</p>
                         </div>
-                    </form>
+
+                        <!-- File name preview -->
+                        <div id="upload-filename" class="hidden">
+                            <p class="text-[#fc941e] font-semibold text-sm truncate max-w-full">📄 <span id="file-name"></span></p>
+                            <p class="text-xs text-gray-500 mt-1">(Klik lagi untuk ganti file)</p>
+                        </div>
+
+                        <input id="file-upload" name="file-upload" type="file" class="hidden" onchange="showFileName()">
+                    </label>
                 </div>
             </div>
 
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm text-left text-[#1a1a1a]">
-                    <thead class="text-xs uppercase bg-[#fc941e] text-white">
-                        <tr>
-                            <th class="px-4 py-3">Judul</th>
-                            <th class="px-4 py-3">Diterbitkan</th>
-                            <th class="px-4 py-3">Terakhir Diubah</th>
-                            <th class="px-4 py-3"><span class="sr-only">Actions</span></th>
-                        </tr>
-                    </thead>
-                    <tbody>
+            <!-- Judul/Subjek -->
+            <div>
+                <label class="text-white font-medium block mb-1">Subjek <span class="text-red-200">*</span></label>
+                <input name="about_notice" required type="text"
+                    class="w-full px-4 py-2 border rounded-md bg-white text-gray-800 border-[#fcdca4] focus:outline-none focus:ring-2 focus:ring-white focus:border-white transition-all">
+            </div>
+
+            <!-- Deskripsi -->
+            <div>
+                <label class="text-white font-medium block mb-1">Tulis Pengumuman <span class="text-red-200">*</span></label>
+                <textarea name="description" required minlength="40"
+                        class="w-full px-4 py-3 h-36 border rounded-md bg-white text-gray-800 border-[#fcdca4] focus:outline-none focus:ring-2 focus:ring-white focus:border-white resize-none transition-all"></textarea>
+            </div>
+
+                <!-- Tombol -->
+                <div class="flex justify-end mt-4">
+                    <button type="submit" name="publish_notice"
+                        class="inline-flex items-center gap-2 px-6 py-2 text-sm font-semibold text-white bg-[#5c3d15] 
+                            hover:bg-[#4b320f]
+                            rounded-lg shadow-sm transition-all duration-300 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                        </svg>
+                        Tambahkan
+                    </button>
+                </div>
+
+
+                </form>
+            </section>
+
+
+        <!-- Start block -->
+       <section class="max-w-4xl mx-auto p-6 sm:p-8 mt-6 bg-white border border-[#fc941e] shadow-md rounded-md antialiased">
+    <div class="flex flex-col md:flex-row items-center justify-between mb-4">
+        <form class="w-full">
+            <input disabled type="text" readonly value="📓 Pengumuman terbaru ditampilkan di bagian atas (urutan menurun)"
+                class="font-semibold text-[#1a1a1a] bg-[#fff7ee] border border-[#fc941e] text-sm rounded-lg block w-full p-2.5">
+        </form>
+    </div>
+
+    <div class="overflow-x-auto">
+        <table class="w-full text-sm text-left text-[#1a1a1a]">
+            <thead class="text-xs uppercase bg-[#fc941e] text-white">
+                <tr>
+                    <th class="px-4 py-3">Judul</th>
+                    <th class="px-4 py-3">Diterbitkan</th>
+                    <th class="px-4 py-3">Terakhir Diubah</th>
+                    <th class="px-4 py-3"><span class="sr-only">Actions</span></th>
+                </tr>
+            </thead>
+            <tbody> 
                         <?php
                         $fetch_notice_data = "SELECT * FROM school_notice ORDER BY id DESC;";
                         $notices = mysqli_query($connection, $fetch_notice_data);
@@ -238,9 +249,9 @@ $stmt->close();
                     </tbody>
                 </table>
             </div>
-        </div>
-    </div>
-</section>
+                </div>
+            </div>
+        </section>
 
 
         <!-- Update modal -->
@@ -254,49 +265,71 @@ $stmt->close();
                 $noticeId = $row['id'];
                 echo '
 
-                        <div id="updateProductModal' . $noticeId . '" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                            <div class="relative p-4 w-full max-w-2xl max-h-full">
+                       <div id="updateProductModal' . $noticeId . '" tabindex="-1" aria-hidden="true"
+                        class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
                                 <!-- Modal content -->
-                                
-                                <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+                                <div class="relative w-full max-w-2xl p-4"">
                                     <!-- Modal header -->
-                                    <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
-                                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Perbarui Pengumuman</h3>
-                                        <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateProductModal' . $noticeId . '">
-                                            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    <div class="bg-white rounded-2xl shadow-xl border border-orange-700 p-6 sm:p-8">
+                                    <!-- Header -->
+                                        <div class="flex justify-between items-center border-b pb-4 mb-6 border-orange-700">
+                                        <h3 class="text-xl font-bold text-gray-800">Perbarui Pengumuman</h3>
+                                        <button type="button"
+                                            class="text-gray-500 hover:text-orange-700 transition"
+                                            data-modal-toggle="updateProductModal' . $noticeId . '">
+                                            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                                    clip-rule="evenodd" />
                                             </svg>
                                             <span class="sr-only">Close modal</span>
                                         </button>
                                     </div>
+
                                     <!-- Modal body -->
                                     <form method="post" id="UpdateNotice' . $noticeId . '" enctype="multipart/form-data">
-                                        <div class="grid gap-4 mb-4 sm:grid-cols-1">
-                                        <div><label for="new_file" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Berkas (Jika tidak dipilih, akan menggunakan yang sebelumnya)</label></div><br>
-                                            <div class="flex items-center justify-center w-full">
-                                               
-                                            
-                                                <input name="file-upload-modified' . $noticeId . '" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file">
-
+                                        <div class="space-y-6">
+                                            <div class="sm:col-span-2">
+                                                <label for="new_file"
+                                                   class="block mb-2 text-base font-semibold text-gray-700">Berkas (Jika tidak dipilih, akan menggunakan yang sebelumnya)</label>
+                                                <input name="file-upload-modified' . $noticeId . '"
+                                                     class="block w-full text-base text-gray-800 border-2 border-gray-300 rounded-lg cursor-pointer bg-gray-100 focus:ring-orange-500 focus:border-orange-500 py-2 px-3"
+                                                    id="file_input" type="file">
                                             </div>
 
                                             <div class="sm:col-span-2">
-                                                <label for="subject" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Judul</label>
-                                                <input type="text" name="about_notice" id="name" value="' . $row['about'] . '" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Tomorrow our school will be closed">
-                                                <input type="text" name="image_name" id="name" value="' . $row['image_url'] . '" class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Tomorrow our school will be closed">
+                                                <label for="subject"  class="block mb-2 text-sm font-medium text-gray-700">Judul</label>
+                                                <input type="text" name="about_notice" id="name" value="' . $row['about'] . '"
+                                                    class=" block w-full border border-gray-300 rounded-lg p-2.5 text-sm text-gray-800 bg-gray-50 focus:ring-orange-500 focus:border-orange-500"
+                                                    placeholder="Judul Pengumuman">
+                                                <input type="text" name="image_name" value="' . $row['image_url'] . '" class="hidden">
                                             </div>
+
                                             <input type="hidden" name="notice_id" value="' . $noticeId . '" />
-                                            <div class="sm:col-span-2"><label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deskripsi</label><textarea name="notice_description" id="description" rows="5" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write a notice here...">' . $row['notice_description'] . '</textarea></div>
+
+                                            <div class="sm:col-span-2">
+                                                <label for="description"
+                                                    class="block mb-2 text-sm font-medium text-gray-700">Deskripsi</label>
+                                                <textarea name="notice_description" id="description" rows="5"
+                                                    class="w-full p-3 text-sm border border-gray-300 rounded-lg bg-gray-50 text-gray-800 focus:ring-orange-500 focus:border-orange-500"
+                                                    placeholder="Tulis pengumuman di sini...">' . $row['notice_description'] . '</textarea>
+                                            </div>
                                         </div>
-                                        
-                                        <div class="flex items-center space-x-4">
-                                            <button name="update_notice" type="submit" class="text-white bg-[#ef6c00] hover:bg-[#cc5200] focus:ring-4 focus:outline-none focus:ring-[#cc5200] font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#cc5200] dark:focus:ring-[#cc5200]">Perbarui Pengumuman</button>
-                                            
+
+                                        <!-- Button -->
+                                        <div class="flex items-center space-x-4 mt-5">
+                                            <button name="update_notice" type="submit"
+                                                 class="inline-flex items-center gap-2 px-6 py-2 text-sm font-semibold text-white bg-[#5c3d15] hover:bg-[#4b320f]
+                                                rounded-lg shadow-sm transition-all duration-300 focus:outline-none">
+                                                Perbarui Pengumuman
+                                            </button>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
+
                         <!-- Read modal -->
 
                         <!-- Delete modal -->
@@ -304,7 +337,7 @@ $stmt->close();
                             <div class="relative p-4 w-full max-w-md max-h-full">
                                 <!-- Modal content -->
                                 <form method="post" id="deleteModal' . $noticeId . '">
-                                <div class="relative p-4 text-center bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+                                <div class="relative p-4 text-center bg-white rounded-lg shadow  sm:p-5">
                                     <button type="button" class="text-gray-400 absolute top-2.5 right-2.5 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="deleteModal' . $noticeId . '">
                                         <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -314,7 +347,7 @@ $stmt->close();
                                     <svg class="text-gray-400 dark:text-gray-500 w-11 h-11 mb-3.5 mx-auto" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
                                     </svg>
-                                    <p class="mb-4 text-gray-500 dark:text-gray-300">Apakah Anda yakin ingin menghapus item ini?</p>
+                                    <p class="mb-4 text-gray-500 dark:text-[#a6480e]">Apakah Anda yakin ingin menghapus item ini?</p>
                                     <div class="flex justify-center items-center space-x-4">
                                         <button data-modal-toggle="deleteModal' . $noticeId . '" type="button" class="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Tidak, Batal</button>
                                         <input type="hidden" name="notice_id" value="' . $noticeId . '" />
@@ -336,10 +369,27 @@ $stmt->close();
         ?>
 
 
-    </main>
+</main>
 
 
 
+    <script>
+    function showFileName() {
+        const input = document.getElementById('file-upload');
+        const fileName = document.getElementById('file-name');
+        const defaultBox = document.getElementById('upload-default');
+        const fileBox = document.getElementById('upload-filename');
+
+        if (input.files.length > 0) {
+            fileName.textContent = input.files[0].name;
+            defaultBox.classList.add('hidden');
+            fileBox.classList.remove('hidden');
+        } else {
+            defaultBox.classList.remove('hidden');
+            fileBox.classList.add('hidden');
+        }
+    }
+</script>
     <script>
         function displayFileName() {
             var fileInput = document.getElementById('file-upload');
