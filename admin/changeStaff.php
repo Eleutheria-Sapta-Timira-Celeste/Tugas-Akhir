@@ -229,7 +229,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
     <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
     <link rel="icon" type="image/x-icon" href="../assects/images/admin_logo.png">
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
 
 
@@ -252,7 +252,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
             </div>
 
             <button data-modal-target="authentication-modal2" data-modal-toggle="authentication-modal2"
-                class="mt-10 mb-0 block text-white bg-[#fc941e] hover:bg-[#ef6c00] focus:ring-4 p-4 focus:outline-none focus:ring-[#ef6c00] font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#fc941e] dark:hover:bg-[#ef6c00] dark:focus:ring-"
+                class="mt-10 mb-0 block text-white bg-[#ef6c00] hover:bg-[#ef6c00] focus:ring-4 p-4 focus:outline-none focus:ring-[#ef6c00] font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#fc941e] dark:hover:bg-[#ef6c00] dark:focus:ring-"
                 type="button">
                 Tambah Data Kepala Sekolah
             </button>
