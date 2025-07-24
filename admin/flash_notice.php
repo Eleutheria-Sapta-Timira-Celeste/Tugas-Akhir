@@ -61,29 +61,28 @@ if (isset($_POST['update_flash_notice'])) {
     </div>
 </section>
 
-<!-- Mulai dari sini adalah HTML isi kontennya saja -->
 <section class="text-gray-600 body-font" id="joinUsSection">
     <div class="container mx-auto px-4 py-5">
-        <div class="flex flex-col lg:flex-row items-start justify-center gap-10">
+        <div class="flex flex-col lg:flex-row items-stretch justify-center gap-10">
             <!-- Preview -->
-            <div class="w-full lg:w-1/2">
-                <div class="p-6 bg-white rounded-md shadow-md h-full">
+            <div class="w-full lg:w-1/2 flex-1">
+                <div class="p-6 bg-white rounded-md shadow-md h-full min-h-[500px] flex flex-col justify-between">
                     <h5 class="mb-3 text-2xl font-bold tracking-tight text-gray-900 text-left">
                         <?= $flash_notice['title']; ?>
                     </h5>
                     <img class="rounded-t-lg mx-auto" src="../<?= $flash_notice['image_url']; ?>" alt="Preview Image" />
-                    <p class="my-3 text-gray-700 text-justifiy"><?= $flash_notice['message']; ?></p>
-                    <div class="flex justify-left">
+                    <p class="my-3 text-gray-700 text-justify"><?= $flash_notice['message']; ?></p>
+                    <div class="flex justify-left mt-auto">
                         <a href="#" class="inline-flex items-left py-2 px-4 text-white bg-[#e65c00] hover:bg-[#cc5200] rounded">Close</a>
                     </div>
                 </div>
             </div>
 
             <!-- Form -->
-            <div class="w-full lg:w-1/2">
-                <section class="p-6 bg-white rounded-md shadow-md h-full">
+            <div class="w-full lg:w-1/2 flex-1">
+                <section class="p-6 bg-white rounded-md shadow-md h-full min-h-[500px] flex flex-col justify-between">
                     <h1 class="text-xl font-bold text-black mb-4">Kartu Sambutan</h1>
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="" method="POST" enctype="multipart/form-data" class="flex flex-col justify-between h-full">
                         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
                             <div>
                                 <label class="text-black">Nyalakan Animasi</label>
@@ -123,4 +122,3 @@ if (isset($_POST['update_flash_notice'])) {
         </div>
     </div>
 </section>
-
