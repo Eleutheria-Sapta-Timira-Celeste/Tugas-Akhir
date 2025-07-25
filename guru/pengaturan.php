@@ -87,7 +87,7 @@ if (isset($_POST['update_password'])) {
 
     <!-- Main Content -->
     <main class="flex-1 p-6 bg-[#FFF9F0]">
-        <h2 class="text-3xl font-bold text-gray-800 mb-6">Pengaturan Profil Guru</h2>
+        <h2 class="text-xl font-bold mb-4 text-[#a9745a]">Pengaturan Profil Guru</h2>
         <?= $msg ?>
 
         <!-- Update Profile -->
@@ -124,13 +124,15 @@ if (isset($_POST['update_password'])) {
                 <?php } ?>
                 <input type="file" name="foto" accept="image/*" class="w-full p-2 border border-gray-200 rounded">
             </div>
-            <button type="submit" name="update_profile" class="w-full py-3 rounded bg-gradient-to-r from-orange-500 to-yellow-400 text-white font-bold text-lg shadow hover:scale-105 transition duration-300">
-                Simpan Perubahan Profil
-            </button>
+            <button type="submit" name="update_profile"
+    class="w-full py-3 rounded bg-[#5c3d15] hover:bg-[#4b320f] text-white font-bold text-lg shadow transition duration-300">
+    Simpan Perubahan Profil
+</button>
+
         </form>
 
         <!-- Update Password -->
-        <h3 class="text-xl font-bold mb-4 text-orange-600">Ubah Password</h3>
+        <h3 class="text-xl font-bold mb-4 text-[#a9745a]">Ubah Password</h3>
         <form method="post" class="space-y-4 bg-white p-6 rounded-lg shadow border border-[#E4C988]">
             <div>
                 <label class="block mb-1 font-semibold text-gray-700">Password Baru</label>
@@ -140,7 +142,7 @@ if (isset($_POST['update_password'])) {
                 <label class="block mb-1 font-semibold text-gray-700">Konfirmasi Password Baru</label>
                 <input type="password" name="password2" required class="w-full p-3 border border-orange-200 rounded focus:outline-none focus:ring-2 focus:ring-orange-400 transition">
             </div>
-            <button type="submit" name="update_password" class="w-full py-3 rounded bg-gradient-to-r from-orange-500 to-amber-400 text-white font-bold text-lg shadow hover:scale-105 transition duration-300">
+            <button type="submit" name="update_password" class="w-full py-3 rounded bg-[#5c3d15] hover:bg-[#4b320f] text-white font-bold text-lg shadow transition duration-300">
                 Ubah Password
             </button>
         </form>

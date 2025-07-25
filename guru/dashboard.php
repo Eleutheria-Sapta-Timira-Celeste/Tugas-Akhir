@@ -49,7 +49,7 @@ if ($result && $result->num_rows > 0) {
     <!-- Main Content -->
     <main class="flex-1 p-6 bg-[#FFF9F0]">
         <div class="mb-6">
-            <h2 class="text-3xl font-bold text-gray-800">Halo, <?= htmlspecialchars($user['nama']) ?> 👋</h2>
+            <h2 class="text-3xl font-bold  text-[#a9745a]">Halo, <?= htmlspecialchars($user['nama']) ?> 👋</h2>
             <p class="text-gray-700 mt-1">Selamat datang di Dashboard Guru SMP PGRI 371 Pondok Aren</p>
         </div>
 
