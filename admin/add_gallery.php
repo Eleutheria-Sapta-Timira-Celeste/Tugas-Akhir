@@ -9,6 +9,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     exit();
 }
 
+// Handle form POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (isset($_POST['newImagesToAlbum'])) {
@@ -58,44 +59,31 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $connectionobj->close();
     }
     
+
+
+
+
     if (isset($_POST['deleteAlbum'])) {
         $album_Id = $_POST['album_Id'];
-        mysqli_query($connection, "DELETE FROM `gallery_album` WHERE id = $album_Id;");
-        echo '
-            <script>
-            window.location.replace("index.php?page=add_gallery");            
-            </script>';
+        mysqli_query($connectionobj, "DELETE FROM `gallery_album` WHERE id = $album_Id;");
+        echo '<script>window.location.replace("index.php?page=add_gallery");</script>';
         exit;
     }
+
     if (isset($_POST['deleteImage'])) {
         $imageId = $_POST['imageId'];
-        
-        mysqli_query($connection, "DELETE FROM `gallery_images` WHERE id = $imageId;");
-        echo '
-            <script>
-            window.location.replace("index.php?page=add_gallery");            
-            </script>';
+        mysqli_query($connectionobj, "DELETE FROM `gallery_images` WHERE id = $imageId;");
+        echo '<script>window.location.replace("index.php?page=add_gallery");</script>';
         exit;
     }
 
     if (isset($_POST["submit_new_album"])) {
-        // Retrieve from album name field
         $album_name = $_POST["album_name"];
-
-        // Insert data into the album talble and create new table according to album name field
-        $sql = "INSERT INTO gallery_album (album_name) VALUES (?)";
-
-        $stmt = $connectionobj->prepare($sql);
-
+        $stmt = $connectionobj->prepare("INSERT INTO gallery_album (album_name) VALUES (?)");
         $stmt->bind_param("s", $album_name);
 
         if ($stmt->execute()) {
-            echo '
-            <script>
-            alert("New Album is Created")
-            window.location.replace("index.php?page=add_gallery");
-            
-            </script>';
+            echo '<script>alert("Album berhasil dibuat"); window.location.replace("index.php?page=add_gallery");</script>';
         } else {
             echo "Error: " . $stmt->error;
         }
@@ -103,149 +91,144 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $stmt->close();
         $connectionobj->close();
     }
+
+    if (isset($_POST['downloadZip'])) {
+        $albumName = $_POST['albumName'];
+        $zip = new ZipArchive();
+        $zipFile = tempnam("/tmp", "zip");
+
+        if ($zip->open($zipFile, ZipArchive::CREATE) === TRUE) {
+            $stmt = $connectionobj->prepare("SELECT image_url FROM gallery_images WHERE album = ?");
+            $stmt->bind_param("s", $albumName);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            while ($row = $result->fetch_assoc()) {
+                $filePath = '../' . $row['image_url'];
+                if (file_exists($filePath)) {
+                    $zip->addFile($filePath, basename($filePath));
+                }
+            }
+
+            $zip->close();
+
+            header("Content-Type: application/zip");
+            header("Content-Disposition: attachment; filename=album_" . preg_replace("/\s+|[^\w]/", "_", $albumName) . ".zip");
+            header("Content-Length: " . filesize($zipFile));
+            readfile($zipFile);
+            unlink($zipFile);
+            exit;
+        }
+    }
 }
 ?>
 
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambahkan Galeri</title>
+    <title>Galeri Sekolah</title>
     <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
-    <link rel="icon" type="image/x-icon" href="../assects/images/admin_logo.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     <link rel="stylesheet" href="../css/animation.css">
-
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f3f0;
+        }
+        .bg-coffee {
+            background-color: #a9745a;
+        }
+        .text-coffee {
+            color: #a9745a;
+        }
+        .border-coffee {
+            border-color: #a9745a;
+        }
+        .hover\:bg-coffee-dark:hover {
+            background-color: #8b5e3c;
+        }
+    </style>
 </head>
 
-<body>
-    
-
-
-
-
-    <section class="text-gray-600 body-font">
-        <div class="container px-5 py-10 mx-auto">
-            <div class="flex flex-col text-center w-full mb-5">
-                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-[#ef6c00]">Tambah Galeri</h1>
-                <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base">
-                Yth. Tim Pengelola Website Sekolah, Semoga dalam keadaan sehat dan lancar dalam menjalankan aktivitas.
-                Mohon bantuannya untuk menambahkan dokumentasi kegiatan/proyek terbaru ke dalam website sekolah. Silakan masuk ke panel admin, pilih menu "Galeri", kemudian buat album baru yang sesuai dengan kegiatan tersebut. Setelah itu, unggah foto-foto terkait dan pastikan album tersebut diatur agar dapat ditampilkan kepada publik.
-                Apabila membutuhkan bantuan lebih lanjut, jangan ragu untuk menghubungi saya. Terima kasih atas kerja samanya.
+<body class="text-gray-800">
+    <section class="py-10">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold text-coffee">Manajemen Galeri Sekolah</h1>
+                <p class="text-sm text-gray-600 mt-2 max-w-2xl mx-auto">
+                    Silakan buat album dan unggah foto kegiatan terbaru untuk ditampilkan di website sekolah.
                 </p>
+                <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
+                    class="mt-6 px-6 py-2 bg-coffee text-white rounded hover:bg-coffee-dark transition">Tambah Album Baru</button>
             </div>
-            <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
-                class="mt-10 block text-white bg-[#ef6c00] hover:bg-[#e65c00] focus:ring-4 focus:outline-none focus:ring-[#cc5200] font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#cc5200] dark:focus:ring-[#cc5200]"
-                type="button">
-                Tambah Album Baru
-            </button>
-        </div>
-    </section>
 
-
-    <!-- Modal toggle -->
-
-
-    <!-- Main modal -->
-    <div id="authentication-modal" tabindex="-1" aria-hidden="true"
-        class="fadeIn hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-        <div class="relative p-4 w-full max-w-md max-h-full">
-            <!-- Modal content -->
-            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                <!-- Modal header -->
-                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        Buat Album Baru
-                    </h3>
-                    <button type="button"
-                        class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-modal-hide="authentication-modal">
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                        </svg>
-                        <span class="sr-only">Close modal</span>
-                    </button>
-                </div>
-                <!-- Modal body -->
-                <div class="p-4 md:p-5">
-                    <form class="space-y-4" action="" method="POST">
+            <!-- Modal Buat Album Baru -->
+            <div id="authentication-modal" tabindex="-1" aria-hidden="true"
+                class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+                <div class="bg-white w-full max-w-md rounded-lg shadow-lg p-6">
+                    <div class="flex justify-between items-center border-b pb-2 mb-4">
+                        <h3 class="text-lg font-semibold text-coffee">Buat Album Baru</h3>
+                        <button data-modal-hide="authentication-modal" class="text-gray-500 hover:text-red-500">&times;</button>
+                    </div>
+                    <form action="" method="POST" class="space-y-4">
                         <div>
-                            <label for="album_name"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Album</label>
-                            <input type="text" name="album_name" id="album_name"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#cc5200] focus:border-[#cc5200] block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                placeholder="Nama Album Baru" required>
+                            <label class="block text-sm font-medium text-gray-700">Nama Album</label>
+                            <input type="text" name="album_name" class="w-full border border-coffee rounded px-3 py-2" placeholder="Contoh: Upacara 17 Agustus" required>
                         </div>
-
-
                         <button type="submit" name="submit_new_album"
-                            class="w-full text-white bg-[#ef6c00] hover:bg-[#cc5200] focus:ring-4 focus:outline-none focus:ring-[#cc5200] font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#cc5200] dark:focus:ring-[#cc5200]">Buat</button>
-
+                            class="w-full bg-coffee text-white py-2 rounded hover:bg-coffee-dark">Simpan Album</button>
                     </form>
                 </div>
             </div>
-        </div>
-    </div>
 
+            <!-- Album List -->
+            <div class="mt-10 space-y-6">
+                <?php
+                $fetch_all_album = "SELECT * FROM `gallery_album`;";
+                $albums = mysqli_query($connection, $fetch_all_album);
+                if (mysqli_num_rows($albums) > 0):
+                    while ($row = mysqli_fetch_assoc($albums)):
+                        $albumId = $row["id"];
+                        $album_name = $row["album_name"];
+                ?>
+                <div class="border border-coffee rounded-lg bg-white shadow p-4">
+                    <div class="flex justify-between items-center mb-3">
+                        <h2 class="text-xl font-semibold text-coffee"><?php echo htmlspecialchars($album_name); ?></h2>
+                        <div class="flex space-x-2">
+                            <button data-modal-toggle="addImageModal<?php echo $albumId; ?>" class="text-sm bg-white text-coffee px-3 py-1 rounded border border-coffee hover:bg-coffee hover:text-white transition">Tambah Gambar</button>
+                            <form method="POST" onsubmit="return confirm('Yakin ingin menghapus album ini?')">
+                                <input type="hidden" name="album_Id" value="<?php echo $albumId; ?>">
+                                <button type="submit" name="deleteAlbum" class="text-sm bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">Hapus Album</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                        <?php
+                        $stmt_images = mysqli_prepare($connection, "SELECT * FROM `gallery_images` WHERE album = ? ORDER BY id DESC");
+                        mysqli_stmt_bind_param($stmt_images, "s", $album_name);
+                        mysqli_stmt_execute($stmt_images);
+                        $result_images = mysqli_stmt_get_result($stmt_images);
+                        while ($imagerow = mysqli_fetch_assoc($result_images)):
+                        ?>
+                        <div class="relative">
+                            <img src="../<?php echo $imagerow['image_url']; ?>" class="w-full h-40 object-cover rounded shadow">
+                            <form method="POST" onsubmit="return confirm('Yakin ingin menghapus gambar ini?')" class="absolute top-1 right-1">
+                                <input type="hidden" name="imageId" value="<?php echo $imagerow['id']; ?>">
+                                <button name="deleteImage" class="text-white bg-black bg-opacity-60 rounded-full p-1 hover:bg-opacity-80">
+                                    &times;
+                                </button>
+                            </form>
+                        </div>
+                        <?php endwhile; ?>
+                    </div>
+                </div>
 
-    <div class="mx-10 mb-10" id="accordion-color" data-accordion="collapse"
-        data-active-classes="bg-[#cc5200] dark:bg-gray-800 text-[#ef6c00[ dark:text-white">
-        <?php
-        $fetch_all_album = "SELECT * FROM `gallery_album`;";
-        $albums = mysqli_query($connection, $fetch_all_album);
-        $totalAlbums = mysqli_num_rows($albums);
-
-        if ($totalAlbums > 0) {
-            while ($row = mysqli_fetch_assoc($albums)) {
-                $albumId = $row["id"];
-                $album_name = $row["album_name"];
-
-                echo '
-        
-      <h2 id="accordion-color-heading-' . $albumId . '">
-           <button type="button"
-                class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-white border border-b-0 border-gray-50 bg-[#fa7c0f] hover:bg-[#e65c00] focus:ring-4 focus:ring-[#cc5200] dark:focus:ring-[#cc5200] dark:border-gray-700 gap-3"
-                data-accordion-target="#accordion-color-body-' . $albumId . '" aria-expanded="false"
-                aria-controls="accordion-color-body-' . $albumId . '">
-                <span>' . $row["album_name"] . '</span>
-                <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M9 5 5 1 1 5" />
-                </svg>
-            </button>
-
-        </h2>
-
-        <div id="accordion-color-body-' .
-                    $albumId .
-                    '" class="hidden" aria-labelledby="accordion-color-heading-' .
-                    $albumId .
-                    '">
-            <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
-
-
-            <div class="flex justify-center m-5">
-            <button  data-modal-target="addImagestoAlbum' .
-                    $albumId .
-                    '" data-modal-toggle="addImagestoAlbum' .
-                    $albumId .
-                    '" class="mx-5 block text-white bg-[#ef6c00] hover:bg-[#cc5200] focus:ring-4 focus:outline-none focus:ring-[#cc5200] font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#cc5200] dark:focus:ring-[#cc5200]" type="button">
-                        Tambah Gambar
-            </button>
-
-
-            <button data-modal-target="deleteModal' .$albumId .'" data-modal-toggle="deleteModal' . $albumId .'" class="mx-5 block text-white bg-[#dc1209] hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" type="button">
-            Hapus Album?
-            </button>
-        </div>
-        
-        <!-- Add Images to album model -->
+           <!-- Add Images to album model -->
 
         <div id="addImagestoAlbum' .
                     $albumId .
@@ -294,149 +277,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </div>
         </div>
     </div>
-
-
-
-
-
-        <!-- Main modal -->
-        <div id="deleteModal' .
-                    $albumId .
-                    '" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
-            <div class="relative p-4 w-full max-w-md h-full md:h-auto">
-                <!-- Modal content -->
-                <div class="relative p-4 text-center bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
-                    <button type="button" class="text-gray-400 absolute top-2.5 right-2.5 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="deleteModal' .
-                    $albumId .
-                    '">
-                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                        <span class="sr-only">Close modal</span>
-                    </button>
-                    <svg class="text-gray-400 dark:text-gray-500 w-11 h-11 mb-3.5 mx-auto" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
-                    <p class="mb-4 text-gray-500 dark:text-gray-300">Apakah kamu yakin ingin menghapus ' . $album_name . '?<br><br>CATATAN: Album akan dihapus dari panel admin dan dari website. Jika kamu berubah pikiran, kamu dapat memulihkannya kapan saja karena masih tersimpan di server.</p>
-                    <div class="flex justify-center items-center space-x-4">
-
-                    <form class="space-y-4" action="" method="POST">
-                        <button data-modal-toggle="deleteModal' .
-                    $albumId .
-                    '" type="button" class="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
-                            Tidak, Batal
-                        </button>
-                        
-                        <input type="text" value="'.$albumId.'" class="hidden" name="album_Id">
-                        <button type="submit" name="deleteAlbum" class="py-2 px-3 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900">
-                          Ya, Saya yakin
-                        </button>
-                        </form>
-                    </div>
-                </div>
+        <?php endwhile; endif; ?>
             </div>
-        </div> 
-
-
-            
-            <section class="bg-white dark:bg-gray-900">
-        <div class="py-4 px-2 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
-
-
-
-
-
-
-        
-            <div class="grid gap-2 lg:gap-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-            
-            
-            ';
-
-                $fetch_all_images =
-                    "SELECT * FROM `gallery_images` WHERE album = ? ORDER BY id DESC";
-                $stmt_images = mysqli_prepare($connection, $fetch_all_images);
-                mysqli_stmt_bind_param($stmt_images, "s", $album_name);
-                mysqli_stmt_execute($stmt_images);
-                $result_images = mysqli_stmt_get_result($stmt_images);
-                $total_images = mysqli_num_rows($result_images);
-
-                if ($total_images > 0) {
-                    while ($imagerow = mysqli_fetch_assoc($result_images)) {
-                        $imageId = $imagerow["id"];
-                        echo '
-                 
-
-
-
-
-
-
-
-            
-                <div class="text-center text-gray-500 dark:text-gray-400">
-                    <img style="transition: 0.3s;" class="object-cover object-center hover:object-scale-down  mx-auto mb-4 w-36 h-36 rounded-lg"
-                        src="../' .
-                            $imagerow["image_url"] .
-                            '"
-                        alt="cannot load image">
-                    <ul class="flex justify-center mt-4 space-x-4">
-                        <li>
-                        <form action="" method="POST"  onsubmit="return confrimImageDelete()">
-                        <input name="imageId" type="text" value="'.$imageId.'" class="hidden">
-                            <button type="submit" name="deleteImage" class="text-[#39569c] hover:text-gray-900 dark:hover:text-white">
-                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 482.428 482.429"
-                                    xml:space="preserve" aria-hidden="true">
-                                    <g>
-                                        <g>
-                                            <path d="M381.163,57.799h-75.094C302.323,25.316,274.686,0,241.214,0c-33.471,0-61.104,25.315-64.85,57.799h-75.098
-			c-30.39,0-55.111,24.728-55.111,55.117v2.828c0,23.223,14.46,43.1,34.83,51.199v260.369c0,30.39,24.724,55.117,55.112,55.117
-			h210.236c30.389,0,55.111-24.729,55.111-55.117V166.944c20.369-8.1,34.83-27.977,34.83-51.199v-2.828
-			C436.274,82.527,411.551,57.799,381.163,57.799z M241.214,26.139c19.037,0,34.927,13.645,38.443,31.66h-76.879
-			C206.293,39.783,222.184,26.139,241.214,26.139z M375.305,427.312c0,15.978-13,28.979-28.973,28.979H136.096
-			c-15.973,0-28.973-13.002-28.973-28.979V170.861h268.182V427.312z M410.135,115.744c0,15.978-13,28.979-28.973,28.979H101.266
-			c-15.973,0-28.973-13.001-28.973-28.979v-2.828c0-15.978,13-28.979,28.973-28.979h279.897c15.973,0,28.973,13.001,28.973,28.979
-			V115.744z" />
-                                            <path d="M171.144,422.863c7.218,0,13.069-5.853,13.069-13.068V262.641c0-7.216-5.852-13.07-13.069-13.07
-			c-7.217,0-13.069,5.854-13.069,13.07v147.154C158.074,417.012,163.926,422.863,171.144,422.863z" />
-                                            <path d="M241.214,422.863c7.218,0,13.07-5.853,13.07-13.068V262.641c0-7.216-5.854-13.07-13.07-13.07
-			c-7.217,0-13.069,5.854-13.069,13.07v147.154C228.145,417.012,233.996,422.863,241.214,422.863z" />
-                                            <path d="M311.284,422.863c7.217,0,13.068-5.853,13.068-13.068V262.641c0-7.216-5.852-13.07-13.068-13.07
-			c-7.219,0-13.07,5.854-13.07,13.07v147.154C298.213,417.012,304.067,422.863,311.284,422.863z" />
-                                        </g>
-                                    </g>
-                                </svg>
-                            </button>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-                ';
-                    }
-                }
-                echo '  </div>
         </div>
     </section>
-
-    
-            </div>
-        </div>';
-            }
-        }
-        ?>
-
-    </div>
-
-    
-
-
-
 </body>
-<script>
-function confrimImageDelete() {
-            var deleteImg = confirm("Are you sure want to delete this image");
-
-            if (deleteImg) {
-                return true;
-            }
-            return false;
-        }
-</script>
 
 </html>
