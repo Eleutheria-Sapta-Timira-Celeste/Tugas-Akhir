@@ -58,7 +58,7 @@ $topImage = mysqli_fetch_assoc($imageResult);
         <!-- Text Section -->
         <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 
             items-center text-center animate-fadeIn">
-            <h1 class="title-font sm:text-4xl text-3xl mb-6 font-extrabold text-orange-700 animate-pulse">
+            <h1 class="title-font sm:text-4xl text-3xl mb-6 font-extrabold text-[#a9745a] animate-pulse">
                 Perkenalan
                 <br class="hidden lg:inline-block">
             </h1>
@@ -67,7 +67,7 @@ $topImage = mysqli_fetch_assoc($imageResult);
             </p>
             <div class="flex justify-center space-x-4">
                 <button onclick="contactbtn()" class="inline-flex text-white border-0 py-2 px-6 focus:outline-none rounded-lg text-lg 
-                    bg-orange-600 hover:bg-orange-500 transition duration-300 shadow-lg hover:shadow-xl">
+                    bg-[#5c3d15] hover:[#4b320f] transition duration-300 shadow-lg hover:shadow-xl">
                     Hubungi Kami
                 </button>
 
@@ -125,7 +125,7 @@ $topImage = mysqli_fetch_assoc($imageResult);
         <section class="text-gray-600 body-font animate-fadeIn">
     <div class="container px-5 py-5 mx-auto">
         <div class="text-center mb-10">
-            <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-orange-700 animate-pulse">
+            <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-[#a9745a] animate-pulse">
                 Tata Tertib dan Peraturan Sekolah
             </h1>
             <p class="text-justify text-sm md:text-base text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto animate-fadeIn">
@@ -137,7 +137,7 @@ $topImage = mysqli_fetch_assoc($imageResult);
                 <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
                     <div class="p-2 sm:w-1/2 w-full">
                         <div class="bg-gray-100 rounded flex p-4 h-full items-center">
-                            <svg fill="none" stroke="#ef6c00" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+                            <svg fill="none" stroke="#a9745a" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
                                 <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
                                 <path d="M22 4L12 14.01l-3-3"></path>
                             </svg>
@@ -146,7 +146,7 @@ $topImage = mysqli_fetch_assoc($imageResult);
                     </div>
                     <div class="p-2 sm:w-1/2 w-full">
                         <div class="bg-gray-100 rounded flex p-4 h-full items-center">
-                             <svg fill="none" stroke="#ef6c00" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+                             <svg fill="none" stroke="#a9745a" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
                                 <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
                                 <path d="M22 4L12 14.01l-3-3"></path>
                             </svg>
@@ -155,7 +155,7 @@ $topImage = mysqli_fetch_assoc($imageResult);
                     </div>
                     <div class="p-2 sm:w-1/2 w-full">
                         <div class="bg-gray-100 rounded flex p-4 h-full items-center">
-                             <svg fill="none" stroke="#ef6c00" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+                             <svg fill="none" stroke="#a9745a" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
                                 <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
                                 <path d="M22 4L12 14.01l-3-3"></path>
                             </svg>
@@ -164,7 +164,7 @@ $topImage = mysqli_fetch_assoc($imageResult);
                     </div>
                     <div class="p-2 sm:w-1/2 w-full">
                         <div class="bg-gray-100 rounded flex p-4 h-full items-center">
-                             <svg fill="none" stroke="#ef6c00" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+                             <svg fill="none" stroke="#a9745a" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
                                 <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
                                 <path d="M22 4L12 14.01l-3-3"></path>
                             </svg>
@@ -173,7 +173,7 @@ $topImage = mysqli_fetch_assoc($imageResult);
                     </div>
                     <div class="p-2 sm:w-1/2 w-full">
                         <div class="bg-gray-100 rounded flex p-4 h-full items-center">
-                             <svg fill="none" stroke="#ef6c00" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+                             <svg fill="none" stroke="#a9745a" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
                                 <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
                                 <path d="M22 4L12 14.01l-3-3"></path>
                             </svg>
@@ -182,7 +182,7 @@ $topImage = mysqli_fetch_assoc($imageResult);
                     </div>
                     <div class="p-2 sm:w-1/2 w-full">
                         <div class="bg-gray-100 rounded flex p-4 h-full items-center">
-                            <svg fill="none" stroke="#ef6c00" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+                            <svg fill="none" stroke="#a9745a" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
                                 <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
                                 <path d="M22 4L12 14.01l-3-3"></path>
                             </svg>
@@ -191,7 +191,7 @@ $topImage = mysqli_fetch_assoc($imageResult);
                     </div>
                     <div class="p-2 sm:w-1/2 w-full">
                         <div class="bg-gray-100 rounded flex p-4 h-full items-center">
-                             <svg fill="none" stroke="#ef6c00" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+                             <svg fill="none" stroke="#a9745a" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
                                 <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
                                 <path d="M22 4L12 14.01l-3-3"></path>
                             </svg>
@@ -200,7 +200,7 @@ $topImage = mysqli_fetch_assoc($imageResult);
                     </div>
                     <div class="p-2 sm:w-1/2 w-full">
                         <div class="bg-gray-100 rounded flex p-4 h-full items-center">
-                             <svg fill="none" stroke="#ef6c00" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+                             <svg fill="none" stroke="#a9745a" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
                                 <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
                                 <path d="M22 4L12 14.01l-3-3"></path>
                             </svg>
@@ -209,7 +209,7 @@ $topImage = mysqli_fetch_assoc($imageResult);
                     </div>
                     <div class="p-2 sm:w-1/2 w-full">
                         <div class="bg-gray-100 rounded flex p-4 h-full items-center">
-                             <svg fill="none" stroke="#ef6c00" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+                             <svg fill="none" stroke="#a9745a" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
                                 <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
                                 <path d="M22 4L12 14.01l-3-3"></path>
                             </svg>
@@ -218,7 +218,7 @@ $topImage = mysqli_fetch_assoc($imageResult);
                     </div>
                     <div class="p-2 sm:w-1/2 w-full">
                         <div class="bg-gray-100 rounded flex p-4 h-full items-center">
-                           <svg fill="none" stroke="#ef6c00" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
+                           <svg fill="none" stroke="#a9745a" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
                                 <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
                                 <path d="M22 4L12 14.01l-3-3"></path>
                             </svg>
@@ -233,7 +233,7 @@ $topImage = mysqli_fetch_assoc($imageResult);
         <section id="courses" class="text-gray-700 body-font animate-fadeIn">
     <div class="container px-5 py-24 mx-auto">
         <div class="text-center mb-12">
-            <h1 class="title-font sm:text-4xl text-3xl mb-6 font-extrabold text-orange-700 animate-pulse">
+            <h1 class="title-font sm:text-4xl text-3xl mb-6 font-extrabold text-[#a9745a] animate-pulse">
                 Kegiatan Sekolah
             </h1>
             <p class="text-justify text-sm md:text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto animate-fadeIn">
@@ -276,10 +276,10 @@ $topImage = mysqli_fetch_assoc($imageResult);
        <section class="text-gray-700 body-font animate-fadeIn">
     <div class="container px-5 py-16 mx-auto">
         <div class="w-full mb-12 text-center">
-            <h1 class="title-font sm:text-4xl text-3xl mb-6 font-extrabold text-orange-700 animate-pulse">
+            <h1 class="title-font sm:text-4xl text-3xl mb-6 font-extrabold text-[#a9745a] animate-pulse">
                 Fasilitas Sekolah
             </h1>
-            <div class="w-12 h-1 rounded mt-2 mx-auto bg-orange-500 animate-pulse"></div>
+            <div class="w-12 h-1 rounded mt-2 mx-auto bg-[#a9745a] animate-pulse"></div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 animate-fadeIn">

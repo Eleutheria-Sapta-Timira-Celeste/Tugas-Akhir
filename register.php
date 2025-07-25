@@ -199,7 +199,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         </div>
 
-        <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded font-semibold w-full">
+        <button type="submit" class="bg-[#5c3d15] hover:bg-[#4b320f] text-white px-6 py-2 rounded font-semibold w-full">
             Daftar
         </button>
 

@@ -111,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <a href="lupa_password.php" class="text-sm text-blue-500 hover:text-blue-700">Lupa Password?</a>
                     </div>
             
-                    <button type="submit" class="w-full bg-[#ef6c00] text-white py-2 rounded hover:bg-[#ef6c00]">
+                    <button type="submit" class="w-full bg-[#5c3d15] text-white py-2 rounded hover:bg-[#4b320f]">
                         Login
                     </button>
                 </form>
