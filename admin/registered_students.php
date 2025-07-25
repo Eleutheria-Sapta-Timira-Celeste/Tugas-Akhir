@@ -47,26 +47,23 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
 
     <!-- Header Section -->
     <section class="text-gray-600 body-font">
-        <div class="container px-5 py-4 mx-auto">
-            <div class="flex flex-col text-center w-full mb-2">
-                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-[#ef6c00]">
-                    Halaman Data Pendaftaran Siswa
-                </h1>
-                <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base text-gray-700">
-                    Selamat datang di halaman data pendaftaran siswa baru SMP PGRI 371 Pondok Aren khusus untuk admin.
-                    Halaman ini digunakan untuk memantau, mengelola, dan memverifikasi seluruh data pendaftaran dengan akurat dan efisien.
-                    Kami berharap sistem ini memudahkan proses administrasi demi kelancaran penerimaan siswa baru di sekolah.
-                </p>
+            <div class="container px-5 py-5 mx-auto">
+                <div class="flex flex-col text-center w-full mb-2">
+                    <h1 class="text-3xl font-bold text-[#a9745a]">Halaman Kelola SPMB </h1>
+                        <p class="text-sm text-gray-600 mt-2 max-w-2xl mx-auto">
+                        Selamat datang di halaman data pendaftaran siswa baru SMP PGRI 371 Pondok Aren khusus untuk admin.
+                        Halaman ini digunakan untuk memantau, mengelola, dan memverifikasi seluruh data pendaftaran dengan akurat dan efisien.
+                        Kami berharap sistem ini memudahkan proses administrasi demi kelancaran penerimaan siswa baru di sekolah.
+                    </p>
+                </div>
             </div>
-        </div>
-    </section>
-
+    </section>             
     <!-- Table Section -->
     <section class=" p-4 sm:p-6">
             <div class="bg-white border border-[#fc941e]/30 shadow-md sm:rounded-lg overflow-hidden">
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm text-left text-gray-800">
-                        <thead class="text-xs uppercase bg-[#fc941e] text-white">
+                        <thead class="text-xs uppercase bg-[#a9745a] text-white">
                             <tr>
                                 <th scope="col" class="p-4 font-semibold">Nama Siswa</th>
                                 <th scope="col" class="p-4 font-semibold">Jenis Kelamin</th>

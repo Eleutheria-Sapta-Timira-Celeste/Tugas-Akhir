@@ -238,21 +238,21 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
 <body>
   
 
-    <section class="text-gray-600 body-font">
-        <div class="container px-5 py-10 mx-auto">
-            <div class="flex flex-col text-center w-full mb-5">
-                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4" style="color: #ef6c00;">Perbarui Staff Sekolah
-                </h1>
-                <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base">
-                    🎉 Selamat datang di halaman pengelolaan dan pembaruan data staf dan kepanitiaan SMP PGRI 371 Pondok Aren! 📝
+     <section class="text-gray-600 body-font">
+            <div class="container px-5 py-5 mx-auto">
+                <div class="flex flex-col text-center w-full mb-2">
+                    <h1 class="text-3xl font-bold text-[#a9745a]">Halaman Kelola Staff Sekolah </h1>
+                        <p class="text-sm text-gray-600 mt-2 max-w-2xl mx-auto">
+                       🎉 Selamat datang di halaman pengelolaan dan pembaruan data staf dan kepanitiaan SMP PGRI 371 Pondok Aren! 📝
                         Halaman ini dirancang dengan antarmuka yang mudah digunakan untuk membantu Anda melakukan perubahan data staf maupun struktur kepanitiaan secara efisien.
                         Partisipasi Anda sangat penting dalam menjaga keakuratan dan keterkinian data.
                         Silakan gunakan fitur yang tersedia untuk memastikan semua informasi tetap terupdate. 🚀
-                </p>
-            </div>
+                    </p>
+                </div>
+            </div>             
 
             <button data-modal-target="authentication-modal2" data-modal-toggle="authentication-modal2"
-                class="mt-10 mb-0 block text-white bg-[#ef6c00] hover:bg-[#ef6c00] focus:ring-4 p-4 focus:outline-none focus:ring-[#ef6c00] font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#fc941e] dark:hover:bg-[#ef6c00] dark:focus:ring-"
+                class="mt-10 mb-0 block text-white bg-[#5c3d15] hover:bg-[#4b320f] focus:ring-4 p-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                 type="button">
                 Tambah Data Kepala Sekolah
             </button>
@@ -271,7 +271,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
             <div class="relative bg-white rounded-lg shadow ">
                 <!-- Modal header -->
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
-                    <h3 class="text-xl font-semibold text-[#ef6c00] ">
+                    <h3 class="text-xl font-semibold text-[#5c3d15]">
                         Tambah Data Guru
                     </h3>
                     <button type="button"
@@ -323,7 +323,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
 
 
                         <button type="submit" name="add_staff"
-                            class="w-full text-white bg-[#fc941e] hover:bg-[#ef6c00] focus:ring-4 focus:outline-none focus:ring-[#ef6c00] font-medium rounded-lg text-sm px-5 py-2.5 text-center">Tambah Data Guru
+                            class="w-full text-white bg-[#5c3215] hover:bg-[#4b320f] focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center">Tambah Data Guru
                             </button>
 
                     </form>
@@ -341,7 +341,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
         <div class="relative bg-white rounded-lg shadow">
             <!-- Modal header -->
             <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
-                <h3 class="text-xl font-semibold text-gray-900">
+                <h3 class="text-xl font-semibold text-[#5c3d15]">
                     Tambah Pimpinan Sekolah
                 </h3>
                 <button type="button"
@@ -386,7 +386,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                     </div>
 
                     <button type="submit" name="add_pimpinan"
-                        class="w-full text-white bg-[#ef6c00] hover:bg-[#cc5200] focus:ring-4 focus:outline-none focus:ring-[#cc5200] font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#cc5200] dark:focus:ring-[#cc5200]">
+                        class="w-full text-white bg-[#5c3d15] hover:bg-[#4b320f] focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-centers">
                         Tambah Pimpinan
                     </button>
                 </form>
@@ -404,7 +404,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
 ?>
 
 <main>
-    <section class="bg-white dark:bg-white p-3 sm:p-5 antialiased">
+    
         <div class="mx-auto max-w-screen-xl px-0 lg:px-12">
            <div class="bg-white dark:bg-white relative shadow-md sm:rounded-lg overflow-hidden border-2 border-[#fcddb8]">
 
@@ -413,7 +413,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                         <form class="flex items-center">
                             <div class="relative w-full">
                                 <div class="absolute inset-y-0 left-0 flex items-center pl-0 pointer-events-none">
-                                    <h2 class="text-xl font-bold text-[#fc941e]">Pimpinan Sekolah</h2>
+                                    <h2 class="text-xl font-bold text-[#a9745a]">Pimpinan Sekolah</h2>
                                 </div>
                             </div>
                         </form>
@@ -422,7 +422,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
 
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm text-left text-gray-500 text-black dark:text-black">
-                        <thead class="text-xs text-white uppercase bg-[#fc941e] dark:bg-[#fc941e] dark:text-white">
+                        <thead class="text-xs text-white uppercase bg-[#a9745a]">
                             <tr>
                                 <th class="px-4 py-3">Nama</th>
                                 <th class="px-4 py-3">Jabatan</th>
@@ -449,7 +449,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                                     <td class="px-4 py-3">' . $row['contact_no'] . '</td>
                                    <td class="px-4 py-3 flex items-center justify-end relative z-50">
 
-                                        <button data-dropdown-toggle="dropdown-pimpinan' . $pimpinanId . '" class="text-[#fc941e] hover:text-[#e77e08]">
+                                        <button data-dropdown-toggle="dropdown-pimpinan' . $pimpinanId . '" class="text-[#a9745a] hover:text-[#a9745a]">
                                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                                 <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
                                             </svg>
@@ -509,7 +509,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                         <input type="hidden" name="pimpinanImageLocation" value="' . $row['image_src'] . '">
                         <div class="flex justify-end">
                             <button type="submit" name="update_pimpinan"
-                                    class="px-4 py-2 bg-[#fc941e] text-white rounded hover:bg-[#e77e08] ">
+                                    class="px-4 py-2 bg-[#5c3d15] text-white rounded hover:bg-[#4b320f] ">
                                 Simpan
                             </button>
                         </div>
@@ -526,7 +526,6 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                 </div>
             </div>
         </div>
-    </section>
 </main>
 
 
@@ -536,7 +535,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
         <div class="container px-5 py-4 mx-auto">
 
             <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
-                class="mt-10 block text-white bg-[#fc941e] hover:bg-[#ef6c00] focus:ring-4 focus:outline-none focus:ring-[#fc941e] font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#fc941e] dark:hover:bg-[#ef6c00] dark:focus:ring-[#fc941e]"
+                class="mt-10 block text-white bg-[#5c3d15] hover:bg-[#4b320f] focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                 type="button">
                 Tambah Data Guru
             </button>
@@ -546,8 +545,8 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
     </section>
 
    <main>
-    <section class="bg-white dark:bg-white p-3 sm:p-5 antialiased">
-        <div class="mx-auto max-w-screen-xl px-0 lg:px-12">
+   
+        <div class="mx-auto max-w-screen-xl px-0 lg:px-12 pb-10">
             <!-- Start coding here -->
             <div class="bg-white dark:bg-white relative shadow-md sm:rounded-lg overflow-hidden border-2 border-[#fcddb8]">
                 <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
@@ -555,7 +554,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                         <form class="flex items-center">
                             <div class="relative w-full">
                                 <div class="absolute inset-y-0 left-0 flex items-center pl-0 pointer-events-none">
-                                    <h2 class="text-xl font-bold text-[#fc941e]">Data Guru Sekolah</h2>
+                                    <h2 class="text-xl font-bold text-[#a9745a]">Data Guru Sekolah</h2>
                                 </div>
                             </div>
                         </form>
@@ -563,7 +562,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm text-left text-gray-500">
-                        <thead class="text-xs text-white uppercase bg-[#fc941e] dark:bg-[#fc941e] dark:text-white">
+                        <thead class="text-xs text-white uppercase bg-[#a9745a] dark:text-white">
                             <tr>
                                 <th scope="col" class="px-4 py-3">Nama</th>
                                 <th scope="col" class="px-4 py-3">Posisi</th>
@@ -591,7 +590,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                                         <td class="px-4 py-3">' . $row['contact'] . '</td>
                                         <td class="px-4 py-3">' . $row['qualification'] . '</td>
                                         <td class="px-4 py-3 flex items-center justify-end">
-                                            <button data-dropdown-toggle="dropdown-staff-' . $staffsId . '" class="text-[#fc941e] hover:text-[#e77e08]">
+                                            <button data-dropdown-toggle="dropdown-staff-' . $staffsId . '" class="text-[#a9745a] hover:text-[#a9745a]">
                                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                                     <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
                                                 </svg>
@@ -621,7 +620,6 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                 </div>
             </div>
         </div>
-    </section>
 </main>
 
 
@@ -643,7 +641,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                                 <div class="relative p-4 bg-white rounded-lg shadow  sm:p-5">
                                     <!-- Modal header -->
                                     <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 ">
-                                        <h3 class="text-lg font-semibold text-[#ef6c00]">Perbarui Petugas</h3>
+                                        <h3 class="text-lg font-semibold text-black">Perbarui Petugas</h3>
                                         <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-toggle="updatestaffsModel' . $staffsId . '">
                                             <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -680,7 +678,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                                         </div>
                                         
                                         <div class="flex items-center space-x-4">
-                                            <button name="update_staffs" type="submit" class="text-white bg-[#ef6c00] hover:bg-[#cc5200] focus:ring-4 focus:outline-none focus:ring-[#cc5200] font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#ef6c00] dark:hover:bg-[#cc5200] dark:focus:ring-[#cc5200]">Perbarui Petugas</button>
+                                            <button name="update_staffs" type="submit" class="text-white bg-[#5c3d15] hover:bg-[#4b320f] focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center">Perbarui Petugas</button>
                                             
                                         </div>
                                     </form>

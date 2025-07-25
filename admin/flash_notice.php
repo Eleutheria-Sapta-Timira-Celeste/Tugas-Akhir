@@ -53,8 +53,8 @@ if (isset($_POST['update_flash_notice'])) {
 <section class="text-gray-600 body-font">
     <div class="container px-5 py-10 mx-auto">
         <div class="flex flex-col text-center w-full mb-5">
-            <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-[#ef6c00]">Perbarui Kartu Sambutan</h1>
-            <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base">
+            <h1 class="text-3xl font-bold text-[#a9745a]">Perbarui Kartu Sambutan</h1>
+                <p class="text-sm text-gray-600 mt-2 max-w-2xl mx-auto">
                 Halaman ini berfungsi untuk mengubah atau mengatur kartu sambutan yang muncul ketika pengunjung membuka halaman website.
             </p>
         </div>
@@ -73,7 +73,7 @@ if (isset($_POST['update_flash_notice'])) {
                     <img class="rounded-t-lg mx-auto" src="../<?= $flash_notice['image_url']; ?>" alt="Preview Image" />
                     <p class="my-3 text-gray-700 text-justify"><?= $flash_notice['message']; ?></p>
                     <div class="flex justify-left mt-auto">
-                        <a href="#" class="inline-flex items-left py-2 px-4 text-white bg-[#e65c00] hover:bg-[#cc5200] rounded">Close</a>
+                        <a href="#" class="inline-flex items-left py-2 px-4 text-white bg-[#5c3215] hover:bg-[#4b320f] rounded">Close</a>
                     </div>
                 </div>
             </div>
@@ -112,7 +112,7 @@ if (isset($_POST['update_flash_notice'])) {
                         </div>
 
                         <div class="flex justify-end mt-6">
-                            <button name="update_flash_notice" type="submit" class="px-4 py-2 bg-[#fc6941] hover:bg-[#e65c00] text-white rounded">
+                            <button name="update_flash_notice" type="submit" class="px-4 py-2 bg-[#5c3d15] hover:bg-[#4b320f] text-white rounded">
                                 Simpan Perubahan
                             </button>
                         </div>
