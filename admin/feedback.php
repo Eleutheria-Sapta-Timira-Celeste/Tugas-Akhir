@@ -118,15 +118,17 @@ if (isset($_POST['feedbackDelete'])) {
 
                                 <!-- Modal Delete -->
                                 <div id="deleteModal'.$feedbackId.'" tabindex="-1" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
-                                    <form method="post" class="bg-white rounded-lg p-6 max-w-md w-full">
-                                        <h3 class="text-lg font-semibold text-gray-900 mb-3 text-center">Yakin ingin menghapus?</h3>
-                                        <input type="hidden" name="feedback_id" value="'.$feedbackId.'" />
-                                        <div class="flex justify-center gap-4">
-                                            <button data-modal-hide="deleteModal'.$feedbackId.'" type="button" class="px-4 py-2 text-sm bg-gray-200 rounded hover:bg-gray-300">Batal</button>
-                                            <button name="feedbackDelete" type="submit" class="px-4 py-2 text-sm bg-red-600 text-white rounded hover:bg-red-700">Ya, Hapus</button>
-                                        </div>
-                                    </form>
-                                </div>
+    <div class="bg-white rounded-lg p-6 max-w-md w-full">
+        <h3 class="text-lg font-semibold text-gray-900 mb-3 text-center">Yakin ingin menghapus?</h3>
+        <form method="post">
+            <input type="hidden" name="feedback_id" value="'.$feedbackId.'" />
+            <div class="flex justify-center gap-4 mt-4">
+                <button data-modal-hide="deleteModal'.$feedbackId.'" type="button" class="px-4 py-2 text-sm bg-gray-200 rounded hover:bg-gray-300">Batal</button>
+                <button name="feedbackDelete" type="submit" class="px-4 py-2 text-sm bg-red-600 text-white rounded hover:bg-red-700">Ya, Hapus</button>
+            </div>
+        </form>
+    </div>
+</div>
                                 ';
                             }
                             ?>
