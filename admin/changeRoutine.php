@@ -98,20 +98,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['update_notice'])) {
 <body>
 
 <main class="py-7 px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-10">
-        <h1 class="text-3xl font-bold text-[#fc941e]">Ubah Jadwal Kelas</h1>
-        <p class="text-gray-600 max-w-3xl mx-auto">Halaman ini memungkinkan admin sekolah untuk mengelola jadwal pelajaran setiap kelas dalam bentuk gambar. 
-            Admin dapat menambahkan, memperbarui, atau menghapus file jadwal agar siswa/siswi selalu memperoleh informasi terbaru terkait pembelajaran di kelas masing-masing. 
-            Dengan pengelolaan yang terpusat dan fleksibel, penyampaian jadwal menjadi lebih praktis dan efisien.</p>
+    <div class="flex flex-col text-center w-full mb-2">
+                    <h1 class="text-3xl font-bold text-[#a9745a]">Ubah Jadwal Kelas </h1>
+                        <p class="text-sm text-gray-600 mt-2 max-w-2xl mx-auto">
+                        Halaman ini memudahkan admin mengelola file gambar jadwal pelajaran tiap kelas. 
+                        Admin dapat menambah, mengubah, atau menghapus jadwal agar siswa selalu mendapat info terbaru secara praktis dan efisien.
+                    </p>
     </div>
 
-    <div class="flex justify-end mb-2 max-w-6xl mx-auto">
-        <button data-modal-target="modal0" data-modal-toggle="modal0" class="btn-orange px-4 py-2 rounded text-sm">+ Tambah Jadwal</button>
+    <div class="flex justify-end mb-4 max-w-6xl mx-auto">
+        <button data-modal-target="modal0" data-modal-toggle="modal0" class="bg-[#5c3d15] bg-hover-[#4b320f] px-4 py-2 text-white rounded text-sm">+ Tambah Jadwal</button>
     </div>
 
     <div class="bg-white shadow rounded-lg overflow-x-auto max-w-6xl mx-auto">
         <table class="w-full text-sm text-left text-gray-700">
-            <thead class="text-xs text-white uppercase bg-[#fc941e]">
+            <thead class="text-xs text-white uppercase bg-[#a9745a]">
                 <tr>
                     <th class="px-4 py-3">Kelas</th>
                     <th class="px-4 py-3">Terakhir Diperbarui</th>
@@ -126,7 +127,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['update_notice'])) {
                         <td class="px-4 py-3">' . htmlspecialchars($row['class']) . '</td>
                         <td class="px-4 py-3">' . $row['last_modified'] . '</td>
                         <td class="px-4 py-3 text-center space-x-2">
-                            <button data-modal-target="modal' . $row['id'] . '" data-modal-toggle="modal' . $row['id'] . '" class="btn-orange px-3 py-1 rounded text-sm">Edit</button>
+                            <button data-modal-target="modal' . $row['id'] . '" data-modal-toggle="modal' . $row['id'] . '" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">Edit</button>
                             <button onclick="confirmDelete(' . $row['id'] . ')" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-sm">Hapus</button>
                         </td>
                     </tr>';
