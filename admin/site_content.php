@@ -118,7 +118,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Konten Situs</title>
     <link rel="icon" type="image/x-icon" href="../assects/images/admin_logo.png">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
     <style>
       body,
@@ -156,16 +155,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 
 
-<section class="text-gray-600 body-font">
-            <div class="container px-5 py-10 mx-auto">
-                <div class="flex flex-col text-center w-full mb-5">
-                    <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4" style="color: #e65100;">
-Ubah Isi Konten Situs</h1>
-                     <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base">
-                     Harap diperhatikan bahwa konten pada setiap halaman dapat mengalami perubahan atau modifikasi mulai saat ini. Sebelum menyimpan konten apa pun, sangat disarankan untuk melakukan konfirmasi dan validasi terhadap perubahan yang telah dilakukan. Terima kasih atas perhatian Anda dalam menjaga keakuratan dan integritas informasi yang disajikan.</p>
+    <section class="text-gray-600 body-font">
+            <div class="container px-5 py-5 mx-auto">
+                <div class="flex flex-col text-center w-full mb-2">
+                    <h1 class="text-3xl font-bold text-[#a9745a]">Ubah Isi Konten Situs </h1>
+                        <p class="text-sm text-gray-600 mt-2 max-w-2xl mx-auto">
+                       Halaman ini digunakan untuk mengubah, menambah, atau menghapus konten situs seperti profil sekolah, visi misi, informasi kepala sekolah, dan lainnya.
+                       Sistem ini dirancang agar admin dapat memperbarui informasi dengan mudah demi menjaga situs tetap informatif dan relevan.
+                    </p>
                 </div>
             </div>
-        </section>
+    </section>        
         <form action="" method="POST">
         <div class="m-5" id="accordion-collapse" data-accordion="collapse">
         <h2 id="accordion-collapse-heading-1">
@@ -308,27 +308,19 @@ Ubah Isi Konten Situs</h1>
         
         </div>
         
+<div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <a class="flex items-center space-x-3 rtl:space-x-reverse">
+        <!-- Logo atau judul bisa ditambahkan di sini -->
+    </a>
+    <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+        <button type="submit"
+            class="text-white bg-[#5c3d15] hover:bg-[#4b320f] focus:ring-4 focus:outline-none focus:ring-[#5c3d15]/40 font-medium rounded-lg text-sm px-4 py-2 text-center"
+        >
+            Simpan Konten
+        </button>
+    </div>
+</div>
 
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a class="flex items-center space-x-3 rtl:space-x-reverse">
-                
-            </a>
-            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                <button type="submit"
-  class="text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center"
-  style="background-color: #ef6c00; 
-         box-shadow: 0 0 0 4px rgba(239, 108, 0, 0.3);"
-  onmouseover="this.style.backgroundColor='#d55a00';"
-  onmouseout="this.style.backgroundColor='#ef6c00';"
->
-  Simpan Konten
-</button>
-
-                    
-                
-            </div>
-        
-        </div>
     </form>
 
 
