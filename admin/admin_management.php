@@ -86,7 +86,6 @@ $result = $connectionobj->query("SELECT * FROM admin ORDER BY id ASC");
     <title>Manajemen Admin</title>
     <link rel="icon" href="../assects/images/pgri-putih.png" type="image/x-icon">
     <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
 </head>
 
