@@ -40,7 +40,7 @@ try {
         </button>
         <button onclick="registered_students()" class="hover:bg-[#bd8035] p-2 rounded flex items-center justify-between">
             <div class="flex items-center gap-3">
-                👨‍🎓 <span class="sidebar-label">Pendaftar</span>
+                👨‍🎓 <span class="sidebar-label">Halaman SPMB</span>
             </div>
             <?php if ($row['total_notification'] != 0): ?>
                 <span class="bg-red-600 px-2 py-0.5 text-xs rounded-full"><?= $row['total_notification']; ?></span>

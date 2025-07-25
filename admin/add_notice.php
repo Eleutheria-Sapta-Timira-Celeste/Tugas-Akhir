@@ -120,7 +120,18 @@ $stmt->close();
    
 
 <main class="p-6 bg-gray-100 min-h-screen">
-    <section class="max-w-4xl mx-auto p-6 sm:p-8 bg-[#fc941e] rounded-md shadow-md mt-10">
+<section class="text-gray-600 body-font">
+    <div class="container px-5 py-5 mx-auto">
+        <div class="flex flex-col text-center w-full mb-2">
+            <h1 class="text-3xl font-bold text-[#a9745a]">Kelola Pengumuman Sekolah </h1>
+                <p class="text-sm text-gray-600 mt-2 max-w-2xl mx-auto">
+                Halaman ini berfungsi untuk mengelola pengumuman sekolah yang muncul ketika pengunjung membuka halaman website.
+            </p>
+        </div>
+    </div>
+</section>
+
+    <section class="max-w-4xl mx-auto p-6 sm:p-8 bg-[#a67a49] rounded-md shadow-md mt-10">
     <h1 class="text-xl font-bold text-white mb-4">📢 Tambahkan Pengumuman</h1>
 
     <form action="" method="post" enctype="multipart/form-data" class="space-y-6">
@@ -198,7 +209,7 @@ $stmt->close();
 
     <div class="overflow-x-auto">
         <table class="w-full text-sm text-left text-[#1a1a1a]">
-            <thead class="text-xs uppercase bg-[#fc941e] text-white">
+            <thead class="text-xs uppercase bg-[#a67a49] text-white">
                 <tr>
                     <th class="px-4 py-3">Judul</th>
                     <th class="px-4 py-3">Diterbitkan</th>
