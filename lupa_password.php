@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     class="w-full p-2 border border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500">
             </div>
             <button type="submit"
-                class="w-full bg-[#ef6c00] text-white py-2 rounded hover:bg-[#ef6c00]">Ubah Password</button>
+                class="w-full bg-[#5c3d15] text-white py-2 rounded hover:bg-[#4b320f]">Ubah Password</button>
         </form>
 
         <div class="text-center mt-6">

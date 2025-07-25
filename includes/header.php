@@ -15,12 +15,12 @@
 
 <!-- Menu Navigasi -->
 <nav class="flex flex-wrap justify-center space-x-3 md:space-x-5 font-bold text-lg md:text-lg items-center">
-    <a href="index.php" class="hover:text-orange-600 transition">Beranda</a>
-    <a href="aboutus.php" class="hover:text-orange-600 transition">Tentang</a>
-    <a href="notice.php" class="hover:text-orange-600 transition">Pengumuman</a>
-    <a href="extras.php" class="hover:text-orange-600 transition">Informasi Sekolah</a>
-    <a href="contactUs.php" class="hover:text-orange-600 transition">Hubungi</a>
-    <a href="login.php" class="hover:text-orange-600 transition">Akses</a>
+    <a href="index.php" class="hover:text-[#a9745a] transition">Beranda</a>
+    <a href="aboutus.php" class="hover:text-[#a9745a] transition">Tentang</a>
+    <a href="notice.php" class="hover:text-[#a9745a] transition">Pengumuman</a>
+    <a href="extras.php" class="hover:text-[#a9745a] transition">Informasi Sekolah</a>
+    <a href="contactUs.php" class="hover:text-[#a9745a] transition">Hubungi</a>
+    <a href="login.php" class="hover:text-[#a9745a] transition">Akses</a>
 </nav>
 
 <!-- Tombol SPMB -->

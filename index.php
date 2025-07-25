@@ -174,11 +174,11 @@ try {
 
    <div class="flex flex-col sm:flex-row justify-center gap-4">
       <a href="aboutus.php"
-         class="inline-flex justify-center items-center text-sm font-semibold text-[#ef6c00] hover:underline transition">
+         class="inline-flex justify-center items-center text-sm font-semibold text-[#a9745a] hover:underline transition">
          Pelajari lebih lanjut
       </a>
       <button onclick="document.getElementById('info-popup').style.display='none'"
-              class="bg-[#ef6c00] hover:bg-orange-600 text-white px-6 py-2 rounded-lg text-sm font-semibold shadow transition">
+              class="bg-[#5c3d15] hover:bg-[#4b320f] text-white px-6 py-2 rounded-lg text-sm font-semibold shadow transition">
         Tutup
       </button>
     </div>
