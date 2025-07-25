@@ -308,18 +308,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         </div>
         
-<div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-    <a class="flex items-center space-x-3 rtl:space-x-reverse">
-        <!-- Logo atau judul bisa ditambahkan di sini -->
-    </a>
-    <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-        <button type="submit"
-            class="text-white bg-[#5c3d15] hover:bg-[#4b320f] focus:ring-4 focus:outline-none focus:ring-[#5c3d15]/40 font-medium rounded-lg text-sm px-4 py-2 text-center"
-        >
-            Simpan Konten
-        </button>
-    </div>
-</div>
+        <div class="flex justify-center pt-6">
+                <button type="submit"
+                    class="text-white bg-[#5c3d15] hover:bg-[#4b320f] focus:ring-4 focus:outline-none focus:ring-[#5c3d15]/40 font-semibold rounded-lg text-sm px-6 py-2 shadow-md hover:shadow-lg transition">
+                    Simpan Konten
+                </button>
+        </div>
 
     </form>
 
