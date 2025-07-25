@@ -96,27 +96,26 @@ $result = $connectionobj->query("SELECT * FROM admin ORDER BY id ASC");
 <main class="flex-grow pb-24">
 
     <!-- Header Deskripsi Halaman -->
-    <section class="text-gray-600 body-font">
-        <div class="container px-5 pt-5 mx-auto">
-            <div class="flex flex-col text-center w-full mb-5">
-                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4" style="color: #ef6c00;">Kelola Data Admin</h1>
-                <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base">
-                    🔐 Selamat datang di halaman pengelolaan akun Admin SMP PGRI 371 Pondok Aren! 👩‍💻👨‍💻<br>
-                    Di sini Anda dapat menambah, mengedit, atau menghapus data admin dengan mudah dan cepat.
-                    Admin memiliki akses penuh untuk mengelola data penting sekolah, sehingga memastikan keamanan dan integritas sistem sangatlah krusial.
-                    Pastikan hanya pengguna terpercaya yang diberikan hak akses ini. 💡
-                </p>
+        <section class="text-gray-600 body-font">
+            <div class="container px-5 py-5 mx-auto">
+                <div class="flex flex-col text-center w-full mb-2">
+                    <h1 class="text-3xl font-bold text-[#a9745a]">Kelola Data Admin </h1>
+                        <p class="text-sm text-gray-600 mt-2 max-w-2xl mx-auto">
+                        🔐 Selamat datang di halaman akun Admin SMP PGRI 371 Pondok Aren!
+                        Di sini Anda dapat menambah, mengedit, atau menghapus data admin. 
+                        Pastikan hanya pengguna terpercaya yang memiliki akses demi menjaga keamanan sistem.
+                    </p>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
     <!-- Tabel dan Tombol Tambah -->
-    <section class="max-w-6xl px-6 py-6 mx-auto bg-[#fc941e] rounded-md shadow-md mt-6">
+    <section class="max-w-6xl px-6 py-6 mx-auto bg-[#a9745a] rounded-md shadow-md mt-6">
         <div class="flex justify-between items-center mb-4">
             <h1 class="text-xl font-bold text-white">Manajemen Admin</h1>
             <button onclick="document.getElementById('addModal').classList.remove('hidden')" 
-                class="flex items-center gap-1 bg-white hover:bg-gray-100 text-[#5d2eff] font-semibold px-4 py-2 text-sm rounded shadow">
-                ➕ Tambah Admin
+                class="flex items-center gap-1 bg-[#5c3d15] hover:bg-[#4b320f] text-white font-semibold px-4 py-2 text-sm rounded shadow">
+                Tambah Admin
             </button>
         </div>
 
@@ -177,7 +176,7 @@ $result = $connectionobj->query("SELECT * FROM admin ORDER BY id ASC");
 
                                 <div class="flex justify-between">
                                     <button type="button" onclick="document.getElementById('editModal<?= $row['id'] ?>').classList.add('hidden')" class="bg-gray-400 text-white px-4 py-2 rounded">Batal</button>
-                                    <button type="submit" class="bg-[#fc941e] text-white px-4 py-2 rounded hover:bg-[#e77b00]">Simpan</button>
+                                    <button type="submit" class="bg-[#5c3d15] text-white px-4 py-2 rounded hover:bg-[#a9745a]">Simpan</button>
                                 </div>
                             </form>
                         </div>
@@ -208,7 +207,7 @@ $result = $connectionobj->query("SELECT * FROM admin ORDER BY id ASC");
             <input type="file" name="file_upload" class="w-full border px-3 py-2 mb-4 rounded">
             <div class="flex justify-between">
                 <button type="button" onclick="document.getElementById('addModal').classList.add('hidden')" class="bg-gray-400 text-white px-4 py-2 rounded">Batal</button>
-                <button type="submit" class="bg-[#fc941e] text-white px-4 py-2 rounded hover:bg-[#e77b00]">Simpan</button>
+                <button type="submit" class="bg-[#5c3d15] text-white px-4 py-2 rounded hover:bg-[#a9745a]">Simpan</button>
             </div>
         </form>
     </div>

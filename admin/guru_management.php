@@ -94,21 +94,25 @@ $result = $connectionobj->query("SELECT * FROM guru ORDER BY id ASC");
 
 
 <main class="flex-grow pb-24">
-    <section class="text-gray-600 body-font">
-        <div class="container px-5 pt-5 mx-auto">
-            <div class="flex flex-col text-center w-full mb-5">
-                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4" style="color: #ef6c00;">Kelola Data Guru</h1>
-                <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base">
-                    👩‍🏫 Halaman pengelolaan data Guru SMP PGRI 371 Pondok Aren. Tambahkan, ubah, atau hapus informasi guru untuk keperluan akademik dan administratif sekolah. 📚
-                </p>
-            </div>
-        </div>
-    </section>
+ <section class="text-gray-600 body-font">
+            <div class="container px-5 py-5 mx-auto">
+                <div class="flex flex-col text-center w-full mb-2">
+                    <h1 class="text-3xl font-bold text-[#a9745a]">Kelola Data Akun Guru</h1>
+                        <p class="text-sm text-gray-600 mt-2 max-w-2xl mx-auto">
+                        Selamat datang di halaman akun Guru SMP PGRI 371 Pondok Aren!
+                        Halaman ini memungkinkan Anda mengelola akun guru, termasuk menambah, mengedit, 
+                        atau menghapus data untuk mendukung proses pembelajaran.
 
-    <section class="max-w-6xl px-6 py-6 mx-auto bg-[#fc941e] rounded-md shadow-md mt-6">
+
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    <section class="max-w-6xl px-6 py-6 mx-auto bg-[#a9745a] rounded-md shadow-md mt-6">
         <div class="flex justify-between items-center mb-4">
             <h1 class="text-xl font-bold text-white">Manajemen Guru</h1>
-            <button onclick="document.getElementById('addModal').classList.remove('hidden')" class="bg-white px-4 py-2 rounded text-sm font-semibold text-[#5d2eff] hover:bg-gray-100 shadow">➕ Tambah Guru</button>
+            <button onclick="document.getElementById('addModal').classList.remove('hidden')" class="bg-[#5c3d15] px-4 py-2 rounded text-sm font-semibold text-white hover:bg-[#4b320f] shadow"> Tambah Guru</button>
         </div>
 
         <div class="overflow-x-auto bg-white rounded shadow">
@@ -189,7 +193,7 @@ $result = $connectionobj->query("SELECT * FROM guru ORDER BY id ASC");
 
                                 <div class="flex justify-between mt-4">
                                     <button type="button" onclick="document.getElementById('editModal<?= $row['id'] ?>').classList.add('hidden')" class="bg-gray-400 text-white px-4 py-2 rounded">Batal</button>
-                                    <button type="submit" class="bg-[#fc941e] text-white px-4 py-2 rounded hover:bg-[#e77b00]">Simpan</button>
+                                    <button type="submit" class="bg-[#5c3d15] text-white px-4 py-2 rounded hover:bg-[#4b320f]">Simpan</button>
                                 </div>
                             </form>
                         </div>
@@ -236,7 +240,7 @@ $result = $connectionobj->query("SELECT * FROM guru ORDER BY id ASC");
 
                 <div class="flex justify-between mt-4">
                     <button type="button" onclick="document.getElementById('addModal').classList.add('hidden')" class="bg-gray-400 text-white px-4 py-2 rounded">Batal</button>
-                    <button type="submit" class="bg-[#fc941e] text-white px-4 py-2 rounded hover:bg-[#e77b00]">Simpan</button>
+                    <button type="submit" class="bg-[#5c3d15] text-white px-4 py-2 rounded hover:bg-[#4b320f]">Simpan</button>
                 </div>
             </form>
         </div>

@@ -77,13 +77,17 @@ $mediaQuery = mysqli_query($connection, "SELECT * FROM media ORDER BY uploaded_a
 
   
   <section class="text-gray-600 body-font">
-    <div class="container px-5 py-10 mx-auto">
-      <div class="flex flex-col text-center w-full mb-6">
-        <h1 class="sm:text-3xl text-2xl font-bold title-font mb-4 text-[#fc941e]">Kelola Media Website</h1>
-        <p class="lg:w-2/3 mx-auto text-base leading-relaxed text-gray-600">
-          Halaman ini digunakan untuk mengunggah gambar, video, atau link YouTube yang akan ditampilkan di halaman tertentu.
-        </p>
-      </div>
+        <div class="container px-5 py-5 mx-auto">
+                <div class="flex flex-col text-center w-full mb-2">
+                    <h1 class="text-3xl font-bold text-[#a9745a]">Kelola Media Foto & Video Website </h1>
+                        <p class="text-sm text-gray-600 mt-2 max-w-2xl mx-auto">
+                        Selamat datang di halaman pengelolaan media SMP PGRI 371 Pondok Aren!
+                        Di sini Anda dapat menambah, memperbarui, atau menghapus foto dan video yang ditampilkan di situs. 
+                        Pastikan media yang ditampilkan mencerminkan aktivitas dan citra positif sekolah.
+
+                    </p>
+                </div>
+        </div>
 
       <?php if ($uploadError): ?>
         <div class="bg-red-200 text-red-800 px-4 py-2 rounded mb-4 text-center"><?= $uploadError ?></div>
@@ -120,7 +124,7 @@ $mediaQuery = mysqli_query($connection, "SELECT * FROM media ORDER BY uploaded_a
           <input type="text" name="youtube_url" class="w-full border border-gray-300 p-2 rounded" placeholder="https://www.youtube.com/embed/...">
         </div>
 
-        <button type="submit" class="bg-[#fc941e] text-white px-6 py-2 rounded hover:bg-[#e57e05]">Upload</button>
+        <button type="submit" class="bg-[#5c3d15] text-white px-6 py-2 rounded hover:bg-[#4b320f]">Upload</button>
       </form>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
