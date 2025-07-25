@@ -107,7 +107,7 @@ $info = $_SESSION['absensi_header'] ?? null;
 <div class="flex flex-1">
    
     <main class="flex-1 p-6">
-        <h2 class="text-2xl font-bold mb-4">Form Input Absensi</h2>
+        <h2 class="text-2xl font-bold mb-4 text-[#a9745a]">Form Input Absensi</h2>
 
         <?php if ($pesan): ?>
             <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4 text-center">
@@ -134,7 +134,7 @@ $info = $_SESSION['absensi_header'] ?? null;
                         <option value="IX">IX</option>
                     </select>
                 </div>
-                <button type="submit" name="simpan_header" class="bg-[#C08261] text-white px-4 py-2 rounded w-full">Simpan Header</button>
+                <button type="submit" name="simpan_header" class="bg-[#5c3d15] text-white px-4 py-2 rounded w-full">Simpan Header</button>
             </form>
         <?php endif; ?>
 
@@ -153,9 +153,9 @@ $info = $_SESSION['absensi_header'] ?? null;
             </div>
 
             <form method="post" class="bg-white p-6 rounded shadow border border-[#E4C988] overflow-auto mb-8">
-                <h3 class="text-lg font-semibold text-[#C08261] mb-4 text-center">Daftar Kehadiran Siswa</h3>
+                <h3 class="text-lg font-semibold text-[#a9745a] mb-4 text-center">Daftar Kehadiran Siswa</h3>
                 <table class="min-w-full border text-sm text-center mb-4">
-                    <thead class="bg-[#F5E8C7] text-center text-gray-800">
+                    <thead class="bg-[#a9745a] text-center text-white">
     <tr>
         <th class="border px-1 py-1 align-middle" rowspan="2">No</th>
         <th class="border px-1 py-1 align-middle" rowspan="2">NISN</th>
@@ -191,7 +191,7 @@ $info = $_SESSION['absensi_header'] ?? null;
                     </tbody>
                 </table>
                 <div class="text-center">
-                    <button type="submit" name="simpan_semua" class="bg-[#C08261] text-white px-6 py-2 rounded hover:bg-opacity-90">✅ Simpan Semua</button>
+                    <button type="submit" name="simpan_semua" class="bg-[#5c3d15] text-white px-6 py-2 rounded hover:bg-opacity-90">✅ Simpan Semua</button>
                 </div>
             </form>
         <?php endif; ?>
@@ -212,7 +212,7 @@ $info = $_SESSION['absensi_header'] ?? null;
         ?>
         <div class="bg-white p-6 rounded shadow border border-[#E4C988] overflow-auto mt-6">
             <div class="flex items-center justify-between mb-3">
-                <h3 class="text-xl font-semibold text-[#C08261]">Riwayat Kelas <?= htmlspecialchars($kelas) ?> - Mapel <?= htmlspecialchars($mapel) ?></h3>
+                <h3 class="text-xl font-bold text-[#a9745a]">Riwayat Kelas <?= htmlspecialchars($kelas) ?> - Mapel <?= htmlspecialchars($mapel) ?></h3>
                 <div class="space-x-2">
                     <a href="cetak_absensi.php?kelas=<?= urlencode($kelas) ?>&mapel=<?= urlencode($mapel) ?>" class="text-sm text-blue-600 underline">🖨 Cetak</a>
                     <form method="post" style="display:inline">
@@ -222,7 +222,7 @@ $info = $_SESSION['absensi_header'] ?? null;
                 </div>
             </div>
             <table class="min-w-full table-fixed border text-sm text-center">
-    <thead class="bg-[#F5E8C7] text-gray-800">
+    <thead class="bg-[#a9745a] text-white">
         <tr>
             <th class="w-1/4 border px-4 py-2">Tanggal</th>
             <th class="w-1/4 border px-4 py-2">Jam</th>
