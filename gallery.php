@@ -35,7 +35,7 @@ if (!isset($_SESSION["selectedAlbum"])) {
     <div class="mx-auto max-w-screen-2xl px-4 md:px-8 mt-5">
         <div class="mb-4 flex items-center justify-between gap-8 sm:mb-8 md:mb-12">
             <div class="flex items-center gap-12">
-                <h2 class="text-2xl font-bold text-[#ef6c00] lg:text-3xl dark:text-[#e65c00]">
+                <h2 class="text-2xl font-bold text-[#a9745a] lg:text-3xl dark:text-[#a9745a]">
                     <?php echo $_SESSION["selectedAlbum"]; ?></h2>
 
                 <p class="hidden max-w-screen-sm text-gray-500 dark:text-gray-800 md:block">
