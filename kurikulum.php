@@ -42,7 +42,7 @@
 </head>
 
 <body>
-  <?php include("includes/header.php"); ?>
+  <?php include("includes/header2.php"); ?>
 
   <?php
     include("connection/database.php");
