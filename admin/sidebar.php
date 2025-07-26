@@ -32,6 +32,9 @@ try {
         <span class="text-sm font-bold sidebar-label block">SMP PGRI 371 Pondok Aren</span>
     </div>
     <nav class="mt-4 flex flex-col px-2 space-y-1 text-sm">
+        <button onclick="dashboard()" class="hover:bg-[#bd8035] p-2 rounded flex items-center gap-3">
+            🏠 <span class="sidebar-label">Dashboard</span>
+        </button>
         <button onclick="flash_notice()" class="hover:bg-[#bd8035] p-2 rounded flex items-center gap-3">
             📝 <span class="sidebar-label">Kartu Sambutan</span>
         </button>
@@ -98,6 +101,7 @@ try {
 
 
 <script>
+        function dashboard() { window.location.href = "index.php?page=dashboard"; }
         function add_notice() { window.location.href = "index.php?page=add_notice"; }
         function site_content() { window.location.href = "index.php?page=site_content"; }
         function feedback_page() { window.location.href = "index.php?page=feedback"; }
