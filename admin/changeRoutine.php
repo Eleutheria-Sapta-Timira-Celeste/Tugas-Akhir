@@ -72,17 +72,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['update_notice'])) {
     <meta charset="UTF-8">
     <title>Ubah Jadwal Kelas</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet">
+   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
     <style>
         html, body { margin: 0; padding: 0; background-color: #ffffff; min-height: 100%; display: flex; flex-direction: column; }
         main { flex: 1; }
         footer { margin-top: auto; }
-        .btn-orange { background-color: #fc941e; color: white; }
-        .btn-orange:hover { background-color: #e67c00; }
+        .btn-orange { background-color: #5c3d15 ; color: white; }
+        .btn-orange:hover { background-color: #4b320f; }
         .modal-bg { background-color: rgba(0, 0, 0, 0.4); }
         input[type="file"]::file-selector-button {
-            background-color: #fc941e;
+            background-color: #4b320f;
             color: white;
             border: none;
             padding: 6px 12px;
@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['update_notice'])) {
             cursor: pointer;
         }
         input[type="file"]::file-selector-button:hover {
-            background-color: #e67c00;
+            background-color: #4b320f;
         }
     </style>
 </head>
@@ -160,14 +160,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['update_notice'])) {
                 <input type="hidden" name="class_id" value="0">
                 <div class="mb-4">
                     <label class="block mb-2 text-sm font-medium text-gray-700">Nama Kelas</label>
-                    <input type="text" name="class_name" required class="w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-orange-500">
+                    <input type="text" name="class_name" required class="w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#4b320f]">
                 </div>
                 <div class="mb-4">
                     <label class="block mb-2 text-sm font-medium text-gray-700">Upload Jadwal (Gambar)</label>
                 
-                    <div class="w-full border rounded-lg p-1 focus:outline-none focus:ring-2 focus:ring-orange-500">
+                    <div class="w-full border rounded-lg p-1 focus:outline-none focus:ring-2 focus:ring-[#4b320f]">
                         <!-- Tombol Upload -->
-                        <label class="bg-[#fc941e] text-white px-4 py-2 text-sm font-medium cursor-pointer hover:bg-[#fc941e]">
+                        <label class="bg-[#4b320f] text-white px-4 py-2 text-sm font-medium cursor-pointer hover:bg-[#4b320f]">
                             Pilih
                             <input type="file" name="file-upload-modified0" id="file-upload-modified0"
                                 class="hidden" required
@@ -182,7 +182,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['update_notice'])) {
                 </div>
 
 
-                <button name="update_notice" type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 rounded-lg">Simpan</button>
+                <button name="update_notice" type="submit" class="w-full bg-[#5c3d15] hover:bg-[#4b320f] text-white font-semibold py-2 rounded-lg">Simpan</button>
             </form>
         </div>
     </div>
