@@ -37,7 +37,7 @@ exit();
 
 <main class="p-6 bg-gray-100 min-h-screen">
     <div class="max-w-4xl mx-auto bg-white p-6 rounded shadow">
-        <h1 class="text-2xl font-bold text-orange-600 mb-4">Edit Konten Kurikulum</h1>
+        <h1 class="text-2xl font-bold text-[#a9745a] mb-4">Edit Konten Kurikulum</h1>
 
         <?php if (isset($_SESSION['success_message'])): ?>
             <div class="mb-4 p-3 bg-green-100 text-green-700 border border-green-400 rounded">
@@ -62,8 +62,8 @@ exit();
             <textarea name="deskripsi_panjang" class="w-full mb-4 border rounded p-2" rows="8"><?= htmlspecialchars($kurikulum['deskripsi_panjang']) ?></textarea>
 
             <div class="text-right">
-                <button type="submit" name="update_kurikulum" class="bg-orange-500 text-white px-5 py-2 rounded hover:bg-orange-600">
-                    💾 Simpan Perubahan
+                <button type="submit" name="update_kurikulum" class="bg-[#5c3d15] text-white px-5 py-2 rounded hover:bg-[#4b320f]">
+                    Simpan Perubahan
                 </button>
             </div>
         </form>
