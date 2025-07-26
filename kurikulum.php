@@ -53,7 +53,7 @@
   <section class="text-gray-600 body-font">
     <div class="container px-5 py-10 mx-auto text-center">
       <div class="flex flex-col w-full mb-10">
-        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-[#ef6c00]">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-[#a9745a]">
           <?= htmlspecialchars($data['judul']) ?>
         </h1>
 
@@ -61,7 +61,7 @@
           <?= nl2br(htmlspecialchars($data['deskripsi_singkat'])) ?>
         </p>
 
-        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 mt-10 text-[#ef6c00]">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 mt-10 text-[#a9745a]">
           <?= htmlspecialchars($data['subjudul']) ?>
         </h1>
 

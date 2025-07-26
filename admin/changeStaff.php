@@ -478,45 +478,64 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                                     </td>
                                 </tr>
 
-        <!-- Modal Update -->
-        <div id="updatePimpinanModal' . $pimpinanId . '" class="hidden fixed z-50 inset-0 overflow-y-auto">
-            <div class="flex items-center justify-center min-h-screen">
-                <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Ubah Data Pimpinan</h3>
-                    <hr class="border-[#fc941e] mb-4">
-                    <form method="post" enctype="multipart/form-data">
-                        <div class="mb-4">
-                            <label class="block mb-2 text-sm font-medium text-gray-900">Foto</label>
-                            <input type="file" name="file-upload-pimpinan' . $pimpinanId . '" accept="image/*"
-                                   class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50">
-                        </div>
-                        <div class="mb-4">
-                            <label class="block mb-2 text-sm font-medium text-gray-900">Nama</label>
-                            <input type="text" name="pimpinanName" value="' . $row['name'] . '"
-                                   class="w-full p-2.5 rounded border border-gray-300 bg-gray-50">
-                        </div>
-                        <div class="mb-4">
-                            <label class="block mb-2 text-sm font-medium text-gray-900">Posisi</label>
-                            <input type="text" name="pimpinanPosition" value="' . $row['position'] . '"
-                                   class="w-full p-2.5 rounded border border-gray-300 bg-gray-50">
-                        </div>
-                        <div class="mb-4">
-                            <label class="block mb-2 text-sm font-medium text-gray-900">NIP / Kontak</label>
-                            <input type="text" name="pimpinanPhone" value="' . $row['contact_no'] . '"
-                                   class="w-full p-2.5 rounded border border-gray-300 bg-gray-50">
-                        </div>
-                        <input type="hidden" name="pimpinanId" value="' . $pimpinanId . '">
-                        <input type="hidden" name="pimpinanImageLocation" value="' . $row['image_src'] . '">
-                        <div class="flex justify-end">
-                            <button type="submit" name="update_pimpinan"
-                                    class="px-4 py-2 bg-[#5c3d15] text-white rounded hover:bg-[#4b320f] ">
-                                Simpan
-                            </button>
-                        </div>
-                    </form>
-                </div>
+       <div id="updatePimpinanModal' . $pimpinanId . '" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-2xl max-h-full">
+        <!-- Modal content -->
+        <div class="relative p-4 bg-white rounded-lg shadow sm:p-5">
+            <!-- Modal header -->
+            <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5">
+                <h3 class="text-lg font-semibold text-black">Ubah Data Pimpinan</h3>
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-toggle="updatePimpinanModal' . $pimpinanId . '">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
             </div>
+
+            <!-- Modal body -->
+            <form method="post" enctype="multipart/form-data">
+                <div class="grid gap-4 mb-4 sm:grid-cols-1">
+
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-gray-900">Foto</label>
+                        <input type="file" name="file-upload-pimpinan' . $pimpinanId . '" accept="image/*"
+                            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none">
+                    </div>
+
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-gray-900">Nama</label>
+                        <input type="text" name="pimpinanName" value="' . $row['name'] . '"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" placeholder="Nama Pimpinan">
+                    </div>
+
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-gray-900">Posisi</label>
+                        <input type="text" name="pimpinanPosition" value="' . $row['position'] . '"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" placeholder="Kepala Sekolah / Wakil / dll">
+                    </div>
+
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-gray-900">NIP / Kontak</label>
+                        <input type="text" name="pimpinanPhone" value="' . $row['contact_no'] . '"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" placeholder="NIP / Nomor HP">
+                    </div>
+
+                    <input type="hidden" name="pimpinanId" value="' . $pimpinanId . '">
+                    <input type="hidden" name="pimpinanImageLocation" value="' . $row['image_src'] . '">
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <button type="submit" name="update_pimpinan"
+                        class="text-white bg-[#5c3d15] hover:bg-[#4b320f] focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                        Simpan Perubahan
+                    </button>
+                </div>
+            </form>
         </div>
+    </div>
+</div>
+
         ';
     }
 }
@@ -634,57 +653,76 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                 $staffsId = $row['id'];
                 echo '
 
-                        <div id="updatestaffsModel' . $staffsId . '" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                            <div class="relative p-4 w-full max-w-2xl max-h-full">
-                                <!-- Modal content -->
-                                
-                                <div class="relative p-4 bg-white rounded-lg shadow  sm:p-5">
-                                    <!-- Modal header -->
-                                    <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 ">
-                                        <h3 class="text-lg font-semibold text-black">Perbarui Petugas</h3>
-                                        <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-toggle="updatestaffsModel' . $staffsId . '">
-                                            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                            </svg>
-                                            <span class="sr-only">Close modal</span>
-                                        </button>
-                                    </div>
-                                    <!-- Modal body -->
-                                    <form method="post" id="UpdateNotice' . $staffsId . '" enctype="multipart/form-data">
-                                        <div class="grid gap-4 mb-4 sm:grid-cols-1">
-                                        <div><label for="new_file" class="block mb-2 text-sm font-medium text-gray-900 ">Berkas (Jika kosong, akan menggunakan yang sebelumnya)</label></div><br>
-                                            <div class="flex items-center justify-center w-full">
-                                               
-                                            
-                                                <input name="file-upload-modified' . $staffsId . '" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50  focus:outline-none " id="file_input" type="file" accept="image/*">
+<div id="updatestaffsModel' . $staffsId . '" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-2xl max-h-full">
+        <!-- Modal content -->
+        <div class="relative p-4 bg-white rounded-lg shadow sm:p-5">
+            <!-- Modal header -->
+            <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5">
+                <h3 class="text-lg font-semibold text-black">Perbarui Petugas</h3>
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-toggle="updatestaffsModel' . $staffsId . '">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
 
-                                            </div>
+            <!-- Modal body -->
+            <form method="post" id="UpdateNotice' . $staffsId . '" enctype="multipart/form-data">
+                <div class="grid gap-4 mb-4 sm:grid-cols-1">
 
-                                            <div class="sm:col-span-2">
-                                                <label for="subject" class="block mb-2 text-sm font-medium text-gray-900 ">Nama</label>
-                                                <input type="text" name="staffName" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " value="' . $row['name'] . '" placeholder="Bisswass Niroula">
-                                                <label for="post" class="block mb-2 text-sm font-medium text-gray-900 ">Posisi</label>
-                                                <input type="text" name="staffPost" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " value="' . $row['post'] . '" placeholder="Teacher">
-                                                <label for="post" class="block mb-2 text-sm font-medium text-gray-900 ">Kualifikasi</label>
-                                                <input type="text" name="staffqualification" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " value="' . $row['qualification'] . '" placeholder="PHD  ">
-                                                <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 ">NIP</label>
-                                                <input type="text" name="staffPhone" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " value="' . $row['contact'] . '" placeholder="9812000000">
+                    <div>
+                        <label for="new_file" class="block mb-2 text-sm font-medium text-gray-900">Berkas (Jika kosong, akan menggunakan yang sebelumnya)</label>
+                        <input name="file-upload-modified' . $staffsId . '" type="file" accept="image/*"
+                            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none">
+                    </div>
 
-                                                <input type="text" name="imageLocation" id="name" class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " value="' . $row['image_src'] . '" placeholder="9812000000">
-                                                
-                                                </div>
-                                            <input type="hidden" name="staffId" value="' . $staffsId . '" />
-                                            
-                                        </div>
-                                        
-                                        <div class="flex items-center space-x-4">
-                                            <button name="update_staffs" type="submit" class="text-white bg-[#5c3d15] hover:bg-[#4b320f] focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center">Perbarui Petugas</button>
-                                            
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                    <div>
+                        <label for="staffName" class="block mb-2 text-sm font-medium text-gray-900">Nama</label>
+                        <input type="text" name="staffName" id="staffName"
+                            class="block w-full p-2.5 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 text-sm"
+                            value="' . $row['name'] . '" placeholder="Nama Petugas">
+                    </div>
+
+                    <div>
+                        <label for="staffPost" class="block mb-2 text-sm font-medium text-gray-900">Posisi</label>
+                        <input type="text" name="staffPost" id="staffPost"
+                            class="block w-full p-2.5 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 text-sm"
+                            value="' . $row['post'] . '" placeholder="Posisi Petugas">
+                    </div>
+
+                    <div>
+                        <label for="staffqualification" class="block mb-2 text-sm font-medium text-gray-900">Kualifikasi</label>
+                        <input type="text" name="staffqualification" id="staffqualification"
+                            class="block w-full p-2.5 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 text-sm"
+                            value="' . $row['qualification'] . '" placeholder="Contoh: S.Pd / M.Kom">
+                    </div>
+
+                    <div>
+                        <label for="staffPhone" class="block mb-2 text-sm font-medium text-gray-900">NIP</label>
+                        <input type="text" name="staffPhone" id="staffPhone"
+                            class="block w-full p-2.5 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 text-sm"
+                            value="' . $row['contact'] . '" placeholder="12345678">
+                    </div>
+
+                    <!-- Hidden image source -->
+                    <input type="hidden" name="imageLocation" value="' . $row['image_src'] . '">
+                    <input type="hidden" name="staffId" value="' . $staffsId . '">
+
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <button name="update_staffs" type="submit"
+                        class="text-white bg-[#5c3d15] hover:bg-[#4b320f] focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                        Perbarui Petugas
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
                         <!-- Read modal -->
 
                         <!-- Delete modal -->
