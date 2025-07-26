@@ -35,7 +35,7 @@ include 'connection/database.php';
     <section>
     <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
         <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
-            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-[#ef6c00] dark:text-[#ef6c00]">
+            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-[#a9745a] dark:text-[#a9745a]">
                 Struktur Organisasi
             </h2>
             <p class="font-light text-gray-600 sm:text-xl dark:text-gray-600">
@@ -55,7 +55,7 @@ include 'connection/database.php';
 
         <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
             <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
-               <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-[#ef6c00] dark:text-[#ef6c00]">Pimpinan Sekolah</h2>
+               <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-[#a9745a] dark:text-[#a9745a]">Pimpinan Sekolah</h2>
                 <p class="font-light text-gray-600 sm:text-xl dark:text-gray-600">SMP PGRI 371 Pondok Aren dipimpin oleh seorang Kepala Sekolah yang bertanggung jawab dalam mengarahkan visi, misi, serta kebijakan sekolah untuk menciptakan lingkungan belajar yang kondusif dan berprestasi.</p>
             </div>
 
@@ -70,7 +70,7 @@ include 'connection/database.php';
             <img class="mx-auto mb-4 w-36 h-36 rounded-full   shadow-md"
                  src="' . $row['image_src'] . '"
                  onerror="this.src=\'' . $defaultavatar . '\'">
-            <h3 class="mb-1 text-xl font-semibold text-[#ef6c00] dark:text-[#ef6c00] leading-tight">
+            <h3 class="mb-1 text-xl font-semibold text-[#a9745a] dark:text-[#a9745a] leading-tight">
                 ' . $row['name'] . '
             </h3>
             <p class="text-sm text-gray-500">' . $row['position'] . '</p>
@@ -85,7 +85,7 @@ include 'connection/database.php';
     <section class="bg-white dark:bg-white">
         <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
             <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
-                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-[#ef6c00] dark:[#ef6c00]">Staff Sekolah</h2>
+                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-[#a9745a] dark:[#a9745a]">Staff Sekolah</h2>
                 <p class="font-light text-gray-500 sm:text-xl dark:text-gray-600">Kepala Sekolah dibantu oleh jajaran staf sekolah yang terdiri dari bendahara, wakil bidang kurikulum, wakil bidang kesiswaan, 
                     kepala tata usaha, kepala laboratorium IPA, wali kelas, pembina OSIS, dan pembina Rohis. Seluruh tim bekerja sama dalam mengelola kegiatan akademik, kesiswaan, dan administrasi sekolah demi kelancaran proses pendidikan.</p>
             </div>
@@ -105,7 +105,7 @@ include 'connection/database.php';
                         echo '
                                 <div class="text-center text-gray-500 dark:text-gray-600">
                                     <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="' . $row_staff['image_src'] . '" onerror="this.src=' . $defaultavatar . '">
-                                       <h3 class="mb-1 text-2xl font-bold tracking-tight text-[#ef6c00] dark:text-[#ef6c00]">
+                                       <h3 class="mb-1 text-2xl font-bold tracking-tight text-[#a9745a] dark:text-[#a9745a]">
 
                                             <a>' . $row_staff['name'] . ' ' . $row_staff['qualification'] . '</a>
                                         </h3>
