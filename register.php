@@ -127,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="flex justify-center mb-6">
         <img class="w-80 h-22" src="/Tugas-Akhir/assects/images/defaults/logoadmin.png" alt="logo">
     </div>
-    <h1 class="text-2xl font-bold text-orange-600 mb-6 text-center">Form Registrasi Pengguna</h1>
+    <h1 class="text-2xl font-bold text-[#a9745a] mb-6 text-center">Form Registrasi Pengguna</h1>
 
     <?php if (isset($_SESSION['notif'])): ?>
         <div class="bg-red-100 text-red-700 px-4 py-2 rounded mb-4"><?= $_SESSION['notif']; unset($_SESSION['notif']); ?></div>
