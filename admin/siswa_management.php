@@ -114,24 +114,28 @@ $result = $connectionobj->query("SELECT * FROM siswa $whereClause ORDER BY id AS
 <body class="bg-gray-100 flex flex-col min-h-screen">
 
 <main class="flex-grow pb-24">
-    <section class="text-gray-600 body-font">
-        <div class="container px-5 pt-5 mx-auto">
-            <div class="flex flex-col text-center w-full mb-5">
-                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4" style="color: #ef6c00;">Kelola Data Siswa</h1>
-                <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base">
-                    🎓 Selamat datang di halaman pengelolaan akun Siswa SMP PGRI 371 Pondok Aren! 🧑‍🎓👩‍🎓<br>
-                    Di sini Anda dapat menambah, mengedit, atau menghapus data siswa.
-                </p>
+            <section class="text-gray-600 body-font">
+            <div class="container px-5 py-5 mx-auto">
+                <div class="flex flex-col text-center w-full mb-2">
+                    <h1 class="text-3xl font-bold text-[#a9745a]">Kelola Data Akun Siswa </h1>
+                        <p class="text-sm text-gray-600 mt-2 max-w-2xl mx-auto">
+                        Selamat datang di halaman akun Siswa SMP PGRI 371 Pondok Aren!
+                        Kelola data akun siswa dengan mudah tambahkan, ubah, atau hapus sesuai kebutuhan. 
+                        Data ini digunakan untuk akses dan identitas siswa dalam sistem.
+
+
+                    </p>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+
            
 
         <!-- TABEL SISWA -->
         <!-- Section Konten Tabel -->
 
         
-    <section class="max-w-6xl px-6 py-6 mx-auto bg-[#fc941e] rounded-md shadow-md mt-6">
+    <section class="max-w-6xl px-6 py-6 mx-auto bg-[#a9745a] rounded-md shadow-md mt-6">
     <div class="flex justify-between items-center mt-4 mb-4">
     <!-- KIRI: Judul -->
     <h1 class="text-xl font-bold text-white">MANAJEMEN SISWA</h1>
@@ -154,7 +158,7 @@ $result = $connectionobj->query("SELECT * FROM siswa $whereClause ORDER BY id AS
         </select>
             <input type="text" name="search_nama" value="<?= isset($_GET['search_nama']) ? htmlspecialchars($_GET['search_nama']) : '' ?>" placeholder="Cari nama..." class="px-3 py-2 rounded text-sm border border-gray-300">
 
-            <button type="submit" class="bg-white text-[#5d2eff] text-sm font-semibold px-4 py-2 rounded hover:bg-gray-100 shadow">🔍 Cari</button>
+            <button type="submit" class="bg-white text-[#a9745a] text-sm font-semibold px-4 py-2 rounded hover:bg-gray-100 shadow">🔍 Cari</button>
 
             <?php if (!empty($_GET['filter_kelas']) || !empty($_GET['search_nama'])): ?>
                 <a href="index.php?page=siswa_management" class="bg-red-500 text-white px-3 py-2 rounded text-sm hover:bg-red-600">Reset</a>
@@ -167,7 +171,7 @@ $result = $connectionobj->query("SELECT * FROM siswa $whereClause ORDER BY id AS
                 
         <div class="flex justify-end items-center mt-4 mb-4">
    
-    <button onclick="document.getElementById('addModal').classList.remove('hidden')" class="bg-white px-4 py-2 rounded text-sm font-semibold text-[#5d2eff] hover:bg-gray-100 shadow">➕ Tambah Siswa</button>
+    <button onclick="document.getElementById('addModal').classList.remove('hidden')" class="bg-white px-4 py-2 rounded text-sm font-semibold text-[#a9745a] hover:bg-gray-100 shadow"> Tambah Siswa</button>
 </div>
 
             <div class="overflow-x-auto bg-white rounded shadow">
@@ -258,7 +262,7 @@ $result = $connectionobj->query("SELECT * FROM siswa $whereClause ORDER BY id AS
 
                                     <div class="flex justify-between mt-4">
                                         <button type="button" onclick="document.getElementById('editModal<?= $row['id'] ?>').classList.add('hidden')" class="bg-gray-400 text-white px-4 py-2 rounded">Batal</button>
-                                        <button type="submit" class="bg-[#fc941e] text-white px-4 py-2 rounded hover:bg-[#e77b00]">Simpan</button>
+                                        <button type="submit" class="bg-[#5c3d15] text-white px-4 py-2 rounded hover:bg-[#4b320f]">Simpan</button>
                                     </div>
                                 </form>
                             </div>

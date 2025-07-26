@@ -44,16 +44,16 @@ if (isset($_POST['feedbackDelete'])) {
    
 
     <!-- Header Section -->
-    <section class="text-gray-600 body-font bg-white">
-        <div class="container px-5 py-10 mx-auto">
-            <div class="flex flex-col text-center w-full mb-5">
-                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4" style="color: #ef6c00;">Umpan Balik Sekolah</h1>
-                <p class="text-sm md:text-base lg:w-2/3 mx-auto leading-relaxed text-base">
-                    Jelajahi Panel Admin untuk Sistem Umpan Balik Sekolah SMP PGRI 371 Pondok Aren. Kelola dan analisis umpan balik pengguna dari situs web secara efisien, memudahkan pengambilan keputusan yang tepat untuk perbaikan berkelanjutan.
-                </p>
-            </div>
+    <section class="text-gray-600 body-font">
+    <div class="container px-5 py-10 mx-auto">
+        <div class="flex flex-col text-center w-full mb-5">
+            <h1 class="text-3xl font-bold text-[#a9745a]">Umpan Balik Sekolah</h1>
+                <p class="text-sm text-gray-600 mt-2 max-w-2xl mx-auto">
+                Halaman ini berfungsi untuk mengelola masukan atau tanggapan dari pengunjung terkait layanan dan informasi yang tersedia di situs sekolah.
+            </p>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Tabel Feedback -->
     <section class="bg-white p-3 sm:p-5">
@@ -61,7 +61,7 @@ if (isset($_POST['feedbackDelete'])) {
             <div class="bg-white relative shadow-md sm:rounded-lg overflow-hidden">
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm text-left text-gray-700">
-                        <thead class="text-xs text-white uppercase" style="background-color: #fc941e;">
+                        <thead class="text-xs text-white uppercase" style="background-color: #a9745a;">
                             <tr>
                                 <th scope="col" class="px-4 py-4">Tanggal</th>
                                 <th scope="col" class="px-4 py-3">Dikirim Oleh</th>
@@ -80,7 +80,7 @@ if (isset($_POST['feedbackDelete'])) {
                                     <td class="px-4 py-3">'.$row['name'].'</td>
                                     <td class="px-4 py-3 max-w-[5rem] truncate">'.$row['message'].'</td>
                                     <td class="px-4 py-3 text-right">
-                                        <button id="showOption'.$feedbackId.'" data-dropdown-toggle="option'.$feedbackId.'" class="p-1.5 text-gray-500 hover:text-gray-800">
+                                        <button id="showOption'.$feedbackId.'" data-dropdown-toggle="option'.$feedbackId.'" class="p-1.5 text-[#a9745a] hover:[#a9745a]">
                                             <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20">
                                                 <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"/>
                                             </svg>
@@ -110,7 +110,6 @@ if (isset($_POST['feedbackDelete'])) {
                                         <p class="mb-2"><strong>Email:</strong> '.$row['email'].'</p>
                                         <p><strong>Pesan:</strong><br>'.$row['message'].'</p>
                                         <div class="flex justify-end mt-4 gap-2">
-                                            <button onclick="window.location.href=`mailto:'.$row['email'].'`" class="bg-[#ef6c00] hover:bg-[#cc5200] text-white px-4 py-2 rounded">Balas</button>
                                             <button data-modal-hide="readProductModal'.$feedbackId.'" class="bg-gray-300 hover:bg-gray-400 text-black px-4 py-2 rounded">Tutup</button>
                                         </div>
                                     </div>
@@ -118,17 +117,17 @@ if (isset($_POST['feedbackDelete'])) {
 
                                 <!-- Modal Delete -->
                                 <div id="deleteModal'.$feedbackId.'" tabindex="-1" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
-    <div class="bg-white rounded-lg p-6 max-w-md w-full">
-        <h3 class="text-lg font-semibold text-gray-900 mb-3 text-center">Yakin ingin menghapus?</h3>
-        <form method="post">
-            <input type="hidden" name="feedback_id" value="'.$feedbackId.'" />
-            <div class="flex justify-center gap-4 mt-4">
-                <button data-modal-hide="deleteModal'.$feedbackId.'" type="button" class="px-4 py-2 text-sm bg-gray-200 rounded hover:bg-gray-300">Batal</button>
-                <button name="feedbackDelete" type="submit" class="px-4 py-2 text-sm bg-red-600 text-white rounded hover:bg-red-700">Ya, Hapus</button>
-            </div>
-        </form>
-    </div>
-</div>
+                                <div class="bg-white rounded-lg p-6 max-w-md w-full">
+                                    <h3 class="text-lg font-semibold text-gray-900 mb-3 text-center">Yakin ingin menghapus?</h3>
+                                    <form method="post">
+                                        <input type="hidden" name="feedback_id" value="'.$feedbackId.'" />
+                                        <div class="flex justify-center gap-4 mt-4">
+                                            <button data-modal-hide="deleteModal'.$feedbackId.'" type="button" class="px-4 py-2 text-sm bg-gray-200 rounded hover:bg-gray-300">Batal</button>
+                                            <button name="feedbackDelete" type="submit" class="px-4 py-2 text-sm bg-red-600 text-white rounded hover:bg-red-700">Ya, Hapus</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                                 ';
                             }
                             ?>
