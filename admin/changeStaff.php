@@ -460,7 +460,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                                                     <button type="button"
                                                             data-modal-target="updatePimpinanModal' . $pimpinanId .'"
                                                             data-modal-toggle="updatePimpinanModal' . $pimpinanId . '"
-                                                            class="flex w-full px-4 py-2 hover:bg-[#fc941e]/20 dark:hover:bg-[#fc941e]">
+                                                            class="flex w-full px-4 py-2 hover:bg-[#a9745a]/20 dark:hover:bg-[#a9745a]">
                                                         Ubah
                                                     </button>
                                                 </li>
@@ -468,7 +468,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                                                     <form method="POST">
                                                         <input type="hidden" name="pimpinanDelete_id" value="' . $pimpinanId . '">
                                                         <button name="pimpinanDelete" type="submit"
-                                                                class="flex w-full px-4 py-2 text-red-600 hover:bg-[#fc941e]/20 dark:hover:bg-[#fc941e]">
+                                                                class="flex w-full px-4 py-2 text-red-600 hover:bg-[#a9745a]/20 dark:hover:bg-[#a9745a]">
                                                             Hapus
                                                         </button>
                                                     </form>
@@ -599,12 +599,12 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
                                                 <ul class="py-1 text-sm text-gray-700 ">
                                                     <li>
                                                         <button type="button" data-modal-target="updatestaffsModel' . $staffsId . '" 
-                                                        data-modal-toggle="updatestaffsModel' . $staffsId . '" class="flex w-full px-4 py-2 hover:bg-[#fc941e]/20 dark:hover:bg-[#fc941e]">Ubah</button>
+                                                        data-modal-toggle="updatestaffsModel' . $staffsId . '" class="flex w-full px-4 py-2 hover:bg-[#a9745a]/20 dark:hover:bg-[#a9745a]">Ubah</button>
                                                     </li>
                                                     <li>
                                                         <form method="POST">
                                                             <input type="hidden" name="staffDelete_id" value="' . $staffsId . '">
-                                                            <button name="staffDelete" type="submit" class="flex w-full px-4 py-2 text-red-600 hover:bg-[#fc941e]/20 dark:hover:bg-[#fc941e]">Hapus</button>
+                                                            <button name="staffDelete" type="submit" class="flex w-full px-4 py-2 text-red-600 hover:bg-[#a9745a]/20 dark:hover:bg-[#a9745a]">Hapus</button>
                                                         </form>
                                                     </li>
                                                 </ul>

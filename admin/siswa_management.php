@@ -318,7 +318,7 @@ $result = $connectionobj->query("SELECT * FROM siswa $whereClause ORDER BY id AS
 
                         <div class="flex justify-between mt-4">
                             <button type="button" onclick="document.getElementById('addModal').classList.add('hidden')" class="bg-gray-400 text-white px-4 py-2 rounded">Batal</button>
-                            <button type="submit" class="bg-[#fc941e] text-white px-4 py-2 rounded hover:bg-[#e77b00]">Simpan</button>
+                            <button type="submit" class="bg-[#5c3d15] text-white px-4 py-2 rounded hover:bg-[#4b320f]">Simpan</button>
                         </div>
                         </form>
                     </div>

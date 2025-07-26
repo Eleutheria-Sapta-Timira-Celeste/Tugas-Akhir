@@ -77,7 +77,7 @@ while ($row = $result->fetch_assoc()) {
             display: inline-block;
             margin-bottom: 15px;
             padding: 8px 16px;
-            background-color: #ef6c00;
+            background-color: #4b320f;
             color: white;
             border: none;
             border-radius: 5px;
@@ -85,7 +85,7 @@ while ($row = $result->fetch_assoc()) {
             cursor: pointer;
         }
         .print-btn:hover {
-            background-color: #d95c00;
+            background-color: #4b320f;
         }
         @media print {
             .no-print { display: none; }

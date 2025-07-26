@@ -256,7 +256,7 @@ $defaultavatar = "../assects/images/defaults/defaultaltimage.jpg";
         Cetak
     </button>
     <button data-modal-hide="previewModal<?= $student_Id ?>" 
-        class="no-print bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded shadow">
+        class="no-print bg-[#5c3d15] hover:bg-[#4b320f] text-white px-4 py-2 rounded shadow">
         Tutup
     </button>
 </div>
