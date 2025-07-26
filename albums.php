@@ -79,7 +79,7 @@ if (isset($_POST['sessionAlbum'])) {
                             <form method="post" id="album' . $album_name. '">
                                 <h2 class="text-gray-900 title-font text-lg font-medium">'.$album_name.'</h2>
                                 <input type="hidden" name="albumname" value="' . $album_name . '" />
-                                <button type="submit" name="sessionAlbum" class="mt-1 focus:outline-none text-white bg-[ #5c3d15] hover:bg-[#4b320f] focus:ring-4 focus:ring-[#a9745a] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-[#5c3d15] dark:hover:bg-[#4b320f] dark:focus:ring-[#a9745a]">Open</button>
+                                <button type="submit" name="sessionAlbum" class="mt-1 focus:outline-none text-white bg-[#5c3d15] hover:bg-[#4b320f] focus:ring-4 focus:ring-[#a9745a] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-[#5c3d15] dark:hover:bg-[#4b320f] dark:focus:ring-[#a9745a]">Open</button>
 
                             </form>
                             </div>
