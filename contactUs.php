@@ -41,11 +41,17 @@ try {
 
 <body>
      <?php include("includes/header.php") ?>
-     <?php if ($topImage): ?>
-    <div class="relative w-full h-[500px] overflow-hidden mb-6">
-        <img src="<?= $topImage['path'] ?>" alt="Gambar Utama" class="w-full h-full object-cover  shadow-md">
-    </div>
-    <?php endif; ?>
+  <?php if ($topImage): ?>
+  <div class="relative w-full h-[180px] sm:h-[500px] overflow-hidden mb-2 sm:mb-6">
+    <img 
+      src="<?= $topImage['path'] ?>" 
+      alt="Gambar Utama" 
+      class="w-full h-full object-cover object-center shadow-md"
+    >
+  </div>
+<?php endif; ?>
+
+
 
     <main>
 

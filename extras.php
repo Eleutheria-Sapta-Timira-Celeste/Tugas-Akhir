@@ -44,8 +44,8 @@ try {
     <?php include("includes/header.php") ?>
 
     <?php if ($topImage): ?>
-    <div class="relative w-full h-[500px] overflow-hidden mb-6">
-        <img src="<?= $topImage['path'] ?>" alt="Gambar Utama" class="w-full h-full object-cover  shadow-md">
+    <div class="relative w-full h-60 sm:h-[500px] overflow-hidden mb-6">
+        <img src="<?= $topImage['path'] ?>" alt="Gambar Utama" class="w-full h-full object-cover shadow-md">
     </div>
     <?php endif; ?>
 
