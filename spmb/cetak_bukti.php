@@ -16,168 +16,190 @@ if (!$row) {
     exit;
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <title>Cetak Bukti Pendaftaran SPMB</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @media print {
-            .no-print {
-                display: none !important;
-            }
-            .no-break {
-                break-inside: avoid;
-                page-break-inside: avoid;
-            }
-            .page-break {
-                page-break-before: always;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Bukti Pendaftaran SPMB</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @media print {
+      .no-print { display: none !important; }
+      body {
+        width: 210mm;
+        height: 297mm;
+        margin: 0 auto;
+        padding: 20mm;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 6px;
+      text-align: left;
+      vertical-align: top;
+    }
+    td.label {
+      width: 30%;
+      font-weight: bold;
+    }
+    td.photo {
+      text-align: center;
+      border: 1px solid black;
+      padding: 6px;
+    }
+  </style>
 </head>
-<body class="bg-white text-black p-0 m-0">
+<body class="text-sm leading-tight text-black bg-white">
 
-    <!-- HEADER (TIDAK IKUT TERPRINT) -->
-    <div class="no-print">
-        <?php include('../includes/header_form.php'); ?>
-    </div>
+<!-- HEADER (tidak dicetak) -->
+<div class="no-print">
+  <?php include('../includes/header_form.php'); ?>
+</div>
 
-    <!-- KONTEN UTAMA -->
-    <div class="max-w-5xl mx-auto p-6">
+<!-- Tombol Cetak di Atas -->
+<div class="no-print text-center my-6">
+  <button onclick="window.print()" class="bg-[#5c3d15] hover:bg-[#4b320f] text-white font-semibold px-5 py-2 rounded shadow">
+    🖨️ Cetak Bukti Pendaftaran
+  </button>
+</div>
 
-        <!-- Judul -->
-        <div class="flex items-center justify-center mb-6 space-x-4">
-            <img src="../assects/images/defaults/logo_warna_500.png" alt="Logo Sekolah" class="w-28 h-28 object-cover">
-            <div class="flex flex-col justify-center text-center">
-                <h1 class="text-2xl font-bold">SMP PGRI 371 PONDOK AREN</h1>
-                <h2 class="text-lg font-semibold">Sistem Penerimaan Murid Baru (SPMB) 2025</h2>
-            </div>
-        </div>
+<div class="max-w-4xl mx-auto p-6">
 
-        <h2 class="text-center text-lg font-bold border-y border-black py-2 mb-6">
-            DATA PENDAFTARAN SPMB
-        </h2>
+  <!-- Logo dan Judul -->
+  <div class="text-center mb-6">
+    <img src="../assects/images/defaults/logo_warna_500.png" alt="Logo" class="mx-auto w-24 h-24 mb-2">
+    <h1 class="text-xl font-bold uppercase">SMP PGRI 371 Pondok Aren</h1>
+    <p class="text-sm font-medium">Sistem Penerimaan Murid Baru (SPMB) 2025</p>
+  </div>
 
-      <!-- DATA SISWA -->
-<div class="border border-gray-400 p-6 rounded-lg mb-10 no-break">
-  <h3 class="text-2xl font-bold mb-4">DATA SISWA</h3>
-  <div class="grid grid-cols-3 gap-6 mb-6">
-    <!-- FOTO -->
-    <div class="flex items-center justify-center">
-      <img src="uploads/<?= $row['foto_pas'] ?>" onerror="this.src='<?= $defaultavatar ?>'" class="w-[90px] h-[120px] object-cover">
-    </div>
+  <!-- DATA SISWA -->
+  <table class="text-sm mb-8">
+    <tbody>
+      <tr>
+        <td class="label">Nama Siswa</td>
+        <td><?= htmlspecialchars($row['nama_lengkap']) ?></td>
+        <td rowspan="6" class="photo">
+          <img src="uploads/<?= $row['foto_pas'] ?>" onerror="this.src='<?= $defaultavatar ?>'" class="w-[120px] h-[150px] object-cover mx-auto mb-2 border border-black">
+        </td>
+      </tr>
+      <tr>
+        <td class="label">NISN Siswa</td>
+        <td><?= htmlspecialchars($row['nis']) ?></td>
+      </tr>
+      <tr>
+        <td class="label">Tempat / Tgl Lahir</td>
+        <td><?= htmlspecialchars($row['tempat_lahir']) ?> / <?= htmlspecialchars($row['tanggal_lahir']) ?></td>
+      </tr>
+      <tr>
+        <td class="label">Alamat</td>
+        <td><?= htmlspecialchars($row['alamat_tinggal']) ?></td>
+      </tr>
+      <tr>
+        <td class="label">Jenis Kelamin</td>
+        <td><?= htmlspecialchars($row['jenis_kelamin']) ?></td>
+      </tr>
+      <tr>
+        <td class="label">No. Telepon</td>
+        <td><?= htmlspecialchars($row['no_telp']) ?></td>
+      </tr>
+      <tr>
+        <td class="label">Penerima KIP</td>
+        <td colspan="2"><?= htmlspecialchars($row['penerima_kip']) ?> - <?= htmlspecialchars($row['no_kip']) ?></td>
+      </tr>
+      <tr>
+        <td class="label">Tinggi / Berat (cm/kg)</td>
+        <td colspan="2"><?= htmlspecialchars($row['tinggi_cm']) ?> / <?= htmlspecialchars($row['berat_kg']) ?></td>
+      </tr>
+      <tr>
+        <td class="label">Jarak Tempat Tinggal (km)</td>
+        <td colspan="2"><?= htmlspecialchars($row['jarak_tempat_tinggal']) ?></td>
+      </tr>
+      <tr>
+        <td class="label">Anak Ke</td>
+        <td colspan="2"><?= htmlspecialchars($row['anak_keberapa']) ?></td>
+      </tr>
+      <tr>
+        <td class="label">Jumlah Saudara Kandung</td>
+        <td colspan="2"><?= htmlspecialchars($row['jumlah_saudara_kandung']) ?></td>
+      </tr>
+    </tbody>
+  </table>
 
-    <!-- DATA SISWA: 2 Kolom -->
-    <div class="col-span-2 grid grid-cols-2 gap-4 text-sm">
+  <!-- DATA AYAH -->
+  <h2 class="text-lg font-bold mt-6 mb-2">Data Ayah</h2>
+  <table class="text-sm mb-8">
+    <tbody>
       <?php
-      $fields = [
-        'Nama Lengkap' => 'nama_lengkap',
-        'NIS' => 'nis',
-        'Jenis Kelamin' => 'jenis_kelamin',
-        'NIK' => 'nik',
-        'TTL' => ['tempat_lahir', 'tanggal_lahir'],
-        'Agama' => 'agama',
-        'Alamat' => 'alamat_tinggal',
-        'Moda Transportasi' => 'moda_transportasi',
-        'Anak Ke' => 'anak_keberapa',
-        'Jumlah Saudara' => 'jumlah_saudara_kandung',
-        'No. Telepon' => 'no_telp',
-        'Penerima KIP' => 'penerima_kip',
-        'Nomor KIP' => 'no_kip',
-        'Tinggi (cm)' => 'tinggi_cm',
-        'Berat (kg)' => 'berat_kg',
-        'Jarak Tempat Tinggal (km)' => 'jarak_tempat_tinggal'
+      $ayah = [
+        'Nama' => 'nama_ayah',
+        'NIK' => 'nik_ayah',
+        'Tempat Lahir' => 'tempat_lahir_ayah',
+        'Tanggal Lahir' => 'tanggal_lahir_ayah',
+        'Pendidikan' => 'pendidikan_ayah',
+        'Pekerjaan' => 'pekerjaan_ayah',
+        'Penghasilan' => 'penghasilan_ayah',
+        'No. Telepon' => 'no_telp_ayah'
       ];
-
-      foreach ($fields as $label => $field) {
-        echo '<div class="p-2 rounded shadow-inner bg-gray-50 flex items-start gap-1">';
-        echo '<span class="w-28 font-semibold">'.htmlspecialchars($label).'</span>';
-        echo '<span>:</span>';
-        if (is_array($field)) {
-          $value = htmlspecialchars($row[$field[0]]) . ' / ' . htmlspecialchars($row[$field[1]]);
-        } else {
-          $value = htmlspecialchars($row[$field]);
-        }
-        echo '<span class="flex-1 break-words">'.$value.'</span>';
-        echo '</div>';
+      foreach ($ayah as $label => $field) {
+        echo "<tr><td class='label'>$label</td><td colspan='2'>" . htmlspecialchars($row[$field]) . "</td></tr>";
       }
       ?>
+    </tbody>
+  </table>
+
+  <!-- DATA IBU - DI PAGE BREAK -->
+  <div class="page-break"></div>
+  <h2 class="text-lg font-bold mt-6 mb-2">Data Ibu</h2>
+  <table class="text-sm mb-8">
+    <tbody>
+      <?php
+      $ibu = [
+        'Nama' => 'nama_ibu',
+        'NIK' => 'nik_ibu',
+        'Tempat Lahir' => 'tempat_lahir_ibu',
+        'Tanggal Lahir' => 'tanggal_lahir_ibu',
+        'Pendidikan' => 'pendidikan_ibu',
+        'Pekerjaan' => 'pekerjaan_ibu',
+        'Penghasilan' => 'penghasilan_ibu',
+        'No. Telepon' => 'no_telp_ibu'
+      ];
+      foreach ($ibu as $label => $field) {
+        echo "<tr><td class='label'>$label</td><td colspan='2'>" . htmlspecialchars($row[$field]) . "</td></tr>";
+      }
+      ?>
+    </tbody>
+  </table>
+
+  <!-- TANDA TANGAN -->
+  <div class="mt-10 text-sm mb-8">
+    <p class="text-right mb-6">Tangerang Selatan, <?= date('d-m-Y') ?></p>
+    <div class="grid grid-cols-3 text-center">
+      <div>
+        <p>Orang Tua / Wali</p>
+        <div class="h-20"></div>
+        <p class="font-semibold underline"><?= htmlspecialchars($row['nama_ayah']) ?></p>
+      </div>
+      <div>
+        <p>Penerima Berkas</p>
+        <div class="h-20"></div>
+        <p class="font-semibold underline">..................................</p>
+      </div>
+      <div>
+        <p>Calon Siswa</p>
+        <div class="h-20"></div>
+        <p class="font-semibold underline"><?= htmlspecialchars($row['nama_lengkap']) ?></p>
+      </div>
     </div>
   </div>
 </div>
-
-
-
-        <!-- Page break -->
-        <div class="page-break"></div>
-
-        <!-- DATA AYAH -->
-        <div class="border border-gray-400 p-6 rounded-lg mb-10 mt-32">
-            <h3 class="text-2xl font-bold mb-4">DATA AYAH</h3>
-            <div class="grid grid-cols-2 gap-4 text-sm mb-6">
-                <?php
-                $fieldsAyah = [
-                    'Nama' => 'nama_ayah',
-                    'NIK' => 'nik_ayah',
-                    'Tempat Lahir' => 'tempat_lahir_ayah',
-                    'Tanggal Lahir' => 'tanggal_lahir_ayah',
-                    'Pendidikan' => 'pendidikan_ayah',
-                    'Pekerjaan' => 'pekerjaan_ayah',
-                    'Penghasilan' => 'penghasilan_ayah',
-                    'No. Telepon' => 'no_telp_ayah'
-                ];
-                foreach ($fieldsAyah as $label => $field) {
-                    echo '<div class="p-2 rounded shadow-inner bg-gray-50 flex items-start gap-1">';
-                    echo '<span class="w-28 font-semibold">'.$label.'</span>';
-                    echo '<span>:</span>';
-                    echo '<span class="flex-1 break-words">'.htmlspecialchars($row[$field]).'</span>';
-                    echo '</div>';
-                }
-                ?>
-            </div>
-        </div>
-
-        <!-- DATA IBU -->
-        <div class="border border-gray-400 p-6 rounded-lg mb-10 no-break">
-            <h3 class="text-2xl font-bold mb-4">DATA IBU</h3>
-            <div class="grid grid-cols-2 gap-4 text-sm mb-6">
-                <?php
-                $fieldsIbu = [
-                    'Nama' => 'nama_ibu',
-                    'NIK' => 'nik_ibu',
-                    'Tempat Lahir' => 'tempat_lahir_ibu',
-                    'Tanggal Lahir' => 'tanggal_lahir_ibu',
-                    'Pendidikan' => 'pendidikan_ibu',
-                    'Pekerjaan' => 'pekerjaan_ibu',
-                    'Penghasilan' => 'penghasilan_ibu',
-                    'No. Telepon' => 'no_telp_ibu'
-                ];
-                foreach ($fieldsIbu as $label => $field) {
-                    echo '<div class="p-2 rounded shadow-inner bg-gray-50 flex items-start gap-1">';
-                    echo '<span class="w-28 font-semibold">'.$label.'</span>';
-                    echo '<span>:</span>';
-                    echo '<span class="flex-1 break-words">'.htmlspecialchars($row[$field]).'</span>';
-                    echo '</div>';
-                }
-                ?>
-            </div>
-        </div>
-
-        <!-- Tombol Cetak -->
-        <div class="no-print text-center mt-10">
-            <button onclick="window.print()" class="bg-orange-600 hover:bg-orange-700 text-white font-semibold px-5 py-2 rounded shadow">
-                Cetak Halaman Ini
-            </button>
-        </div>
-    </div>
-
-    <!-- FOOTER (TIDAK IKUT TERPRINT) -->
-    <div class="no-print">
-        <?php include('../includes/spmb_footer.php'); ?>
-    </div>
 
 </body>
 </html>
