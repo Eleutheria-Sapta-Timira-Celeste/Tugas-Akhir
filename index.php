@@ -118,6 +118,7 @@ try {
     <p class="text-base sm:text-lg text-gray-700 leading-relaxed"><?= isset($row['seven']) ? $row['seven'] : '' ?></p>
   </div>
 </section>
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -211,6 +212,8 @@ try {
     <p class="text-base sm:text-lg text-gray-700 leading-relaxed"><?= isset($row['seven']) ? $row['seven'] : '' ?></p>
   </div>
 </section>
+=======
+>>>>>>> 0fccc80a4f3d4dd70d111b9ece55b892ddd57b94
 
 <section class="container mx-auto px-4 py-6 grid grid-cols-1 md:grid-cols-2 gap-8">
   <div class="bg-white p-6 rounded-lg shadow-md transition hover:scale-105 hover:shadow-lg hover:bg-gray-100">
