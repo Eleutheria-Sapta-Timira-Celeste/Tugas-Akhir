@@ -118,6 +118,99 @@ try {
     <p class="text-base sm:text-lg text-gray-700 leading-relaxed"><?= isset($row['seven']) ? $row['seven'] : '' ?></p>
   </div>
 </section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Beranda</title>
+  <link rel="stylesheet" href="css/utilities.css">
+  <link rel="stylesheet" href="css/animation.css">
+  <link rel="icon" type="image/x-icon" href="assects/images/logo2.png">
+  <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
+  <style>
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .animate-gradient {
+      background-size: 300% 300%;
+      animation: gradientFlow 8s ease infinite;
+    }
+
+    #info-popup {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 1.5s ease;
+    }
+
+    #info-popup.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50">
+
+<?php include('includes/header.php') ?>
+
+<!-- Video Hero -->
+<?php if ($topVideo): ?>
+  <div class="relative w-full aspect-video overflow-hidden mb-6 max-h-[500px]">
+    <video class="w-full h-full object-cover" autoplay muted loop>
+      <source src="<?= $topVideo['path'] ?>" type="video/mp4">
+      Browser tidak mendukung video.
+    </video>
+  </div>
+<?php endif; ?>
+
+<!-- Judul -->
+<div class="text-center mt-10 px-4">
+  <h2 class="text-2xl sm:text-3xl font-bold text-[#8A6640] border-b-4 inline-block border-[#8A6640] mb-0">
+    SMP PGRI 371 Pondok Aren
+  </h2>
+</div>
+
+<!-- Fitur Sekolah -->
+<section class="container mx-auto px-4 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+  <div class="bg-white rounded-lg shadow-xl p-6 transition hover:scale-105 hover:rotate-2 hover:shadow-2xl hover:bg-gray-100">
+    <h3 class="text-xl sm:text-2xl font-bold text-gray-800">📚 Pendidikan Berkualitas</h3>
+    <p class="text-gray-600">Menyediakan kurikulum terbaik dengan tenaga pendidik berpengalaman.</p>
+  </div>
+  <div class="bg-white rounded-lg shadow-xl p-6 transition hover:scale-105 hover:rotate-2 hover:shadow-2xl hover:bg-gray-100">
+    <h3 class="text-xl sm:text-2xl font-bold text-gray-800">🏆 Prestasi Luar Biasa</h3>
+    <p class="text-gray-600">Murid-murid kami telah meraih keberhasilan akademik dan non-akademik.</p>
+  </div>
+  <div class="bg-white rounded-lg shadow-xl p-6 transition hover:scale-105 hover:rotate-2 hover:shadow-2xl hover:bg-gray-100">
+    <h3 class="text-xl sm:text-2xl font-bold text-gray-800">🌎 Fasilitas Modern</h3>
+    <p class="text-gray-600">Laboratorium, perpustakaan, dan ruang kelas yang nyaman untuk pembelajaran maksimal.</p>
+  </div>
+  <div class="bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg shadow-xl p-6 transition hover:scale-110 hover:shadow-2xl flex flex-col items-center justify-center hover:bg-gradient-to-l">
+    <h3 class="text-xl sm:text-2xl font-extrabold text-center">🚀 Bergabung Bersama Kami!</h3>
+    <p class="text-base sm:text-lg text-gray-100 text-center mt-2">Jadilah bagian dari perjalanan pendidikan yang luar biasa.</p>
+    <a href="spmb/index.php" class="mt-4 bg-yellow-400 hover:bg-yellow-500 text-gray-900 px-4 py-2 rounded-lg shadow-md transition hover:scale-105 hover:rotate-2">
+      🔰 Daftar Sekarang
+    </a>
+  </div>
+</section>
+
+<!-- Konten Dinamis -->
+<section class="container mx-auto px-4 py-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+  <div class="bg-white p-6 rounded-lg shadow-md transition hover:scale-105 hover:shadow-lg hover:bg-gray-100">
+    <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 border-b-2 border-[#8A6640] pb-2">
+      Kenapa Memilih SMP PGRI 371 Pondok Aren?
+    </h1>
+    <p class="text-base sm:text-lg text-gray-700 leading-relaxed"><?= isset($row['two']) ? $row['two'] : '' ?></p>
+  </div>
+  <div class="bg-white p-6 rounded-lg shadow-md transition hover:scale-105 hover:shadow-lg hover:bg-gray-100">
+    <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 border-b-2 border-[#8A6640] pb-2">
+      Apa yang Murid Katakan Tentang Sekolah?
+    </h1>
+    <p class="text-base sm:text-lg text-gray-700 leading-relaxed"><?= isset($row['seven']) ? $row['seven'] : '' ?></p>
+  </div>
+</section>
 
 <section class="container mx-auto px-4 py-6 grid grid-cols-1 md:grid-cols-2 gap-8">
   <div class="bg-white p-6 rounded-lg shadow-md transition hover:scale-105 hover:shadow-lg hover:bg-gray-100">
